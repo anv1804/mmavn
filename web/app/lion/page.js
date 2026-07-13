@@ -68,13 +68,29 @@ export default function LionPage() {
                   <span className="text-[10px] text-red-500 font-bold rotate-45 translate-x-1.5 -translate-y-1.5">★</span>
                 </div>
                 
-                <div className="space-y-3">
-                  <span className="text-[10px] font-mono text-red-400 font-bold bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded">
-                    {champ.division}
-                  </span>
+                <div className="space-y-3 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-mono text-red-400 font-bold bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded">
+                      {champ.division}
+                    </span>
+                    
+                    {champ.photo ? (
+                      <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 mt-3">
+                        <img 
+                          src={champ.photo} 
+                          alt={champ.name} 
+                          className="w-full h-full object-cover object-center"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-zinc-900 bg-zinc-950/40 flex items-center justify-center mt-3 text-zinc-800">
+                        <span className="text-3xl">👤</span>
+                      </div>
+                    )}
+                  </div>
                   
-                  <div className="pt-2">
-                    <h3 className="text-base font-black text-white leading-tight">{champ.name}</h3>
+                  <div className="pt-3">
+                    <h3 className="text-sm font-black text-white leading-tight">{champ.name}</h3>
                     <p className="text-[10px] text-zinc-400 mt-0.5">{champ.club}</p>
                   </div>
                 </div>

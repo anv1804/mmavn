@@ -1,6 +1,6 @@
 export const nam_56 = {
   weightClass: "56kg Nam",
-  champion: { name: "Lê Văn Tuần", club: "Vietnam Top Team", record: "8-3-0" },
+  champion: { name: "Lê Văn Tuần", club: "Vietnam Top Team", record: "8-3-0", photo: "/lvt.png" },
   rankings: [
     { rank: 1, name: "Phạm Văn Nam", club: "Saigon Sports Club", record: "7-1-0" },
     { rank: 2, name: "Trần Minh Nhựt", club: "Liên Phong Club", record: "5-2-0" },
