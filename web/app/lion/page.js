@@ -75,11 +75,13 @@ export default function LionPage() {
                     </span>
                     
                     {champ.photo ? (
-                      <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 mt-3">
+                      <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-zinc-900 bg-gradient-to-b from-zinc-900/30 to-red-950/30 flex items-center justify-center mt-3 shadow-inner">
+                        {/* Red Spotlight Glow behind the transparent fighter */}
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.15)_0%,transparent_75%)] pointer-events-none"></div>
                         <img 
                           src={champ.photo} 
                           alt={champ.name} 
-                          className="w-full h-full object-cover object-center"
+                          className="w-full h-[90%] object-contain relative z-10 drop-shadow-[0_8px_16px_rgba(239,68,68,0.3)] transition-transform duration-300 group-hover:scale-105"
                         />
                       </div>
                     ) : (
