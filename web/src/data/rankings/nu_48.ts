@@ -1,4 +1,4 @@
-import type { Division } from "./nam_56";
+import type { Division } from "../../interfaces/ranking";
 
 export const nu_48: Division = {
   weightClass: "48kg Nữ",
