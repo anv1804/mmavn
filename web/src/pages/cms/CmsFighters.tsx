@@ -70,7 +70,15 @@ export default function CmsFighters() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selected.name) return showMsg("Vui lòng nhập tên võ sĩ", "error");
-    const { error } = await supabase.from("fighters").upsert(selected);
+    
+    // Omit fields that do not exist as root columns in Supabase schema cache
+    const {
+      facebook, tiktok, instagram, youtube,
+      birth_date, thumb, cover,
+      ...validPayload
+    } = selected;
+
+    const { error } = await supabase.from("fighters").upsert(validPayload);
     if (error) return showMsg("Lỗi lưu võ sĩ: " + error.message, "error");
     const idx = fighters.findIndex((f) => f.id === selected.id);
     setFighters(
