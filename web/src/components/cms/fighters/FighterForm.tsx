@@ -76,142 +76,204 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
         </button>
       </div>
 
-      {/* Row 1: Thông tin cơ bản */}
-      <div className="space-y-4">
-        <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">I. Thông tin cá nhân</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Field label="Mã Võ Sĩ (ID)*" field="id" disabled />
-          <div className="md:col-span-2">
-            <Field label="Họ Tên Võ sĩ*" field="name" placeholder="Ví dụ: Lê Văn Tuần" />
-          </div>
-          <Field label="Biệt danh (Nickname)" field="nickname" placeholder="Ví dụ: Tuần Trâu" />
+      {/* Main Grid: Left Column for Form, Right/Top Column for Preview */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        
+        {/* LEFT COLUMN: Input Fields (3/4 width) */}
+        <div className="lg:col-span-3 space-y-8">
+          
+          {/* I. Thông tin cá nhân */}
+          <div className="space-y-4">
+            <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">I. Thông tin cá nhân</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Field label="Mã Võ Sĩ (ID)*" field="id" disabled />
+              <div className="md:col-span-2">
+                <Field label="Họ Tên Võ sĩ*" field="name" placeholder="Ví dụ: Lê Văn Tuần" />
+              </div>
+              <Field label="Biệt danh (Nickname)" field="nickname" placeholder="Ví dụ: Tuần Trâu" />
 
-          {/* Gender */}
-          <div className="space-y-1">
-            <label className="text-[10px] text-zinc-400 uppercase block">Giới tính</label>
-            <select value={fighter.gender ?? "Nam"} onChange={(e) => set("gender", e.target.value)} className={inputClass}>
-              <option value="Nam">♂ Nam</option>
-              <option value="Nữ">♀ Nữ</option>
-            </select>
+              {/* Gender */}
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase block">Giới tính</label>
+                <select value={fighter.gender ?? "Nam"} onChange={(e) => set("gender", e.target.value)} className={inputClass}>
+                  <option value="Nam">♂ Nam</option>
+                  <option value="Nữ">♀ Nữ</option>
+                </select>
+              </div>
+
+              {/* Dynamic Weight Class select */}
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase block">Hạng cân*</label>
+                <select value={fighter.weight_class ?? ""} onChange={(e) => set("weight_class", e.target.value)} className={inputClass}>
+                  <option value="">— Chọn hạng cân —</option>
+                  {rankings.map((r) => (
+                    <option key={r.id} value={r.name}>{r.name}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Birth Date Picker */}
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase block">Ngày sinh</label>
+                <input
+                  type="date"
+                  value={fighter.birth_date ?? ""}
+                  onChange={(e) => handleBirthDateChange(e.target.value)}
+                  className={inputClass}
+                />
+              </div>
+
+              {/* Age (Readonly computed) */}
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase block">Tuổi (Tự động tính)</label>
+                <input
+                  type="number"
+                  disabled
+                  value={fighter.age ?? 0}
+                  className={disabledClass}
+                />
+              </div>
+
+              {/* Club select */}
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase block">Võ đường trực thuộc</label>
+                <select value={fighter.club ?? ""} onChange={(e) => set("club", e.target.value)} className={inputClass}>
+                  <option value="">— Chưa có võ đường —</option>
+                  {clubs.map((c) => (
+                    <option key={c.id} value={c.name}>{c.name}{c.short_name ? ` (${c.short_name})` : ""}</option>
+                  ))}
+                </select>
+              </div>
+
+              <Field label="Chiều cao (cm)" field="height" type="number" placeholder="Ví dụ: 168" />
+              <Field label="Sải tay (cm)" field="reach" type="number" placeholder="Ví dụ: 168" />
+              <Field label="Quê quán" field="hometown" placeholder="Ví dụ: Hà Đông, Hà Nội" />
+              <Field label="Quốc tịch" field="nationality" placeholder="Ví dụ: Việt Nam" />
+              <Field label="Quốc kỳ (Emoji)" field="flag" placeholder="Ví dụ: 🇻🇳" />
+            </div>
           </div>
 
-          {/* Dynamic Weight Class select */}
-          <div className="space-y-1">
-            <label className="text-[10px] text-zinc-400 uppercase block">Hạng cân*</label>
-            <select value={fighter.weight_class ?? ""} onChange={(e) => set("weight_class", e.target.value)} className={inputClass}>
-              <option value="">— Chọn hạng cân —</option>
-              {rankings.map((r) => (
-                <option key={r.id} value={r.name}>{r.name}</option>
-              ))}
-            </select>
+          {/* II. Hình ảnh & Truyền thông */}
+          <div className="space-y-4">
+            <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">II. Hình ảnh &amp; Đường dẫn</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Field label="Ảnh đại diện / Avatar (avt) URL" field="photo" placeholder="/lvt.png hoặc https://..." />
+              <Field label="Ảnh Thumb / Thumbnail URL (Danh sách)" field="thumb" placeholder="/lvt-thumb.png hoặc https://..." />
+              <div className="md:col-span-2">
+                <Field label="Ảnh bìa / Cover Banner URL (Chi tiết)" field="cover" placeholder="/lvt-cover.png hoặc https://..." />
+              </div>
+            </div>
           </div>
 
-          {/* Birth Date Picker */}
-          <div className="space-y-1">
-            <label className="text-[10px] text-zinc-400 uppercase block">Ngày sinh</label>
-            <input
-              type="date"
-              value={fighter.birth_date ?? ""}
-              onChange={(e) => handleBirthDateChange(e.target.value)}
-              className={inputClass}
-            />
+          {/* III. Mạng xã hội */}
+          <div className="space-y-4">
+            <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">III. Liên kết Mạng xã hội</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Field label="Facebook Link" field="facebook" placeholder="https://facebook.com/..." />
+              <Field label="TikTok Link" field="tiktok" placeholder="https://tiktok.com/@..." />
+              <Field label="Instagram Link" field="instagram" placeholder="https://instagram.com/..." />
+              <Field label="YouTube Link" field="youtube" placeholder="https://youtube.com/c/..." />
+            </div>
           </div>
 
-          {/* Age (Readonly computed) */}
-          <div className="space-y-1">
-            <label className="text-[10px] text-zinc-400 uppercase block">Tuổi (Tự động tính)</label>
-            <input
-              type="number"
-              disabled
-              value={fighter.age ?? 0}
-              className={disabledClass}
-            />
+          {/* IV. Thành tích & Stats */}
+          <div className="space-y-4">
+            <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">IV. Thành tích thi đấu</h3>
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+              <Field label="Thắng" field="wins" type="number" />
+              <Field label="Thua" field="losses" type="number" />
+              <Field label="Hòa" field="draws" type="number" />
+              <Field label="Thắng KO/TKO" field="ko_wins" type="number" />
+              <Field label="Thắng Submission" field="sub_wins" type="number" />
+              <Field label="Thắng Decision" field="decision_wins" type="number" />
+            </div>
           </div>
 
-          {/* Club select */}
-          <div className="space-y-1">
-            <label className="text-[10px] text-zinc-400 uppercase block">Võ đường trực thuộc</label>
-            <select value={fighter.club ?? ""} onChange={(e) => set("club", e.target.value)} className={inputClass}>
-              <option value="">— Chưa có võ đường —</option>
-              {clubs.map((c) => (
-                <option key={c.id} value={c.name}>{c.name}{c.short_name ? ` (${c.short_name})` : ""}</option>
-              ))}
-            </select>
+          {/* V. Tiểu sử & Trạng thái */}
+          <div className="space-y-4">
+            <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">V. Tiểu sử &amp; Trạng thái</h3>
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase block">Tiểu sử võ sĩ</label>
+                <textarea
+                  value={fighter.bio || ""}
+                  rows={4}
+                  onChange={(e) => set("bio", e.target.value)}
+                  className={inputClass}
+                  placeholder="Nhập thông tin giới thiệu ngắn về hành trình sự nghiệp và phong cách chiến đấu..."
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] text-zinc-400 uppercase block font-semibold">Trạng thái thi đấu</label>
+                <div className="flex gap-2 flex-wrap">
+                  {["Thi đấu", "Chấn thương", "Giải nghệ", "Ẩn"].map((s) => {
+                    const isActive = (fighter.status ?? "Thi đấu") === s;
+                    return (
+                      <button
+                        key={s}
+                        type="button"
+                        onClick={() => set("status", s)}
+                        className={`px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
+                          isActive
+                            ? "border-red-500 bg-red-500/10 text-red-600 dark:text-red-400"
+                            : isDark
+                            ? "border-zinc-800 text-zinc-500 hover:border-zinc-700 hover:text-zinc-300"
+                            : "border-zinc-200 text-zinc-400 hover:border-zinc-300 hover:text-zinc-700"
+                        }`}
+                      >
+                        {s}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
 
-          <Field label="Chiều cao (cm)" field="height" type="number" placeholder="Ví dụ: 168" />
-          <Field label="Sải tay (cm)" field="reach" type="number" placeholder="Ví dụ: 168" />
-          <Field label="Quê quán" field="hometown" placeholder="Ví dụ: Hà Đông, Hà Nội" />
-          <Field label="Quốc tịch" field="nationality" placeholder="Ví dụ: Việt Nam" />
-          <Field label="Quốc kỳ (Emoji)" field="flag" placeholder="Ví dụ: 🇻🇳" />
         </div>
-      </div>
 
-      {/* Row 2: Hình ảnh võ sĩ */}
-      <div className="space-y-4">
-        <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">II. Hình ảnh & Truyền thông</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Field label="Ảnh đại diện / Avatar URL (Tỷ lệ 1:1 vuông)" field="photo" placeholder="/lvt.png hoặc https://..." />
-          <Field label="Ảnh Thumb / Thumbnail URL (Hiển thị ở danh sách)" field="thumb" placeholder="/lvt-thumb.png hoặc https://..." />
-          <div className="md:col-span-2">
-            <Field label="Ảnh bìa / Cover Banner URL (Hiển thị ở trang chi tiết)" field="cover" placeholder="/lvt-cover.png hoặc https://..." />
-          </div>
-        </div>
-      </div>
-
-      {/* Row 3: Thành tích & Stats */}
-      <div className="space-y-4">
-        <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">III. Thành tích thi đấu</h3>
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-          <Field label="Thắng" field="wins" type="number" />
-          <Field label="Thua" field="losses" type="number" />
-          <Field label="Hòa" field="draws" type="number" />
-          <Field label="Thắng KO/TKO" field="ko_wins" type="number" />
-          <Field label="Thắng Submission" field="sub_wins" type="number" />
-          <Field label="Thắng Decision" field="decision_wins" type="number" />
-        </div>
-      </div>
-
-      {/* Row 4: Bio & Social */}
-      <div className="space-y-4">
-        <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">IV. Tiểu sử & Trạng thái</h3>
-        <div className="space-y-3">
-          <div className="space-y-1">
-            <label className="text-[10px] text-zinc-400 uppercase block">Tiểu sử võ sĩ</label>
-            <textarea
-              value={fighter.bio || ""}
-              rows={4}
-              onChange={(e) => set("bio", e.target.value)}
-              className={inputClass}
-              placeholder="Nhập thông tin giới thiệu ngắn về hành trình sự nghiệp và phong cách chiến đấu..."
-            />
-          </div>
-
+        {/* RIGHT COLUMN: Media Preview Panel (1/4 width) */}
+        <div className="space-y-6 lg:border-l lg:pl-6" style={{ borderColor: isDark ? "#27272a" : "#e4e4e7" }}>
+          <h3 className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">🖼️ Ảnh xem trước</h3>
+          
+          {/* Avatar Preview */}
           <div className="space-y-2">
-            <label className="text-[10px] text-zinc-400 uppercase block font-semibold">Trạng thái thi đấu</label>
-            <div className="flex gap-2 flex-wrap">
-              {["Thi đấu", "Chấn thương", "Giải nghệ", "Ẩn"].map((s) => {
-                const isActive = (fighter.status ?? "Thi đấu") === s;
-                return (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => set("status", s)}
-                    className={`px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
-                      isActive
-                        ? "border-red-500 bg-red-500/10 text-red-600 dark:text-red-400"
-                        : isDark
-                        ? "border-zinc-800 text-zinc-500 hover:border-zinc-700 hover:text-zinc-300"
-                        : "border-zinc-200 text-zinc-400 hover:border-zinc-300 hover:text-zinc-700"
-                    }`}
-                  >
-                    {s}
-                  </button>
-                );
-              })}
+            <span className="text-[10px] text-zinc-400 block uppercase">Avatar</span>
+            <div className={`w-full aspect-square rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
+              {fighter.photo ? (
+                <img src={fighter.photo} alt="Avatar" className="w-full h-full object-cover object-top" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
+              ) : (
+                <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
+              )}
+            </div>
+          </div>
+
+          {/* Thumbnail Preview */}
+          <div className="space-y-2">
+            <span className="text-[10px] text-zinc-400 block uppercase">Thumbnail</span>
+            <div className={`w-full aspect-video rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
+              {fighter.thumb ? (
+                <img src={fighter.thumb} alt="Thumbnail" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
+              ) : (
+                <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
+              )}
+            </div>
+          </div>
+
+          {/* Cover Preview */}
+          <div className="space-y-2">
+            <span className="text-[10px] text-zinc-400 block uppercase">Cover Banner</span>
+            <div className={`w-full aspect-[21/9] rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
+              {fighter.cover ? (
+                <img src={fighter.cover} alt="Cover Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
+              ) : (
+                <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
+              )}
             </div>
           </div>
         </div>
+
       </div>
 
       {/* Footer Actions */}
