@@ -1,11 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { leVanTuan } from "../data/fighters/le-van-tuan";
-
-// Fighter Database Map for Router loading
-const FIGHTER_DB: Record<string, typeof leVanTuan> = {
-  "le-van-tuan": leVanTuan,
-};
+import { supabase } from "../utils/supabase";
 
 // Stats structure for MMA Radar Chart
 interface CombatStats {
@@ -70,17 +65,89 @@ function getMethodTheme(method: string, isWin: boolean) {
 export default function FighterDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  
-  // Find fighter, fallback to leVanTuan if none found
-  const fighter = id && FIGHTER_DB[id] ? FIGHTER_DB[id] : leVanTuan;
-
-  const { wins, losses, draws } = fighter.record;
-  const total = wins + losses + draws;
-  const winRate = total > 0 ? Math.round((wins / total) * 100) : 0;
+  const [fighter, setFighter] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   // State for comparison
   const [searchQuery, setSearchQuery] = useState("");
   const [comparedKey, setComparedKey] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchFighter() {
+      if (!id) return;
+      try {
+        const { data, error } = await supabase
+          .from("fighters")
+          .select("*")
+          .eq("id", id)
+          .single();
+
+        if (error) throw error;
+        if (data) {
+          // Map DB keys back to interface properties
+          setFighter({
+            id: data.id,
+            name: data.name,
+            nickname: data.nickname,
+            weightClass: data.weight_class,
+            club: data.club,
+            coach: data.coach,
+            photo: data.photo,
+            bio: data.bio,
+            birthYear: data.birth_year,
+            age: data.age,
+            height: data.height,
+            reach: data.reach,
+            hometown: data.hometown,
+            nationality: data.nationality,
+            flag: data.flag,
+            record: {
+              wins: data.wins,
+              losses: data.losses,
+              draws: data.draws,
+            },
+            koWins: data.ko_wins,
+            subWins: data.sub_wins,
+            decisionWins: data.decision_wins,
+            socialMedia: data.social_media,
+            achievements: data.achievements,
+            fights: data.fights,
+            active: data.active
+          });
+        }
+      } catch (err) {
+        console.error("Error loading fighter details from Supabase:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchFighter();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#030303] text-white flex flex-col items-center justify-center gap-3">
+        <div className="w-8 h-8 rounded-full border-2 border-red-500 border-t-transparent animate-spin" />
+        <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">Đang tải hồ sơ võ sĩ...</span>
+      </div>
+    );
+  }
+
+  if (!fighter) {
+    return (
+      <div className="min-h-screen bg-[#030303] text-white flex flex-col items-center justify-center gap-4">
+        <span className="text-sm text-zinc-500 font-mono">Không tìm thấy hồ sơ võ sĩ</span>
+        <button onClick={() => navigate("/lion")} className="px-5 py-2.5 rounded-xl border border-zinc-800 bg-zinc-900/60 text-xs font-mono">
+          QUAY LẠI
+        </button>
+      </div>
+    );
+  }
+
+  const { wins, losses, draws } = fighter.record;
+  const total = wins + losses + draws;
+  const winRate = total > 0 ? Math.round((wins / total) * 100) : 0;
 
   const activeStats = COMPARISON_CANDIDATES[fighter.id] || COMPARISON_CANDIDATES["le-van-tuan"];
   const comparedFighter = comparedKey ? COMPARISON_CANDIDATES[comparedKey] : null;
@@ -162,6 +229,8 @@ export default function FighterDetail() {
           
           {/* ── CỘT TRÁI: ẢNH VÕ SĨ & MẠNG XÃ HỘI (4/12) ── */}
           <div className="lg:col-span-4 space-y-6">
+            
+            {/* Visual Fighter Photo Card */}
             <div className="relative overflow-hidden rounded-3xl border border-zinc-900 bg-zinc-950/60 p-6 flex flex-col items-center group">
               <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-red-600/70" />
               <div className="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-red-600/70" />
@@ -238,7 +307,7 @@ export default function FighterDetail() {
                   <h3 className="text-xs font-mono font-bold tracking-widest text-amber-500 uppercase">THÀNH TÍCH NỔI BẬT</h3>
                 </div>
                 <ul className="space-y-3 p-0 m-0 list-none text-xs">
-                  {fighter.achievements.map((ach, idx) => (
+                  {fighter.achievements.map((ach: string, idx: number) => (
                     <li key={idx} className="flex gap-2.5 items-start text-zinc-300">
                       <span className="text-amber-500 font-bold mt-0.5 shrink-0">✦</span>
                       <span className="leading-relaxed font-light">{ach}</span>
@@ -419,7 +488,7 @@ export default function FighterDetail() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Tìm kiếm võ sĩ để so sánh..."
-                      className="w-full bg-[#080809] border border-zinc-900 rounded-xl px-4 py-2 text-xs text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-red-500/40"
+                      className="w-full bg-[#080809] border border-zinc-900 rounded-xl px-4 py-2.5 text-xs text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-red-500/40"
                     />
                     
                     {searchQuery.trim().length > 0 && (
@@ -573,7 +642,7 @@ export default function FighterDetail() {
               </div>
 
               <div className="space-y-3">
-                {fighter.fights?.map((fight, idx) => {
+                {fighter.fights?.map((fight: any, idx: number) => {
                   const isWin = fight.result === "W";
                   const isLoss = fight.result === "L";
                   const theme = getMethodTheme(fight.method, isWin);
