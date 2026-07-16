@@ -166,7 +166,7 @@ export default function Header() {
               >
                 {/* Emoji icon or official logo image */}
                 {link.path === "/lion" ? (
-                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-4 h-4 object-contain rounded-full" />
+                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-4 h-4 object-contain" />
                 ) : (
                   <span className={`text-xs transition-all duration-300 ${active ? "opacity-100" : "opacity-0 group-hover/nav:opacity-60"}`}>
                     {link.emoji}
@@ -274,7 +274,7 @@ export default function Header() {
                 style={{ fontFamily: "Inter, system-ui, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}
               >
                 {link.path === "/lion" ? (
-                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-4 h-4 object-contain rounded-full" />
+                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-4 h-4 object-contain" />
                 ) : (
                   <span className="text-sm">{link.emoji}</span>
                 )}

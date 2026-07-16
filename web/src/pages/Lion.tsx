@@ -68,7 +68,7 @@ export default function Lion() {
               </div>
 
               <div className="flex items-center gap-4">
-                <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-28 h-28 object-contain rounded-full shadow-2xl shadow-red-500/20 border border-red-500/20" />
+                <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-28 h-28 object-contain drop-shadow-[0_10px_20px_rgba(239,68,68,0.25)]" />
                 <div>
                   <div className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.3em] mb-1.5">
                     Giải MMA Hàng Đầu Việt Nam
