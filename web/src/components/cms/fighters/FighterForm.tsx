@@ -211,19 +211,10 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
 
   // Pre-configured list of common MMA methods
   const FIGHT_METHODS = [
-    "KO (Knockout)",
-    "TKO (Technical Knockout)",
-    "Submission (Rear-Naked Choke)",
-    "Submission (Guillotine Choke)",
-    "Submission (Armbar)",
-    "Submission (Triangle Choke)",
-    "Submission (Ankle Lock)",
-    "Submission (Heel Hook)",
-    "Decision (Unanimous)",
-    "Decision (Split)",
-    "Decision (Majority)",
-    "DQ (Disqualification)",
-    "No Contest"
+    "Tính điểm",
+    "KO",
+    "TKO",
+    "SUB"
   ];
 
   return (
@@ -916,32 +907,11 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
                                   className={inputClass}
                                 >
                                   <option value="">— Chọn phương thức —</option>
-                                  
-                                  <optgroup label="Knockouts (Đo ván)">
-                                    <option value="KO (Knockout)">KO (Knockout)</option>
-                                    <option value="TKO (Technical Knockout)">TKO (Technical Knockout)</option>
-                                  </optgroup>
-
-                                  <optgroup label="Submissions (Siết / Khóa)">
-                                    <option value="Submission (Rear-Naked Choke)">Submission (Rear-Naked Choke)</option>
-                                    <option value="Submission (Guillotine Choke)">Submission (Guillotine Choke)</option>
-                                    <option value="Submission (Armbar)">Submission (Armbar)</option>
-                                    <option value="Submission (Triangle Choke)">Submission (Triangle Choke)</option>
-                                    <option value="Submission (Ankle Lock)">Submission (Ankle Lock)</option>
-                                    <option value="Submission (Heel Hook)">Submission (Heel Hook)</option>
-                                  </optgroup>
-
-                                  <optgroup label="Decisions (Tính điểm)">
-                                    <option value="Decision (Unanimous)">Decision (Unanimous)</option>
-                                    <option value="Decision (Split)">Decision (Split)</option>
-                                    <option value="Decision (Majority)">Decision (Majority)</option>
-                                  </optgroup>
-
-                                  <optgroup label="Khác">
-                                    <option value="DQ (Disqualification)">DQ (Disqualification)</option>
-                                    <option value="No Contest">No Contest</option>
-                                    <option value="Khác">Phương thức khác (Nhập tay)...</option>
-                                  </optgroup>
+                                  <option value="Tính điểm">Tính điểm</option>
+                                  <option value="KO">KO</option>
+                                  <option value="TKO">TKO</option>
+                                  <option value="SUB">SUB</option>
+                                  <option value="Khác">Phương thức khác (Nhập tay)...</option>
                                 </select>
                                 
                                 {(!FIGHT_METHODS.includes(fight.method) && fight.method !== "") && (
