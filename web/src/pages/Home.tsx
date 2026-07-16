@@ -303,31 +303,38 @@ export default function Home() {
 
       {/* ── SECTION 3: FEATURED CHAMPION SPOTLIGHT ── Upgraded to ultra-premium design */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-4 md:pb-6">
-        <div className={`rounded-3xl border p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden shadow-2xl transition-all duration-300 group ${
+        <div className={`rounded-3xl border p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden shadow-2xl transition-all duration-500 group ${
           isDark 
-            ? "bg-gradient-to-r from-zinc-950 via-zinc-950/50 to-black border-zinc-900/90 shadow-black/80 hover:border-amber-500/20" 
-            : "bg-gradient-to-r from-white via-zinc-50/80 to-zinc-50/20 border-zinc-200/95 shadow-zinc-200/20 hover:border-amber-500/35"
+            ? "bg-gradient-to-br from-zinc-950 via-zinc-950/60 to-black border-amber-500/20 hover:border-amber-500/50 shadow-black/80" 
+            : "bg-gradient-to-br from-white via-zinc-50/90 to-zinc-50/40 border-amber-500/25 hover:border-amber-500/50 shadow-zinc-200/20"
         }`}>
           
-          {/* Subtle Champion Background Radial Glow */}
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full opacity-[0.06] pointer-events-none transition-all duration-500 group-hover:opacity-[0.1]"
+          {/* Giant Editorial Background Watermark Typography */}
+          <div className={`absolute -right-4 top-1/2 -translate-y-1/2 select-none pointer-events-none font-black text-[7rem] md:text-[11rem] uppercase tracking-tighter opacity-[0.03] transition-all duration-700 group-hover:scale-105 group-hover:opacity-[0.05] ${
+            isDark ? "text-amber-500" : "text-amber-600"
+          }`} style={{ fontFamily: "'Oswald', sans-serif" }}>
+            CHAMP
+          </div>
+
+          {/* Premium Ambient Champion Gold Glow */}
+          <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full opacity-[0.08] pointer-events-none transition-all duration-700 group-hover:opacity-[0.14] group-hover:scale-110"
             style={{ background: "radial-gradient(circle, #f59e0b 0%, transparent 70%)" }} />
 
-          {/* Corner Decors */}
-          <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-amber-500/25" />
-          <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-amber-500/25" />
+          {/* Corner Framing Brackets */}
+          <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-amber-500/35 transition-all duration-300 group-hover:-translate-x-1 group-hover:-translate-y-1" />
+          <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-amber-500/35 transition-all duration-300 group-hover:translate-x-1 group-hover:translate-y-1" />
 
-          <div className="lg:col-span-8 space-y-6">
-            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1 rounded-full relative">
-              <span className="text-[10px] animate-bounce">🏆</span>
-              <span className="text-[9px] font-mono text-amber-500 font-bold uppercase tracking-widest">Đương Kim Vô Địch Nổi Bật</span>
+          <div className="lg:col-span-8 space-y-6 relative z-10">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-amber-600/5 border border-amber-500/30 px-4 py-1.5 rounded-full relative shadow-sm shadow-amber-500/5">
+              <span className="text-[10px] animate-bounce">👑</span>
+              <span className="text-[9px] font-mono text-amber-400 font-bold uppercase tracking-widest">Đương Kim Vô Địch Nổi Bật</span>
             </div>
             
             <h2 className={`text-4xl md:text-6xl font-black uppercase tracking-tight leading-[1.1] ${
               isDark ? "text-white" : "text-zinc-900"
             }`} style={{ fontFamily: "'Oswald', sans-serif" }}>
               LÊ VĂN TUẦN <br/>
-              <span className="text-red-500 text-base md:text-lg font-mono block mt-2 font-bold tracking-widest uppercase">&ldquo;THE SOUTHWARK BEAST&rdquo; · 56KG NAM</span>
+              <span className="text-red-500 text-base md:text-lg font-mono block mt-2.5 font-bold tracking-widest uppercase">&ldquo;THE SOUTHWARK BEAST&rdquo; · 56KG NAM</span>
             </h2>
 
             <p className={`text-xs md:text-sm leading-relaxed max-w-xl font-light ${textDesc}`}>
@@ -337,16 +344,21 @@ export default function Home() {
             {/* Structured Stats Grid */}
             <div className="grid grid-cols-3 gap-4 max-w-lg pt-2">
               {[
-                { label: "THÀNH TÍCH (W-L-D)", val: "8-3-0", sub: "Bảo vệ đai 3 lần", valColor: isDark ? "text-white" : "text-zinc-800" },
-                { label: "TỈ LỆ THẮNG", val: "73%", sub: "4 Trận khóa siết", valColor: "text-emerald-500" },
-                { label: "VÕ ĐƯỜNG CHỦ QUẢN", val: "VTT", sub: "Vietnam Top Team", valColor: "text-amber-500" }
+                { label: "THÀNH TÍCH (W-L-D)", val: "8-3-0", sub: "Bảo vệ đai 3 lần", valColor: isDark ? "text-white" : "text-zinc-800", icon: "📊" },
+                { label: "TỈ LỆ THẮNG", val: "73%", sub: "4 Trận khóa siết", valColor: "text-emerald-500", icon: "⚡" },
+                { label: "VÕ ĐƯỜNG", val: "VTT", sub: "Vietnam Top Team", valColor: "text-amber-500", icon: "🥋" }
               ].map((item, idx) => (
-                <div key={idx} className={`p-3.5 rounded-2xl border ${
-                  isDark ? "bg-zinc-900/30 border-zinc-900/60" : "bg-zinc-50/80 border-zinc-150"
+                <div key={idx} className={`p-4 rounded-2xl border transition-all duration-300 hover:scale-[1.03] ${
+                  isDark 
+                    ? "bg-zinc-900/40 border-zinc-900/80 hover:border-amber-500/20" 
+                    : "bg-zinc-50/80 border-zinc-200/80 hover:border-amber-500/30"
                 }`}>
-                  <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-wider block mb-1">{item.label}</span>
+                  <div className="flex items-center gap-1 mb-1">
+                    <span className="text-[10px]">{item.icon}</span>
+                    <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-wider block">{item.label}</span>
+                  </div>
                   <div className={`text-xl md:text-2xl font-black font-mono tracking-tight leading-none ${item.valColor}`}>{item.val}</div>
-                  <span className="text-[8px] text-zinc-400 font-mono mt-1 block truncate">{item.sub}</span>
+                  <span className="text-[8px] text-zinc-400 font-mono mt-1.5 block truncate">{item.sub}</span>
                 </div>
               ))}
             </div>
@@ -363,19 +375,28 @@ export default function Home() {
           </div>
 
           {/* Upgraded Champion Photo Frame */}
-          <div className="lg:col-span-4 flex justify-center">
-            <div className={`relative w-64 h-64 rounded-3xl overflow-hidden border flex items-center justify-center p-3 shadow-2xl transition-all duration-300 group ${
-              isDark ? "border-zinc-800/90 bg-zinc-950" : "border-zinc-200 bg-zinc-50"
+          <div className="lg:col-span-4 flex justify-center relative z-10">
+            <div className={`relative w-64 h-64 rounded-3xl overflow-hidden border flex items-center justify-center p-3 shadow-2xl transition-all duration-500 group ${
+              isDark ? "border-zinc-800/90 bg-zinc-950/80" : "border-zinc-200 bg-zinc-50/80"
             }`}>
               
               {/* Spinning Octagonal Grid Frame on hover */}
               <div className="absolute inset-2 border border-dashed rounded-2xl border-amber-500/20 opacity-40 group-hover:rotate-12 transition-transform duration-700 pointer-events-none" />
+              
+              {/* Gold light ring glow inside frame */}
+              <div className="absolute inset-4 rounded-full border border-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_20px_rgba(245,158,11,0.15)] pointer-events-none" />
 
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.12)_0%,transparent_70%)] pointer-events-none" />
+              
+              {/* Floating Champion Badge */}
+              <div className="absolute top-3 right-3 bg-amber-500 text-zinc-950 text-[7px] font-black font-mono tracking-widest px-2 py-0.5 rounded shadow-lg uppercase select-none pointer-events-none z-20">
+                CHAMP
+              </div>
+
               <img 
                 src="/lvt.png" 
                 alt="Lê Văn Tuần" 
-                className="w-full h-full object-contain scale-[1.3] translate-y-5 group-hover:scale-[1.4] transition-all duration-500" 
+                className="w-full h-full object-contain scale-[1.3] translate-y-5 group-hover:scale-[1.38] group-hover:translate-y-3.5 transition-all duration-500 relative z-10" 
               />
             </div>
           </div>
