@@ -118,8 +118,8 @@ export default function Home() {
       }`} />
 
       {/* ── SECTION 1: HERO PORTAL BANNER ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pt-32 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
           
           <div className="lg:col-span-8 space-y-6">
             <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 px-3.5 py-1.5 rounded-full">
@@ -160,7 +160,7 @@ export default function Home() {
           </div>
 
           {/* Quick stats sidebar */}
-          <div className={`rounded-3xl border p-7 space-y-6 relative shadow-2xl backdrop-blur-md transition-all duration-300 lg:col-span-4 ${
+          <div className={`rounded-3xl border p-4 md:p-6 space-y-6 relative shadow-2xl backdrop-blur-md transition-all duration-300 lg:col-span-4 ${
             isDark 
               ? "bg-zinc-950/70 border-zinc-900/80 shadow-black/85 hover:border-red-500/20" 
               : "bg-white border-zinc-200/80 shadow-zinc-200/30 hover:border-red-500/30"
@@ -190,7 +190,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 2: LATEST MMA NEWS (TIN TỨC NÓNG) ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
         <div className={`flex items-center gap-3 border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
@@ -205,7 +205,7 @@ export default function Home() {
             { tag: "SỰ KIỆN", time: "1 ngày trước", title: "Johnny Trí Nguyễn chia sẻ chiến thuật độc bản của Liên Phong trước mùa giải mới", desc: "HLV trưởng võ đường Liên Phong tin tưởng dàn võ sĩ trẻ sẽ tạo nên nhiều bất ngờ lớn với sự đột phá trong địa chiến." },
             { tag: "UFC 326", time: "3 ngày trước", title: "Jon Jones chính thức lên tiếng về tin đồn giải nghệ trước thềm đại chiến Aspinall", desc: "Huyền thoại hạng nặng khẳng định anh vẫn khao khát chiến đấu và muốn cống hiến một trận cầu kinh điển cuối cùng." }
           ].map((news, idx) => (
-            <div key={idx} className={`group border rounded-3xl p-6 space-y-4 transition-all duration-300 shadow-lg hover:-translate-y-1 ${
+            <div key={idx} className={`group border rounded-3xl p-4 md:p-6 space-y-4 transition-all duration-300 shadow-lg hover:-translate-y-1 ${
               isDark 
                 ? "bg-gradient-to-b from-zinc-950/70 to-zinc-950/40 border-zinc-900/80 hover:border-red-500/30 shadow-black/30" 
                 : "bg-white border-zinc-200/80 hover:border-red-500/30 shadow-zinc-200/10"
@@ -224,8 +224,8 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 3: FEATURED CHAMPION SPOTLIGHT ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
-        <div className={`rounded-3xl border p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden shadow-2xl transition-colors duration-300 ${
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
+        <div className={`rounded-3xl border p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center relative overflow-hidden shadow-2xl transition-colors duration-300 ${
           isDark 
             ? "bg-gradient-to-r from-zinc-950/70 via-zinc-950/40 to-zinc-950/20 border-zinc-900/80 shadow-black/55 hover:border-amber-500/20" 
             : "bg-gradient-to-r from-white via-zinc-50/70 to-zinc-50/30 border-zinc-200/85 shadow-zinc-200/20 hover:border-amber-500/30"
@@ -258,7 +258,7 @@ export default function Home() {
               </div>
               <div className={`w-px h-8 ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`} />
               <div>
-                <div className="text-2xl font-black font-mono text-emerald-400 tracking-tighter">73%</div>
+                <div className="text-2xl font-black font-mono text-emerald-500 tracking-tighter">73%</div>
                 <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block">TỈ LỆ THẮNG</span>
               </div>
               <div className={`w-px h-8 ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`} />
@@ -294,11 +294,11 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 4: MATCH HIGHLIGHT & FAN POLL ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
           
           {/* Fan Poll Widget (5/12) */}
-          <div className={`border rounded-3xl p-6 space-y-4 shadow-xl lg:col-span-5 ${
+          <div className={`border rounded-3xl p-4 md:p-6 space-y-4 shadow-xl lg:col-span-5 ${
             isDark 
               ? "bg-zinc-950/60 border-zinc-900/80 shadow-black/30" 
               : "bg-white border-zinc-200/80 shadow-zinc-200/10"
@@ -365,7 +365,7 @@ export default function Home() {
           </div>
 
           {/* Training Techniques Grid (7/12) */}
-          <div className={`border rounded-3xl p-6 space-y-4 shadow-xl lg:col-span-7 ${
+          <div className={`border rounded-3xl p-4 md:p-6 space-y-4 shadow-xl lg:col-span-7 ${
             isDark 
               ? "bg-zinc-950/60 border-zinc-900/80 shadow-black/30" 
               : "bg-white border-zinc-200/80 shadow-zinc-200/10"
@@ -385,7 +385,7 @@ export default function Home() {
                 { title: "Kỹ thuật đấm Overhand Right", level: "Cơ bản", duration: "Muay Thai / Boxing", desc: "Cách phát lực từ hông và giữ thăng bằng đầu để tạo ra đòn đấm Overhand uy lực nhất vượt qua tay thủ đối phương." },
                 { title: "Cách thoát thế chẹn cổ Rear-Naked Choke", level: "Nâng cao", duration: "BJJ / Grappling", desc: "Các bước gỡ tay khóa, xoay vai hướng về phía mặt đối thủ để thoát hiểm an toàn khi bị kiểm soát lưng." }
               ].map((tech, idx) => (
-                <div key={idx} className={`border p-4.5 rounded-2xl space-y-2 ${
+                <div key={idx} className={`border p-4 md:p-6 rounded-2xl space-y-2 ${
                   isDark ? "bg-zinc-900/40 border-zinc-900/60" : "bg-zinc-50/50 border-zinc-200"
                 }`}>
                   <div className="flex justify-between text-[9px] font-mono">
@@ -403,7 +403,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 5: UPCOMING BROADCASTS TIMELINE ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
         <div className={`flex items-center gap-3 border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
@@ -418,7 +418,7 @@ export default function Home() {
             { title: "UFC 326: Jones vs Aspinall", date: "Chủ Nhật, ngày 26 tháng 7, 2026", loc: "Madison Square Garden, New York", type: "Heavyweight Title Match", status: "Phát sóng độc quyền" },
             { title: "LION Championship 35", date: "Thứ Bảy, ngày 15 tháng 8, 2026", loc: "Quần Ngựa, Tây Hồ, Hà Nội", type: "Official Rankings Matches", status: "Bán vé chính thức" },
           ].map((evt, idx) => (
-            <div key={idx} className={`border rounded-3xl p-6 space-y-4 transition-all hover:-translate-y-1 shadow-lg ${
+            <div key={idx} className={`border rounded-3xl p-4 md:p-6 space-y-4 transition-all hover:-translate-y-1 shadow-lg ${
               isDark 
                 ? "bg-gradient-to-b from-zinc-950/70 to-zinc-950/40 border-zinc-900/80 hover:border-red-500/20 shadow-black/30" 
                 : "bg-white border-zinc-200/80 hover:border-red-500/20 shadow-zinc-200/10"
@@ -438,7 +438,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 6: CLUBS SECTION ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
         <div className={`flex items-center justify-between border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
           <div className="flex items-center gap-3">
             <div className="w-1 h-6 bg-red-600 rounded-full" />
@@ -471,7 +471,7 @@ export default function Home() {
                 <div 
                   key={club.id} 
                   onClick={() => navigate(`/club/${club.id}`)}
-                  className={`group relative overflow-hidden rounded-3xl border p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer shadow-lg hover:-translate-y-1 ${
+                  className={`group relative overflow-hidden rounded-3xl border p-4 md:p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer shadow-lg hover:-translate-y-1 ${
                     isDark
                       ? "bg-gradient-to-b from-zinc-950/70 to-zinc-950/40 border-zinc-900/85 hover:border-red-500/25 shadow-black/30"
                       : "bg-white border-zinc-200 hover:border-red-500/25 shadow-zinc-200/10"
