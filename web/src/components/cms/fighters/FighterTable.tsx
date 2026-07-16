@@ -47,7 +47,7 @@ export default function FighterTable({ fighters, clubs, page, totalPages, total,
           <thead>
             <tr className={isDark ? "bg-zinc-900/80" : "bg-zinc-50"}>
               {THEAD_COLS.map((h, i) => (
-                <th key={i} className={`${i === 6 ? "text-right" : "text-left"} ${thClass}`}>{h}</th>
+                <th key={i} className={`${i === 6 ? "text-right" : i === 5 ? "text-center" : "text-left"} ${thClass}`}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -134,7 +134,7 @@ export default function FighterTable({ fighters, clubs, page, totalPages, total,
                     </td>
 
                     {/* Status */}
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 text-center">
                       <StatusDot status={fighter.status} />
                     </td>
 
