@@ -18,6 +18,20 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
 }
 
+/* CMS Page clean typography override */
+.cms-font, 
+.cms-font h1, 
+.cms-font h2, 
+.cms-font h3, 
+.cms-font h4, 
+.cms-font h5, 
+.cms-font button, 
+.cms-font input, 
+.cms-font select,
+.cms-font textarea {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
 /* Custom premium combat glass card class */
 .octagon-panel {
   background: rgba(24, 24, 27, 0.4);

@@ -280,7 +280,7 @@ export default function Cms() {
   // ── RENDER DEDICATED LOGIN GATE IF NOT AUTHENTICATED ──
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#07070a] text-white" style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#07070a] text-white cms-font">
         
         {/* Cinematic atmospheric glowing spheres */}
         <div className="absolute top-[-20%] left-[-20%] w-[60vw] h-[60vh] bg-red-600/15 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[10s]" />
@@ -360,9 +360,9 @@ export default function Cms() {
 
   // ── RENDER DEDICATED CMS DASHBOARD ONCE AUTHENTICATED ──
   return (
-    <div className={`h-screen flex overflow-hidden ${
+    <div className={`h-screen flex overflow-hidden cms-font ${
       isDark ? "bg-[#030303] text-zinc-100" : "bg-[#f8f9fa] text-zinc-900"
-    }`} style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
+    }`}>
       
       {/* ── LEFT SIDEBAR NAVIGATION ── Styled 100% to match MMAVN Brand Colors (Red theme) */}
       <div className={`w-64 flex flex-col justify-between border-r shrink-0 transition-colors duration-300 ${
