@@ -5,6 +5,7 @@ import CmsPageHeader from "../../components/cms/shared/CmsPageHeader";
 import EventTable from "../../components/cms/events/EventTable";
 import EventForm from "../../components/cms/events/EventForm";
 import CmsConfirmModal from "../../components/cms/shared/CmsConfirmModal";
+import CmsUnsavedChangesModal from "../../components/cms/shared/CmsUnsavedChangesModal";
 
 const NEW_EVENT_TEMPLATE = {
   title: "", date: "", loc: "",
@@ -15,7 +16,9 @@ export default function CmsEvents() {
   const { events, saveEvents, msg, showMsg } = useCms();
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<any | null>(null);
+  const [original, setOriginal] = useState<any | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [showUnsavedModal, setShowUnsavedModal] = useState(false);
 
   const filtered = events.filter(
     (e) => e.title.toLowerCase().includes(search.toLowerCase()) || e.loc?.toLowerCase().includes(search.toLowerCase()),
@@ -38,10 +41,41 @@ export default function CmsEvents() {
     const idx = events.findIndex((ev) => ev.id === selected.id);
     saveEvents(idx > -1 ? events.map((ev) => (ev.id === selected.id ? selected : ev)) : [...events, selected]);
     setSelected(null);
+    setOriginal(null);
     showMsg("Đã lưu sự kiện thành công!");
   };
 
-  const initNew = () => setSelected({ id: "event-" + Date.now(), ...NEW_EVENT_TEMPLATE });
+  // Unsaved changes checks
+  const isDirty = () => {
+    if (!selected || !original) return false;
+    return JSON.stringify(selected) !== JSON.stringify(original);
+  };
+
+  const handleCancel = () => {
+    if (isDirty()) {
+      setShowUnsavedModal(true);
+    } else {
+      setSelected(null);
+      setOriginal(null);
+    }
+  };
+
+  const confirmLeave = () => {
+    setSelected(null);
+    setOriginal(null);
+    setShowUnsavedModal(false);
+  };
+
+  const initNew = () => {
+    const fresh = { id: "event-" + Date.now(), ...NEW_EVENT_TEMPLATE };
+    setSelected(fresh);
+    setOriginal(fresh);
+  };
+
+  const handleEdit = (evt: any) => {
+    setSelected(evt);
+    setOriginal(evt);
+  };
 
   return (
     <div className="space-y-6">
@@ -56,12 +90,12 @@ export default function CmsEvents() {
       {!selected ? (
         <EventTable
           events={filtered} search={search} onSearch={setSearch}
-          onEdit={setSelected} onDelete={handleDelete}
+          onEdit={handleEdit} onDelete={handleDelete}
         />
       ) : (
         <EventForm
           event={selected} onChange={setSelected}
-          onSave={handleSave} onCancel={() => setSelected(null)}
+          onSave={handleSave} onCancel={handleCancel}
         />
       )}
       {/* Confirm Delete Modal */}
@@ -71,6 +105,12 @@ export default function CmsEvents() {
         message="Bạn chắc chắn muốn xóa sự kiện đấu Lion Championship này? Hành động này không thể khôi phục."
         onConfirm={confirmDelete}
         onCancel={() => setDeleteId(null)}
+      />
+      {/* Unsaved Warning Modal */}
+      <CmsUnsavedChangesModal
+        isOpen={showUnsavedModal}
+        onConfirm={confirmLeave}
+        onCancel={() => setShowUnsavedModal(false)}
       />
     </div>
   );

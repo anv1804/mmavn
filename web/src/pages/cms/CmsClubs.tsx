@@ -5,8 +5,8 @@ import CmsToast from "../../components/cms/shared/CmsToast";
 import CmsPageHeader from "../../components/cms/shared/CmsPageHeader";
 import ClubTable from "../../components/cms/clubs/ClubTable";
 import ClubForm from "../../components/cms/clubs/ClubForm";
-
 import CmsConfirmModal from "../../components/cms/shared/CmsConfirmModal";
+import CmsUnsavedChangesModal from "../../components/cms/shared/CmsUnsavedChangesModal";
 
 const NEW_CLUB_TEMPLATE = {
   name: "", short_name: "", city: "TP. Hồ Chí Minh",
@@ -22,7 +22,9 @@ export default function CmsClubs() {
   const { clubs, setClubs, msg, showMsg } = useCms();
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<any | null>(null);
+  const [original, setOriginal] = useState<any | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [showUnsavedModal, setShowUnsavedModal] = useState(false);
 
   const filtered = clubs.filter(
     (c) => c.name.toLowerCase().includes(search.toLowerCase()) || c.city?.toLowerCase().includes(search.toLowerCase()),
@@ -58,7 +60,37 @@ export default function CmsClubs() {
     showMsg("Đã lưu võ đường thành công!");
   };
 
-  const initNew = () => setSelected({ id: "club-" + Date.now(), slug: "new-club-" + Date.now(), ...NEW_CLUB_TEMPLATE });
+  // Check if form is dirty
+  const isDirty = () => {
+    if (!selected || !original) return false;
+    return JSON.stringify(selected) !== JSON.stringify(original);
+  };
+
+  const handleCancel = () => {
+    if (isDirty()) {
+      setShowUnsavedModal(true);
+    } else {
+      setSelected(null);
+      setOriginal(null);
+    }
+  };
+
+  const confirmLeave = () => {
+    setSelected(null);
+    setOriginal(null);
+    setShowUnsavedModal(false);
+  };
+
+  const initNew = () => {
+    const fresh = { id: "club-" + Date.now(), slug: "new-club-" + Date.now(), ...NEW_CLUB_TEMPLATE };
+    setSelected(fresh);
+    setOriginal(fresh);
+  };
+
+  const handleEdit = (club: any) => {
+    setSelected(club);
+    setOriginal(club);
+  };
 
   return (
     <div className="space-y-6">
@@ -74,13 +106,13 @@ export default function CmsClubs() {
           />
           <ClubTable
             clubs={filtered} search={search} onSearch={setSearch}
-            onEdit={setSelected} onDelete={handleDelete}
+            onEdit={handleEdit} onDelete={handleDelete}
           />
         </>
       ) : (
         <ClubForm
           club={selected} onChange={setSelected}
-          onSave={handleSave} onCancel={() => setSelected(null)}
+          onSave={handleSave} onCancel={handleCancel}
         />
       )}
       {/* Confirm Delete Modal */}
@@ -90,6 +122,12 @@ export default function CmsClubs() {
         message="Bạn chắc chắn muốn xóa võ đường này? Toàn bộ thông tin liên quan sẽ bị loại bỏ."
         onConfirm={confirmDelete}
         onCancel={() => setDeleteId(null)}
+      />
+      {/* Unsaved Warning Modal */}
+      <CmsUnsavedChangesModal
+        isOpen={showUnsavedModal}
+        onConfirm={confirmLeave}
+        onCancel={() => setShowUnsavedModal(false)}
       />
     </div>
   );

@@ -6,11 +6,14 @@ import CmsToast from "../../components/cms/shared/CmsToast";
 import CmsPageHeader from "../../components/cms/shared/CmsPageHeader";
 import RankingList from "../../components/cms/rankings/RankingList";
 import RankingBxhForm from "../../components/cms/rankings/RankingBxhForm";
+import CmsUnsavedChangesModal from "../../components/cms/shared/CmsUnsavedChangesModal";
 
 export default function CmsRankings() {
   const { rankings, setRankings, msg, showMsg } = useCms();
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<any | null>(null);
+  const [original, setOriginal] = useState<any | null>(null);
+  const [showUnsavedModal, setShowUnsavedModal] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,6 +24,7 @@ export default function CmsRankings() {
       const found = rankings.find((r) => r.id === location.state.weightClassId);
       if (found) {
         setSelected(found);
+        setOriginal(found);
       }
       // Clear location state after picking it up
       navigate(location.pathname, { replace: true, state: {} });
@@ -35,7 +39,33 @@ export default function CmsRankings() {
     if (error) return showMsg("Lỗi lưu bảng xếp hạng: " + error.message, "error");
     setRankings(rankings.map((r) => (r.id === selected.id ? selected : r)));
     setSelected(null);
+    setOriginal(null);
     showMsg("Đã lưu bảng xếp hạng thành công!");
+  };
+
+  const isDirty = () => {
+    if (!selected || !original) return false;
+    return JSON.stringify(selected) !== JSON.stringify(original);
+  };
+
+  const handleCancel = () => {
+    if (isDirty()) {
+      setShowUnsavedModal(true);
+    } else {
+      setSelected(null);
+      setOriginal(null);
+    }
+  };
+
+  const confirmLeave = () => {
+    setSelected(null);
+    setOriginal(null);
+    setShowUnsavedModal(false);
+  };
+
+  const handleEdit = (r: any) => {
+    setSelected(r);
+    setOriginal(r);
   };
 
   return (
@@ -52,7 +82,7 @@ export default function CmsRankings() {
             rankings={filtered}
             search={search}
             onSearch={setSearch}
-            onEdit={setSelected}
+            onEdit={handleEdit}
           />
         </>
       ) : (
@@ -60,9 +90,15 @@ export default function CmsRankings() {
           weightClass={selected}
           onChange={setSelected}
           onSave={handleSave}
-          onCancel={() => setSelected(null)}
+          onCancel={handleCancel}
         />
       )}
+      {/* Unsaved Warning Modal */}
+      <CmsUnsavedChangesModal
+        isOpen={showUnsavedModal}
+        onConfirm={confirmLeave}
+        onCancel={() => setShowUnsavedModal(false)}
+      />
     </div>
   );
 }

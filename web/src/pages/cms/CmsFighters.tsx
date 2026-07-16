@@ -4,6 +4,7 @@ import { supabase } from "../../utils/supabase";
 import CmsToast from "../../components/cms/shared/CmsToast";
 import CmsPageHeader from "../../components/cms/shared/CmsPageHeader";
 import CmsConfirmModal from "../../components/cms/shared/CmsConfirmModal";
+import CmsUnsavedChangesModal from "../../components/cms/shared/CmsUnsavedChangesModal";
 import FighterFilters from "../../components/cms/fighters/FighterFilters";
 import FighterTable from "../../components/cms/fighters/FighterTable";
 import FighterForm from "../../components/cms/fighters/FighterForm";
@@ -18,6 +19,7 @@ const NEW_FIGHTER_TEMPLATE = {
   wins: 0, losses: 0, draws: 0,
   ko_wins: 0, sub_wins: 0, decision_wins: 0, active: true,
 };
+
 export default function CmsFighters() {
   const { fighters, setFighters, clubs, rankings, msg, showMsg } = useCms();
 
@@ -27,7 +29,9 @@ export default function CmsFighters() {
   const [filterStatus, setFilterStatus] = useState("");
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<any | null>(null);
+  const [original, setOriginal] = useState<any | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [showUnsavedModal, setShowUnsavedModal] = useState(false);
 
   // Filtering
   const filtered = fighters.filter((f) => {
@@ -78,7 +82,37 @@ export default function CmsFighters() {
     showMsg("Đã lưu hồ sơ võ sĩ thành công!");
   };
 
-  const initNew = () => setSelected({ id: "fighter-" + Date.now(), ...NEW_FIGHTER_TEMPLATE });
+  // Check if form is dirty
+  const isDirty = () => {
+    if (!selected || !original) return false;
+    return JSON.stringify(selected) !== JSON.stringify(original);
+  };
+
+  const handleCancel = () => {
+    if (isDirty()) {
+      setShowUnsavedModal(true);
+    } else {
+      setSelected(null);
+      setOriginal(null);
+    }
+  };
+
+  const confirmLeave = () => {
+    setSelected(null);
+    setOriginal(null);
+    setShowUnsavedModal(false);
+  };
+
+  const initNew = () => {
+    const fresh = { id: "fighter-" + Date.now(), ...NEW_FIGHTER_TEMPLATE };
+    setSelected(fresh);
+    setOriginal(fresh);
+  };
+
+  const handleEdit = (fighter: any) => {
+    setSelected(fighter);
+    setOriginal(fighter);
+  };
 
   return (
     <div className="space-y-6">
@@ -105,13 +139,13 @@ export default function CmsFighters() {
           <FighterTable
             fighters={paged} clubs={clubs}
             page={page} totalPages={totalPages} total={filtered.length}
-            onEdit={setSelected} onDelete={handleDelete} onPageChange={setPage}
+            onEdit={handleEdit} onDelete={handleDelete} onPageChange={setPage}
           />
         </>
       ) : (
         <FighterForm
           fighter={selected} clubs={clubs} rankings={rankings}
-          onChange={setSelected} onSave={handleSave} onCancel={() => setSelected(null)}
+          onChange={setSelected} onSave={handleSave} onCancel={handleCancel}
         />
       )}
       {/* Confirm Delete Modal */}
@@ -121,6 +155,12 @@ export default function CmsFighters() {
         message="Bạn chắc chắn muốn xóa hồ sơ võ sĩ này? Hành động này không thể hoàn tác."
         onConfirm={confirmDelete}
         onCancel={() => setDeleteId(null)}
+      />
+      {/* Unsaved Warning Modal */}
+      <CmsUnsavedChangesModal
+        isOpen={showUnsavedModal}
+        onConfirm={confirmLeave}
+        onCancel={() => setShowUnsavedModal(false)}
       />
     </div>
   );

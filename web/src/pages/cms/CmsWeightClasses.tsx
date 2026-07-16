@@ -7,6 +7,7 @@ import CmsPageHeader from "../../components/cms/shared/CmsPageHeader";
 import WeightClassTable from "../../components/cms/weight-classes/WeightClassTable";
 import WeightClassForm from "../../components/cms/weight-classes/WeightClassForm";
 import CmsConfirmModal from "../../components/cms/shared/CmsConfirmModal";
+import CmsUnsavedChangesModal from "../../components/cms/shared/CmsUnsavedChangesModal";
 
 const NEW_WC_TEMPLATE = {
   name: "", gender: "Nam", sort_order: 0,
@@ -20,7 +21,9 @@ export default function CmsWeightClasses() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<any | null>(null);
+  const [original, setOriginal] = useState<any | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [showUnsavedModal, setShowUnsavedModal] = useState(false);
   const [filterGender, setFilterGender] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
 
@@ -61,10 +64,41 @@ export default function CmsWeightClasses() {
     const idx = rankings.findIndex(r => r.id === saved.id);
     setRankings(idx > -1 ? rankings.map(r => r.id === saved.id ? saved : r) : [...rankings, saved]);
     setSelected(null);
+    setOriginal(null);
     showMsg("Đã lưu hạng cân thành công!");
   };
 
-  const initNew = () => setSelected({ id: "wc-" + Date.now(), ...NEW_WC_TEMPLATE });
+  // Check if form is dirty
+  const isDirty = () => {
+    if (!selected || !original) return false;
+    return JSON.stringify(selected) !== JSON.stringify(original);
+  };
+
+  const handleCancel = () => {
+    if (isDirty()) {
+      setShowUnsavedModal(true);
+    } else {
+      setSelected(null);
+      setOriginal(null);
+    }
+  };
+
+  const confirmLeave = () => {
+    setSelected(null);
+    setOriginal(null);
+    setShowUnsavedModal(false);
+  };
+
+  const initNew = () => {
+    const fresh = { id: "wc-" + Date.now(), ...NEW_WC_TEMPLATE };
+    setSelected(fresh);
+    setOriginal(fresh);
+  };
+
+  const handleEdit = (wc: any) => {
+    setSelected(wc);
+    setOriginal(wc);
+  };
 
   // Navigate to BXH management for a weight class
   const handleManageBxh = (wc: any) => {
@@ -93,7 +127,7 @@ export default function CmsWeightClasses() {
             onStatusChange={setFilterStatus}
             hasFilter={hasFilter}
             onReset={resetFilters}
-            onEdit={setSelected}
+            onEdit={handleEdit}
             onDelete={handleDelete}
             onManageBxh={handleManageBxh}
           />
@@ -103,7 +137,7 @@ export default function CmsWeightClasses() {
           wc={selected}
           onChange={setSelected}
           onSave={handleSave}
-          onCancel={() => setSelected(null)}
+          onCancel={handleCancel}
         />
       )}
       {/* Confirm Delete Modal */}
@@ -113,6 +147,12 @@ export default function CmsWeightClasses() {
         message="Xóa hạng cân này sẽ xóa toàn bộ bảng xếp hạng của hạng cân này. Hành động này không thể hoàn tác."
         onConfirm={confirmDelete}
         onCancel={() => setDeleteId(null)}
+      />
+      {/* Unsaved Warning Modal */}
+      <CmsUnsavedChangesModal
+        isOpen={showUnsavedModal}
+        onConfirm={confirmLeave}
+        onCancel={() => setShowUnsavedModal(false)}
       />
     </div>
   );
