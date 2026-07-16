@@ -38,9 +38,10 @@ export default function Home() {
             <div className="pt-4 flex flex-wrap gap-3.5">
               <button
                 onClick={() => navigate("/lion")}
-                className="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold uppercase tracking-widest border-none cursor-pointer transition-all shadow-lg shadow-red-600/20"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold uppercase tracking-widest border-none cursor-pointer transition-all shadow-lg shadow-red-600/20"
               >
-                🏆 Bảng xếp hạng LION
+                <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-4 h-4 object-contain rounded-full brightness-110" />
+                <span>Bảng xếp hạng LION</span>
               </button>
               <button
                 onClick={() => navigate("/community")}

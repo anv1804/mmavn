@@ -255,7 +255,8 @@ export default function FighterDetail() {
             {/* Identity & Nickname Block */}
             <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="text-[9px] font-mono font-bold tracking-[0.2em] text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-md uppercase">
+                <span className="flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-[0.2em] text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-md uppercase">
+                  <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-3.5 h-3.5 object-contain rounded-full" />
                   LION CHAMPION
                 </span>
                 <span className="text-zinc-700">•</span>

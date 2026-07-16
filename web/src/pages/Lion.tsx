@@ -67,22 +67,24 @@ export default function Lion() {
                 <span className="text-[10px] font-mono text-red-400 uppercase tracking-[0.2em]">Season 2026 · Live</span>
               </div>
 
-              <div>
-                <div className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.3em] mb-3">
-                  Giải MMA Hàng Đầu Việt Nam
-                </div>
-                <h1
-                  className="font-black uppercase leading-[0.95] tracking-tighter"
-                  style={{ textShadow: "0 0 80px rgba(239,68,68,0.25)" }}
-                >
-                  <span className="text-white block" style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}>LION</span>
-                  <span
-                    className="block bg-gradient-to-r from-red-500 via-rose-500 to-amber-400 bg-clip-text text-transparent"
-                    style={{ fontSize: "clamp(2.4rem, 6vw, 5rem)" }}
+              <div className="flex items-center gap-4">
+                <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-16 h-16 object-contain rounded-full shadow-lg shadow-red-500/10 border border-red-500/20" />
+                <div>
+                  <div className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.3em] mb-1.5">
+                    Giải MMA Hàng Đầu Việt Nam
+                  </div>
+                  <h1
+                    className="font-black uppercase leading-[0.95] tracking-tighter"
+                    style={{ textShadow: "0 0 80px rgba(239,68,68,0.25)" }}
                   >
-                    CHAMPIONSHIP
-                  </span>
-                </h1>
+                    <span className="text-white block text-3xl md:text-5xl">LION</span>
+                    <span
+                      className="block bg-gradient-to-r from-red-500 via-rose-500 to-amber-400 bg-clip-text text-transparent text-4xl md:text-6xl"
+                    >
+                      CHAMPIONSHIP
+                    </span>
+                  </h1>
+                </div>
               </div>
 
               <p className="text-zinc-500 text-sm font-mono max-w-sm leading-relaxed">
