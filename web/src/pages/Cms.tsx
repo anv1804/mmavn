@@ -811,9 +811,9 @@ export default function Cms() {
                       : "bg-zinc-50 border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"
                   }`}
                 >
-                  <option value="">Nam &amp; Nữ</option>
-                  <option value="Nam">Nam</option>
-                  <option value="Nữ">Nữ</option>
+                  <option value="">Giới tính</option>
+                  <option value="Nam">♂ Nam</option>
+                  <option value="Nữ">♀ Nữ</option>
                 </select>
 
                 {/* Status filter */}
@@ -831,17 +831,18 @@ export default function Cms() {
                   <option value="inactive">Ngưng hoạt động</option>
                 </select>
 
-                {/* Reset filters */}
-                {(searchQuery || filterWeightClass || filterGender || filterStatus) && (
-                  <button
-                    onClick={() => { setSearchQuery(""); setFilterWeightClass(""); setFilterGender(""); setFilterStatus(""); setFighterPage(1); }}
-                    className={`px-3 py-2 rounded-xl border text-xs cursor-pointer transition-all ${
-                      isDark ? "border-zinc-800 text-zinc-500 hover:text-red-400 hover:border-red-500/40" : "border-zinc-200 text-zinc-500 hover:text-red-600 hover:border-red-300"
-                    }`}
-                  >
-                    ✕ Xóa bộ lọc
-                  </button>
-                )}
+                {/* Reset filters – always visible, disabled when no filter active */}
+                <button
+                  disabled={!searchQuery && !filterWeightClass && !filterGender && !filterStatus}
+                  onClick={() => { setSearchQuery(""); setFilterWeightClass(""); setFilterGender(""); setFilterStatus(""); setFighterPage(1); }}
+                  className={`px-3 py-2 rounded-xl border text-xs transition-all ${
+                    (!searchQuery && !filterWeightClass && !filterGender && !filterStatus)
+                      ? isDark ? "border-zinc-800 text-zinc-700 cursor-not-allowed" : "border-zinc-200 text-zinc-300 cursor-not-allowed"
+                      : isDark ? "border-zinc-700 text-zinc-400 hover:text-red-400 hover:border-red-500/40 cursor-pointer" : "border-zinc-300 text-zinc-500 hover:text-red-600 hover:border-red-300 cursor-pointer"
+                  }`}
+                >
+                  ✕ Xóa bộ lọc
+                </button>
               </div>
 
               {/* Data Table */}
@@ -852,20 +853,19 @@ export default function Cms() {
                   <table className="w-full text-xs">
                     <thead>
                       <tr className={isDark ? "bg-zinc-900/80" : "bg-zinc-50"}>
-                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>#</th>
-                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Võ Sĩ</th>
-                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Hạng Cân</th>
-                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Võ Đường</th>
-                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Thành Tích</th>
-                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Quốc tịch</th>
-                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Trạng thái</th>
-                        <th className={`text-right px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Hành động</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider whitespace-nowrap ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>#</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider whitespace-nowrap ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Võ Sĩ</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider whitespace-nowrap ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Hạng Cân</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider whitespace-nowrap ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Võ Đường</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider whitespace-nowrap ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Quốc tịch</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider whitespace-nowrap ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Trạng thái</th>
+                        <th className={`text-right px-4 py-3 font-semibold text-[11px] uppercase tracking-wider whitespace-nowrap ${isDark ? "text-zinc-400" : "text-zinc-500"}`}></th>
                       </tr>
                     </thead>
                     <tbody className={`divide-y ${ isDark ? "divide-zinc-900" : "divide-zinc-100" }`}>
                       {pagedFighters.length === 0 ? (
                         <tr>
-                          <td colSpan={8} className="text-center py-16">
+                          <td colSpan={7} className="text-center py-16">
                             <div className="flex flex-col items-center gap-3">
                               <span className="text-4xl">🔍</span>
                               <p className={`text-sm font-medium ${isDark ? "text-zinc-500" : "text-zinc-400"}`}>Không tìm thấy võ sĩ nào</p>
@@ -899,7 +899,13 @@ export default function Cms() {
                                 />
                               </div>
                               <div>
-                                <p className={`font-semibold leading-tight ${isDark ? "text-white" : "text-zinc-900"}`}>{fighter.name}</p>
+                                <div className="flex items-center gap-1.5">
+                                  <p className={`font-semibold leading-tight ${isDark ? "text-white" : "text-zinc-900"}`}>{fighter.name}</p>
+                                  {fighter.gender === "Nữ"
+                                    ? <span className="text-[11px] text-pink-500 font-bold" title="Nữ">♀</span>
+                                    : <span className="text-[11px] text-blue-400 font-bold" title="Nam">♂</span>
+                                  }
+                                </div>
                                 {fighter.nickname && (
                                   <p className="text-[10px] text-zinc-500 italic">"{fighter.nickname}"</p>
                                 )}
@@ -916,24 +922,24 @@ export default function Cms() {
                             </span>
                           </td>
 
-                          {/* Club */}
-                          <td className={`px-4 py-3 text-xs ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
-                            {fighter.club || <span className="text-zinc-600">—</span>}
-                          </td>
-
-                          {/* Record */}
+                          {/* Club – linked with logo */}
                           <td className="px-4 py-3">
-                            <div className="flex items-center gap-1">
-                              <span className="text-emerald-500 font-bold text-[11px]">{fighter.wins ?? 0}W</span>
-                              <span className={isDark ? "text-zinc-700" : "text-zinc-300"}>·</span>
-                              <span className="text-red-500 font-bold text-[11px]">{fighter.losses ?? 0}L</span>
-                              {(fighter.draws ?? 0) > 0 && (
-                                <>
-                                  <span className={isDark ? "text-zinc-700" : "text-zinc-300"}>·</span>
-                                  <span className="text-yellow-500 font-bold text-[11px]">{fighter.draws}D</span>
-                                </>
-                              )}
-                            </div>
+                            {(() => {
+                              const linkedClub = clubs.find(c => c.name === fighter.club || c.short_name === fighter.club || c.id === fighter.club);
+                              return linkedClub ? (
+                                <div className="flex items-center gap-2">
+                                  <img
+                                    src={linkedClub.logo || "/logo-lionchampionship.png"}
+                                    alt={linkedClub.name}
+                                    className="w-6 h-6 rounded object-contain"
+                                    style={{ background: isDark ? "#18181b" : "#f4f4f5" }}
+                                  />
+                                  <span className={`text-xs ${isDark ? "text-zinc-300" : "text-zinc-700"}`}>{linkedClub.short_name || linkedClub.name}</span>
+                                </div>
+                              ) : (
+                                <span className={`text-xs ${isDark ? "text-zinc-500" : "text-zinc-500"}`}>{fighter.club || "—"}</span>
+                              );
+                            })()}
                           </td>
 
                           {/* Nationality */}
@@ -944,41 +950,38 @@ export default function Cms() {
                             </span>
                           </td>
 
-                          {/* Status */}
+                          {/* Status – dot only */}
                           <td className="px-4 py-3">
-                            {fighter.active !== false ? (
-                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
-                                Hoạt động
-                              </span>
-                            ) : (
-                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-500/10 text-zinc-500 border border-zinc-500/20">
-                                <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 inline-block"></span>
-                                Ngưng
-                              </span>
-                            )}
+                            <span
+                              title={fighter.active !== false ? "Đang hoạt động" : "Ngưng hoạt động"}
+                              className={`inline-block w-2.5 h-2.5 rounded-full ${
+                                fighter.active !== false ? "bg-emerald-500 shadow-sm shadow-emerald-500/60" : "bg-zinc-500"
+                              }`}
+                            />
                           </td>
 
-                          {/* Actions */}
+                          {/* Actions – icon only */}
                           <td className="px-4 py-3">
-                            <div className="flex items-center justify-end gap-2">
+                            <div className="flex items-center justify-end gap-1">
                               <button
                                 type="button"
+                                title="Chỉnh sửa"
                                 onClick={() => setSelectedFighter(fighter)}
-                                className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border-none cursor-pointer transition-all ${
+                                className={`w-8 h-8 rounded-lg text-sm flex items-center justify-center border-none cursor-pointer transition-all ${
                                   isDark
                                     ? "bg-zinc-800 hover:bg-zinc-700 text-zinc-300"
-                                    : "bg-zinc-100 hover:bg-zinc-200 text-zinc-700"
+                                    : "bg-zinc-100 hover:bg-zinc-200 text-zinc-600"
                                 }`}
                               >
-                                ✏️ Sửa
+                                ✏️
                               </button>
                               <button
                                 type="button"
+                                title="Xóa võ sĩ"
                                 onClick={() => deleteFighter(fighter.id)}
-                                className="px-3 py-1.5 rounded-lg text-[10px] font-bold border-none cursor-pointer transition-all bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white"
+                                className="w-8 h-8 rounded-lg text-sm flex items-center justify-center border-none cursor-pointer transition-all bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white"
                               >
-                                🗑 Xóa
+                                🗑
                               </button>
                             </div>
                           </td>
