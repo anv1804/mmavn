@@ -438,47 +438,139 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
           {/* TAB 2: CHỈ SỐ MMA (RADAR SKILL CHART) */}
           {activeSubTab === "skills" && (
             <div className="space-y-6 animate-fadeIn">
-              <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">Chỉ số MMA Bát Giác (0 - 100)</h3>
-              <p className="text-[10px] text-zinc-500">Kéo thanh trượt hoặc nhập số để cập nhật năng lực chuyên môn của võ sĩ.</p>
+              <div>
+                <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">Chỉ số MMA Bát Giác (0 - 100)</h3>
+                <p className="text-[10px] text-zinc-500 mt-1">Kéo thanh trượt hoặc điều chỉnh giá trị số để cập nhật biểu đồ năng lực võ sĩ.</p>
+              </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border p-6 rounded-2xl" style={{ borderColor: isDark ? "#27272a" : "#e4e4e7" }}>
-                {[
-                  { key: "STR", name: "Striking (Đứng công - Boxing/Muay)" },
-                  { key: "GRP", name: "Grappling (Vật đè - Wrestling/Sambo)" },
-                  { key: "SUB", name: "Submission (Siết khóa - BJJ/Judo)" },
-                  { key: "DEF", name: "Defense (Takedown Defense/Né đòn)" },
-                  { key: "STA", name: "Stamina (Thể lực/Sức bền tim mạch)" },
-                  { key: "POW", name: "Power (Sức mạnh bộc phát/Cơ bắp)" },
-                  { key: "IQ", name: "Fight IQ (Chiến thuật/Trí tuệ trận đấu)" },
-                ].map((s) => {
-                  const val = getSkill(s.key);
-                  return (
-                    <div key={s.key} className="space-y-2">
-                      <div className="flex justify-between text-xs font-semibold">
-                        <span className={isDark ? "text-zinc-300" : "text-zinc-700"}>{s.name}</span>
-                        <span className="text-red-500 font-mono">{val}</span>
+              <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                
+                {/* 2/3 Width: Skills Sliders grid */}
+                <div className="xl:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { key: "STR", name: "Striking (Đứng công)", desc: "Boxing, Muay, Kicks", icon: "🥊" },
+                    { key: "GRP", name: "Grappling (Vật đè)", desc: "Wrestling, Sambo, Judo", icon: "🤼" },
+                    { key: "SUB", name: "Submission (Siết khóa)", desc: "BJJ, Chokes, Locks", icon: "🥋" },
+                    { key: "DEF", name: "Defense (Phòng thủ)", desc: "Takedown Def, Evade", icon: "🛡️" },
+                    { key: "STA", name: "Stamina (Thể lực)", desc: "Cardio, Rounds Pace", icon: "🫁" },
+                    { key: "POW", name: "Power (Sức mạnh)", desc: "Explosiveness, Muscles", icon: "⚡" },
+                    { key: "IQ", name: "Fight IQ (Trí tuệ)", desc: "Tactics, Adjustments", icon: "🧠" },
+                  ].map((s) => {
+                    const val = getSkill(s.key);
+                    return (
+                      <div 
+                        key={s.key} 
+                        className={`p-4 rounded-2xl border transition-all ${
+                          isDark ? "bg-zinc-900/40 border-zinc-900/60 hover:bg-zinc-900/60" : "bg-zinc-50 border-zinc-200/80 hover:bg-zinc-100/50"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="text-base">{s.icon}</span>
+                            <div>
+                              <span className={`text-xs font-bold block ${isDark ? "text-zinc-200" : "text-zinc-800"}`}>{s.name}</span>
+                              <span className="text-[9px] text-zinc-500 font-medium block">{s.desc}</span>
+                            </div>
+                          </div>
+                          <span className="text-sm font-black text-red-500 font-mono bg-red-500/5 px-2 py-0.5 rounded border border-red-500/10">{val}</span>
+                        </div>
+                        
+                        <div className="flex items-center gap-3">
+                          {/* Custom range input track wrapper */}
+                          <div className="relative flex-1 flex items-center">
+                            <input
+                              type="range"
+                              min="0"
+                              max="100"
+                              value={val}
+                              onChange={(e) => setSkill(s.key, parseInt(e.target.value) || 0)}
+                              className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-zinc-800 accent-red-600 focus:outline-none"
+                              style={{
+                                background: `linear-gradient(to right, #dc2626 0%, #dc2626 ${val}%, ${isDark ? "#27272a" : "#e4e4e7"} ${val}%, ${isDark ? "#27272a" : "#e4e4e7"} 100%)`
+                              }}
+                            />
+                          </div>
+                          
+                          <input
+                            type="number"
+                            min="0"
+                            max="100"
+                            value={val}
+                            onChange={(e) => setSkill(s.key, Math.min(100, Math.max(0, parseInt(e.target.value) || 0)))}
+                            className={`w-12 p-1 text-center font-bold rounded-lg text-xs font-mono focus:outline-none focus:border-red-500 border ${
+                              isDark ? "bg-zinc-950 border-zinc-800 text-white" : "bg-white border-zinc-300 text-zinc-900"
+                            }`}
+                          />
+                        </div>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <input
-                          type="range"
-                          min="0"
-                          max="100"
-                          value={val}
-                          onChange={(e) => setSkill(s.key, parseInt(e.target.value) || 0)}
-                          className="flex-1 accent-red-500 h-1 rounded bg-zinc-800"
+                    );
+                  })}
+                </div>
+
+                {/* 1/3 Width: Realtime Live Radar Preview card */}
+                <div className={`p-4 rounded-3xl border flex flex-col items-center justify-center relative overflow-hidden ${
+                  isDark ? "bg-zinc-900/20 border-zinc-900" : "bg-zinc-50/50 border-zinc-200"
+                }`}>
+                  <div className="absolute top-3 left-3 w-1.5 h-1.5 bg-red-500 rounded-full" />
+                  <span className="text-[9px] font-mono text-zinc-500 font-bold uppercase tracking-widest mb-4">LIVE RADAR SKILL PREVIEW</span>
+                  
+                  {/* Miniature SVG Radar map */}
+                  <svg width="220" height="220" className="overflow-visible">
+                    {/* Background concentric rings */}
+                    {[25, 50, 75, 100].map((ringVal) => {
+                      const ringPoints = ["STR", "GRP", "SUB", "DEF", "STA", "POW", "IQ"].map((k, i) => {
+                        const angle = (Math.PI * 2 / 7) * i - Math.PI / 2;
+                        const distance = (ringVal / 100) * 80;
+                        return `${110 + distance * Math.cos(angle)},${110 + distance * Math.sin(angle)}`;
+                      }).join(" ");
+                      return (
+                        <polygon
+                          key={ringVal}
+                          points={ringPoints}
+                          fill="none"
+                          stroke={isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.04)"}
+                          strokeWidth="1"
                         />
-                        <input
-                          type="number"
-                          min="0"
-                          max="100"
-                          value={val}
-                          onChange={(e) => setSkill(s.key, Math.min(100, Math.max(0, parseInt(e.target.value) || 0)))}
-                          className="w-16 p-1 text-center rounded border text-xs bg-zinc-900 border-zinc-800 text-white"
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
+                      );
+                    })}
+
+                    {/* Outer label indicators */}
+                    {["STR", "GRP", "SUB", "DEF", "STA", "POW", "IQ"].map((k, i) => {
+                      const angle = (Math.PI * 2 / 7) * i - Math.PI / 2;
+                      const lblPt = { x: 110 + 95 * Math.cos(angle), y: 110 + 95 * Math.sin(angle) };
+                      return (
+                        <text
+                          key={k}
+                          x={lblPt.x}
+                          y={lblPt.y}
+                          fill={isDark ? "#71717a" : "#27272a"}
+                          fontSize="8"
+                          fontWeight="bold"
+                          fontFamily="monospace"
+                          textAnchor="middle"
+                          alignmentBaseline="middle"
+                        >
+                          {k}
+                        </text>
+                      );
+                    })}
+
+                    {/* Skill radar fill area */}
+                    <polygon
+                      points={["STR", "GRP", "SUB", "DEF", "STA", "POW", "IQ"].map((k, i) => {
+                        const angle = (Math.PI * 2 / 7) * i - Math.PI / 2;
+                        const distance = (getSkill(k) / 100) * 80;
+                        return `${110 + distance * Math.cos(angle)},${110 + distance * Math.sin(angle)}`;
+                      }).join(" ")}
+                      fill="rgba(239,68,68,0.18)"
+                      stroke="#ef4444"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                  
+                  <span className="text-[10px] font-bold text-zinc-500 font-mono mt-4 uppercase">{fighter.name || "Võ sĩ mới"}</span>
+                </div>
+
               </div>
             </div>
           )}
