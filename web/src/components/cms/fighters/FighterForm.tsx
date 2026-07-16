@@ -22,6 +22,9 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
   const [oppSearchQueries, setOppSearchQueries] = useState<Record<number, string>>({});
   const [activeSearchIndex, setActiveSearchIndex] = useState<number | null>(null);
 
+  // Keep track of which fight indexes are collapsed
+  const [collapsedFights, setCollapsedFights] = useState<Record<number, boolean>>({});
+
   const inputClass = `w-full p-2.5 rounded-xl border text-xs ${
     isDark
       ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none"
@@ -147,6 +150,33 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
 
   const handleRemoveFight = (index: number) => {
     set("fights", (fighter.fights || []).filter((_: any, idx: number) => idx !== index));
+  };
+
+  const handleMoveFight = (index: number, direction: "up" | "down") => {
+    const list = [...(fighter.fights || [])];
+    if (direction === "up" && index > 0) {
+      const temp = list[index];
+      list[index] = list[index - 1];
+      list[index - 1] = temp;
+      set("fights", list);
+    } else if (direction === "down" && index < list.length - 1) {
+      const temp = list[index];
+      list[index] = list[index + 1];
+      list[index + 1] = temp;
+      set("fights", list);
+    }
+  };
+
+  const toggleCollapse = (idx: number) => {
+    setCollapsedFights(prev => ({ ...prev, [idx]: !prev[idx] }));
+  };
+
+  const toggleAllCollapse = (collapse: boolean) => {
+    const nextStates: Record<number, boolean> = {};
+    (fighter.fights || []).forEach((_: any, idx: number) => {
+      nextStates[idx] = collapse;
+    });
+    setCollapsedFights(nextStates);
   };
 
   // Pre-configured list of common MMA methods
@@ -640,24 +670,48 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
           {/* TAB 4: LỊCH SỬ ĐẤU (FIGHT TIMELINE) */}
           {activeSubTab === "history" && (
             <div className="space-y-4 animate-fadeIn">
-              <div className="flex items-center justify-between border-b pb-2" style={{ borderColor: isDark ? "#27272a" : "#e4e4e7" }}>
-                <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">Lịch sử các trận đấu đã qua</h3>
-                <button
-                  type="button"
-                  onClick={handleAddFight}
-                  className="px-3 py-1 bg-red-600 hover:bg-red-500 text-white text-[10px] font-bold rounded-lg border-none cursor-pointer"
-                >
-                  + Thêm trận đấu
-                </button>
+              <div className="flex items-center justify-between border-b pb-3" style={{ borderColor: isDark ? "#27272a" : "#e4e4e7" }}>
+                <div>
+                  <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">Lịch sử các trận đấu đã qua</h3>
+                  <p className="text-[10px] text-zinc-500 mt-0.5">Sắp xếp trình tự hiển thị các trận đấu của võ sĩ.</p>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => toggleAllCollapse(false)}
+                    className={`px-2.5 py-1 rounded-lg text-[9px] font-bold border transition-all cursor-pointer ${
+                      isDark ? "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white" : "bg-white border-zinc-200 text-zinc-600 hover:bg-zinc-50"
+                    }`}
+                  >
+                    ↔️ Mở hết
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => toggleAllCollapse(true)}
+                    className={`px-2.5 py-1 rounded-lg text-[9px] font-bold border transition-all cursor-pointer ${
+                      isDark ? "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white" : "bg-white border-zinc-200 text-zinc-600 hover:bg-zinc-50"
+                    }`}
+                  >
+                    ↕️ Thu hết
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleAddFight}
+                    className="px-3 py-1 bg-red-600 hover:bg-red-500 text-white text-[10px] font-bold rounded-lg border-none cursor-pointer"
+                  >
+                    + Thêm trận đấu
+                  </button>
+                </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {(!fighter.fights || fighter.fights.length === 0) ? (
                   <p className="text-xs text-zinc-500 italic py-4">Chưa có dữ liệu lịch sử đấu. Bấm nút phía trên để thêm.</p>
                 ) : (
                   fighter.fights.map((fight: any, idx: number) => {
                     const searchQ = oppSearchQueries[idx] ?? "";
                     const isSearching = activeSearchIndex === idx;
+                    const isCollapsed = collapsedFights[idx] ?? false;
 
                     // Filter matching opponents
                     const matchingOpponents = fighters.filter((f) => 
@@ -666,162 +720,236 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
                        f.nickname?.toLowerCase().includes(searchQ.toLowerCase()))
                     ).slice(0, 5);
 
+                    const fightResultLabel = fight.result === "W" ? "Thắng" : fight.result === "L" ? "Thua" : "Hòa";
+                    const fightResultColor = fight.result === "W" ? "text-emerald-500 bg-emerald-500/10" : fight.result === "L" ? "text-red-500 bg-red-500/10" : "text-zinc-500 bg-zinc-500/10";
+
                     return (
-                      <div key={idx} className="border p-4 rounded-2xl relative space-y-3" style={{ borderColor: isDark ? "#27272a" : "#e4e4e7" }}>
+                      <div 
+                        key={idx} 
+                        className={`border rounded-2xl overflow-hidden transition-all ${
+                          isDark ? "bg-zinc-900/10 border-zinc-900" : "bg-zinc-50/20 border-zinc-200"
+                        }`}
+                      >
                         
-                        {/* Delete fight btn */}
-                        <button
-                          type="button"
-                          onClick={() => handleRemoveFight(idx)}
-                          className="absolute top-4 right-4 px-2 py-2 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white rounded-lg border-none cursor-pointer transition-all"
-                          title="Xóa trận đấu này"
+                        {/* HEADER HEADER OF COLLAPSIBLE CARD */}
+                        <div 
+                          className={`px-4 py-3 flex items-center justify-between cursor-pointer select-none border-b ${
+                            isDark ? "bg-zinc-900/50 border-zinc-900" : "bg-zinc-50 border-zinc-100"
+                          }`}
+                          onClick={() => toggleCollapse(idx)}
                         >
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                        </button>
+                          <div className="flex items-center gap-3">
+                            {/* Reorder actions (Move Up / Down) */}
+                            <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+                              <button
+                                type="button"
+                                disabled={idx === 0}
+                                onClick={() => handleMoveFight(idx, "up")}
+                                className={`w-5 h-5 rounded flex items-center justify-center border text-[10px] cursor-pointer ${
+                                  idx === 0 
+                                    ? "opacity-30 cursor-not-allowed" 
+                                    : isDark ? "border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-white" : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-100"
+                                }`}
+                                title="Di chuyển lên"
+                              >
+                                ▲
+                              </button>
+                              <button
+                                type="button"
+                                disabled={idx === fighter.fights.length - 1}
+                                onClick={() => handleMoveFight(idx, "down")}
+                                className={`w-5 h-5 rounded flex items-center justify-center border text-[10px] cursor-pointer ${
+                                  idx === fighter.fights.length - 1 
+                                    ? "opacity-30 cursor-not-allowed" 
+                                    : isDark ? "border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-white" : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-100"
+                                }`}
+                                title="Di chuyển xuống"
+                              >
+                                ▼
+                              </button>
+                            </div>
 
-                        <div className="text-[10px] font-mono text-zinc-500 font-bold">TRẬN ĐẤU #{fighter.fights.length - idx}</div>
-                        
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                          
-                          {/* Searchable Opponent Field */}
-                          <div className="space-y-1 relative">
-                            <label className="text-[9px] text-zinc-400 uppercase">Đối thủ*</label>
-                            <input 
-                              type="text" 
-                              value={isSearching ? searchQ : (fight.opponent ?? "")} 
-                              onFocus={() => {
-                                setActiveSearchIndex(idx);
-                                setOppSearchQueries(prev => ({ ...prev, [idx]: fight.opponent ?? "" }));
-                              }}
-                              onChange={e => {
-                                const val = e.target.value;
-                                setOppSearchQueries(prev => ({ ...prev, [idx]: val }));
-                                handleEditFight(idx, "opponent", val);
-                              }}
-                              onBlur={() => {
-                                // Timeout to allow option selection
-                                setTimeout(() => setActiveSearchIndex(null), 200);
-                              }}
-                              placeholder="Tìm võ sĩ..." 
-                              className={inputClass} 
-                              required 
-                            />
-                            {isSearching && matchingOpponents.length > 0 && (
-                              <div className={`absolute left-0 right-0 z-50 mt-1 max-h-48 overflow-y-auto rounded-xl border shadow-xl ${
-                                isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"
-                              }`}>
-                                {matchingOpponents.map((oppFighter) => (
-                                  <button
-                                    key={oppFighter.id}
-                                    type="button"
-                                    onClick={() => {
-                                      handleEditFight(idx, "opponent", oppFighter.name);
-                                      setOppSearchQueries(prev => ({ ...prev, [idx]: oppFighter.name }));
-                                      setActiveSearchIndex(null);
-                                    }}
-                                    className="w-full text-left px-3 py-2 text-xs hover:bg-red-500/10 hover:text-red-500 border-none bg-transparent cursor-pointer transition-colors"
-                                  >
-                                    <div className="font-semibold">{oppFighter.name}</div>
-                                    <div className="text-[9px] text-zinc-500">{oppFighter.weight_class} · {oppFighter.club}</div>
-                                  </button>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-
-                          <div className="space-y-1">
-                            <label className="text-[9px] text-zinc-400 uppercase">Ngày đấu*</label>
-                            <input type="date" value={fight.date ?? ""} onChange={e => handleEditFight(idx, "date", e.target.value)} className={inputClass} required />
-                          </div>
-
-                          <div className="space-y-1">
-                            <label className="text-[9px] text-zinc-400 uppercase">Sự kiện*</label>
-                            <input type="text" value={fight.event ?? ""} onChange={e => handleEditFight(idx, "event", e.target.value)} placeholder="LION Championship 33" className={inputClass} required />
-                          </div>
-
-                          <div className="space-y-1">
-                            <label className="text-[9px] text-zinc-400 uppercase">Kết quả</label>
-                            <select value={fight.result ?? "W"} onChange={e => handleEditFight(idx, "result", e.target.value)} className={inputClass}>
-                              <option value="W">Thắng (W)</option>
-                              <option value="L">Thua (L)</option>
-                              <option value="D">Hòa (D)</option>
-                            </select>
-                          </div>
-
-                          {/* Pre-configured Dropdown Select for Fight Method */}
-                          <div className="space-y-1">
-                            <label className="text-[9px] text-zinc-400 uppercase">Phương thức kết thúc</label>
-                            <select 
-                              value={
-                                FIGHT_METHODS.includes(fight.method) 
-                                  ? fight.method 
-                                  : fight.method === "" 
-                                  ? "" 
-                                  : "Khác"
-                              } 
-                              onChange={e => {
-                                const val = e.target.value;
-                                if (val !== "Khác") {
-                                  handleEditFight(idx, "method", val);
-                                } else {
-                                  handleEditFight(idx, "method", "Khác: ");
-                                }
-                              }} 
-                              className={inputClass}
-                            >
-                              <option value="">— Chọn phương thức —</option>
-                              
-                              <optgroup label="Knockouts (Đo ván)">
-                                <option value="KO (Knockout)">KO (Knockout)</option>
-                                <option value="TKO (Technical Knockout)">TKO (Technical Knockout)</option>
-                              </optgroup>
-
-                              <optgroup label="Submissions (Siết / Khóa)">
-                                <option value="Submission (Rear-Naked Choke)">Submission (Rear-Naked Choke)</option>
-                                <option value="Submission (Guillotine Choke)">Submission (Guillotine Choke)</option>
-                                <option value="Submission (Armbar)">Submission (Armbar)</option>
-                                <option value="Submission (Triangle Choke)">Submission (Triangle Choke)</option>
-                                <option value="Submission (Ankle Lock)">Submission (Ankle Lock)</option>
-                                <option value="Submission (Heel Hook)">Submission (Heel Hook)</option>
-                              </optgroup>
-
-                              <optgroup label="Decisions (Tính điểm)">
-                                <option value="Decision (Unanimous)">Decision (Unanimous)</option>
-                                <option value="Decision (Split)">Decision (Split)</option>
-                                <option value="Decision (Majority)">Decision (Majority)</option>
-                              </optgroup>
-
-                              <optgroup label="Khác">
-                                <option value="DQ (Disqualification)">DQ (Disqualification)</option>
-                                <option value="No Contest">No Contest</option>
-                                <option value="Khác">Phương thức khác (Nhập tay)...</option>
-                              </optgroup>
-                            </select>
+                            <span className="text-[10px] font-mono text-zinc-500 font-bold">#{fighter.fights.length - idx}</span>
                             
-                            {/* If the current value is not one of the pre-configured choices, or if user chose manual entry */}
-                            {(!FIGHT_METHODS.includes(fight.method) && fight.method !== "") && (
-                              <input 
-                                type="text" 
-                                value={fight.method.startsWith("Khác: ") ? fight.method.replace("Khác: ", "") : fight.method} 
-                                onChange={e => handleEditFight(idx, "method", e.target.value ? `Khác: ${e.target.value}` : "Khác: ")} 
-                                placeholder="Nhập chi tiết phương thức khác..." 
-                                className={`${inputClass} mt-1.5 border-amber-500/50 focus:border-amber-500`} 
-                              />
-                            )}
+                            {/* Short Summary Text */}
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${fightResultColor}`}>
+                              {fightResultLabel}
+                            </span>
+                            <span className={`text-xs font-bold ${isDark ? "text-zinc-200" : "text-zinc-800"}`}>
+                              {fight.opponent ? `vs ${fight.opponent}` : "Chưa nhập đối thủ"}
+                            </span>
+                            <span className="text-[10px] text-zinc-500 font-mono hidden md:inline">
+                              {fight.event ? `· ${fight.event}` : ""} {fight.date ? `(${fight.date})` : ""}
+                            </span>
                           </div>
 
-                          <div className="space-y-1">
-                            <label className="text-[9px] text-zinc-400 uppercase">Hiệp kết thúc</label>
-                            <input type="number" min="1" max="5" value={fight.round ?? 3} onChange={e => handleEditFight(idx, "round", parseInt(e.target.value) || 1)} className={inputClass} />
-                          </div>
-
-                          <div className="space-y-1 col-span-2">
-                            <label className="text-[9px] text-zinc-400 uppercase">Thời gian hiệp đấu (m:ss)</label>
-                            <input type="text" value={fight.time ?? ""} onChange={e => handleEditFight(idx, "time", e.target.value)} placeholder="5:00" className={inputClass} />
+                          <div className="flex items-center gap-3" onClick={(e) => e.stopPropagation()}>
+                            {/* Delete fight btn */}
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveFight(idx)}
+                              className="w-7 h-7 rounded-lg flex items-center justify-center border-none text-red-500 bg-red-500/10 hover:bg-red-500 hover:text-white cursor-pointer transition-all"
+                              title="Xóa trận đấu này"
+                            >
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
+                            </button>
+                            
+                            {/* Toggle Arrow */}
+                            <button 
+                              type="button" 
+                              onClick={() => toggleCollapse(idx)}
+                              className="text-[10px] font-mono text-zinc-500 border-none bg-transparent cursor-pointer font-bold w-4 text-center"
+                            >
+                              {isCollapsed ? "▼" : "▲"}
+                            </button>
                           </div>
                         </div>
+
+                        {/* EXPANDABLE BODY CONTENT */}
+                        {!isCollapsed && (
+                          <div className="p-4 space-y-3">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                              
+                              {/* Searchable Opponent Field */}
+                              <div className="space-y-1 relative">
+                                <label className="text-[9px] text-zinc-400 uppercase">Đối thủ*</label>
+                                <input 
+                                  type="text" 
+                                  value={isSearching ? searchQ : (fight.opponent ?? "")} 
+                                  onFocus={() => {
+                                    setActiveSearchIndex(idx);
+                                    setOppSearchQueries(prev => ({ ...prev, [idx]: fight.opponent ?? "" }));
+                                  }}
+                                  onChange={e => {
+                                    const val = e.target.value;
+                                    setOppSearchQueries(prev => ({ ...prev, [idx]: val }));
+                                    handleEditFight(idx, "opponent", val);
+                                  }}
+                                  onBlur={() => {
+                                    setTimeout(() => setActiveSearchIndex(null), 200);
+                                  }}
+                                  placeholder="Tìm võ sĩ..." 
+                                  className={inputClass} 
+                                  required 
+                                />
+                                {isSearching && matchingOpponents.length > 0 && (
+                                  <div className={`absolute left-0 right-0 z-50 mt-1 max-h-48 overflow-y-auto rounded-xl border shadow-xl ${
+                                    isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"
+                                  }`}>
+                                    {matchingOpponents.map((oppFighter) => (
+                                      <button
+                                        key={oppFighter.id}
+                                        type="button"
+                                        onClick={() => {
+                                          handleEditFight(idx, "opponent", oppFighter.name);
+                                          setOppSearchQueries(prev => ({ ...prev, [idx]: oppFighter.name }));
+                                          setActiveSearchIndex(null);
+                                        }}
+                                        className="w-full text-left px-3 py-2 text-xs hover:bg-red-500/10 hover:text-red-500 border-none bg-transparent cursor-pointer transition-colors"
+                                      >
+                                        <div className="font-semibold">{oppFighter.name}</div>
+                                        <div className="text-[9px] text-zinc-500">{oppFighter.weight_class} · {oppFighter.club}</div>
+                                      </button>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+
+                              <div className="space-y-1">
+                                <label className="text-[9px] text-zinc-400 uppercase">Ngày đấu*</label>
+                                <input type="date" value={fight.date ?? ""} onChange={e => handleEditFight(idx, "date", e.target.value)} className={inputClass} required />
+                              </div>
+
+                              <div className="space-y-1">
+                                <label className="text-[9px] text-zinc-400 uppercase">Sự kiện*</label>
+                                <input type="text" value={fight.event ?? ""} onChange={e => handleEditFight(idx, "event", e.target.value)} placeholder="LION Championship 33" className={inputClass} required />
+                              </div>
+
+                              <div className="space-y-1">
+                                <label className="text-[9px] text-zinc-400 uppercase">Kết quả</label>
+                                <select value={fight.result ?? "W"} onChange={e => handleEditFight(idx, "result", e.target.value)} className={inputClass}>
+                                  <option value="W">Thắng (W)</option>
+                                  <option value="L">Thua (L)</option>
+                                  <option value="D">Hòa (D)</option>
+                                </select>
+                              </div>
+
+                              {/* Pre-configured Dropdown Select for Fight Method */}
+                              <div className="space-y-1">
+                                <label className="text-[9px] text-zinc-400 uppercase">Phương thức kết thúc</label>
+                                <select 
+                                  value={
+                                    FIGHT_METHODS.includes(fight.method) 
+                                      ? fight.method 
+                                      : fight.method === "" 
+                                      ? "" 
+                                      : "Khác"
+                                  } 
+                                  onChange={e => {
+                                    const val = e.target.value;
+                                    if (val !== "Khác") {
+                                      handleEditFight(idx, "method", val);
+                                    } else {
+                                      handleEditFight(idx, "method", "Khác: ");
+                                    }
+                                  }} 
+                                  className={inputClass}
+                                >
+                                  <option value="">— Chọn phương thức —</option>
+                                  
+                                  <optgroup label="Knockouts (Đo ván)">
+                                    <option value="KO (Knockout)">KO (Knockout)</option>
+                                    <option value="TKO (Technical Knockout)">TKO (Technical Knockout)</option>
+                                  </optgroup>
+
+                                  <optgroup label="Submissions (Siết / Khóa)">
+                                    <option value="Submission (Rear-Naked Choke)">Submission (Rear-Naked Choke)</option>
+                                    <option value="Submission (Guillotine Choke)">Submission (Guillotine Choke)</option>
+                                    <option value="Submission (Armbar)">Submission (Armbar)</option>
+                                    <option value="Submission (Triangle Choke)">Submission (Triangle Choke)</option>
+                                    <option value="Submission (Ankle Lock)">Submission (Ankle Lock)</option>
+                                    <option value="Submission (Heel Hook)">Submission (Heel Hook)</option>
+                                  </optgroup>
+
+                                  <optgroup label="Decisions (Tính điểm)">
+                                    <option value="Decision (Unanimous)">Decision (Unanimous)</option>
+                                    <option value="Decision (Split)">Decision (Split)</option>
+                                    <option value="Decision (Majority)">Decision (Majority)</option>
+                                  </optgroup>
+
+                                  <optgroup label="Khác">
+                                    <option value="DQ (Disqualification)">DQ (Disqualification)</option>
+                                    <option value="No Contest">No Contest</option>
+                                    <option value="Khác">Phương thức khác (Nhập tay)...</option>
+                                  </optgroup>
+                                </select>
+                                
+                                {(!FIGHT_METHODS.includes(fight.method) && fight.method !== "") && (
+                                  <input 
+                                    type="text" 
+                                    value={fight.method.startsWith("Khác: ") ? fight.method.replace("Khác: ", "") : fight.method} 
+                                    onChange={e => handleEditFight(idx, "method", e.target.value ? `Khác: ${e.target.value}` : "Khác: ")} 
+                                    placeholder="Nhập chi tiết phương thức khác..." 
+                                    className={`${inputClass} mt-1.5 border-amber-500/50 focus:border-amber-500`} 
+                                  />
+                                )}
+                              </div>
+
+                              <div className="space-y-1">
+                                <label className="text-[9px] text-zinc-400 uppercase">Hiệp kết thúc</label>
+                                <input type="number" min="1" max="5" value={fight.round ?? 3} onChange={e => handleEditFight(idx, "round", parseInt(e.target.value) || 1)} className={inputClass} />
+                              </div>
+
+                              <div className="space-y-1 col-span-2">
+                                <label className="text-[9px] text-zinc-400 uppercase">Thời gian hiệp đấu (m:ss)</label>
+                                <input type="text" value={fight.time ?? ""} onChange={e => handleEditFight(idx, "time", e.target.value)} placeholder="5:00" className={inputClass} />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
                       </div>
                     );
                   })
