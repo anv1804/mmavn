@@ -159,7 +159,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Quick stats sidebar - Upgraded to ultra-premium design */}
+          {/* Quick stats sidebar */}
           <div className="lg:col-span-5">
             <div className={`rounded-3xl border p-4 md:p-6 space-y-6 relative overflow-hidden transition-all duration-300 shadow-2xl backdrop-blur-md ${
               isDark 
@@ -167,16 +167,13 @@ export default function Home() {
                 : "bg-white border-zinc-200/80 shadow-zinc-200/25 hover:border-red-500/30"
             }`}>
               
-              {/* Premium Glow effect behind sidebar in Dark Mode */}
               {isDark && <div className="absolute -top-12 -right-12 w-32 h-32 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />}
               
-              {/* Decorative Octagon Grid Overlay */}
               <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
                 backgroundImage: `repeating-linear-gradient(45deg, ${isDark ? "#ffffff" : "#000000"} 0px, ${isDark ? "#ffffff" : "#000000"} 1px, transparent 0, transparent 50%)`,
                 backgroundSize: "8px 8px"
               }} />
 
-              {/* Title Section */}
               <div className="flex items-center justify-between border-b pb-4 relative z-10" style={{ borderColor: isDark ? "rgba(39, 39, 42, 0.6)" : "rgba(228, 228, 231, 0.8)" }}>
                 <div className="flex items-center gap-2">
                   <span className="text-red-500 font-bold">📊</span>
@@ -190,7 +187,6 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Stats segments grid */}
               <div className="space-y-4 relative z-10">
                 {[
                   { 
@@ -232,7 +228,6 @@ export default function Home() {
                         {stat.val}
                       </span>
                     </div>
-                    {/* Progress Bar representation */}
                     <div className={`h-1.5 w-full rounded-full overflow-hidden ${isDark ? "bg-zinc-900" : "bg-zinc-200/60"}`}>
                       <div 
                         className={`h-full rounded-full ${stat.barColor} transition-all duration-500`}
@@ -250,33 +245,59 @@ export default function Home() {
 
       {/* ── SECTION 2: LATEST MMA NEWS (TIN TỨC NÓNG) ── */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-4 md:pb-6">
-        <div className={`flex items-center gap-3 border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
-          <div className="w-1 h-6 bg-red-600 rounded-full" />
-          <div>
-            <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">MMA HOT NEWS</span>
-            <h2 className={`text-2xl font-black uppercase tracking-wide ${textTitle}`} style={{ fontFamily: "'Oswald', sans-serif" }}>TIN TỨC & BÊN LỀ ĐẤU TRƯỜNG</h2>
+        <div className={`flex items-center justify-between border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-6 bg-red-650 rounded-full shadow-[0_0_8px_#ef4444]" />
+            <div>
+              <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">MMA HOT NEWS</span>
+              <h2 className={`text-2xl font-black uppercase tracking-wide ${textTitle}`} style={{ fontFamily: "'Oswald', sans-serif" }}>TIN TỨC & BÊN LỀ ĐẤU TRƯỜNG</h2>
+            </div>
           </div>
+          <button 
+            onClick={() => navigate("/community")}
+            className="text-[10px] font-mono tracking-wider text-red-500 hover:text-red-400 bg-transparent border-none cursor-pointer flex items-center gap-1 transition-all"
+          >
+            TẤT CẢ TIN TỨC &rarr;
+          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { tag: "LION 34", time: "2 giờ trước", title: "Lê Văn Tuần hoàn tất buổi cân thử, sẵn sàng bảo vệ đai vô địch hạng 56kg Nam", desc: "Đương kim vô địch tỏ ra vô cùng tự tin và đạt trạng thái thể lực tốt nhất trước thềm trận đấu tâm điểm ngày mai." },
-            { tag: "SỰ KIỆN", time: "1 ngày trước", title: "Johnny Trí Nguyễn chia sẻ chiến thuật độc bản của Liên Phong trước mùa giải mới", desc: "HLV trưởng võ đường Liên Phong tin tưởng dàn võ sĩ trẻ sẽ tạo nên nhiều bất ngờ lớn với sự đột phá trong địa chiến." },
-            { tag: "UFC 326", time: "3 ngày trước", title: "Jon Jones chính thức lên tiếng về tin đồn giải nghệ trước thềm đại chiến Aspinall", desc: "Huyền thoại hạng nặng khẳng định anh vẫn khao khát chiến đấu và muốn cống hiến một trận cầu kinh điển cuối cùng." }
+            { tag: "LION 34", time: "2 giờ trước", read: "3 phút đọc", title: "Lê Văn Tuần hoàn tất buổi cân thử, sẵn sàng bảo vệ đai vô địch hạng 56kg Nam", desc: "Đương kim vô địch tỏ ra vô cùng tự tin và đạt trạng thái thể lực tốt nhất trước thềm trận đấu tâm điểm ngày mai." },
+            { tag: "SỰ KIỆN", time: "1 ngày trước", read: "4 phút đọc", title: "Johnny Trí Nguyễn chia sẻ chiến thuật độc bản của Liên Phong trước mùa giải mới", desc: "HLV trưởng võ đường Liên Phong tin tưởng dàn võ sĩ trẻ sẽ tạo nên nhiều bất ngờ lớn với sự đột phá trong địa chiến." },
+            { tag: "UFC 326", time: "3 ngày trước", read: "5 phút đọc", title: "Jon Jones chính thức lên tiếng về tin đồn giải nghệ trước thềm đại chiến Aspinall", desc: "Huyền thoại hạng nặng khẳng định anh vẫn khao khát chiến đấu và muốn cống hiến một trận cầu kinh điển cuối cùng." }
           ].map((news, idx) => (
-            <div key={idx} className={`group border rounded-3xl p-4 md:p-6 space-y-4 transition-all duration-300 shadow-lg hover:-translate-y-1 ${
+            <div key={idx} className={`group border rounded-3xl p-4 md:p-6 flex flex-col justify-between transition-all duration-300 shadow-lg hover:-translate-y-1 relative overflow-hidden ${
               isDark 
-                ? "bg-gradient-to-b from-zinc-950/70 to-zinc-950/40 border-zinc-900/80 hover:border-red-500/30 shadow-black/30" 
-                : "bg-white border-zinc-200/80 hover:border-red-500/30 shadow-zinc-200/10"
+                ? "bg-gradient-to-b from-zinc-950/80 to-zinc-950/30 border-zinc-900/90 hover:border-red-500/30 shadow-black/45" 
+                : "bg-white border-zinc-200/80 hover:border-red-500/25 shadow-zinc-200/10"
             }`}>
-              <div className="flex justify-between items-center text-[9px] font-mono">
-                <span className="text-red-500 font-bold bg-red-500/10 border border-red-500/20 px-2.5 py-0.5 rounded-lg uppercase">{news.tag}</span>
-                <span className="text-zinc-500">{news.time}</span>
+              
+              {/* Top hover indicator line */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
+              <div className="space-y-4">
+                <div className="flex justify-between items-center text-[9px] font-mono">
+                  <span className="text-red-500 font-bold bg-red-500/10 border border-red-500/20 px-2.5 py-0.5 rounded-lg uppercase">{news.tag}</span>
+                  <div className="flex items-center gap-2 text-zinc-500">
+                    <span>{news.time}</span>
+                    <span>•</span>
+                    <span>{news.read}</span>
+                  </div>
+                </div>
+                
+                <h3 className={`text-sm font-bold group-hover:text-red-500 transition-colors leading-snug line-clamp-2 ${
+                  isDark ? "text-white" : "text-zinc-900"
+                }`}>{news.title}</h3>
+                
+                <p className={`text-xs leading-relaxed line-clamp-2 font-light ${textDesc}`}>{news.desc}</p>
               </div>
-              <h3 className={`text-sm font-bold group-hover:text-red-500 transition-colors leading-snug line-clamp-2 ${
-                isDark ? "text-white" : "text-zinc-900"
-              }`}>{news.title}</h3>
-              <p className={`text-xs leading-relaxed line-clamp-2 font-light ${textDesc}`}>{news.desc}</p>
+
+              {/* Read more button link */}
+              <div className="pt-4 mt-6 border-t flex items-center justify-between text-[10px] font-mono text-zinc-500 group-hover:text-red-500 transition-colors" style={{ borderColor: isDark ? "rgba(39, 39, 42, 0.4)" : "rgba(228, 228, 231, 0.6)" }}>
+                <span>ĐỌC CHI TIẾT</span>
+                <span className="transform group-hover:translate-x-1.5 transition-transform duration-300 font-bold">&rarr;</span>
+              </div>
             </div>
           ))}
         </div>
@@ -317,7 +338,7 @@ export default function Home() {
               </div>
               <div className={`w-px h-8 ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`} />
               <div>
-                <div className="text-2xl font-black font-mono text-emerald-500 tracking-tighter">73%</div>
+                <div className="text-2xl font-black font-mono text-emerald-450 tracking-tighter">73%</div>
                 <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block">TỈ LỆ THẮNG</span>
               </div>
               <div className={`w-px h-8 ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`} />
