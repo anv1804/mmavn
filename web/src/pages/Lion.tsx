@@ -18,7 +18,11 @@ const RANK_MEDALS = ["🥇", "🥈", "🥉"];
 
 type GenderFilter = "all" | "nam" | "nu";
 
-export default function Lion() {
+interface LionProps {
+  onViewFighter?: (fighterId: string) => void;
+}
+
+export default function Lion({ onViewFighter }: LionProps) {
   const [selectedLionDiv, setSelectedLionDiv] = useState("56_nam");
   const [genderFilter, setGenderFilter] = useState<GenderFilter>("all");
 
@@ -92,8 +96,11 @@ export default function Lion() {
             <div className="flex flex-col gap-3 lg:w-72 shrink-0">
 
               {/* Featured Champion Card */}
-              <div className="relative overflow-hidden rounded-2xl border border-zinc-800/60 bg-zinc-900/40 group cursor-pointer hover:border-red-500/30 transition-all duration-300"
-                style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.03)" }}>
+              <div
+                className="relative overflow-hidden rounded-2xl border border-zinc-800/60 bg-zinc-900/40 group cursor-pointer hover:border-red-500/30 transition-all duration-300"
+                style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.03)" }}
+                onClick={() => onViewFighter?.("le-van-tuan")}
+              >
                 <div className="flex items-stretch gap-0">
                   {/* Fighter photo */}
                   <div className="relative w-24 shrink-0 overflow-hidden">
@@ -140,6 +147,11 @@ export default function Lion() {
                   </div>
                 </div>
 
+                {/* View profile CTA */}
+                <div className="px-4 py-2 flex items-center justify-between bg-zinc-950/40 border-t border-zinc-800/40">
+                  <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-widest">Xem hồ sơ đầy đủ</span>
+                  <span className="text-[10px] text-red-500 font-mono group-hover:text-red-400 transition-colors">→</span>
+                </div>
                 {/* Bottom accent bar */}
                 <div className="h-0.5 bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 opacity-60 group-hover:opacity-100 transition-opacity" />
               </div>
