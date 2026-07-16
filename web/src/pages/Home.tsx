@@ -68,16 +68,34 @@ export default function Home() {
   const opponentPct = 100 - tuanPct;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#060002] via-[#020203] to-[#040002] text-white pb-28 relative overflow-hidden" style={{ fontFamily: "'Outfit', system-ui, -apple-system, sans-serif" }}>
+    <div className="min-h-screen bg-[#020203] text-white pb-28 relative overflow-hidden" style={{ fontFamily: "'Outfit', system-ui, -apple-system, sans-serif" }}>
       
-      {/* ── PREMIUM COMBAT SPORTS BACKGROUND SYSTEM ── */}
+      {/* ── PREMIUM CINEMATIC COMBAT SPORTS BACKGROUND ── */}
+      {/* High-fidelity Octagon grid overlay */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.015)_1px,transparent_1.5px)] bg-[size:24px_24px]" 
-        style={{ maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0.3) 100%)", WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0.3) 100%)" }}
+        className="absolute inset-0 pointer-events-none opacity-[0.07]" 
+        style={{ 
+          backgroundImage: `
+            radial-gradient(circle at 20% 30%, rgba(239, 68, 68, 0.15) 1px, transparent 1px),
+            radial-gradient(circle at 75% 60%, rgba(245, 158, 11, 0.15) 1px, transparent 1px),
+            linear-gradient(rgba(255, 255, 255, 0.007) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px)
+          `,
+          backgroundSize: "100px 100px, 120px 120px, 40px 40px, 40px 40px",
+          maskImage: "radial-gradient(circle at 50% 30%, black 40%, transparent 90%)",
+          WebkitMaskImage: "radial-gradient(circle at 50% 30%, black 40%, transparent 90%)"
+        }}
       />
-      <div className="absolute top-[-100px] left-[5%] w-[600px] h-[600px] bg-red-600/5 blur-[160px] rounded-full pointer-events-none animate-pulse duration-[8000ms]" />
-      <div className="absolute bottom-[20%] right-[-100px] w-[700px] h-[700px] bg-red-500/[0.03] blur-[180px] rounded-full pointer-events-none" />
-      <div className="absolute top-[40%] left-[45%] w-[400px] h-[400px] bg-zinc-800/10 blur-[150px] rounded-full pointer-events-none" />
+
+      {/* Floating Animated Neon Light Spheres for deep organic glow */}
+      <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[50vh] bg-gradient-to-br from-red-600/10 via-rose-600/5 to-transparent blur-[130px] rounded-full pointer-events-none animate-pulse duration-[10s]" />
+      <div className="absolute top-[25%] right-[-15%] w-[60vw] h-[60vh] bg-gradient-to-bl from-amber-500/[0.04] via-red-600/[0.03] to-transparent blur-[140px] rounded-full pointer-events-none animate-pulse duration-[8s]" />
+      <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vh] bg-gradient-to-tr from-red-600/[0.05] to-transparent blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-[60%] left-[20%] w-[35vw] h-[35vh] bg-zinc-800/10 blur-[130px] rounded-full pointer-events-none" />
+
+      {/* Geometric background accents: Angled light streaks */}
+      <div className="absolute top-[15%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-500/10 to-transparent rotate-[-6deg] scale-150 pointer-events-none" />
+      <div className="absolute top-[55%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-500/5 to-transparent rotate-[8deg] scale-150 pointer-events-none" />
 
       {/* ── SECTION 1: HERO PORTAL BANNER ── */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-16">
