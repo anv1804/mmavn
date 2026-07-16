@@ -68,21 +68,19 @@ export default function Home() {
   const opponentPct = 100 - tuanPct;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#060002] via-[#020203] to-[#040002] text-white pb-28 relative overflow-hidden" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+    <div className="min-h-screen bg-gradient-to-b from-[#060002] via-[#020203] to-[#040002] text-white pb-28 relative overflow-hidden" style={{ fontFamily: "'Outfit', system-ui, -apple-system, sans-serif" }}>
       
       {/* ── PREMIUM COMBAT SPORTS BACKGROUND SYSTEM ── */}
-      {/* Hexagonal / Octagonal Speed Grid texture overlay */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.015)_1px,transparent_1.5px)] bg-[size:24px_24px]" 
         style={{ maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0.3) 100%)", WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0.3) 100%)" }}
       />
-      {/* Multi-layered neon ambient glowing flares */}
       <div className="absolute top-[-100px] left-[5%] w-[600px] h-[600px] bg-red-600/5 blur-[160px] rounded-full pointer-events-none animate-pulse duration-[8000ms]" />
       <div className="absolute bottom-[20%] right-[-100px] w-[700px] h-[700px] bg-red-500/[0.03] blur-[180px] rounded-full pointer-events-none" />
       <div className="absolute top-[40%] left-[45%] w-[400px] h-[400px] bg-zinc-800/10 blur-[150px] rounded-full pointer-events-none" />
 
       {/* ── SECTION 1: HERO PORTAL BANNER ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-16">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div className="lg:col-span-8 space-y-6">
@@ -91,28 +89,28 @@ export default function Home() {
               <span className="text-[9px] font-mono tracking-widest text-red-400 font-bold uppercase">PORTAL CHÍNH THỨC</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-white">
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-[0.9] text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
               VÕ THUẬT TỔNG HỢP <br/>
               <span className="bg-gradient-to-r from-red-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
                 VIỆT NAM 2026
               </span>
             </h1>
 
-            <p className="text-sm text-zinc-400 leading-relaxed max-w-xl font-light">
+            <p className="text-sm md:text-base text-zinc-400 leading-relaxed max-w-xl font-light">
               Cổng thông tin tổng hợp cập nhật bảng xếp hạng LION Championship, lịch thi đấu đấu trường thế giới UFC, hồ sơ chi tiết võ đường và kết nối cộng đồng võ thuật Việt Nam.
             </p>
 
             <div className="pt-4 flex flex-wrap gap-3.5">
               <button
                 onClick={() => navigate("/lion")}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold uppercase tracking-widest border-none cursor-pointer transition-all shadow-lg shadow-red-600/20"
+                className="flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold uppercase tracking-widest border-none cursor-pointer transition-all shadow-lg shadow-red-600/20 hover:scale-105 active:scale-95 duration-200"
               >
                 <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-4 h-4 object-contain rounded-full brightness-110" />
                 <span>Bảng xếp hạng LION</span>
               </button>
               <button
                 onClick={() => navigate("/community")}
-                className="px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white text-xs font-semibold uppercase tracking-widest cursor-pointer transition-all"
+                className="px-7 py-3.5 rounded-2xl bg-zinc-900/60 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 hover:text-white text-xs font-bold uppercase tracking-widest cursor-pointer transition-all hover:scale-105 active:scale-95 duration-200"
               >
                 💬 Diễn đàn thảo luận
               </button>
@@ -120,13 +118,13 @@ export default function Home() {
           </div>
 
           {/* Quick stats sidebar */}
-          <div className="lg:col-span-4 rounded-3xl border border-zinc-900 bg-zinc-950/60 p-6 space-y-6 relative shadow-xl shadow-black/80">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.03)_0%,transparent_75%)] pointer-events-none" />
-            <h3 className="text-xs font-mono tracking-widest text-zinc-500 uppercase border-b border-zinc-900 pb-3">
+          <div className="lg:col-span-4 rounded-3xl border border-zinc-900/80 bg-zinc-950/70 p-7 space-y-6 relative shadow-2xl shadow-black/80 backdrop-blur-md hover:border-red-500/20 transition-all duration-300">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.04)_0%,transparent_75%)] pointer-events-none" />
+            <h3 className="text-xs font-mono tracking-widest text-zinc-500 uppercase border-b border-zinc-900/60 pb-3.5">
               📊 THỐNG KÊ HỆ THỐNG (LIVE)
             </h3>
             
-            <div className="space-y-4">
+            <div className="space-y-5">
               {[
                 { label: "VÕ SĨ LION HOẠT ĐỘNG", val: stats.fighters, color: "text-white" },
                 { label: "TỔNG SỐ CHIẾN THẮNG MMA", val: stats.wins, color: "text-emerald-400" },
@@ -134,7 +132,7 @@ export default function Home() {
               ].map((stat, idx) => (
                 <div key={idx} className="flex items-center justify-between py-2 border-b border-zinc-900/30 last:border-0">
                   <span className="text-[10px] text-zinc-400 font-mono tracking-wider">{stat.label}</span>
-                  <span className={`text-2xl font-black font-mono ${stat.color}`}>{stat.val}</span>
+                  <span className={`text-3xl font-black font-mono tracking-tighter ${stat.color}`}>{stat.val}</span>
                 </div>
               ))}
             </div>
@@ -144,12 +142,12 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 2: LATEST MMA NEWS (TIN TỨC NÓNG) ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
-        <div className="flex items-center gap-3 border-b border-zinc-900 pb-4 mb-8">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+        <div className="flex items-center gap-3 border-b border-zinc-900/60 pb-4 mb-8">
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
             <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">MMA HOT NEWS</span>
-            <h2 className="text-2xl font-black uppercase text-white">TIN TỨC & BÊN LỀ ĐẤU TRƯỜNG</h2>
+            <h2 className="text-2xl font-black uppercase text-white tracking-wide" style={{ fontFamily: "'Syne', sans-serif" }}>TIN TỨC & BÊN LỀ ĐẤU TRƯỜNG</h2>
           </div>
         </div>
 
@@ -159,9 +157,9 @@ export default function Home() {
             { tag: "SỰ KIỆN", time: "1 ngày trước", title: "Johnny Trí Nguyễn chia sẻ chiến thuật độc bản của Liên Phong trước mùa giải mới", desc: "HLV trưởng võ đường Liên Phong tin tưởng dàn võ sĩ trẻ sẽ tạo nên nhiều bất ngờ lớn với sự đột phá trong địa chiến.", img: "🥋" },
             { tag: "UFC 326", time: "3 ngày trước", title: "Jon Jones chính thức lên tiếng về tin đồn giải nghệ trước thềm đại chiến Aspinall", desc: "Huyền thoại hạng nặng khẳng định anh vẫn khao khát chiến đấu và muốn cống hiến một trận cầu kinh điển cuối cùng.", img: "🔥" }
           ].map((news, idx) => (
-            <div key={idx} className="group bg-zinc-950/40 border border-zinc-900 hover:border-red-500/20 rounded-2xl p-5 space-y-4 transition-all duration-300">
+            <div key={idx} className="group bg-gradient-to-b from-zinc-950/70 to-zinc-950/40 border border-zinc-900/80 hover:border-red-500/30 rounded-3xl p-6 space-y-4 transition-all duration-300 shadow-lg shadow-black/30 hover:-translate-y-1">
               <div className="flex justify-between items-center text-[9px] font-mono">
-                <span className="text-red-500 font-bold bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded uppercase">{news.tag}</span>
+                <span className="text-red-500 font-bold bg-red-500/10 border border-red-500/20 px-2.5 py-0.5 rounded-lg uppercase">{news.tag}</span>
                 <span className="text-zinc-500">{news.time}</span>
               </div>
               <h3 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors leading-snug line-clamp-2">{news.title}</h3>
@@ -172,33 +170,35 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 3: FEATURED CHAMPION SPOTLIGHT ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
-        <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden shadow-xl shadow-black/40">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-red-600/5 to-transparent pointer-events-none" />
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+        <div className="rounded-3xl border border-zinc-900/80 bg-gradient-to-r from-zinc-950/70 via-zinc-950/40 to-zinc-950/20 p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden shadow-2xl shadow-black/55 hover:border-amber-500/20 transition-colors duration-300">
           
+          <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-amber-500/15" />
+          <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-amber-500/15" />
+
           <div className="lg:col-span-8 space-y-5">
-            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full">
+            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1 rounded-full">
               <span className="text-[10px]">🏆</span>
               <span className="text-[9px] font-mono text-amber-400 font-bold uppercase tracking-widest">Đương Kim Vô Địch Nổi Bật</span>
             </div>
             
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-none">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-none" style={{ fontFamily: "'Syne', sans-serif" }}>
               LÊ VĂN TUẦN <br/>
-              <span className="text-red-500 text-lg md:text-xl font-mono block mt-2 font-bold tracking-widest">&ldquo;THE SOUTHWARK BEAST&rdquo; · 56KG NAM</span>
+              <span className="text-red-500 text-lg md:text-xl font-mono block mt-3.5 font-bold tracking-widest">&ldquo;THE SOUTHWARK BEAST&rdquo; · 56KG NAM</span>
             </h2>
 
             <p className="text-xs md:text-sm text-zinc-400 leading-relaxed max-w-xl font-light">
               Nhà vô địch LION Championship sở hữu lối thi đấu vô cùng cống hiến, pha trộn tinh hoa võ cổ truyền Việt Nam và BJJ hiện đại. Gần đây anh liên tục thống trị hạng cân 56kg Nam với phong cách khóa siết nghẹt thở.
             </p>
 
-            <div className="flex gap-6 items-center">
+            <div className="flex flex-wrap gap-6 items-center pt-2">
               <div>
-                <div className="text-2xl font-black font-mono text-white">8-3-0</div>
+                <div className="text-2xl font-black font-mono text-white tracking-tighter">8-3-0</div>
                 <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block">THÀNH TÍCH (W-L-D)</span>
               </div>
               <div className="w-px h-8 bg-zinc-900" />
               <div>
-                <div className="text-2xl font-black font-mono text-emerald-400">73%</div>
+                <div className="text-2xl font-black font-mono text-emerald-400 tracking-tighter">73%</div>
                 <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block">TỈ LỆ THẮNG</span>
               </div>
               <div className="w-px h-8 bg-zinc-900" />
@@ -208,10 +208,10 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-4">
               <button
                 onClick={() => navigate("/fighter/le-van-tuan")}
-                className="px-5 py-2.5 rounded-xl border border-red-500/20 bg-red-600/10 hover:bg-red-600 text-red-500 hover:text-white text-xs font-mono font-bold uppercase transition-all duration-300 cursor-pointer"
+                className="px-6 py-3 rounded-xl border border-red-500/20 bg-red-600/10 hover:bg-red-600 text-red-500 hover:text-white text-xs font-mono font-bold uppercase transition-all duration-300 cursor-pointer"
               >
                 Xem chi tiết hồ sơ võ sĩ &rarr;
               </button>
@@ -219,11 +219,12 @@ export default function Home() {
           </div>
 
           <div className="lg:col-span-4 flex justify-center">
-            <div className="relative w-56 h-56 rounded-full overflow-hidden border-2 border-amber-500/30 bg-zinc-950 flex items-center justify-center p-3 shadow-2xl shadow-amber-500/5">
+            <div className="relative w-56 h-56 rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-950 flex items-center justify-center p-3 shadow-2xl shadow-amber-500/5 group">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.08)_0%,transparent_70%)] pointer-events-none" />
               <img 
                 src="/lvt.png" 
                 alt="Lê Văn Tuần" 
-                className="w-full h-full object-contain scale-150 translate-y-6" 
+                className="w-full h-full object-contain scale-[1.4] translate-y-6 group-hover:scale-[1.5] transition-transform duration-300" 
               />
             </div>
           </div>
@@ -231,11 +232,11 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 4: MATCH HIGHLIGHT & FAN POLL (GRID INTERACTIVE) ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Fan Poll Widget (5/12) */}
-          <div className="lg:col-span-5 bg-zinc-950/60 border border-zinc-900 rounded-3xl p-6 space-y-4">
+          <div className="lg:col-span-5 bg-gradient-to-b from-zinc-950/70 to-zinc-950/40 border border-zinc-900/80 rounded-3xl p-6 space-y-4 shadow-xl shadow-black/30">
             <div className="flex items-center gap-2 border-b border-zinc-900 pb-3">
               <span className="text-red-500">🗳️</span>
               <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 uppercase">FAN POLL & BÌNH CHỌN</h3>
@@ -249,13 +250,13 @@ export default function Home() {
                 <div className="space-y-2.5 pt-2">
                   <button 
                     onClick={() => handleVote("tuan")}
-                    className="w-full text-left bg-zinc-900 border border-zinc-800 hover:border-red-500/40 p-3 rounded-xl text-xs font-bold text-zinc-300 hover:text-white transition-all cursor-pointer"
+                    className="w-full text-left bg-zinc-900/60 border border-zinc-800/80 hover:border-red-500/40 p-3.5 rounded-xl text-xs font-bold text-zinc-300 hover:text-white transition-all cursor-pointer hover:bg-zinc-850"
                   >
                     🏆 Lê Văn Tuần thắng bằng khóa siết (Submission)
                   </button>
                   <button 
                     onClick={() => handleVote("opponent")}
-                    className="w-full text-left bg-zinc-900 border border-zinc-800 hover:border-red-500/40 p-3 rounded-xl text-xs font-bold text-zinc-300 hover:text-white transition-all cursor-pointer"
+                    className="w-full text-left bg-zinc-900/60 border border-zinc-800/80 hover:border-red-500/40 p-3.5 rounded-xl text-xs font-bold text-zinc-300 hover:text-white transition-all cursor-pointer hover:bg-zinc-850"
                   >
                     ⚡ Thách đấu giành đai thắng điểm đồng thuận (Decision)
                   </button>
@@ -288,7 +289,7 @@ export default function Home() {
           </div>
 
           {/* Training Techniques Grid (7/12) */}
-          <div className="lg:col-span-7 bg-zinc-950/60 border border-zinc-900 rounded-3xl p-6 space-y-4">
+          <div className="lg:col-span-7 bg-gradient-to-b from-zinc-950/70 to-zinc-950/40 border border-zinc-900/80 rounded-3xl p-6 space-y-4 shadow-xl shadow-black/30">
             <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
               <div className="flex items-center gap-2">
                 <span className="text-red-500">🥋</span>
@@ -302,9 +303,9 @@ export default function Home() {
                 { title: "Kỹ thuật đấm Overhand Right", level: "Cơ bản", duration: "Muay Thai / Boxing", desc: "Cách phát lực từ hông và giữ thăng bằng đầu để tạo ra đòn đấm Overhand uy lực nhất vượt qua tay thủ đối phương." },
                 { title: "Cách thoát thế chẹn cổ Rear-Naked Choke", level: "Nâng cao", duration: "BJJ / Grappling", desc: "Các bước gỡ tay khóa, xoay vai hướng về phía mặt đối thủ để thoát hiểm an toàn khi bị kiểm soát lưng." }
               ].map((tech, idx) => (
-                <div key={idx} className="bg-zinc-900/40 border border-zinc-900 p-4 rounded-xl space-y-2">
+                <div key={idx} className="bg-zinc-900/40 border border-zinc-900/60 p-4.5 rounded-2xl space-y-2">
                   <div className="flex justify-between text-[9px] font-mono">
-                    <span className="text-amber-500 font-bold">{tech.level}</span>
+                    <span className="text-amber-500 font-bold bg-amber-500/10 px-2 py-0.5 rounded">{tech.level}</span>
                     <span className="text-zinc-500">{tech.duration}</span>
                   </div>
                   <h4 className="text-xs font-bold text-white">{tech.title}</h4>
@@ -318,12 +319,12 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 5: UPCOMING BROADCASTS TIMELINE ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
-        <div className="flex items-center gap-3 border-b border-zinc-900 pb-4 mb-8">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+        <div className="flex items-center gap-3 border-b border-zinc-900/60 pb-4 mb-8">
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
             <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">MMA SCHEDULE</span>
-            <h2 className="text-2xl font-black uppercase text-white">LỊCH PHÁT SÓNG & SỰ KIỆN SẮP TỚI</h2>
+            <h2 className="text-2xl font-black uppercase text-white" style={{ fontFamily: "'Syne', sans-serif" }}>LỊCH PHÁT SÓNG & SỰ KIỆN SẮP TỚI</h2>
           </div>
         </div>
 
@@ -333,9 +334,9 @@ export default function Home() {
             { title: "UFC 326: Jones vs Aspinall", date: "Chủ Nhật, ngày 26 tháng 7, 2026", loc: "Madison Square Garden, New York", type: "Heavyweight Title Match", status: "Phát sóng độc quyền" },
             { title: "LION Championship 35", date: "Thứ Bảy, ngày 15 tháng 8, 2026", loc: "Quần Ngựa, Tây Hồ, Hà Nội", type: "Official Rankings Matches", status: "Bán vé chính thức" },
           ].map((evt, idx) => (
-            <div key={idx} className="bg-zinc-950/60 border border-zinc-900 hover:border-zinc-800 rounded-2xl p-5 space-y-4 transition-all">
+            <div key={idx} className="bg-gradient-to-b from-zinc-950/70 to-zinc-950/40 border border-zinc-900/80 hover:border-red-500/20 rounded-3xl p-6 space-y-4 transition-all hover:-translate-y-1 shadow-lg shadow-black/30">
               <div className="flex items-center justify-between text-[9px] font-mono">
-                <span className="text-red-500 font-bold uppercase tracking-wider">{evt.type}</span>
+                <span className="text-red-500 font-bold bg-red-500/10 px-2 py-0.5 rounded uppercase tracking-wider">{evt.type}</span>
                 <span className="text-zinc-500">{evt.status}</span>
               </div>
               <h3 className="text-base font-black text-white leading-tight">{evt.title}</h3>
@@ -349,13 +350,13 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 6: CLUBS SECTION ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
-        <div className="flex items-center justify-between border-b border-zinc-900 pb-4 mb-8">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+        <div className="flex items-center justify-between border-b border-zinc-900/60 pb-4 mb-8">
           <div className="flex items-center gap-3">
             <div className="w-1 h-6 bg-red-600 rounded-full" />
             <div>
               <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">VÕ ĐƯỜNG LIÊN KẾT</span>
-              <h2 className="text-2xl font-black uppercase text-white">CÁC LÒ ĐÀO TẠO MMA HÀNG ĐẦU</h2>
+              <h2 className="text-2xl font-black uppercase text-white" style={{ fontFamily: "'Syne', sans-serif" }}>CÁC LÒ ĐÀO TẠO MMA HÀNG ĐẦU</h2>
             </div>
           </div>
           <button 
@@ -382,7 +383,7 @@ export default function Home() {
                 <div 
                   key={club.id} 
                   onClick={() => navigate(`/club/${club.id}`)}
-                  className="group relative overflow-hidden rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 flex flex-col justify-between hover:border-red-500/25 transition-all duration-300 cursor-pointer"
+                  className="group relative overflow-hidden rounded-3xl border border-zinc-900/85 bg-gradient-to-b from-zinc-950/70 to-zinc-950/40 p-6 flex flex-col justify-between hover:border-red-500/25 transition-all duration-300 cursor-pointer shadow-lg shadow-black/30 hover:-translate-y-1"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
