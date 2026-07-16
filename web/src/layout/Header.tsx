@@ -212,8 +212,16 @@ export default function Header() {
                   }
                 `}
               >
-                <span className={`transition-opacity ${active ? "opacity-100 text-red-500" : "opacity-60"}`}>
-                  {getNavIcon(link.icon)}
+                <span className={`transition-opacity flex items-center shrink-0 ${active ? "opacity-100" : "opacity-60"}`}>
+                  {link.path === "/lion" ? (
+                    <img 
+                      src="/logo-lionchampionship.png" 
+                      alt="Lion Logo" 
+                      className="w-3.5 h-3.5 object-contain" 
+                    />
+                  ) : (
+                    getNavIcon(link.icon)
+                  )}
                 </span>
                 <span>{link.label}</span>
               </Link>
@@ -340,8 +348,16 @@ export default function Header() {
                 }`}
                 style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}
               >
-                <span className={`transition-opacity ${active ? "opacity-100 text-red-500" : "opacity-60"}`}>
-                  {getNavIcon(link.icon)}
+                <span className={`transition-opacity flex items-center shrink-0 ${active ? "opacity-100" : "opacity-60"}`}>
+                  {link.path === "/lion" ? (
+                    <img 
+                      src="/logo-lionchampionship.png" 
+                      alt="Lion Logo" 
+                      className="w-3.5 h-3.5 object-contain" 
+                    />
+                  ) : (
+                    getNavIcon(link.icon)
+                  )}
                 </span>
                 <span>{link.label}</span>
                 {active && <span className="ml-auto h-1 w-1 rounded-full bg-red-500 shrink-0" />}
