@@ -109,25 +109,14 @@ export default function Header() {
           onClick={() => setMobileOpen(false)}
           className="flex items-center gap-3 mr-8 shrink-0 bg-transparent border-none outline-none group no-underline"
         >
-          {/* Shield mark */}
-          <div className="relative h-9 w-9 shrink-0">
-            <div className="absolute inset-0 rounded-[10px] bg-red-600/25 blur-lg scale-125 group-hover:bg-red-500/35 transition-all duration-500" />
-            <div
-              className="relative h-9 w-9 rounded-[10px] overflow-hidden flex items-center justify-center
-                         bg-gradient-to-br from-red-500 via-red-600 to-red-900
-                         border border-red-400/25 group-hover:border-red-300/40
-                         shadow-lg shadow-red-900/50
-                         transition-all duration-300 group-hover:scale-[1.06]"
-            >
-              <span
-                style={{ fontFamily: "Bebas Neue, Impact, sans-serif", fontSize: "1.35rem", letterSpacing: "0.02em" }}
-                className="text-white relative z-10"
-              >
-                M
-              </span>
-              {/* shimmer */}
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-[220%] transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-12deg]" />
-            </div>
+          {/* Shield mark (using official MMAVN Logo) */}
+          <div className="relative h-10 w-10 shrink-0 flex items-center justify-center">
+            <div className="absolute inset-0 rounded-xl bg-red-600/10 blur-md scale-110 group-hover:bg-red-500/20 transition-all duration-300" />
+            <img 
+              src="/log-mmavn.png" 
+              alt="MMAVN Logo" 
+              className="h-full w-full object-contain relative z-10 transition-transform duration-300 group-hover:scale-[1.08]" 
+            />
           </div>
 
           {/* Brand name */}
