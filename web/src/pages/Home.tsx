@@ -70,7 +70,6 @@ export default function Home() {
   const tuanPct = Math.round((votes.tuan / totalVotes) * 100);
   const opponentPct = 100 - tuanPct;
 
-  // Custom colors for light/dark theme toggles
   const textTitle = isDark ? "text-white" : "text-zinc-900";
   const textDesc = isDark ? "text-zinc-400" : "text-zinc-600";
 
@@ -94,8 +93,8 @@ export default function Home() {
             : "radial-gradient(circle at center, rgba(0, 0, 0, 0.055) 1.5px, transparent 1.5px)",
           backgroundSize: isDark ? "100px 100px, 120px 120px, 40px 40px, 40px 40px" : "32px 32px",
           opacity: isDark ? 0.07 : 0.75,
-          maskImage: isDark ? "radial-gradient(circle at 50% 30%, black 40%, transparent 90%)" : "none",
-          WebkitMaskImage: isDark ? "radial-gradient(circle at 50% 30%, black 40%, transparent 90%)" : "none"
+          maskImage: isDark ? "radial-gradient(circle_at_center, black 40%, transparent 90%)" : "none",
+          WebkitMaskImage: isDark ? "radial-gradient(circle_at_center, black 40%, transparent 90%)" : "none"
         }}
       />
 
@@ -110,7 +109,7 @@ export default function Home() {
         isDark ? "bg-gradient-to-tr from-red-600/[0.05]" : "bg-gradient-to-tr from-red-500/[0.02]"
       }`} />
 
-      {/* Geometric background accents: Angled light streaks */}
+      {/* Geometric background accents */}
       <div className={`absolute top-[15%] left-0 w-full h-[1px] rotate-[-6deg] scale-150 pointer-events-none ${
         isDark ? "bg-gradient-to-r from-transparent via-red-500/10 to-transparent" : "bg-gradient-to-r from-transparent via-red-500/5 to-transparent"
       }`} />
@@ -119,7 +118,7 @@ export default function Home() {
       }`} />
 
       {/* ── SECTION 1: HERO PORTAL BANNER ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-16">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div className="lg:col-span-8 space-y-6">
@@ -191,7 +190,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 2: LATEST MMA NEWS (TIN TỨC NÓNG) ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
         <div className={`flex items-center gap-3 border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
@@ -202,9 +201,9 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { tag: "LION 34", time: "2 giờ trước", title: "Lê Văn Tuần hoàn tất buổi cân thử, sẵn sàng bảo vệ đai vô địch hạng 56kg Nam", desc: "Đương kim vô địch tỏ ra vô cùng tự tin và đạt trạng thái thể lực tốt nhất trước thềm trận đấu tâm điểm ngày mai.", img: "🥊" },
-            { tag: "SỰ KIỆN", time: "1 ngày trước", title: "Johnny Trí Nguyễn chia sẻ chiến thuật độc bản của Liên Phong trước mùa giải mới", desc: "HLV trưởng võ đường Liên Phong tin tưởng dàn võ sĩ trẻ sẽ tạo nên nhiều bất ngờ lớn với sự đột phá trong địa chiến.", img: "🥋" },
-            { tag: "UFC 326", time: "3 ngày trước", title: "Jon Jones chính thức lên tiếng về tin đồn giải nghệ trước thềm đại chiến Aspinall", desc: "Huyền thoại hạng nặng khẳng định anh vẫn khao khát chiến đấu và muốn cống hiến một trận cầu kinh điển cuối cùng.", img: "🔥" }
+            { tag: "LION 34", time: "2 giờ trước", title: "Lê Văn Tuần hoàn tất buổi cân thử, sẵn sàng bảo vệ đai vô địch hạng 56kg Nam", desc: "Đương kim vô địch tỏ ra vô cùng tự tin và đạt trạng thái thể lực tốt nhất trước thềm trận đấu tâm điểm ngày mai." },
+            { tag: "SỰ KIỆN", time: "1 ngày trước", title: "Johnny Trí Nguyễn chia sẻ chiến thuật độc bản của Liên Phong trước mùa giải mới", desc: "HLV trưởng võ đường Liên Phong tin tưởng dàn võ sĩ trẻ sẽ tạo nên nhiều bất ngờ lớn với sự đột phá trong địa chiến." },
+            { tag: "UFC 326", time: "3 ngày trước", title: "Jon Jones chính thức lên tiếng về tin đồn giải nghệ trước thềm đại chiến Aspinall", desc: "Huyền thoại hạng nặng khẳng định anh vẫn khao khát chiến đấu và muốn cống hiến một trận cầu kinh điển cuối cùng." }
           ].map((news, idx) => (
             <div key={idx} className={`group border rounded-3xl p-6 space-y-4 transition-all duration-300 shadow-lg hover:-translate-y-1 ${
               isDark 
@@ -225,7 +224,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 3: FEATURED CHAMPION SPOTLIGHT ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
         <div className={`rounded-3xl border p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden shadow-2xl transition-colors duration-300 ${
           isDark 
             ? "bg-gradient-to-r from-zinc-950/70 via-zinc-950/40 to-zinc-950/20 border-zinc-900/80 shadow-black/55 hover:border-amber-500/20" 
@@ -259,7 +258,7 @@ export default function Home() {
               </div>
               <div className={`w-px h-8 ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`} />
               <div>
-                <div className="text-2xl font-black font-mono text-emerald-500 tracking-tighter">73%</div>
+                <div className="text-2xl font-black font-mono text-emerald-400 tracking-tighter">73%</div>
                 <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block">TỈ LỆ THẮNG</span>
               </div>
               <div className={`w-px h-8 ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`} />
@@ -295,7 +294,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 4: MATCH HIGHLIGHT & FAN POLL ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Fan Poll Widget (5/12) */}
@@ -404,7 +403,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 5: UPCOMING BROADCASTS TIMELINE ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
         <div className={`flex items-center gap-3 border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
@@ -439,7 +438,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 6: CLUBS SECTION ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-10">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-20">
         <div className={`flex items-center justify-between border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
           <div className="flex items-center gap-3">
             <div className="w-1 h-6 bg-red-600 rounded-full" />
