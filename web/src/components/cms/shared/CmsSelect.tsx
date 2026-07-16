@@ -100,7 +100,7 @@ export default function CmsSelect({
           className={`absolute top-full mt-1.5 left-0 z-50 rounded-2xl border shadow-xl overflow-hidden py-1.5 ${
             isDark ? "bg-zinc-900 border-zinc-800 shadow-black/60" : "bg-white border-zinc-200 shadow-zinc-200/80"
           }`}
-          style={{ minWidth: "100%", maxHeight: 260, overflowY: "auto" }}
+          style={{ minWidth: "max-content" }}
         >
           {/* Placeholder/reset row */}
           <button
@@ -109,7 +109,7 @@ export default function CmsSelect({
             className={rowClass(!value)}
           >
             {!value ? <Check /> : <span className="w-3 shrink-0" />}
-            <span>{placeholder}</span>
+            <span className="whitespace-nowrap">{placeholder}</span>
           </button>
 
           <div className={`h-px mx-3 my-1 ${isDark ? "bg-zinc-800" : "bg-zinc-100"}`} />
@@ -126,7 +126,7 @@ export default function CmsSelect({
               {opt.dot && (
                 <span className={`inline-block w-2 h-2 rounded-full shrink-0 ${opt.dot}`} />
               )}
-              <span>{opt.label}</span>
+              <span className="whitespace-nowrap">{opt.label}</span>
             </button>
           ))}
         </div>
