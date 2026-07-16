@@ -105,67 +105,60 @@ export default function Header() {
 
       {/* ── MAIN NAV BAR ── */}
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-[65px] relative">
-        
-        {/* ── Logo & Title ── */}
+        {/* ── Logo ── */}
         <Link
           to="/"
           onClick={() => setMobileOpen(false)}
-          className="flex items-center gap-3 shrink-0 group no-underline"
+          className="flex items-center shrink-0 group no-underline"
+          title="MMAVN Home"
         >
           {/* Logo container */}
-          <div className={`relative h-11 w-11 flex items-center justify-center rounded-xl transition-all duration-300 overflow-hidden border ${
+          <div className={`relative h-12 w-12 flex items-center justify-center rounded-2xl transition-all duration-300 overflow-hidden border ${
             isDark ? "bg-zinc-900/60 border-zinc-800/80 group-hover:border-red-600/30" : "bg-zinc-100 border-zinc-200 group-hover:border-red-500/40"
           }`}>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.1)_0%,transparent_75%)] pointer-events-none" />
             <img 
               src="/log-mmavn.png" 
               alt="MMAVN Logo" 
-              className="h-9 w-9 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110" 
+              className="h-10 w-10 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110" 
             />
-          </div>
-
-          {/* Title Text */}
-          <div className="text-left leading-none">
-            <div className="flex items-baseline gap-0.5">
-              <span className={`text-xl font-black uppercase tracking-tighter transition-colors ${
-                isDark ? "text-white" : "text-zinc-900"
-              }`}>MMA</span>
-              <span className="text-xl font-black uppercase tracking-tighter text-red-500">VN</span>
-            </div>
-            <span className="block text-[8px] font-mono text-zinc-500 uppercase tracking-[0.25em] mt-1 group-hover:text-zinc-400 transition-colors">
-              VIETNAM COMBAT HUB
-            </span>
           </div>
         </Link>
 
-        {/* ── Desktop Nav Links ── */}
-        <nav className="hidden md:flex items-center gap-1.5 h-full">
+        {/* ── Desktop Nav Links (Icons Only with Tooltips) ── */}
+        <nav className="hidden md:flex items-center gap-3 h-full">
           {NAV.map((link) => {
             const active = currentPath === link.path;
             return (
               <Link
                 key={link.path}
                 to={link.path}
+                title={link.label}
                 className={`
-                  relative flex items-center gap-2 px-4 py-2 rounded-xl
-                  text-[10px] font-mono font-bold uppercase tracking-wider
-                  outline-none transition-all duration-200 no-underline
+                  relative flex items-center justify-center h-10 w-10 rounded-xl
+                  transition-all duration-200 no-underline group
                   ${active
-                    ? "text-red-500 bg-red-500/5 border border-red-500/10"
+                    ? "text-red-500 bg-red-500/10 border border-red-500/20"
                     : isDark 
                       ? "text-zinc-400 hover:text-white border border-transparent hover:bg-zinc-900/40"
-                      : "text-zinc-600 hover:text-black border border-transparent hover:bg-zinc-100"
+                      : "text-zinc-650 hover:text-black border border-transparent hover:bg-zinc-100"
                   }
                 `}
               >
                 {link.path === "/lion" ? (
-                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-3.5 h-3.5 object-contain" />
+                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-5 h-5 object-contain" />
                 ) : (
-                  <span className={`text-[11px] ${active ? "opacity-100" : "opacity-60"}`}>
+                  <span className="text-base select-none">
                     {link.emoji}
                   </span>
                 )}
-                <span>{link.label}</span>
+                
+                {/* Premium floating tooltip */}
+                <span className={`absolute bottom-[-36px] scale-0 group-hover:scale-100 transition-all duration-150 rounded-lg bg-zinc-950 text-white text-[9px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 pointer-events-none shadow-xl z-30 whitespace-nowrap border ${
+                  isDark ? "border-zinc-800" : "border-zinc-200/80"
+                }`}>
+                  {link.label}
+                </span>
               </Link>
             );
           })}
