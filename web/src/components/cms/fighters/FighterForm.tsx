@@ -210,10 +210,53 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
           <div className="space-y-4">
             <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">III. Liên kết Mạng xã hội</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Field label="Facebook Link" field="facebook" placeholder="https://facebook.com/..." />
-              <Field label="TikTok Link" field="tiktok" placeholder="https://tiktok.com/@..." />
-              <Field label="Instagram Link" field="instagram" placeholder="https://instagram.com/..." />
-              <Field label="YouTube Link" field="youtube" placeholder="https://youtube.com/c/..." />
+              
+              {/* Facebook */}
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
+                  <svg className="w-3.5 h-3.5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" />
+                  </svg>
+                  Facebook Link
+                </label>
+                <input type="text" value={fighter.facebook ?? ""} onChange={e => set("facebook", e.target.value)} placeholder="https://facebook.com/..." className={inputClass} />
+              </div>
+
+              {/* TikTok */}
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
+                  <svg className="w-3.5 h-3.5 text-black dark:text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.85.95 1.96 1.66 3.19 2.06.01 1.25.01 2.5-.01 3.75-.92-.09-1.84-.4-2.65-.89-.96-.58-1.74-1.42-2.26-2.42V14.5c0 1.25-.26 2.48-.77 3.63-.58 1.27-1.52 2.37-2.68 3.16-1.51.98-3.32 1.4-5.11 1.18-1.88-.23-3.61-1.25-4.75-2.82C1.72 17.51 1.4 15.11 2.06 12.9c.57-1.86 1.93-3.44 3.7-4.27 1.05-.48 2.21-.69 3.36-.61.02 1.34.01 2.67.01 4.01-1.04-.15-2.14.07-3.03.68-.96.67-1.51 1.83-1.4 3.01.07 1.02.66 1.97 1.52 2.47.93.52 2.06.51 2.97-.04.75-.46 1.26-1.25 1.37-2.13.01-.29.01-.58.01-.87V.02h2.02z" />
+                  </svg>
+                  TikTok Link
+                </label>
+                <input type="text" value={fighter.tiktok ?? ""} onChange={e => set("tiktok", e.target.value)} placeholder="https://tiktok.com/@..." className={inputClass} />
+              </div>
+
+              {/* Instagram */}
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
+                  <svg className="w-3.5 h-3.5 text-pink-600" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                  Instagram Link
+                </label>
+                <input type="text" value={fighter.instagram ?? ""} onChange={e => set("instagram", e.target.value)} placeholder="https://instagram.com/..." className={inputClass} />
+              </div>
+
+              {/* YouTube */}
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
+                  <svg className="w-3.5 h-3.5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.107C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.388.511a3.002 3.002 0 00-2.11 2.107C0 8.053 0 12 0 12s0 3.947.502 5.837a3.003 3.003 0 002.11 2.107C4.495 20.455 12 20.455 12 20.455s7.505 0 9.388-.511a3.002 3.002 0 002.11-2.107C24 15.947 24 12 24 12s0-3.947-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                  YouTube Link
+                </label>
+                <input type="text" value={fighter.youtube ?? ""} onChange={e => set("youtube", e.target.value)} placeholder="https://youtube.com/c/..." className={inputClass} />
+              </div>
+
             </div>
           </div>
 
