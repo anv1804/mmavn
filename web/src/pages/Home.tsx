@@ -273,7 +273,6 @@ export default function Home() {
                 : "bg-white border-zinc-200/80 hover:border-red-500/25 shadow-zinc-200/10"
             }`}>
               
-              {/* Top hover indicator line */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
               <div className="space-y-4">
@@ -293,7 +292,6 @@ export default function Home() {
                 <p className={`text-xs leading-relaxed line-clamp-2 font-light ${textDesc}`}>{news.desc}</p>
               </div>
 
-              {/* Read more button link */}
               <div className="pt-4 mt-6 border-t flex items-center justify-between text-[10px] font-mono text-zinc-500 group-hover:text-red-500 transition-colors" style={{ borderColor: isDark ? "rgba(39, 39, 42, 0.4)" : "rgba(228, 228, 231, 0.6)" }}>
                 <span>ĐỌC CHI TIẾT</span>
                 <span className="transform group-hover:translate-x-1.5 transition-transform duration-300 font-bold">&rarr;</span>
@@ -303,70 +301,81 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 3: FEATURED CHAMPION SPOTLIGHT ── */}
+      {/* ── SECTION 3: FEATURED CHAMPION SPOTLIGHT ── Upgraded to ultra-premium design */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-4 md:pb-6">
-        <div className={`rounded-3xl border p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center relative overflow-hidden shadow-2xl transition-colors duration-300 ${
+        <div className={`rounded-3xl border p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden shadow-2xl transition-all duration-300 group ${
           isDark 
-            ? "bg-gradient-to-r from-zinc-950/70 via-zinc-950/40 to-zinc-950/20 border-zinc-900/80 shadow-black/55 hover:border-amber-500/20" 
-            : "bg-gradient-to-r from-white via-zinc-50/70 to-zinc-50/30 border-zinc-200/85 shadow-zinc-200/20 hover:border-amber-500/30"
+            ? "bg-gradient-to-r from-zinc-950 via-zinc-950/50 to-black border-zinc-900/90 shadow-black/80 hover:border-amber-500/20" 
+            : "bg-gradient-to-r from-white via-zinc-50/80 to-zinc-50/20 border-zinc-200/95 shadow-zinc-200/20 hover:border-amber-500/35"
         }`}>
           
-          <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-amber-500/15" />
-          <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-amber-500/15" />
+          {/* Subtle Champion Background Radial Glow */}
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full opacity-[0.06] pointer-events-none transition-all duration-500 group-hover:opacity-[0.1]"
+            style={{ background: "radial-gradient(circle, #f59e0b 0%, transparent 70%)" }} />
 
-          <div className="lg:col-span-8 space-y-5">
-            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1 rounded-full">
-              <span className="text-[10px]">🏆</span>
-              <span className="text-[9px] font-mono text-amber-400 font-bold uppercase tracking-widest">Đương Kim Vô Địch Nổi Bật</span>
+          {/* Corner Decors */}
+          <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-amber-500/25" />
+          <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-amber-500/25" />
+
+          <div className="lg:col-span-8 space-y-6">
+            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-3.5 py-1 rounded-full relative">
+              <span className="text-[10px] animate-bounce">🏆</span>
+              <span className="text-[9px] font-mono text-amber-500 font-bold uppercase tracking-widest">Đương Kim Vô Địch Nổi Bật</span>
             </div>
             
-            <h2 className={`text-3xl md:text-5xl font-black uppercase tracking-tight leading-[1.2] ${
+            <h2 className={`text-4xl md:text-6xl font-black uppercase tracking-tight leading-[1.1] ${
               isDark ? "text-white" : "text-zinc-900"
             }`} style={{ fontFamily: "'Oswald', sans-serif" }}>
               LÊ VĂN TUẦN <br/>
-              <span className="text-red-500 text-lg md:text-xl font-mono block mt-3.5 font-bold tracking-widest">&ldquo;THE SOUTHWARK BEAST&rdquo; · 56KG NAM</span>
+              <span className="text-red-500 text-base md:text-lg font-mono block mt-2 font-bold tracking-widest uppercase">&ldquo;THE SOUTHWARK BEAST&rdquo; · 56KG NAM</span>
             </h2>
 
             <p className={`text-xs md:text-sm leading-relaxed max-w-xl font-light ${textDesc}`}>
               Nhà vô địch LION Championship sở hữu lối thi đấu vô cùng cống hiến, pha trộn tinh hoa võ cổ truyền Việt Nam và BJJ hiện đại. Gần đây anh liên tục thống trị hạng cân 56kg Nam với phong cách khóa siết nghẹt thở.
             </p>
 
-            <div className="flex flex-wrap gap-6 items-center pt-2">
-              <div>
-                <div className={`text-2xl font-black font-mono tracking-tighter ${isDark ? "text-white" : "text-zinc-800"}`}>8-3-0</div>
-                <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block">THÀNH TÍCH (W-L-D)</span>
-              </div>
-              <div className={`w-px h-8 ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`} />
-              <div>
-                <div className="text-2xl font-black font-mono text-emerald-450 tracking-tighter">73%</div>
-                <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block">TỈ LỆ THẮNG</span>
-              </div>
-              <div className={`w-px h-8 ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`} />
-              <div>
-                <div className="text-2xl font-black font-mono text-amber-500">Vietnam Top Team</div>
-                <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block">CÂU LẠC BỘ CHỦ QUẢN</span>
-              </div>
+            {/* Structured Stats Grid */}
+            <div className="grid grid-cols-3 gap-4 max-w-lg pt-2">
+              {[
+                { label: "THÀNH TÍCH (W-L-D)", val: "8-3-0", sub: "Bảo vệ đai 3 lần", valColor: isDark ? "text-white" : "text-zinc-800" },
+                { label: "TỈ LỆ THẮNG", val: "73%", sub: "4 Trận khóa siết", valColor: "text-emerald-500" },
+                { label: "VÕ ĐƯỜNG CHỦ QUẢN", val: "VTT", sub: "Vietnam Top Team", valColor: "text-amber-500" }
+              ].map((item, idx) => (
+                <div key={idx} className={`p-3.5 rounded-2xl border ${
+                  isDark ? "bg-zinc-900/30 border-zinc-900/60" : "bg-zinc-50/80 border-zinc-150"
+                }`}>
+                  <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-wider block mb-1">{item.label}</span>
+                  <div className={`text-xl md:text-2xl font-black font-mono tracking-tight leading-none ${item.valColor}`}>{item.val}</div>
+                  <span className="text-[8px] text-zinc-400 font-mono mt-1 block truncate">{item.sub}</span>
+                </div>
+              ))}
             </div>
 
-            <div className="pt-4">
+            <div className="pt-2">
               <button
                 onClick={() => navigate("/fighter/le-van-tuan")}
-                className="px-6 py-3 rounded-xl border border-red-500/20 bg-red-600/10 hover:bg-red-600 text-red-500 hover:text-white text-xs font-mono font-bold uppercase transition-all duration-300 cursor-pointer"
+                className="group flex items-center gap-2 px-6 py-3.5 rounded-xl border border-amber-500/30 bg-amber-500/10 hover:bg-amber-600 text-amber-500 hover:text-white text-xs font-mono font-bold uppercase transition-all duration-300 cursor-pointer shadow-md shadow-amber-500/5"
               >
-                Xem chi tiết hồ sơ võ sĩ &rarr;
+                <span>XEM CHI TIẾT HỒ SƠ VÕ SĨ</span>
+                <span className="transform group-hover:translate-x-1.5 transition-transform duration-300">&rarr;</span>
               </button>
             </div>
           </div>
 
+          {/* Upgraded Champion Photo Frame */}
           <div className="lg:col-span-4 flex justify-center">
-            <div className={`relative w-56 h-56 rounded-3xl overflow-hidden border bg-zinc-950 flex items-center justify-center p-3 shadow-2xl group ${
-              isDark ? "border-zinc-800" : "border-zinc-200"
+            <div className={`relative w-64 h-64 rounded-3xl overflow-hidden border flex items-center justify-center p-3 shadow-2xl transition-all duration-300 group ${
+              isDark ? "border-zinc-800/90 bg-zinc-950" : "border-zinc-200 bg-zinc-50"
             }`}>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.08)_0%,transparent_70%)] pointer-events-none" />
+              
+              {/* Spinning Octagonal Grid Frame on hover */}
+              <div className="absolute inset-2 border border-dashed rounded-2xl border-amber-500/20 opacity-40 group-hover:rotate-12 transition-transform duration-700 pointer-events-none" />
+
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.12)_0%,transparent_70%)] pointer-events-none" />
               <img 
                 src="/lvt.png" 
                 alt="Lê Văn Tuần" 
-                className="w-full h-full object-contain scale-[1.4] translate-y-6 group-hover:scale-[1.5] transition-transform duration-300" 
+                className="w-full h-full object-contain scale-[1.3] translate-y-5 group-hover:scale-[1.4] transition-all duration-500" 
               />
             </div>
           </div>
