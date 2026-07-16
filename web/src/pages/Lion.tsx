@@ -95,9 +95,9 @@ export default function Lion() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent" />
 
         <div className="max-w-6xl mx-auto px-6 pt-32 pb-12 relative z-10">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left: Title */}
-            <div className="space-y-6">
+            <div className="lg:col-span-7 space-y-6">
               {/* Live badge */}
               <div className="inline-flex items-center gap-2 border border-red-500/25 bg-red-500/8 rounded-full px-3 py-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
@@ -154,12 +154,14 @@ export default function Lion() {
             </div>
 
             {/* Right: Featured panel */}
-            <div className="flex flex-col gap-3 lg:w-72 shrink-0">
-              {loading ? (
-                <div className="h-[260px] bg-zinc-900/40 rounded-3xl animate-pulse border border-zinc-900" />
-              ) : (
-                <ChampionCarousel champions={champions} />
-              )}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end lg:pr-14">
+              <div className="flex flex-col gap-3 w-72 shrink-0">
+                {loading ? (
+                  <div className="h-[260px] bg-zinc-900/40 rounded-3xl animate-pulse border border-zinc-900" />
+                ) : (
+                  <ChampionCarousel champions={champions} />
+                )}
+              </div>
             </div>
           </div>
         </div>
