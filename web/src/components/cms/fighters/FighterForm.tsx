@@ -57,19 +57,39 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
     onChange({ ...fighter, social_media: nextSocial, age: Math.max(0, calculatedAge), birth_year: birthDate.getFullYear() });
   };
 
-  const Field = ({ label, field, type = "text", disabled = false, placeholder = "" }: { label: string; field: string; type?: string; disabled?: boolean; placeholder?: string }) => (
-    <div className="space-y-1">
-      <label className="text-[10px] text-zinc-400 uppercase block">{label}</label>
-      <input
-        type={type}
-        disabled={disabled}
-        placeholder={placeholder}
-        value={fighter[field] ?? ""}
-        onChange={(e) => set(field, type === "number" ? parseInt(e.target.value) || 0 : e.target.value)}
-        className={disabled ? disabledClass : inputClass}
-      />
-    </div>
-  );
+  // Parse height and reach values dynamically for input fields
+  const parseNumericString = (val: any): string => {
+    if (val === undefined || val === null) return "";
+    const str = String(val).trim();
+    if (!str) return "";
+    // If it's a legacy format like "1m68"
+    if (str.includes("m") && /^\d+m\d+$/.test(str)) {
+      const parts = str.split("m");
+      return String(parseInt(parts[0]) * 100 + parseInt(parts[1]));
+    }
+    // Extract only digits
+    const digits = str.replace(/\D/g, "");
+    return digits || "";
+  };
+
+  const Field = ({ label, field, type = "text", disabled = false, placeholder = "" }: { label: string; field: string; type?: string; disabled?: boolean; placeholder?: string }) => {
+    const isDimension = field === "height" || field === "reach";
+    const displayValue = isDimension ? parseNumericString(fighter[field]) : (fighter[field] ?? "");
+
+    return (
+      <div className="space-y-1">
+        <label className="text-[10px] text-zinc-400 uppercase block">{label}</label>
+        <input
+          type={isDimension ? "number" : type}
+          disabled={disabled}
+          placeholder={placeholder}
+          value={displayValue}
+          onChange={(e) => set(field, type === "number" || isDimension ? parseInt(e.target.value) || 0 : e.target.value)}
+          className={disabled ? disabledClass : inputClass}
+        />
+      </div>
+    );
+  };
 
   return (
     <form onSubmit={onSave} className={`p-6 rounded-3xl border space-y-8 ${isDark ? "bg-zinc-950 border-zinc-900" : "bg-white border-zinc-200"}`}>
@@ -202,8 +222,8 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
                 </select>
               </div>
 
-              <Field label="Chiều cao (ví dụ: 1m68)" field="height" placeholder="Ví dụ: 1m68" />
-              <Field label="Sải tay (ví dụ: 170 cm)" field="reach" placeholder="Ví dụ: 170 cm" />
+              <Field label="Chiều cao (cm)" field="height" placeholder="Ví dụ: 168" />
+              <Field label="Sải tay (cm)" field="reach" placeholder="Ví dụ: 170" />
               <Field label="Quê quán" field="hometown" placeholder="Ví dụ: Hà Đông, Hà Nội" />
               <Field label="Quốc tịch" field="nationality" placeholder="Ví dụ: Việt Nam" />
               <Field label="Quốc kỳ (Emoji)" field="flag" placeholder="Ví dụ: 🇻🇳" />

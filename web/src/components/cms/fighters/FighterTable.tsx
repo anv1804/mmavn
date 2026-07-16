@@ -101,9 +101,22 @@ export default function FighterTable({ fighters, clubs, page, totalPages, total,
 
                     {/* Weight class */}
                     <td className="px-4 py-3">
-                      <span className={`inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold ${isDark ? "bg-zinc-900 text-zinc-300" : "bg-zinc-100 text-zinc-700"}`}>
-                        {fighter.weight_class || "—"}
-                      </span>
+                      <div className="space-y-1">
+                        <span className={`inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold ${isDark ? "bg-zinc-900 text-zinc-300" : "bg-zinc-100 text-zinc-700"}`}>
+                          {fighter.weight_class || "—"}
+                        </span>
+                        <div className="text-[10px] text-zinc-500 flex gap-2 pl-1.5">
+                          {fighter.height && (
+                            <span>{/^\d+$/.test(String(fighter.height).trim()) ? `${fighter.height} cm` : fighter.height}</span>
+                          )}
+                          {fighter.reach && (
+                            <>
+                              <span>•</span>
+                              <span>{/^\d+$/.test(String(fighter.reach).trim()) ? `${fighter.reach} cm` : fighter.reach}</span>
+                            </>
+                          )}
+                        </div>
+                      </div>
                     </td>
 
                     {/* Club */}

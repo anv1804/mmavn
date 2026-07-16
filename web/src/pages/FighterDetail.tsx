@@ -588,8 +588,8 @@ export default function FighterDetail() {
                 <div className="grid grid-cols-2 gap-y-4 gap-x-2">
                   {[
                     { label: "NĂM SINH", val: fighter.birthYear ? `${fighter.birthYear}` : "—" },
-                    { label: "CHIỀU CAO", val: fighter.height || "—" },
-                    { label: "SẢI TAY", val: fighter.reach || "—" },
+                    { label: "CHIỀU CAO", val: fighter.height ? (/^\d+$/.test(String(fighter.height).trim()) ? `${fighter.height} cm` : fighter.height) : "—" },
+                    { label: "SẢI TAY", val: fighter.reach ? (/^\d+$/.test(String(fighter.reach).trim()) ? `${fighter.reach} cm` : fighter.reach) : "—" },
                     { label: "ĐỘ TUỔI", val: fighter.age ? `${fighter.age} tuổi` : "—" },
                     { label: "NƠI SINH / QUÊ QUÁN", val: fighter.hometown || "—" },
                     { label: "QUỐC TỊCH", val: `${fighter.flag ?? ""} ${fighter.nationality}` },
