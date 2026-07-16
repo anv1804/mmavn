@@ -109,6 +109,7 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
 
   // Birth date helper
   const datePickerRef = useRef<HTMLInputElement>(null);
+  const fightDatePickerRefs = useRef<Record<number, HTMLInputElement | null>>({});
 
   // Birth date helper: support both Y-m-d and raw typing formats
   const handleBirthDateChange = (dateVal: string) => {
@@ -934,7 +935,48 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
 
                               <div className="space-y-1">
                                 <label className="text-[9px] text-zinc-400 uppercase">Ngày đấu*</label>
-                                <input type="date" value={fight.date ?? ""} onChange={e => handleEditFight(idx, "date", e.target.value)} className={inputClass} required />
+                                <div className="relative flex items-center">
+                                  <input 
+                                    type="text" 
+                                    value={fight.date ?? ""} 
+                                    onChange={e => handleEditFight(idx, "date", e.target.value)} 
+                                    placeholder="YYYY-MM-DD"
+                                    className={inputClass} 
+                                    required 
+                                  />
+                                  
+                                  {/* Hidden HTML5 Date picker accessed via dynamic ref */}
+                                  <input 
+                                    type="date"
+                                    ref={el => { fightDatePickerRefs.current[idx] = el; }}
+                                    onChange={e => handleEditFight(idx, "date", e.target.value)}
+                                    className="absolute w-0 h-0 opacity-0 pointer-events-none"
+                                  />
+
+                                  {/* Calendar trigger button */}
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const picker = fightDatePickerRefs.current[idx];
+                                      if (picker) {
+                                        try {
+                                          picker.showPicker();
+                                        } catch (err) {
+                                          picker.click();
+                                        }
+                                      }
+                                    }}
+                                    className="absolute right-3 px-1 py-1 bg-transparent border-none text-zinc-500 hover:text-red-500 cursor-pointer flex items-center justify-center transition-colors"
+                                    title="Chọn nhanh từ lịch"
+                                  >
+                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                      <line x1="16" y1="2" x2="16" y2="6" />
+                                      <line x1="8" y1="2" x2="8" y2="6" />
+                                      <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                  </button>
+                                </div>
                               </div>
 
                               <div className="space-y-1">
