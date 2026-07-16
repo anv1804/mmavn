@@ -12,6 +12,7 @@ const NEW_WC_TEMPLATE = {
   name: "", gender: "Nam", sort_order: 0,
   champion: { name: "", record: "", club: "" },
   rankings: [],
+  status: "Hoạt động",
 };
 
 export default function CmsWeightClasses() {
@@ -20,10 +21,22 @@ export default function CmsWeightClasses() {
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<any | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [filterGender, setFilterGender] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
 
   // Sort by sort_order then name
   const sorted = [...rankings].sort((a, b) => (a.sort_order ?? 999) - (b.sort_order ?? 999) || a.name.localeCompare(b.name));
-  const filtered = sorted.filter(wc => wc.name?.toLowerCase().includes(search.toLowerCase()));
+  
+  const filtered = sorted.filter(wc => {
+    const q = search.toLowerCase();
+    const matchesSearch = wc.name?.toLowerCase().includes(q);
+    const matchesGender = !filterGender || wc.gender === filterGender;
+    const matchesStatus = !filterStatus || (wc.status ?? "Hoạt động") === filterStatus;
+    return matchesSearch && matchesGender && matchesStatus;
+  });
+
+  const hasFilter = !!(search || filterGender || filterStatus);
+  const resetFilters = () => { setSearch(""); setFilterGender(""); setFilterStatus(""); };
 
   const handleDelete = (id: string) => {
     setDeleteId(id);
@@ -73,6 +86,12 @@ export default function CmsWeightClasses() {
             weightClasses={filtered}
             search={search}
             onSearch={setSearch}
+            filterGender={filterGender}
+            onGenderChange={setFilterGender}
+            filterStatus={filterStatus}
+            onStatusChange={setFilterStatus}
+            hasFilter={hasFilter}
+            onReset={resetFilters}
             onEdit={setSelected}
             onDelete={handleDelete}
             onManageBxh={handleManageBxh}
