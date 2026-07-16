@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTheme } from "../../../context/ThemeContext";
 
 interface Props {
@@ -108,6 +108,9 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
   };
 
   // Birth date helper
+  const datePickerRef = useRef<HTMLInputElement>(null);
+
+  // Birth date helper: support both Y-m-d and raw typing formats
   const handleBirthDateChange = (dateVal: string) => {
     if (!dateVal) {
       const nextSocial = { ...(fighter.social_media || {}) };
@@ -115,17 +118,30 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
       onChange({ ...fighter, social_media: nextSocial, age: 0 });
       return;
     }
-    const birthDate = new Date(dateVal);
-    const today = new Date();
-    let calculatedAge = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      calculatedAge--;
-    }
+
+    // Try parsing date values to compute age
+    let parsedDate = new Date(dateVal);
     
+    // Support typing dates in DD/MM/YYYY format
+    if (isNaN(parsedDate.getTime()) && /^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{4}$/.test(dateVal)) {
+      const parts = dateVal.split(/[\/\-]/);
+      parsedDate = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+    }
+
     const nextSocial = { ...(fighter.social_media || {}) };
     nextSocial.birth_date = dateVal;
-    onChange({ ...fighter, social_media: nextSocial, age: Math.max(0, calculatedAge), birth_year: birthDate.getFullYear() });
+
+    if (!isNaN(parsedDate.getTime())) {
+      const today = new Date();
+      let calculatedAge = today.getFullYear() - parsedDate.getFullYear();
+      const m = today.getMonth() - parsedDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < parsedDate.getDate())) {
+        calculatedAge--;
+      }
+      onChange({ ...fighter, social_media: nextSocial, age: Math.max(0, calculatedAge), birth_year: parsedDate.getFullYear() });
+    } else {
+      onChange({ ...fighter, social_media: nextSocial });
+    }
   };
 
   // Helper lists achievements edits
@@ -378,14 +394,49 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[10px] text-zinc-400 uppercase block">Ngày sinh</label>
-                    <input
-                      type="date"
-                      value={getSocial("birth_date")}
-                      onChange={(e) => handleBirthDateChange(e.target.value)}
-                      className={inputClass}
-                    />
-                  </div>
+                     <label className="text-[10px] text-zinc-400 uppercase block">Ngày sinh</label>
+                     <div className="relative flex items-center">
+                       <input
+                         type="text"
+                         value={getSocial("birth_date")}
+                         onChange={(e) => handleBirthDateChange(e.target.value)}
+                         placeholder="YYYY-MM-DD hoặc DD/MM/YYYY"
+                         className={inputClass}
+                       />
+                       
+                       {/* Hidden HTML5 Date picker accessed via ref */}
+                       <input 
+                         type="date"
+                         ref={datePickerRef}
+                         onChange={(e) => handleBirthDateChange(e.target.value)}
+                         className="absolute w-0 h-0 opacity-0 pointer-events-none"
+                       />
+
+                       {/* Calendar button on the right */}
+                       <button
+                         type="button"
+                         onClick={() => {
+                           if (datePickerRef.current) {
+                             try {
+                               // HTML5 showPicker standard method
+                               datePickerRef.current.showPicker();
+                             } catch (err) {
+                               datePickerRef.current.click();
+                             }
+                           }
+                         }}
+                         className="absolute right-3 px-1 py-1 bg-transparent border-none text-zinc-500 hover:text-red-500 cursor-pointer flex items-center justify-center transition-colors"
+                         title="Chọn nhanh từ lịch"
+                       >
+                         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                           <line x1="16" y1="2" x2="16" y2="6" />
+                           <line x1="8" y1="2" x2="8" y2="6" />
+                           <line x1="3" y1="10" x2="21" y2="10" />
+                         </svg>
+                       </button>
+                     </div>
+                   </div>
 
                   <div className="space-y-1">
                     <label className="text-[10px] text-zinc-400 uppercase block">Tuổi (Tự động tính)</label>
