@@ -70,7 +70,7 @@ export default function Clubs() {
   });
 
   return (
-    <div className="min-h-screen bg-[#030303] text-white py-12 px-6 relative overflow-hidden" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+    <div className="min-h-screen bg-[#030303] text-white pt-32 pb-16 px-6 relative overflow-hidden" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       
       {/* Background glow sparks */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />

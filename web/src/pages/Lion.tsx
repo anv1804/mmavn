@@ -94,7 +94,7 @@ export default function Lion() {
           style={{ background: "radial-gradient(ellipse, rgba(239,68,68,0.6) 0%, transparent 70%)" }} />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent" />
 
-        <div className="max-w-6xl mx-auto px-6 pt-16 pb-12 relative z-10">
+        <div className="max-w-6xl mx-auto px-6 pt-32 pb-12 relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
             {/* Left: Title */}
             <div className="space-y-6">
