@@ -35,10 +35,10 @@ export default function FighterFilters({
   ];
 
   const statusOptions = [
-    { value: "Thi đấu", label: "🟢 Thi đấu" },
-    { value: "Chấn thương", label: "🟠 Chấn thương" },
-    { value: "Giải nghệ", label: "⚪ Giải nghệ" },
-    { value: "Ẩn", label: "⚫ Ẩn" },
+    { value: "Thi đấu",     label: "Thi đấu",     dot: "bg-emerald-500" },
+    { value: "Chấn thương", label: "Chấn thương",  dot: "bg-amber-400" },
+    { value: "Giải nghệ",  label: "Giải nghệ",    dot: "bg-zinc-400" },
+    { value: "Ẩn",          label: "Ẩn",           dot: "bg-zinc-600" },
   ];
 
   return (
