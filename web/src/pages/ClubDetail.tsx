@@ -161,6 +161,71 @@ export default function ClubDetail() {
               </p>
             </div>
 
+            {/* Address & Detailed Contact Information */}
+            <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4">
+              <div className="flex items-center gap-2 border-b border-zinc-900 pb-3">
+                <div className="w-1 h-3.5 bg-red-600 rounded-full" />
+                <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 uppercase">THÔNG TIN ĐỊA ĐIỂM & LIÊN HỆ</h3>
+              </div>
+
+              <div className="space-y-4 text-xs">
+                {club.englishName && (
+                  <div className="flex justify-between items-start border-b border-zinc-900/60 pb-2.5">
+                    <span className="text-zinc-500 font-mono">Tên Tiếng Anh</span>
+                    <span className="font-bold text-zinc-300 text-right">{club.englishName}</span>
+                  </div>
+                )}
+                
+                <div className="flex justify-between items-start border-b border-zinc-900/60 pb-2.5">
+                  <span className="text-zinc-500 font-mono shrink-0">Địa Chỉ Võ Đường</span>
+                  <span className="font-bold text-zinc-300 text-right max-w-md pl-4">{club.address || "Chưa cập nhật"}</span>
+                </div>
+
+                <div className="flex justify-between items-center border-b border-zinc-900/60 pb-2.5">
+                  <span className="text-zinc-500 font-mono">Khu Vực / Thành Phố</span>
+                  <span className="font-bold text-zinc-300">{club.city} (Miền {club.region === "north" ? "Bắc" : club.region === "south" ? "Nam" : "Trung"})</span>
+                </div>
+
+                {/* Extended Contact Links with styling */}
+                <div className="pt-2">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase block mb-3">Các kênh truyền thông chính thức</span>
+                  <div className="flex flex-wrap gap-2.5">
+                    {club.facebook && (
+                      <a href={club.facebook} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-805 text-zinc-300 hover:text-blue-500 hover:border-blue-500/25 transition-all text-[11px] no-underline">
+                        <span>FB</span>
+                        <span className="text-[9px] text-zinc-600">Facebook</span>
+                      </a>
+                    )}
+                    {club.instagram && (
+                      <a href={club.instagram} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-805 text-zinc-300 hover:text-pink-500 hover:border-pink-500/25 transition-all text-[11px] no-underline">
+                        <span>IG</span>
+                        <span className="text-[9px] text-zinc-600">Instagram</span>
+                      </a>
+                    )}
+                    {club.tiktok && (
+                      <a href={club.tiktok} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-805 text-zinc-300 hover:text-white hover:border-zinc-500 transition-all text-[11px] no-underline">
+                        <span>TK</span>
+                        <span className="text-[9px] text-zinc-600">TikTok</span>
+                      </a>
+                    )}
+                    {club.youtube && (
+                      <a href={club.youtube} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-805 text-zinc-300 hover:text-red-500 hover:border-red-500/25 transition-all text-[11px] no-underline">
+                        <span>YT</span>
+                        <span className="text-[9px] text-zinc-600">YouTube</span>
+                      </a>
+                    )}
+                    {club.website && (
+                      <a href={club.website} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-805 text-zinc-300 hover:text-amber-500 hover:border-amber-500/25 transition-all text-[11px] no-underline">
+                        <span>🌐</span>
+                        <span className="text-[9px] text-zinc-600">Website</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
             {/* Registered Roster */}
             <div className="space-y-5">
               <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
