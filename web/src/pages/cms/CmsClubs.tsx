@@ -6,6 +6,8 @@ import CmsPageHeader from "../../components/cms/shared/CmsPageHeader";
 import ClubTable from "../../components/cms/clubs/ClubTable";
 import ClubForm from "../../components/cms/clubs/ClubForm";
 
+import CmsConfirmModal from "../../components/cms/shared/CmsConfirmModal";
+
 const NEW_CLUB_TEMPLATE = {
   name: "", short_name: "", city: "TP. Hồ Chí Minh",
   district: "", address: "", head_coach: "", disciplines: ["MMA"],
@@ -20,16 +22,25 @@ export default function CmsClubs() {
   const { clubs, setClubs, msg, showMsg } = useCms();
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<any | null>(null);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const filtered = clubs.filter(
     (c) => c.name.toLowerCase().includes(search.toLowerCase()) || c.city?.toLowerCase().includes(search.toLowerCase()),
   );
 
-  const handleDelete = async (id: string) => {
-    if (!window.confirm("Bạn chắc chắn muốn xóa võ đường này?")) return;
-    const { error } = await supabase.from("clubs").delete().eq("id", id);
+  const handleDelete = (id: string) => {
+    setDeleteId(id);
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteId) return;
+    const { error } = await supabase.from("clubs").delete().eq("id", deleteId);
     if (error) showMsg("Lỗi xóa: " + error.message, "error");
-    else { setClubs(clubs.filter((c) => c.id !== id)); showMsg("Đã xóa võ đường thành công!"); }
+    else {
+      setClubs(clubs.filter((c) => c.id !== deleteId));
+      showMsg("Đã xóa võ đường thành công!");
+    }
+    setDeleteId(null);
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -72,6 +83,14 @@ export default function CmsClubs() {
           onSave={handleSave} onCancel={() => setSelected(null)}
         />
       )}
+      {/* Confirm Delete Modal */}
+      <CmsConfirmModal
+        isOpen={deleteId !== null}
+        title="Xác nhận xóa"
+        message="Bạn chắc chắn muốn xóa võ đường này? Toàn bộ thông tin liên quan sẽ bị loại bỏ."
+        onConfirm={confirmDelete}
+        onCancel={() => setDeleteId(null)}
+      />
     </div>
   );
 }

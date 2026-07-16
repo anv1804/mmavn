@@ -3,6 +3,7 @@ import { useCms } from "../../context/CmsContext";
 import { supabase } from "../../utils/supabase";
 import CmsToast from "../../components/cms/shared/CmsToast";
 import CmsPageHeader from "../../components/cms/shared/CmsPageHeader";
+import CmsConfirmModal from "../../components/cms/shared/CmsConfirmModal";
 import FighterFilters from "../../components/cms/fighters/FighterFilters";
 import FighterTable from "../../components/cms/fighters/FighterTable";
 import FighterForm from "../../components/cms/fighters/FighterForm";
@@ -26,6 +27,7 @@ export default function CmsFighters() {
   const [filterStatus, setFilterStatus] = useState("");
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<any | null>(null);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   // Filtering
   const filtered = fighters.filter((f) => {
@@ -46,11 +48,19 @@ export default function CmsFighters() {
   const resetFilters = () => { setSearchQuery(""); setFilterWeightClass(""); setFilterGender(""); setFilterStatus(""); setPage(1); };
 
   // CRUD
-  const handleDelete = async (id: string) => {
-    if (!window.confirm("Bạn chắc chắn muốn xóa võ sĩ này?")) return;
-    const { error } = await supabase.from("fighters").delete().eq("id", id);
+  const handleDelete = (id: string) => {
+    setDeleteId(id);
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteId) return;
+    const { error } = await supabase.from("fighters").delete().eq("id", deleteId);
     if (error) showMsg("Lỗi xóa: " + error.message, "error");
-    else { setFighters(fighters.filter((f) => f.id !== id)); showMsg("Đã xóa võ sĩ thành công!"); }
+    else {
+      setFighters(fighters.filter((f) => f.id !== deleteId));
+      showMsg("Đã xóa võ sĩ thành công!");
+    }
+    setDeleteId(null);
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -104,6 +114,14 @@ export default function CmsFighters() {
           onChange={setSelected} onSave={handleSave} onCancel={() => setSelected(null)}
         />
       )}
+      {/* Confirm Delete Modal */}
+      <CmsConfirmModal
+        isOpen={deleteId !== null}
+        title="Xác nhận xóa"
+        message="Bạn chắc chắn muốn xóa hồ sơ võ sĩ này? Hành động này không thể hoàn tác."
+        onConfirm={confirmDelete}
+        onCancel={() => setDeleteId(null)}
+      />
     </div>
   );
 }

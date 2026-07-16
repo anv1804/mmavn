@@ -6,10 +6,12 @@ import CmsToast from "../../components/cms/shared/CmsToast";
 import CmsPageHeader from "../../components/cms/shared/CmsPageHeader";
 import WeightClassTable from "../../components/cms/weight-classes/WeightClassTable";
 import WeightClassForm from "../../components/cms/weight-classes/WeightClassForm";
+import CmsConfirmModal from "../../components/cms/shared/CmsConfirmModal";
 
 const NEW_WC_TEMPLATE = {
   name: "", gender: "Nam", sort_order: 0,
   champion: { name: "", record: "", club: "" },
+  rankings: [],
 };
 
 export default function CmsWeightClasses() {
@@ -17,17 +19,23 @@ export default function CmsWeightClasses() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<any | null>(null);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   // Sort by sort_order then name
   const sorted = [...rankings].sort((a, b) => (a.sort_order ?? 999) - (b.sort_order ?? 999) || a.name.localeCompare(b.name));
   const filtered = sorted.filter(wc => wc.name?.toLowerCase().includes(search.toLowerCase()));
 
-  const handleDelete = async (id: string) => {
-    if (!window.confirm("Xóa hạng cân này sẽ xóa cả BXH bên trong. Tiếp tục?")) return;
-    const { error } = await supabase.from("rankings").delete().eq("id", id);
+  const handleDelete = (id: string) => {
+    setDeleteId(id);
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteId) return;
+    const { error } = await supabase.from("rankings").delete().eq("id", deleteId);
     if (error) return showMsg("Lỗi xóa: " + error.message, "error");
-    setRankings(rankings.filter(r => r.id !== id));
+    setRankings(rankings.filter(r => r.id !== deleteId));
     showMsg("Đã xóa hạng cân thành công!");
+    setDeleteId(null);
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -78,6 +86,14 @@ export default function CmsWeightClasses() {
           onCancel={() => setSelected(null)}
         />
       )}
+      {/* Confirm Delete Modal */}
+      <CmsConfirmModal
+        isOpen={deleteId !== null}
+        title="Xác nhận xóa"
+        message="Xóa hạng cân này sẽ xóa toàn bộ bảng xếp hạng của hạng cân này. Hành động này không thể hoàn tác."
+        onConfirm={confirmDelete}
+        onCancel={() => setDeleteId(null)}
+      />
     </div>
   );
 }
