@@ -119,17 +119,17 @@ export default function Home() {
 
       {/* ── SECTION 1: HERO PORTAL BANNER ── */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pt-32 pb-4 md:pb-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          <div className="lg:col-span-8 space-y-6">
+          <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 px-3.5 py-1.5 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
               <span className="text-[9px] font-mono tracking-widest text-red-400 font-bold uppercase">PORTAL CHÍNH THỨC</span>
             </div>
             
-            <h1 className={`text-5xl md:text-7xl font-black uppercase tracking-tight leading-[1.15] ${textTitle}`} style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <h1 className={`text-5xl md:text-7xl font-black uppercase tracking-tight leading-[1.1] ${textTitle}`} style={{ fontFamily: "'Oswald', sans-serif" }}>
               VÕ THUẬT TỔNG HỢP <br/>
-              <span className="bg-gradient-to-r from-red-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 bg-clip-text text-transparent">
                 VIỆT NAM 2026
               </span>
             </h1>
@@ -138,17 +138,17 @@ export default function Home() {
               Cổng thông tin tổng hợp cập nhật bảng xếp hạng LION Championship, lịch thi đấu đấu trường thế giới UFC, hồ sơ chi tiết võ đường và kết nối cộng đồng võ thuật Việt Nam.
             </p>
 
-            <div className="pt-4 flex flex-wrap gap-3.5">
+            <div className="pt-2 flex flex-wrap gap-4">
               <button
                 onClick={() => navigate("/lion")}
-                className="flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold uppercase tracking-widest border-none cursor-pointer transition-all shadow-lg shadow-red-600/20 hover:scale-105 active:scale-95 duration-200"
+                className="group flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white text-xs font-bold uppercase tracking-wider border-none cursor-pointer transition-all shadow-lg shadow-red-600/30 hover:scale-105 active:scale-95 duration-200"
               >
                 <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-4 h-4 object-contain rounded-full brightness-110" />
                 <span>Bảng xếp hạng LION</span>
               </button>
               <button
                 onClick={() => navigate("/community")}
-                className={`px-7 py-3.5 rounded-2xl border text-xs font-bold uppercase tracking-widest cursor-pointer transition-all hover:scale-105 active:scale-95 duration-200 ${
+                className={`px-6 py-3.5 rounded-2xl border text-xs font-bold uppercase tracking-wider cursor-pointer transition-all hover:scale-105 active:scale-95 duration-200 ${
                   isDark 
                     ? "bg-zinc-900/60 hover:bg-zinc-800 border-zinc-800/80 text-zinc-300 hover:text-white" 
                     : "bg-white hover:bg-zinc-50 border-zinc-200 text-zinc-700 hover:text-black"
@@ -159,30 +159,89 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Quick stats sidebar */}
-          <div className={`rounded-3xl border p-4 md:p-6 space-y-6 relative shadow-2xl backdrop-blur-md transition-all duration-300 lg:col-span-4 ${
-            isDark 
-              ? "bg-zinc-950/70 border-zinc-900/80 shadow-black/85 hover:border-red-500/20" 
-              : "bg-white border-zinc-200/80 shadow-zinc-200/30 hover:border-red-500/30"
-          }`}>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.04)_0%,transparent_75%)] pointer-events-none" />
-            <h3 className="text-xs font-mono tracking-widest text-zinc-500 uppercase border-b border-zinc-900/60 pb-3.5">
-              📊 THỐNG KÊ HỆ THỐNG (LIVE)
-            </h3>
-            
-            <div className="space-y-5">
-              {[
-                { label: "VÕ SĨ LION HOẠT ĐỘNG", val: stats.fighters, color: isDark ? "text-white" : "text-zinc-800" },
-                { label: "TỔNG SỐ CHIẾN THẮNG MMA", val: stats.wins, color: "text-emerald-500" },
-                { label: "THẮNG ĐOÁN HẠ CỤC (KO/SUB)", val: stats.kos, color: "text-amber-500" },
-              ].map((stat, idx) => (
-                <div key={idx} className={`flex items-center justify-between py-2 border-b last:border-0 ${
-                  isDark ? "border-zinc-900/30" : "border-zinc-100"
-                }`}>
-                  <span className="text-[10px] text-zinc-400 font-mono tracking-wider">{stat.label}</span>
-                  <span className={`text-3xl font-black font-mono tracking-tighter ${stat.color}`}>{stat.val}</span>
+          {/* Quick stats sidebar - Upgraded to ultra-premium design */}
+          <div className="lg:col-span-5">
+            <div className={`rounded-3xl border p-4 md:p-6 space-y-6 relative overflow-hidden transition-all duration-300 shadow-2xl backdrop-blur-md ${
+              isDark 
+                ? "bg-gradient-to-b from-zinc-950/80 via-zinc-950/40 to-black/80 border-zinc-900/90 shadow-black/90 hover:border-red-500/20" 
+                : "bg-white border-zinc-200/80 shadow-zinc-200/25 hover:border-red-500/30"
+            }`}>
+              
+              {/* Premium Glow effect behind sidebar in Dark Mode */}
+              {isDark && <div className="absolute -top-12 -right-12 w-32 h-32 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />}
+              
+              {/* Decorative Octagon Grid Overlay */}
+              <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
+                backgroundImage: `repeating-linear-gradient(45deg, ${isDark ? "#ffffff" : "#000000"} 0px, ${isDark ? "#ffffff" : "#000000"} 1px, transparent 0, transparent 50%)`,
+                backgroundSize: "8px 8px"
+              }} />
+
+              {/* Title Section */}
+              <div className="flex items-center justify-between border-b pb-4 relative z-10" style={{ borderColor: isDark ? "rgba(39, 39, 42, 0.6)" : "rgba(228, 228, 231, 0.8)" }}>
+                <div className="flex items-center gap-2">
+                  <span className="text-red-500 font-bold">📊</span>
+                  <h3 className={`text-xs font-mono font-bold tracking-widest uppercase ${isDark ? "text-zinc-400" : "text-zinc-700"}`}>
+                    THỐNG KÊ HỆ THỐNG
+                  </h3>
                 </div>
-              ))}
+                <div className="flex items-center gap-1.5 bg-red-500/10 border border-red-500/25 rounded-md px-2 py-0.5 animate-pulse">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                  <span className="text-[8px] font-mono font-black text-red-500 uppercase tracking-widest">LIVE</span>
+                </div>
+              </div>
+              
+              {/* Stats segments grid */}
+              <div className="space-y-4 relative z-10">
+                {[
+                  { 
+                    label: "Võ sĩ LION hoạt động", 
+                    val: stats.fighters, 
+                    color: isDark ? "text-white" : "text-zinc-900", 
+                    barColor: "bg-red-600",
+                    progress: 68,
+                    note: "Hạng A & B chính thức"
+                  },
+                  { 
+                    label: "Tổng số chiến thắng MMA", 
+                    val: stats.wins, 
+                    color: "text-emerald-500", 
+                    barColor: "bg-emerald-500",
+                    progress: 88,
+                    note: "Tính từ mùa giải 2023"
+                  },
+                  { 
+                    label: "Thắng đoán hạ cục (KO/SUB)", 
+                    val: stats.kos, 
+                    color: "text-amber-500", 
+                    barColor: "bg-amber-500",
+                    progress: 74,
+                    note: "Chiếm 42% tổng kết quả"
+                  },
+                ].map((stat, idx) => (
+                  <div key={idx} className={`p-4.5 rounded-2xl border transition-all duration-300 ${
+                    isDark 
+                      ? "bg-zinc-900/20 border-zinc-900/60 hover:bg-zinc-900/40" 
+                      : "bg-zinc-50/50 border-zinc-100 hover:bg-zinc-50"
+                  }`}>
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="space-y-0.5">
+                        <span className="text-[10px] text-zinc-400 font-mono tracking-wider uppercase block">{stat.label}</span>
+                        <span className="text-[9px] text-zinc-500 font-light block">{stat.note}</span>
+                      </div>
+                      <span className={`text-3xl font-black font-mono tracking-tight leading-none ${stat.color}`}>
+                        {stat.val}
+                      </span>
+                    </div>
+                    {/* Progress Bar representation */}
+                    <div className={`h-1.5 w-full rounded-full overflow-hidden ${isDark ? "bg-zinc-900" : "bg-zinc-200/60"}`}>
+                      <div 
+                        className={`h-full rounded-full ${stat.barColor} transition-all duration-500`}
+                        style={{ width: `${stat.progress}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
