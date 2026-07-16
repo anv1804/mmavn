@@ -76,10 +76,51 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
         </button>
       </div>
 
-      {/* Main Grid: Left Column for Form, Right/Top Column for Preview */}
+      {/* Main Grid: Left Column for Image Previews, Right Column for Inputs */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         
-        {/* LEFT COLUMN: Input Fields (3/4 width) */}
+        {/* LEFT COLUMN: Media Preview Panel (1/4 width) */}
+        <div className="space-y-6 lg:border-r lg:pr-6" style={{ borderColor: isDark ? "#27272a" : "#e4e4e7" }}>
+          <h3 className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest pl-1">🖼️ Ảnh xem trước</h3>
+          
+          {/* Avatar Preview */}
+          <div className="space-y-2">
+            <span className="text-[10px] text-zinc-400 block uppercase pl-1">Avatar</span>
+            <div className={`w-full aspect-square rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
+              {fighter.photo ? (
+                <img src={fighter.photo} alt="Avatar" className="w-full h-full object-cover object-top" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
+              ) : (
+                <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
+              )}
+            </div>
+          </div>
+
+          {/* Thumbnail Preview */}
+          <div className="space-y-2">
+            <span className="text-[10px] text-zinc-400 block uppercase pl-1">Thumbnail</span>
+            <div className={`w-full aspect-video rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
+              {fighter.thumb ? (
+                <img src={fighter.thumb} alt="Thumbnail" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
+              ) : (
+                <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
+              )}
+            </div>
+          </div>
+
+          {/* Cover Preview */}
+          <div className="space-y-2">
+            <span className="text-[10px] text-zinc-400 block uppercase pl-1">Cover Banner</span>
+            <div className={`w-full aspect-[21/9] rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
+              {fighter.cover ? (
+                <img src={fighter.cover} alt="Cover Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
+              ) : (
+                <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: Input Fields (3/4 width) */}
         <div className="lg:col-span-3 space-y-8">
           
           {/* I. Thông tin cá nhân */}
@@ -231,47 +272,6 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
             </div>
           </div>
 
-        </div>
-
-        {/* RIGHT COLUMN: Media Preview Panel (1/4 width) */}
-        <div className="space-y-6 lg:border-l lg:pl-6" style={{ borderColor: isDark ? "#27272a" : "#e4e4e7" }}>
-          <h3 className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">🖼️ Ảnh xem trước</h3>
-          
-          {/* Avatar Preview */}
-          <div className="space-y-2">
-            <span className="text-[10px] text-zinc-400 block uppercase">Avatar</span>
-            <div className={`w-full aspect-square rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
-              {fighter.photo ? (
-                <img src={fighter.photo} alt="Avatar" className="w-full h-full object-cover object-top" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
-              ) : (
-                <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
-              )}
-            </div>
-          </div>
-
-          {/* Thumbnail Preview */}
-          <div className="space-y-2">
-            <span className="text-[10px] text-zinc-400 block uppercase">Thumbnail</span>
-            <div className={`w-full aspect-video rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
-              {fighter.thumb ? (
-                <img src={fighter.thumb} alt="Thumbnail" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
-              ) : (
-                <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
-              )}
-            </div>
-          </div>
-
-          {/* Cover Preview */}
-          <div className="space-y-2">
-            <span className="text-[10px] text-zinc-400 block uppercase">Cover Banner</span>
-            <div className={`w-full aspect-[21/9] rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
-              {fighter.cover ? (
-                <img src={fighter.cover} alt="Cover Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
-              ) : (
-                <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
-              )}
-            </div>
-          </div>
         </div>
 
       </div>
