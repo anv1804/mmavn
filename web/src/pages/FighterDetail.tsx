@@ -1,9 +1,53 @@
+import { useState } from "react";
 import type { FighterProfile } from "../interfaces/fighter";
 
 interface FighterDetailProps {
   fighter: FighterProfile;
   onBack: () => void;
 }
+
+// Stats structure for Radar Chart
+interface CombatStats {
+  ATT: number; // Tấn công
+  TEC: number; // Kỹ thuật
+  TAC: number; // Chiến thuật
+  DEF: number; // Phòng thủ
+  CRE: number; // Tinh thần / Sáng tạo
+  STA: number; // Thể lực
+  PHY: number; // Thể chất
+}
+
+// Database of mock stats for comparison candidates in the 56kg Nam division
+const COMPARISON_CANDIDATES: Record<string, { name: string; club: string; record: string; stats: CombatStats; ratings: number[] }> = {
+  "le-van-tuan": {
+    name: "Lê Văn Tuần",
+    club: "Vietnam Top Team",
+    record: "8-3-0",
+    stats: { ATT: 90, TEC: 82, TAC: 78, DEF: 72, CRE: 85, STA: 88, PHY: 92 },
+    ratings: [8.5, 8.2, 7.9, 6.0, 8.4, 7.8], // Last 6 matches
+  },
+  "pham-van-nam": {
+    name: "Phạm Văn Nam",
+    club: "Saigon Sports Club",
+    record: "7-1-0",
+    stats: { ATT: 82, TEC: 90, TAC: 88, DEF: 85, CRE: 80, STA: 92, PHY: 84 },
+    ratings: [8.8, 8.5, 7.5, 8.1, 8.0, 8.4],
+  },
+  "tran-minh-nhut": {
+    name: "Trần Minh Nhựt",
+    club: "Liên Phong Club",
+    record: "6-2-0",
+    stats: { ATT: 86, TEC: 84, TAC: 76, DEF: 70, CRE: 88, STA: 80, PHY: 88 },
+    ratings: [7.9, 8.0, 8.3, 7.1, 6.8, 7.5],
+  },
+  "tran-trong-kim": {
+    name: "Trần Trọng Kim",
+    club: "PFC Phú Quốc",
+    record: "5-2-0",
+    stats: { ATT: 80, TEC: 78, TAC: 82, DEF: 76, CRE: 75, STA: 85, PHY: 80 },
+    ratings: [7.2, 7.5, 7.0, 7.8, 6.5, 7.3],
+  }
+};
 
 const METHOD_THEMES: Record<string, { bg: string; text: string; border: string }> = {
   KO: { bg: "bg-emerald-500/10", text: "text-emerald-400", border: "border-emerald-500/20" },
@@ -27,6 +71,56 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
   const total = wins + losses + draws;
   const winRate = total > 0 ? Math.round((wins / total) * 100) : 0;
 
+  // State for comparison
+  const [searchQuery, setSearchQuery] = useState("");
+  const [comparedKey, setComparedKey] = useState<string | null>(null);
+
+  const activeStats = COMPARISON_CANDIDATES[fighter.id] || COMPARISON_CANDIDATES["le-van-tuan"];
+  const comparedFighter = comparedKey ? COMPARISON_CANDIDATES[comparedKey] : null;
+
+  // Filter comparison candidates based on query
+  const filteredCandidates = Object.entries(COMPARISON_CANDIDATES)
+    .filter(([key, f]) => key !== fighter.id && f.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    .slice(0, 3);
+
+  // Radar Chart dimensions & trigonometry
+  const width = 280;
+  const height = 280;
+  const cx = width / 2;
+  const cy = height / 2;
+  const r = 100;
+  const tags = ["ATT", "TEC", "TAC", "DEF", "CRE", "STA", "PHY"];
+
+  // Helper to compute points on radar chart
+  const getRadarPoint = (index: number, val: number) => {
+    const angle = (Math.PI * 2 / 7) * index - Math.PI / 2;
+    const distance = (val / 100) * r;
+    return {
+      x: cx + distance * Math.cos(angle),
+      y: cy + distance * Math.sin(angle)
+    };
+  };
+
+  // Build polygon strings
+  const getPolygonPoints = (stats: CombatStats) => {
+    const vals = [stats.ATT, stats.TEC, stats.TAC, stats.DEF, stats.CRE, stats.STA, stats.PHY];
+    return vals.map((v, idx) => {
+      const pt = getRadarPoint(idx, v);
+      return `${pt.x},${pt.y}`;
+    }).join(" ");
+  };
+
+  const currentPolyPoints = getPolygonPoints(activeStats.stats);
+  const comparedPolyPoints = comparedFighter ? getPolygonPoints(comparedFighter.stats) : null;
+
+  // Ratings for last 6 fights styling
+  const ratingColor = (val: number) => {
+    if (val >= 8.0) return "bg-blue-500 shadow-blue-500/20";
+    if (val >= 7.0) return "bg-emerald-500 shadow-emerald-500/20";
+    if (val >= 6.5) return "bg-amber-500 shadow-amber-500/20";
+    return "bg-rose-500 shadow-rose-500/20";
+  };
+
   return (
     <div className="min-h-screen bg-[#030303] text-white overflow-hidden relative selection:bg-red-600 selection:text-white" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       
@@ -34,12 +128,6 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
       <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(255,30,39,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,30,39,0.01)_1px,transparent_1px)] bg-[size:30px_30px]" />
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-red-600/5 blur-[140px] rounded-full pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-zinc-800/5 blur-[140px] rounded-full pointer-events-none" />
-
-      {/* Giant background text */}
-      <div className="absolute top-[25%] right-[5%] select-none pointer-events-none z-0 opacity-[0.01] text-right font-black uppercase leading-none">
-        <span className="text-[15vw] block tracking-tighter" style={{ WebkitTextStroke: "1px white", fill: "transparent" }}>VTT</span>
-        <span className="text-[12vw] block tracking-tighter text-red-600">56KG</span>
-      </div>
 
       {/* ── STICKY CONTROL BAR ── */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 pt-6 flex items-center justify-between">
@@ -64,18 +152,14 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
             
             {/* Visual Fighter Photo Card */}
             <div className="relative overflow-hidden rounded-3xl border border-zinc-900 bg-zinc-950/60 p-6 flex flex-col items-center group">
-              {/* Corner neon decorations */}
               <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-red-600/70" />
               <div className="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-red-600/70" />
               <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b-2 border-l-2 border-red-600/70" />
               <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-red-600/70" />
 
-              {/* Red glowing spotlight background */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.25)_0%,transparent_70%)] pointer-events-none" />
 
-              {/* Fighter image container (Enlarged Photo visually) */}
               <div className="relative z-10 w-full h-[340px] flex items-center justify-center overflow-hidden rounded-2xl bg-zinc-950/80 border border-zinc-900">
-                {/* Visual tech crosshairs inside image container */}
                 <div className="absolute inset-4 border border-zinc-900/30 pointer-events-none rounded-lg" />
                 
                 {fighter.photo ? (
@@ -83,9 +167,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                     src={fighter.photo}
                     alt={fighter.name}
                     className="w-full h-full object-contain relative z-10 transition-transform duration-500 scale-[2.2] translate-y-6 group-hover:scale-[2.4]"
-                    style={{
-                      filter: "drop-shadow(0 15px 25px rgba(239,68,68,0.3))"
-                    }}
+                    style={{ filter: "drop-shadow(0 15px 25px rgba(239,68,68,0.3))" }}
                   />
                 ) : (
                   <div className="h-64 w-48 bg-zinc-900 border border-zinc-800 rounded-2xl flex items-center justify-center text-zinc-700 text-6xl">
@@ -94,7 +176,6 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                 )}
               </div>
 
-              {/* Club name */}
               <div className="relative z-10 w-full mt-6 pt-5 border-t border-zinc-900/60 text-center space-y-1">
                 <span className="text-[8px] font-mono tracking-widest text-zinc-500 uppercase block">CÂU LẠC BỘ</span>
                 <h4 className="text-sm font-extrabold text-white tracking-wide">{fighter.club}</h4>
@@ -157,7 +238,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
             )}
           </div>
 
-          {/* ── RIGHT COLUMN: INFO, STATS & FIGHT TIMELINE (8/12) ── */}
+          {/* ── CỘT PHẢI: TYPOGRAPHY, STATS, RADAR & CHRONICLE (8/12) ── */}
           <div className="lg:col-span-8 space-y-8">
             
             {/* Identity & Nickname Block */}
@@ -207,10 +288,218 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
               ))}
             </div>
 
-            {/* Information Grid Section */}
+            {/* ── NEW: TỔNG QUAN CHỈ SỐ & SO SÁNH VÕ SĨ ── */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
-              {/* Detailed Physical Board */}
+              {/* Radar Chart skill mapping */}
+              <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 flex flex-col items-center relative overflow-hidden">
+                <div className="w-full flex items-center justify-between border-b border-zinc-900 pb-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-3.5 bg-red-600 rounded-full" />
+                    <h3 className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">TỔNG QUAN CHỈ SỐ</h3>
+                  </div>
+                  <span className="text-[9px] font-mono text-zinc-600">OCTAGON SKILL MAP</span>
+                </div>
+
+                <div className="relative">
+                  <svg width={width} height={height} className="overflow-visible">
+                    {/* Background rings */}
+                    {[20, 40, 60, 80, 100].map((val) => {
+                      const points = tags.map((_, i) => {
+                        const pt = getRadarPoint(i, val);
+                        return `${pt.x},${pt.y}`;
+                      }).join(" ");
+                      return (
+                        <polygon
+                          key={val}
+                          points={points}
+                          fill="none"
+                          stroke="rgba(255,255,255,0.03)"
+                          strokeWidth="1"
+                        />
+                      );
+                    })}
+
+                    {/* Axis lines */}
+                    {tags.map((_, i) => {
+                      const outerPt = getRadarPoint(i, 100);
+                      return (
+                        <line
+                          key={i}
+                          x1={cx}
+                          y1={cy}
+                          x2={outerPt.x}
+                          y2={outerPt.y}
+                          stroke="rgba(255,255,255,0.03)"
+                          strokeWidth="1"
+                        />
+                      );
+                    })}
+
+                    {/* Labels text */}
+                    {tags.map((tag, i) => {
+                      const pt = getRadarPoint(i, 115);
+                      return (
+                        <text
+                          key={tag}
+                          x={pt.x}
+                          y={pt.y}
+                          fill="#71717a"
+                          fontSize="9"
+                          fontFamily="monospace"
+                          fontWeight="bold"
+                          textAnchor="middle"
+                          alignmentBaseline="middle"
+                        >
+                          {tag}
+                        </text>
+                      );
+                    })}
+
+                    {/* Current Fighter Stats Polygon */}
+                    <polygon
+                      points={currentPolyPoints}
+                      fill="rgba(239,68,68,0.15)"
+                      stroke="#ef4444"
+                      strokeWidth="2"
+                    />
+
+                    {/* Compared Fighter Stats Polygon */}
+                    {comparedFighter && comparedPolyPoints && (
+                      <polygon
+                        points={comparedPolyPoints}
+                        fill="rgba(59,130,246,0.15)"
+                        stroke="#3b82f6"
+                        strokeWidth="2"
+                      />
+                    )}
+                  </svg>
+                </div>
+
+                {/* Legend indicator */}
+                <div className="flex gap-4 mt-4 text-[9px] font-mono">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 bg-[#ef4444] rounded" />
+                    <span>{fighter.name}</span>
+                  </div>
+                  {comparedFighter && (
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 bg-[#3b82f6] rounded" />
+                      <span>{comparedFighter.name}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Comparison Search Selector & Performance History */}
+              <div className="space-y-6">
+                
+                {/* Search comparison UI */}
+                <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4">
+                  <div className="flex items-center gap-2 border-b border-zinc-900 pb-2">
+                    <div className="w-1 h-3.5 bg-red-600 rounded-full" />
+                    <h3 className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">SO SÁNH VÕ SĨ</h3>
+                  </div>
+                  
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Tìm kiếm đối thủ so sánh..."
+                      className="w-full bg-[#080809] border border-zinc-900 rounded-xl px-4 py-2 text-xs text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-red-500/40"
+                    />
+                    
+                    {searchQuery.trim().length > 0 && (
+                      <div className="absolute left-0 right-0 mt-1.5 bg-zinc-950 border border-zinc-900 rounded-xl overflow-hidden z-30">
+                        {filteredCandidates.map(([key, item]) => (
+                          <button
+                            key={key}
+                            onClick={() => {
+                              setComparedKey(key);
+                              setSearchQuery("");
+                            }}
+                            className="w-full text-left px-4 py-2.5 hover:bg-zinc-900 transition-colors border-none text-xs text-zinc-300 flex items-center justify-between"
+                          >
+                            <span>{item.name}</span>
+                            <span className="text-[10px] text-zinc-500 font-mono">{item.club}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {comparedFighter && (
+                    <div className="flex items-center justify-between bg-blue-500/5 border border-blue-500/10 rounded-xl p-3">
+                      <div>
+                        <p className="text-xs font-bold text-white">{comparedFighter.name}</p>
+                        <p className="text-[9px] text-zinc-500 font-mono mt-0.5">{comparedFighter.club} · {comparedFighter.record}</p>
+                      </div>
+                      <button
+                        onClick={() => setComparedKey(null)}
+                        className="text-[9px] font-mono text-red-500 hover:text-red-400 bg-transparent border-none cursor-pointer"
+                      >
+                        HỦY
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Form summary bar graph */}
+                <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4">
+                  <div className="flex items-center justify-between border-b border-zinc-900 pb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-1 h-3.5 bg-red-600 rounded-full" />
+                      <h3 className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">TÓM TẮT PHONG ĐỘ</h3>
+                    </div>
+                    <span className="text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20">
+                      {(activeStats.ratings.reduce((a,b)=>a+b, 0) / 6).toFixed(2)}
+                    </span>
+                  </div>
+
+                  {/* Colored column bars representing rating */}
+                  <div className="flex items-end justify-between h-28 pt-4 pb-2 border-b border-zinc-900/50">
+                    {activeStats.ratings.map((rating, idx) => (
+                      <div key={idx} className="flex flex-col items-center gap-1.5 flex-1 group/bar">
+                        {/* Tooltip on hover */}
+                        <span className="text-[9px] font-mono text-zinc-400 opacity-0 group-hover/bar:opacity-100 transition-opacity">
+                          {rating}
+                        </span>
+                        <div 
+                          className={`w-7 rounded-t-lg transition-all duration-300 hover:brightness-125 ${ratingColor(rating)}`}
+                          style={{ height: `${(rating / 10) * 80}px` }}
+                        />
+                        <span className="text-[8px] font-mono text-zinc-600">T{idx + 1}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Legend guide */}
+                  <div className="flex flex-wrap gap-x-3 gap-y-1.5 text-[8px] font-mono text-zinc-500">
+                    <div className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded bg-blue-500" />
+                      <span>&ge; 8.0 Xuất sắc</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded bg-emerald-500" />
+                      <span>&ge; 7.0 Tốt</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded bg-amber-500" />
+                      <span>&ge; 6.5 Trung bình</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded bg-rose-500" />
+                      <span>Kém</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* General details and method ratios */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4">
                 <div className="flex items-center gap-2 border-b border-zinc-900 pb-2">
                   <div className="w-1 h-3.5 bg-red-600 rounded-full" />
@@ -235,7 +524,6 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                 </div>
               </div>
 
-              {/* Victory percentages */}
               <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4.5">
                 <div className="flex items-center gap-2 border-b border-zinc-900 pb-2">
                   <div className="w-1 h-3.5 bg-red-600 rounded-full" />
