@@ -1,5 +1,6 @@
 import { useTheme } from "../../../context/ThemeContext";
 import CmsSearchBar from "../shared/CmsSearchBar";
+import CmsSelect from "../shared/CmsSelect";
 
 interface Props {
   searchQuery: string;
@@ -25,43 +26,56 @@ export default function FighterFilters({
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
-  const selectClass = `px-3 py-2 rounded-xl border text-xs cursor-pointer transition-all ${
-    isDark
-      ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500 focus:outline-none"
-      : "bg-zinc-50 border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"
-  }`;
+  const weightOptions = (uniqueWeightClasses.length > 0 ? uniqueWeightClasses : DEFAULT_WEIGHT_CLASSES)
+    .map((wc) => ({ value: wc, label: wc }));
 
-  const weightOptions = uniqueWeightClasses.length > 0 ? uniqueWeightClasses : DEFAULT_WEIGHT_CLASSES;
+  const genderOptions = [
+    { value: "Nam", label: "♂ Nam" },
+    { value: "Nữ", label: "♀ Nữ" },
+  ];
+
+  const statusOptions = [
+    { value: "active", label: "Đang hoạt động" },
+    { value: "inactive", label: "Ngưng hoạt động" },
+  ];
 
   return (
     <div
-      className={`p-4 rounded-2xl border flex flex-wrap gap-3 items-center ${
+      className={`p-3 rounded-2xl border flex flex-wrap gap-2 items-center ${
         isDark ? "bg-zinc-950/60 border-zinc-900" : "bg-white border-zinc-200"
       }`}
     >
       <CmsSearchBar
         value={searchQuery}
         onChange={onSearch}
-        placeholder="Tìm tên, biệt danh, võ đường..."
+        placeholder="Tìm tên, võ đường..."
       />
 
-      <select value={filterWeightClass} onChange={(e) => onWeightClass(e.target.value)} className={selectClass}>
-        <option value="">Tất cả hạng cân</option>
-        {weightOptions.map((wc) => <option key={wc} value={wc}>{wc}</option>)}
-      </select>
+      <CmsSelect
+        value={filterWeightClass}
+        onChange={onWeightClass}
+        options={weightOptions}
+        placeholder="Hạng cân"
+        minWidth="130px"
+      />
 
-      <select value={filterGender} onChange={(e) => onGender(e.target.value)} className={selectClass}>
-        <option value="">Giới tính</option>
-        <option value="Nam">♂ Nam</option>
-        <option value="Nữ">♀ Nữ</option>
-      </select>
+      <CmsSelect
+        value={filterGender}
+        onChange={onGender}
+        options={genderOptions}
+        placeholder="Giới tính"
+        minWidth="110px"
+      />
 
-      <select value={filterStatus} onChange={(e) => onStatus(e.target.value)} className={selectClass}>
-        <option value="">Tất cả trạng thái</option>
-        <option value="active">Đang hoạt động</option>
-        <option value="inactive">Ngưng hoạt động</option>
-      </select>
+      <CmsSelect
+        value={filterStatus}
+        onChange={onStatus}
+        options={statusOptions}
+        placeholder="Trạng thái"
+        minWidth="130px"
+      />
 
+      {/* Reset – icon only */}
       <button
         disabled={!hasFilter}
         onClick={onReset}
