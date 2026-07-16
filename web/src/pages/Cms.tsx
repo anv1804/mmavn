@@ -306,35 +306,35 @@ export default function Cms() {
             <h2 className="text-3xl font-black uppercase tracking-tight text-white">
               MMAVN CMS LOGIN
             </h2>
-            <p className="text-[9px] text-zinc-500 font-mono tracking-widest uppercase mt-1">Hệ thống quản trị đấu trường võ thuật</p>
+            <p className="text-[9px] text-zinc-500 tracking-widest uppercase mt-1">Hệ thống quản trị đấu trường võ thuật</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-5">
             {authError && (
-              <div className="p-3.5 bg-red-950/20 border border-red-500/30 rounded-xl text-[11px] font-mono text-red-400 text-center animate-shake">
+              <div className="p-3.5 bg-red-950/20 border border-red-500/30 rounded-xl text-[11px] text-red-400 text-center animate-shake">
                 ⚠️ {authError}
               </div>
             )}
             
             <div className="space-y-1.5">
-              <label className="text-[9px] text-zinc-400 font-mono uppercase tracking-widest block">Tài khoản quản trị</label>
+              <label className="text-[9px] text-zinc-400 uppercase tracking-widest block">Tài khoản quản trị</label>
               <input 
                 type="text" 
                 placeholder="Nhập tên đăng nhập"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 bg-zinc-900/60 border border-zinc-800 focus:border-red-500/60 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-red-500/20 transition-all font-mono placeholder-zinc-600"
+                className="w-full px-4 py-3 bg-zinc-900/60 border border-zinc-800 focus:border-red-500/60 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-red-500/20 transition-all placeholder-zinc-600"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[9px] text-zinc-400 font-mono uppercase tracking-widest block">Mật khẩu hệ thống</label>
+              <label className="text-[9px] text-zinc-400 uppercase tracking-widest block">Mật khẩu hệ thống</label>
               <input 
                 type="password" 
                 placeholder="Nhập mật khẩu"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 bg-zinc-900/60 border border-zinc-800 focus:border-red-500/60 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-red-500/20 transition-all font-mono placeholder-zinc-600"
+                className="w-full px-4 py-3 bg-zinc-900/60 border border-zinc-800 focus:border-red-500/60 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-red-500/20 transition-all placeholder-zinc-600"
               />
             </div>
 
@@ -348,7 +348,7 @@ export default function Cms() {
             <button 
               type="button"
               onClick={() => navigate("/")}
-              className="w-full py-2.5 bg-transparent border-none text-[10px] font-mono text-zinc-500 hover:text-zinc-350 cursor-pointer mt-1"
+              className="w-full py-2.5 bg-transparent border-none text-[10px] text-zinc-500 hover:text-zinc-350 cursor-pointer mt-1"
             >
               &larr; Quay lại trang chủ MMAVN
             </button>
@@ -371,12 +371,12 @@ export default function Cms() {
         <div className="flex flex-col">
           {/* Logo Brand Header */}
           <div className="p-6 border-b flex items-center gap-3 cursor-pointer" onClick={() => navigate("/")} style={{ borderColor: isDark ? "rgba(39, 39, 42, 0.4)" : "#f1f1f4" }}>
-            <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-black text-lg shadow-md shadow-red-600/10 animate-pulse">
+            <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-black text-lg shadow-md shadow-red-600/10">
               A
             </div>
             <div>
               <span className="text-xs font-black uppercase tracking-tight block">ANV SPORT</span>
-              <span className="text-[8px] font-mono font-bold text-zinc-400 tracking-wider block">WORKSPACE</span>
+              <span className="text-[8px] font-bold text-zinc-400 tracking-wider block">WORKSPACE</span>
             </div>
           </div>
 
@@ -385,14 +385,14 @@ export default function Cms() {
             
             {/* Section 1: Quản Lý */}
             <div className="space-y-2">
-              <span className="text-[9px] font-mono font-bold tracking-widest text-zinc-400 uppercase px-3 block">QUẢN LÝ</span>
+              <span className="text-[9px] font-bold tracking-widest text-zinc-400 uppercase px-3 block">QUẢN LÝ</span>
               
               <button
                 onClick={() => { setActiveTab("dashboard"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "dashboard"
                     ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-650 hover:bg-zinc-100 hover:text-black"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-[#55555e] hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">🎛️</span>
@@ -404,7 +404,7 @@ export default function Cms() {
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "events"
                     ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-655 hover:bg-zinc-100 hover:text-black"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-[#55555e] hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">📅</span>
@@ -414,14 +414,14 @@ export default function Cms() {
 
             {/* Section 2: Kho dữ liệu */}
             <div className="space-y-2">
-              <span className="text-[9px] font-mono font-bold tracking-widest text-zinc-400 uppercase px-3 block">KHO DỮ LIỆU</span>
+              <span className="text-[9px] font-bold tracking-widest text-zinc-400 uppercase px-3 block">KHO DỮ LIỆU</span>
               
               <button
                 onClick={() => { setActiveTab("fighters"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "fighters"
                     ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-655 hover:bg-zinc-100 hover:text-black"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-[#55555e] hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">🥋</span>
@@ -433,7 +433,7 @@ export default function Cms() {
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "clubs"
                     ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-655 hover:bg-zinc-100 hover:text-black"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-[#55555e] hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">🏢</span>
@@ -445,7 +445,7 @@ export default function Cms() {
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "rankings"
                     ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-655 hover:bg-zinc-100 hover:text-black"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-[#55555e] hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">🏆</span>
@@ -464,7 +464,7 @@ export default function Cms() {
             </span>
             <div className="overflow-hidden">
               <span className="text-[10px] font-bold block leading-none truncate text-zinc-800 dark:text-white">admin@mmavn.com</span>
-              <span className="inline-block bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-500 border border-red-500/25 rounded text-[8px] font-mono tracking-widest px-1.5 py-0.5 mt-1 font-black">
+              <span className="inline-block bg-red-55/70 dark:bg-red-500/10 text-red-600 dark:text-red-500 border border-red-500/25 rounded text-[8px] tracking-widest px-1.5 py-0.5 mt-1 font-black">
                 ADMIN
               </span>
             </div>
@@ -472,10 +472,10 @@ export default function Cms() {
           
           <button
             onClick={handleLogout}
-            className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border text-[10px] font-mono font-bold uppercase cursor-pointer transition-all ${
+            className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border text-[10px] font-bold uppercase cursor-pointer transition-all ${
               isDark 
                 ? "bg-zinc-900/60 hover:bg-red-950/20 hover:text-red-500 border-zinc-800 text-zinc-400" 
-                : "bg-white hover:bg-red-50 hover:text-red-650 border-zinc-200 text-zinc-600"
+                : "bg-white hover:bg-red-50 hover:text-red-655 border-zinc-200 text-zinc-600"
             }`}
           >
             <span>🚪 Đăng xuất hệ thống</span>
@@ -490,15 +490,15 @@ export default function Cms() {
         <header className={`h-16 border-b flex items-center justify-between px-8 z-10 shrink-0 ${
           isDark ? "bg-zinc-950/40 border-zinc-900/80" : "bg-white border-zinc-200"
         }`}>
-          <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
+          <div className="flex items-center gap-2 text-xs text-zinc-500">
             <span>ANV PORTAL</span>
             <span>/</span>
             <span className="text-red-500 uppercase font-bold">{activeTab}</span>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className={`text-[9px] font-mono border rounded-md px-2 py-0.5 ${
-              isDark ? "border-zinc-800 bg-zinc-900 text-zinc-400" : "border-zinc-200 bg-zinc-100 text-zinc-650"
+            <span className={`text-[9px] border rounded-md px-2 py-0.5 ${
+              isDark ? "border-zinc-800 bg-zinc-900 text-zinc-400" : "border-zinc-200 bg-zinc-100 text-zinc-600"
             }`}>
               DB: {loading ? "CONNECTING..." : "ONLINE"}
             </span>
@@ -527,7 +527,7 @@ export default function Cms() {
               {/* Title Header */}
               <div>
                 <h1 className="text-3xl font-black tracking-tight">Tổng Quan Hệ Thống</h1>
-                <p className="text-xs text-zinc-550 font-light mt-1">Theo dõi hiệu suất và số liệu của nền tảng ngày hôm nay.</p>
+                <p className="text-xs text-zinc-500 font-light mt-1">Theo dõi hiệu suất và số liệu của nền tảng ngày hôm nay.</p>
               </div>
 
               {/* Dynamic Stats Cards */}
@@ -539,10 +539,10 @@ export default function Cms() {
                 }`}>
                   <div className="space-y-4">
                     <div>
-                      <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">VÕ SĨ HOẠT ĐỘNG</span>
-                      <span className="text-4xl font-bold font-mono mt-1 block text-zinc-900 dark:text-white">{loading ? "..." : fighters.length}</span>
+                      <span className="text-[10px] text-zinc-400 uppercase tracking-widest block">VÕ SĨ HOẠT ĐỘNG</span>
+                      <span className="text-4xl font-bold mt-1 block text-zinc-900 dark:text-white">{loading ? "..." : fighters.length}</span>
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold text-red-600 bg-red-55/70 border border-red-100 dark:text-red-500 dark:bg-red-500/10 dark:border-red-500/20 px-2 py-0.5 rounded">
+                    <span className="inline-flex items-center gap-1 text-[9px] font-bold text-red-650 bg-red-50 border border-red-100 dark:text-red-500 dark:bg-red-500/10 dark:border-red-500/20 px-2 py-0.5 rounded">
                       ↗ Đang hoạt động
                     </span>
                   </div>
@@ -557,10 +557,10 @@ export default function Cms() {
                 }`}>
                   <div className="space-y-4">
                     <div>
-                      <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">VÕ ĐƯỜNG LIÊN KẾT</span>
-                      <span className="text-4xl font-bold font-mono mt-1 block text-zinc-900 dark:text-white">{loading ? "..." : clubs.length}</span>
+                      <span className="text-[10px] text-zinc-400 uppercase tracking-widest block">VÕ ĐƯỜNG LIÊN KẾT</span>
+                      <span className="text-4xl font-bold mt-1 block text-zinc-900 dark:text-white">{loading ? "..." : clubs.length}</span>
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold text-red-600 bg-red-55/70 border border-red-100 dark:text-red-500 dark:bg-red-500/10 dark:border-red-500/20 px-2 py-0.5 rounded">
+                    <span className="inline-flex items-center gap-1 text-[9px] font-bold text-red-655 bg-red-50 border border-red-100 dark:text-red-500 dark:bg-red-500/10 dark:border-red-500/20 px-2 py-0.5 rounded">
                       ↗ Kết nối ổn định
                     </span>
                   </div>
@@ -575,10 +575,10 @@ export default function Cms() {
                 }`}>
                   <div className="space-y-4">
                     <div>
-                      <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">LỊCH SỰ KIỆN LIVE</span>
-                      <span className="text-4xl font-bold font-mono mt-1 block text-zinc-900 dark:text-white">{loading ? "..." : events.length}</span>
+                      <span className="text-[10px] text-zinc-400 uppercase tracking-widest block">LỊCH SỰ KIỆN LIVE</span>
+                      <span className="text-4xl font-bold mt-1 block text-zinc-900 dark:text-white">{loading ? "..." : events.length}</span>
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold text-red-600 bg-red-55/70 border border-red-100 dark:text-red-500 dark:bg-red-500/10 dark:border-red-500/20 px-2 py-0.5 rounded">
+                    <span className="inline-flex items-center gap-1 text-[9px] font-bold text-red-655 bg-red-50 border border-red-100 dark:text-red-500 dark:bg-red-500/10 dark:border-red-500/20 px-2 py-0.5 rounded">
                       ↗ Đồng bộ hệ thống
                     </span>
                   </div>
@@ -597,8 +597,8 @@ export default function Cms() {
                   isDark ? "bg-zinc-950/70 border-zinc-900" : "bg-white border-zinc-200/60"
                 }`}>
                   <div className="flex justify-between items-center">
-                    <h3 className="text-xs font-bold uppercase font-mono">Lượt xem 24 giờ qua</h3>
-                    <span className="text-[9px] font-mono font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase">Realtime</span>
+                    <h3 className="text-xs font-bold uppercase">Lượt xem 24 giờ qua</h3>
+                    <span className="text-[9px] font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase">Realtime</span>
                   </div>
                   <div className="h-44 w-full pt-4">
                     <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
@@ -611,7 +611,7 @@ export default function Cms() {
                       <line x1="0" y1="29" x2="100" y2="29" stroke={isDark ? "#1f1f23" : "#e4e4e7"} strokeWidth="0.5" />
                     </svg>
                   </div>
-                  <div className="flex justify-between text-[8px] font-mono text-zinc-555">
+                  <div className="flex justify-between text-[8px] text-zinc-400">
                     <span>11:00</span>
                     <span>15:00</span>
                     <span>19:00</span>
@@ -626,8 +626,8 @@ export default function Cms() {
                   isDark ? "bg-zinc-950/70 border-zinc-900" : "bg-white border-zinc-200/60"
                 }`}>
                   <div className="flex justify-between items-center">
-                    <h3 className="text-xs font-bold uppercase font-mono">Lượt xem 7 ngày qua</h3>
-                    <span className="text-[9px] font-mono font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase">Daily</span>
+                    <h3 className="text-xs font-bold uppercase">Lượt xem 7 ngày qua</h3>
+                    <span className="text-[9px] font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase">Daily</span>
                   </div>
                   <div className="h-44 w-full pt-4">
                     <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
@@ -650,7 +650,7 @@ export default function Cms() {
                       <line x1="0" y1="29" x2="100" y2="29" stroke={isDark ? "#1f1f23" : "#e4e4e7"} strokeWidth="0.5" />
                     </svg>
                   </div>
-                  <div className="flex justify-between text-[8px] font-mono text-zinc-555">
+                  <div className="flex justify-between text-[8px] text-zinc-400">
                     <span>10-07</span>
                     <span>11-07</span>
                     <span>12-07</span>
@@ -677,7 +677,7 @@ export default function Cms() {
                 className={`px-4 py-2.5 rounded-xl border text-sm w-full sm:max-w-xs transition-all ${
                   isDark 
                     ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500 focus:outline-none" 
-                    : "bg-white border-zinc-205 text-zinc-900 focus:border-red-500 focus:outline-none"
+                    : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"
                 }`}
               />
               
@@ -688,7 +688,7 @@ export default function Cms() {
                     if (activeTab === "fighters") initNewFighter();
                     if (activeTab === "events") initNewEvent();
                   }}
-                  className="w-full sm:w-auto px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider border-none transition-all shadow-md shadow-red-600/10 cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-2.5 bg-red-650 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider border-none transition-all shadow-md shadow-red-600/10 cursor-pointer"
                 >
                   + Tạo mới {activeTab === "clubs" ? "Võ Đường" : activeTab === "fighters" ? "Võ Sĩ" : "Sự Kiện"}
                 </button>
@@ -707,7 +707,7 @@ export default function Cms() {
                     <img src={club.logo || "/logo-lionchampionship.png"} alt={club.name} className="w-12 h-12 object-contain bg-zinc-950 rounded-xl p-1" />
                     <div>
                       <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{club.name}</h3>
-                      <p className="text-[10px] text-zinc-555 font-normal">{club.city} · HLV {club.head_coach}</p>
+                      <p className="text-[10px] text-zinc-500">{club.city} · HLV {club.head_coach}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -716,7 +716,7 @@ export default function Cms() {
                   </div>
                 </div>
               ))}
-              {filteredClubs.length === 0 && <p className="text-zinc-500 text-xs py-4">Không tìm thấy kết quả.</p>}
+              {filteredClubs.length === 0 && <p className="text-zinc-555 text-xs py-4">Không tìm thấy kết quả.</p>}
             </div>
           )}
 
@@ -731,7 +731,7 @@ export default function Cms() {
                     <img src={fighter.photo || "/lvt.png"} alt={fighter.name} className="w-10 h-10 object-cover bg-zinc-950 rounded-full object-top" />
                     <div>
                       <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{fighter.name} {fighter.nickname && <span className="text-zinc-500 text-xs">({fighter.nickname})</span>}</h3>
-                      <p className="text-[10px] text-zinc-555">{fighter.weight_class} · {fighter.club} · {fighter.wins}W-{fighter.losses}L</p>
+                      <p className="text-[10px] text-zinc-500">{fighter.weight_class} · {fighter.club} · {fighter.wins}W-{fighter.losses}L</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -740,7 +740,7 @@ export default function Cms() {
                   </div>
                 </div>
               ))}
-              {filteredFighters.length === 0 && <p className="text-zinc-500 text-xs py-4">Không tìm thấy kết quả.</p>}
+              {filteredFighters.length === 0 && <p className="text-zinc-555 text-xs py-4">Không tìm thấy kết quả.</p>}
             </div>
           )}
 
@@ -753,7 +753,7 @@ export default function Cms() {
                 }`}>
                   <div>
                     <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{ranking.name}</h3>
-                    <p className="text-[10px] text-zinc-555 font-light">Đương kim vô địch: {ranking.champion?.name || "Bỏ trống"}</p>
+                    <p className="text-[10px] text-zinc-500 font-light">Đương kim vô địch: {ranking.champion?.name || "Bỏ trống"}</p>
                   </div>
                   <button type="button" onClick={() => setSelectedRanking(ranking)} className="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-855 text-zinc-700 dark:text-zinc-400 border-none rounded-lg text-[10px] font-bold uppercase tracking-wider cursor-pointer">Quản lý BXH</button>
                 </div>
@@ -770,7 +770,7 @@ export default function Cms() {
                 }`}>
                   <div>
                     <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{evt.title}</h3>
-                    <p className="text-[10px] text-zinc-555">{evt.date} · {evt.loc}</p>
+                    <p className="text-[10px] text-zinc-500">{evt.date} · {evt.loc}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button type="button" onClick={() => setSelectedEvent(evt)} className="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-400 border-none rounded-lg text-[10px] font-bold uppercase tracking-wider cursor-pointer">Sửa</button>
@@ -778,7 +778,7 @@ export default function Cms() {
                   </div>
                 </div>
               ))}
-              {filteredEvents.length === 0 && <p className="text-zinc-500 text-xs py-4">Không tìm thấy kết quả.</p>}
+              {filteredEvents.length === 0 && <p className="text-zinc-555 text-xs py-4">Không tìm thấy kết quả.</p>}
             </div>
           )}
 
@@ -794,49 +794,49 @@ export default function Cms() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Mã Võ đường (Unique ID)*</label>
-                  <input type="text" value={selectedClub.id} disabled onChange={(e) => setSelectedClub({ ...selectedClub, id: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-805 text-zinc-550" : "bg-zinc-100 border-zinc-200"}`} />
+                  <label className="text-[10px] text-zinc-400 uppercase block">Mã Võ đường (Unique ID)*</label>
+                  <input type="text" value={selectedClub.id} disabled onChange={(e) => setSelectedClub({ ...selectedClub, id: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-805 text-zinc-400" : "bg-zinc-100 border-zinc-200"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Slug đường dẫn*</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Slug đường dẫn*</label>
                   <input type="text" value={selectedClub.slug} onChange={(e) => setSelectedClub({ ...selectedClub, slug: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tên Võ đường*</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Tên Võ đường*</label>
                   <input type="text" value={selectedClub.name} onChange={(e) => setSelectedClub({ ...selectedClub, name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tên viết tắt (Short Name)</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Tên viết tắt (Short Name)</label>
                   <input type="text" value={selectedClub.short_name || ""} onChange={(e) => setSelectedClub({ ...selectedClub, short_name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/65 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tỉnh / Thành Phố</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Tỉnh / Thành Phố</label>
                   <input type="text" value={selectedClub.city} onChange={(e) => setSelectedClub({ ...selectedClub, city: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Địa chỉ chi tiết</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Địa chỉ chi tiết</label>
                   <input type="text" value={selectedClub.address || ""} onChange={(e) => setSelectedClub({ ...selectedClub, address: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Huấn luyện viên trưởng</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Huấn luyện viên trưởng</label>
                   <input type="text" value={selectedClub.head_coach || ""} onChange={(e) => setSelectedClub({ ...selectedClub, head_coach: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Năm thành lập</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Năm thành lập</label>
                   <input type="number" value={selectedClub.founded_year || 2026} onChange={(e) => setSelectedClub({ ...selectedClub, founded_year: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Bộ môn giảng dạy (cách nhau bởi dấu phẩy)</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Bộ môn giảng dạy (cách nhau bởi dấu phẩy)</label>
                   <input type="text" value={selectedClub.disciplines.join(", ")} onChange={(e) => setSelectedClub({ ...selectedClub, disciplines: e.target.value.split(",").map(d => d.trim()) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Đường dẫn Logo URL</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Đường dẫn Logo URL</label>
                   <input type="text" value={selectedClub.logo || ""} onChange={(e) => setSelectedClub({ ...selectedClub, logo: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] text-zinc-400 uppercase font-mono block">Giới thiệu ngắn gọn</label>
+                <label className="text-[10px] text-zinc-400 uppercase block">Giới thiệu ngắn gọn</label>
                 <textarea value={selectedClub.description || ""} rows={3} onChange={(e) => setSelectedClub({ ...selectedClub, description: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
               </div>
 
@@ -858,71 +858,71 @@ export default function Cms() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Mã Võ Sĩ (Unique ID)*</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Mã Võ Sĩ (Unique ID)*</label>
                   <input type="text" value={selectedFighter.id} disabled onChange={(e) => setSelectedFighter({ ...selectedFighter, id: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-805 text-zinc-500" : "bg-zinc-100 border-zinc-200"}`} />
                 </div>
                 <div className="space-y-1 col-span-2">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Họ Tên Võ sĩ*</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Họ Tên Võ sĩ*</label>
                   <input type="text" value={selectedFighter.name} onChange={(e) => setSelectedFighter({ ...selectedFighter, name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Biệt danh (Nickname)</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Biệt danh (Nickname)</label>
                   <input type="text" value={selectedFighter.nickname || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, nickname: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Hạng cân (ví dụ: 56kg, 60kg)</label>
-                  <input type="text" value={selectedFighter.weight_class} onChange={(e) => setSelectedFighter({ ...selectedFighter, weight_class: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
+                  <label className="text-[10px] text-zinc-400 uppercase block">Hạng cân (ví dụ: 56kg, 60kg)</label>
+                  <input type="text" value={selectedFighter.weight_class} onChange={(e) => setSelectedFighter({ ...selectedFighter, weight_class: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-505/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Võ đường trực thuộc</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Võ đường trực thuộc</label>
                   <input type="text" value={selectedFighter.club || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, club: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tuổi</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Tuổi</label>
                   <input type="number" value={selectedFighter.age || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, age: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Chiều cao (cm)</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Chiều cao (cm)</label>
                   <input type="number" value={selectedFighter.height || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, height: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Sải tay (cm)</label>
-                  <input type="number" value={selectedFighter.reach || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, reach: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
+                  <label className="text-[10px] text-zinc-400 uppercase block">Sải tay (cm)</label>
+                  <input type="number" value={selectedFighter.reach || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, reach: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-505/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Thành phố quê quán</label>
-                  <input type="text" value={selectedFighter.hometown || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, hometown: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
+                  <label className="text-[10px] text-zinc-400 uppercase block">Thành phố quê quán</label>
+                  <input type="text" value={selectedFighter.hometown || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, hometown: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-805 text-white focus:border-red-550/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Quốc tịch</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Quốc tịch</label>
                   <input type="text" value={selectedFighter.nationality || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, nationality: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Quốc kỳ (Emoji)</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Quốc kỳ (Emoji)</label>
                   <input type="text" value={selectedFighter.flag || "🇻🇳"} onChange={(e) => setSelectedFighter({ ...selectedFighter, flag: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-950 border-zinc-800 text-white focus:border-red-500" : "bg-white border-zinc-200 text-zinc-900"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Số Trận Thắng</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Số Trận Thắng</label>
                   <input type="number" value={selectedFighter.wins || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, wins: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Số Trận Thua</label>
-                  <input type="number" value={selectedFighter.losses || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, losses: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
+                  <label className="text-[10px] text-zinc-400 uppercase block">Số Trận Thua</label>
+                  <input type="number" value={selectedFighter.losses || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, losses: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-805 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Số Trận Hòa</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Số Trận Hòa</label>
                   <input type="number" value={selectedFighter.draws || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, draws: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] text-zinc-400 uppercase font-mono block">Đường dẫn ảnh võ sĩ URL</label>
+                <label className="text-[10px] text-zinc-400 uppercase block">Đường dẫn ảnh võ sĩ URL</label>
                 <input type="text" value={selectedFighter.photo || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, photo: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tiểu sử võ sĩ</label>
-                <textarea value={selectedFighter.bio || ""} rows={3} onChange={(e) => setSelectedFighter({ ...selectedFighter, bio: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`}></textarea>
+                <label className="text-[10px] text-zinc-400 uppercase block">Tiểu sử võ sĩ</label>
+                <textarea value={selectedFighter.bio || ""} rows={3} onChange={(e) => setSelectedFighter({ ...selectedFighter, bio: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-505 focus:outline-none"}`}></textarea>
               </div>
 
               <div className="flex gap-4">
@@ -942,24 +942,24 @@ export default function Cms() {
               </h2>
 
               <div className="space-y-4">
-                <h3 className="text-xs font-mono font-bold text-red-500 uppercase tracking-widest">🏆 Đương kim vô địch (Champion)</h3>
+                <h3 className="text-xs font-bold text-red-500 uppercase tracking-widest">🏆 Đương kim vô địch (Champion)</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-1">
-                    <label className="text-[9px] text-zinc-555 font-normal uppercase block">Họ tên Champion</label>
+                    <label className="text-[9px] text-zinc-500 uppercase block">Họ tên Champion</label>
                     <input type="text" value={selectedRanking.champion?.name || ""} onChange={(e) => setSelectedRanking({
                       ...selectedRanking,
                       champion: { ...selectedRanking.champion, name: e.target.value }
                     })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/65 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[9px] text-zinc-555 font-normal uppercase block">Thành tích (ví dụ: 12-2-0)</label>
+                    <label className="text-[9px] text-zinc-500 uppercase block">Thành tích (ví dụ: 12-2-0)</label>
                     <input type="text" value={selectedRanking.champion?.record || ""} onChange={(e) => setSelectedRanking({
                       ...selectedRanking,
                       champion: { ...selectedRanking.champion, record: e.target.value }
                     })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/65 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[9px] text-zinc-555 font-normal uppercase block">Võ đường</label>
+                    <label className="text-[9px] text-zinc-500 uppercase block">Võ đường</label>
                     <input type="text" value={selectedRanking.champion?.club || ""} onChange={(e) => setSelectedRanking({
                       ...selectedRanking,
                       champion: { ...selectedRanking.champion, club: e.target.value }
@@ -973,7 +973,7 @@ export default function Cms() {
                 <div className="space-y-3">
                   {((selectedRanking.rankings || []) as any[]).map((rankedFighter, rankIdx) => (
                     <div key={rankIdx} className={`p-3 border rounded-xl grid grid-cols-1 md:grid-cols-12 gap-3 items-center ${isDark ? "bg-zinc-900/40 border-zinc-900/60" : "bg-zinc-50 border-zinc-150"}`}>
-                      <div className="md:col-span-1 text-center font-black font-mono text-zinc-400">
+                      <div className="md:col-span-1 text-center font-black text-zinc-400">
                         Rank {rankedFighter.rank}
                       </div>
                       <div className="md:col-span-4 space-y-1">
@@ -1023,23 +1023,23 @@ export default function Cms() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tiêu đề Sự kiện*</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Tiêu đề Sự kiện*</label>
                   <input type="text" placeholder="LION Championship 34" value={selectedEvent.title} onChange={(e) => setSelectedEvent({ ...selectedEvent, title: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Thời gian diễn ra*</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Thời gian diễn ra*</label>
                   <input type="text" placeholder="Thứ Bảy, ngày 18 tháng 7, 2026" value={selectedEvent.date} onChange={(e) => setSelectedEvent({ ...selectedEvent, date: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Địa điểm thi đấu</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Địa điểm thi đấu</label>
                   <input type="text" placeholder="Nhà thi đấu Rạch Miễu, TP. HCM" value={selectedEvent.loc} onChange={(e) => setSelectedEvent({ ...selectedEvent, loc: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Hạng mục thi đấu (Bout Type)</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Hạng mục thi đấu (Bout Type)</label>
                   <input type="text" placeholder="Championship Bout" value={selectedEvent.type} onChange={(e) => setSelectedEvent({ ...selectedEvent, type: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] text-zinc-400 uppercase font-mono block">Trạng thái / Thông tin phát sóng</label>
+                  <label className="text-[10px] text-zinc-400 uppercase block">Trạng thái / Thông tin phát sóng</label>
                   <input type="text" placeholder="Trực tiếp lúc 19:00" value={selectedEvent.status} onChange={(e) => setSelectedEvent({ ...selectedEvent, status: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
               </div>
