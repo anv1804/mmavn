@@ -11,6 +11,52 @@ interface Props {
   onCancel: () => void;
 }
 
+const parseNumericString = (val: any): string => {
+  if (val === undefined || val === null) return "";
+  const str = String(val).trim();
+  if (!str) return "";
+  if (str.includes("m") && /^\d+m\d+$/.test(str)) {
+    const parts = str.split("m");
+    return String(parseInt(parts[0]) * 100 + parseInt(parts[1]));
+  }
+  const digits = str.replace(/\D/g, "");
+  return digits || "";
+};
+
+interface FieldProps {
+  label: string;
+  field: string;
+  type?: string;
+  disabled?: boolean;
+  placeholder?: string;
+  fighter: any;
+  onChange: (updated: any) => void;
+  inputClass: string;
+  disabledClass: string;
+}
+
+const Field = ({ label, field, type = "text", disabled = false, placeholder = "", fighter, onChange, inputClass, disabledClass }: FieldProps) => {
+  const isDimension = field === "height" || field === "reach";
+  const displayValue = isDimension ? parseNumericString(fighter[field]) : (fighter[field] ?? "");
+
+  return (
+    <div className="space-y-1">
+      <label className="text-[10px] text-zinc-400 uppercase block">{label}</label>
+      <input
+        type={isDimension ? "number" : type}
+        disabled={disabled}
+        placeholder={placeholder}
+        value={displayValue}
+        onChange={(e) => {
+          const val = type === "number" || isDimension ? parseInt(e.target.value) || 0 : e.target.value;
+          onChange({ ...fighter, [field]: val });
+        }}
+        className={disabled ? disabledClass : inputClass}
+      />
+    </div>
+  );
+};
+
 export default function FighterForm({ fighter, fighters, clubs, rankings, onChange, onSave, onCancel }: Props) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
@@ -80,37 +126,6 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
     const nextSocial = { ...(fighter.social_media || {}) };
     nextSocial.birth_date = dateVal;
     onChange({ ...fighter, social_media: nextSocial, age: Math.max(0, calculatedAge), birth_year: birthDate.getFullYear() });
-  };
-
-  const parseNumericString = (val: any): string => {
-    if (val === undefined || val === null) return "";
-    const str = String(val).trim();
-    if (!str) return "";
-    if (str.includes("m") && /^\d+m\d+$/.test(str)) {
-      const parts = str.split("m");
-      return String(parseInt(parts[0]) * 100 + parseInt(parts[1]));
-    }
-    const digits = str.replace(/\D/g, "");
-    return digits || "";
-  };
-
-  const Field = ({ label, field, type = "text", disabled = false, placeholder = "" }: { label: string; field: string; type?: string; disabled?: boolean; placeholder?: string }) => {
-    const isDimension = field === "height" || field === "reach";
-    const displayValue = isDimension ? parseNumericString(fighter[field]) : (fighter[field] ?? "");
-
-    return (
-      <div className="space-y-1">
-        <label className="text-[10px] text-zinc-400 uppercase block">{label}</label>
-        <input
-          type={isDimension ? "number" : type}
-          disabled={disabled}
-          placeholder={placeholder}
-          value={displayValue}
-          onChange={(e) => set(field, type === "number" || isDimension ? parseInt(e.target.value) || 0 : e.target.value)}
-          className={disabled ? disabledClass : inputClass}
-        />
-      </div>
-    );
   };
 
   // Helper lists achievements edits
@@ -387,11 +402,11 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
                     </select>
                   </div>
 
-                  <Field label="Chiều cao (cm)" field="height" placeholder="Ví dụ: 168" />
-                  <Field label="Sải tay (cm)" field="reach" placeholder="Ví dụ: 170" />
-                  <Field label="Quê quán" field="hometown" placeholder="Ví dụ: Hà Đông, Hà Nội" />
-                  <Field label="Quốc tịch" field="nationality" placeholder="Ví dụ: Việt Nam" />
-                  <Field label="Quốc kỳ (Emoji)" field="flag" placeholder="Ví dụ: 🇻🇳" />
+                  <Field label="Chiều cao (cm)" field="height" placeholder="Ví dụ: 168" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
+                  <Field label="Sải tay (cm)" field="reach" placeholder="Ví dụ: 170" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
+                  <Field label="Quê quán" field="hometown" placeholder="Ví dụ: Hà Đông, Hà Nội" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
+                  <Field label="Quốc tịch" field="nationality" placeholder="Ví dụ: Việt Nam" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
+                  <Field label="Quốc kỳ (Emoji)" field="flag" placeholder="Ví dụ: 🇻🇳" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
                 </div>
               </div>
 
@@ -399,7 +414,7 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
               <div className="space-y-4">
                 <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">II. Hình ảnh &amp; Đường dẫn</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Field label="Ảnh đại diện / Avatar (avt) URL" field="photo" placeholder="/lvt.png hoặc https://..." />
+                  <Field label="Ảnh đại diện / Avatar (avt) URL" field="photo" placeholder="/lvt.png hoặc https://..." fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
                   
                   <div className="space-y-1">
                     <label className="text-[10px] text-zinc-400 uppercase block">Ảnh Thumb / Thumbnail URL (Danh sách)</label>
@@ -455,12 +470,12 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
               <div className="space-y-4">
                 <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">IV. Thông số thi đấu</h3>
                 <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-                  <Field label="Thắng" field="wins" type="number" />
-                  <Field label="Thua" field="losses" type="number" />
-                  <Field label="Hòa" field="draws" type="number" />
-                  <Field label="Thắng KO/TKO" field="ko_wins" type="number" />
-                  <Field label="Thắng Submission" field="sub_wins" type="number" />
-                  <Field label="Thắng Decision" field="decision_wins" type="number" />
+                  <Field label="Thắng" field="wins" type="number" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
+                  <Field label="Thua" field="losses" type="number" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
+                  <Field label="Hòa" field="draws" type="number" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
+                  <Field label="Thắng KO/TKO" field="ko_wins" type="number" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
+                  <Field label="Thắng Submission" field="sub_wins" type="number" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
+                  <Field label="Thắng Decision" field="decision_wins" type="number" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
                 </div>
               </div>
 
