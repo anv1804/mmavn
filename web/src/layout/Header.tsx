@@ -192,7 +192,7 @@ export default function Header() {
                 to={link.path}
                 className={`
                   relative flex items-center gap-1.5 px-3 py-2 rounded-xl
-                  text-[10px] font-mono font-bold uppercase tracking-wider
+                  text-[10px] font-mono font-bold uppercase tracking-wider leading-none
                   outline-none transition-all duration-200 no-underline whitespace-nowrap
                   ${active
                     ? "text-red-500 bg-red-500/5 border border-red-500/10"
@@ -202,7 +202,7 @@ export default function Header() {
                   }
                 `}
               >
-                <span className={`transition-opacity flex items-center shrink-0 ${active ? "opacity-100" : "opacity-60"}`}>
+                <span className={`transition-opacity flex items-center justify-center shrink-0 ${active ? "opacity-100" : "opacity-60"}`}>
                   {link.path === "/lion" ? (
                     <img 
                       src="/logo-lionchampionship.png" 
@@ -213,7 +213,7 @@ export default function Header() {
                     getNavIcon(link.icon)
                   )}
                 </span>
-                <span>{link.label}</span>
+                <span className="leading-none flex items-center">{link.label}</span>
               </Link>
             );
           })}
@@ -242,13 +242,15 @@ export default function Header() {
             target="_blank"
             rel="noreferrer"
             className="
-              flex items-center gap-2 h-9 px-4.5 rounded-xl cursor-pointer border no-underline
+              flex items-center justify-center gap-2 h-9 px-4.5 rounded-xl cursor-pointer border no-underline leading-none
               bg-red-600 border-red-600 hover:bg-red-500 hover:border-red-500 text-white
               transition-all duration-300 shadow-md shadow-red-600/10 font-mono font-bold text-[9px] uppercase tracking-wider whitespace-nowrap
             "
           >
-            <FacebookIcon />
-            <span>Tham gia cộng đồng</span>
+            <span className="flex items-center justify-center shrink-0">
+              <FacebookIcon />
+            </span>
+            <span className="leading-none flex items-center">Tham gia cộng đồng</span>
           </a>
         </div>
 
