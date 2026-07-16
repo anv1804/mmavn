@@ -6,45 +6,45 @@ interface FighterDetailProps {
   onBack: () => void;
 }
 
-// Stats structure for Radar Chart
+// Stats structure for MMA Radar Chart
 interface CombatStats {
-  ATT: number; // Tấn công
-  TEC: number; // Kỹ thuật
-  TAC: number; // Chiến thuật
-  DEF: number; // Phòng thủ
-  CRE: number; // Tinh thần / Sáng tạo
-  STA: number; // Thể lực
-  PHY: number; // Thể chất
+  STR: number; // Striking (Đứng công - Boxing/Muay Thai)
+  GRP: number; // Grappling (Vật/Đè - Wrestling)
+  SUB: number; // Submission (Nhu thuật - BJJ)
+  DEF: number; // Defense (Phòng thủ - Takedown Defense/Guard)
+  STA: number; // Stamina (Thể lực/Sức bền)
+  POW: number; // Power (Thể chất/Sức mạnh bộc phát)
+  IQ:  number; // Fight IQ (Chiến thuật/Trí tuệ trận đấu)
 }
 
-// Database of mock stats for comparison candidates in the 56kg Nam division
+// Database of mock MMA stats for comparison candidates in the 56kg Nam division
 const COMPARISON_CANDIDATES: Record<string, { name: string; club: string; record: string; stats: CombatStats; ratings: number[] }> = {
   "le-van-tuan": {
     name: "Lê Văn Tuần",
     club: "Vietnam Top Team",
     record: "8-3-0",
-    stats: { ATT: 90, TEC: 82, TAC: 78, DEF: 72, CRE: 85, STA: 88, PHY: 92 },
-    ratings: [8.5, 8.2, 7.9, 6.0, 8.4, 7.8], // Last 6 matches
+    stats: { STR: 90, GRP: 76, SUB: 82, DEF: 80, STA: 88, POW: 92, IQ: 84 },
+    ratings: [8.5, 8.2, 7.9, 6.0, 8.4, 7.8],
   },
   "pham-van-nam": {
     name: "Phạm Văn Nam",
     club: "Saigon Sports Club",
     record: "7-1-0",
-    stats: { ATT: 82, TEC: 90, TAC: 88, DEF: 85, CRE: 80, STA: 92, PHY: 84 },
+    stats: { STR: 82, GRP: 88, SUB: 90, DEF: 86, STA: 92, POW: 84, IQ: 88 },
     ratings: [8.8, 8.5, 7.5, 8.1, 8.0, 8.4],
   },
   "tran-minh-nhut": {
     name: "Trần Minh Nhựt",
     club: "Liên Phong Club",
     record: "6-2-0",
-    stats: { ATT: 86, TEC: 84, TAC: 76, DEF: 70, CRE: 88, STA: 80, PHY: 88 },
+    stats: { STR: 88, GRP: 78, SUB: 80, DEF: 72, STA: 82, POW: 86, IQ: 85 },
     ratings: [7.9, 8.0, 8.3, 7.1, 6.8, 7.5],
   },
   "tran-trong-kim": {
     name: "Trần Trọng Kim",
     club: "PFC Phú Quốc",
     record: "5-2-0",
-    stats: { ATT: 80, TEC: 78, TAC: 82, DEF: 76, CRE: 75, STA: 85, PHY: 80 },
+    stats: { STR: 78, GRP: 82, SUB: 84, DEF: 78, STA: 85, POW: 78, IQ: 80 },
     ratings: [7.2, 7.5, 7.0, 7.8, 6.5, 7.3],
   }
 };
@@ -78,18 +78,18 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
   const activeStats = COMPARISON_CANDIDATES[fighter.id] || COMPARISON_CANDIDATES["le-van-tuan"];
   const comparedFighter = comparedKey ? COMPARISON_CANDIDATES[comparedKey] : null;
 
-  // Filter comparison candidates based on query
+  // Filter comparison candidates
   const filteredCandidates = Object.entries(COMPARISON_CANDIDATES)
     .filter(([key, f]) => key !== fighter.id && f.name.toLowerCase().includes(searchQuery.toLowerCase()))
     .slice(0, 3);
 
-  // Radar Chart dimensions & trigonometry
+  // Radar Chart setup (7 axes for MMA stats)
   const width = 280;
   const height = 280;
   const cx = width / 2;
   const cy = height / 2;
   const r = 100;
-  const tags = ["ATT", "TEC", "TAC", "DEF", "CRE", "STA", "PHY"];
+  const tags = ["STR (Đứng)", "GRP (Vật)", "SUB (Siết)", "DEF (Thủ)", "STA (Bền)", "POW (Mạnh)", "IQ (Trí tuệ)"];
 
   // Helper to compute points on radar chart
   const getRadarPoint = (index: number, val: number) => {
@@ -103,7 +103,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
 
   // Build polygon strings
   const getPolygonPoints = (stats: CombatStats) => {
-    const vals = [stats.ATT, stats.TEC, stats.TAC, stats.DEF, stats.CRE, stats.STA, stats.PHY];
+    const vals = [stats.STR, stats.GRP, stats.SUB, stats.DEF, stats.STA, stats.POW, stats.IQ];
     return vals.map((v, idx) => {
       const pt = getRadarPoint(idx, v);
       return `${pt.x},${pt.y}`;
@@ -129,6 +129,12 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-red-600/5 blur-[140px] rounded-full pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-zinc-800/5 blur-[140px] rounded-full pointer-events-none" />
 
+      {/* Giant background text */}
+      <div className="absolute top-[25%] right-[5%] select-none pointer-events-none z-0 opacity-[0.01] text-right font-black uppercase leading-none">
+        <span className="text-[15vw] block tracking-tighter" style={{ WebkitTextStroke: "1px white", fill: "transparent" }}>VTT</span>
+        <span className="text-[12vw] block tracking-tighter text-red-600">56KG</span>
+      </div>
+
       {/* ── STICKY CONTROL BAR ── */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 pt-6 flex items-center justify-between">
         <button
@@ -149,8 +155,6 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
           
           {/* ── CỘT TRÁI: ẢNH VÕ SĨ & MẠNG XÃ HỘI (4/12) ── */}
           <div className="lg:col-span-4 space-y-6">
-            
-            {/* Visual Fighter Photo Card */}
             <div className="relative overflow-hidden rounded-3xl border border-zinc-900 bg-zinc-950/60 p-6 flex flex-col items-center group">
               <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-red-600/70" />
               <div className="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-red-600/70" />
@@ -238,7 +242,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
             )}
           </div>
 
-          {/* ── CỘT PHẢI: TYPOGRAPHY, STATS, RADAR & CHRONICLE (8/12) ── */}
+          {/* ── CỘT PHẢI: TYPOGRAPHY, STATS & FIGHT TIMELINE (8/12) ── */}
           <div className="lg:col-span-8 space-y-8">
             
             {/* Identity & Nickname Block */}
@@ -288,7 +292,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
               ))}
             </div>
 
-            {/* ── NEW: TỔNG QUAN CHỈ SỐ & SO SÁNH VÕ SĨ ── */}
+            {/* ── TỔNG QUAN CHỈ SỐ MMA & SO SÁNH VÕ SĨ ── */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* Radar Chart skill mapping */}
@@ -296,7 +300,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                 <div className="w-full flex items-center justify-between border-b border-zinc-900 pb-3 mb-4">
                   <div className="flex items-center gap-2">
                     <div className="w-1 h-3.5 bg-red-600 rounded-full" />
-                    <h3 className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">TỔNG QUAN CHỈ SỐ</h3>
+                    <h3 className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">TỔNG QUAN CHỈ SỐ MMA</h3>
                   </div>
                   <span className="text-[9px] font-mono text-zinc-600">OCTAGON SKILL MAP</span>
                 </div>
@@ -406,7 +410,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Tìm kiếm đối thủ so sánh..."
+                      placeholder="Tìm kiếm võ sĩ để so sánh..."
                       className="w-full bg-[#080809] border border-zinc-900 rounded-xl px-4 py-2 text-xs text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-red-500/40"
                     />
                     
@@ -457,11 +461,9 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                     </span>
                   </div>
 
-                  {/* Colored column bars representing rating */}
                   <div className="flex items-end justify-between h-28 pt-4 pb-2 border-b border-zinc-900/50">
                     {activeStats.ratings.map((rating, idx) => (
                       <div key={idx} className="flex flex-col items-center gap-1.5 flex-1 group/bar">
-                        {/* Tooltip on hover */}
                         <span className="text-[9px] font-mono text-zinc-400 opacity-0 group-hover/bar:opacity-100 transition-opacity">
                           {rating}
                         </span>
@@ -474,7 +476,6 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                     ))}
                   </div>
 
-                  {/* Legend guide */}
                   <div className="flex flex-wrap gap-x-3 gap-y-1.5 text-[8px] font-mono text-zinc-500">
                     <div className="flex items-center gap-1">
                       <span className="w-2 h-2 rounded bg-blue-500" />
@@ -558,7 +559,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                   <div className="w-1 h-3.5 bg-red-600 rounded-full" />
                   <span className="text-[10px] font-mono tracking-[0.2em] text-zinc-400 uppercase">LỊCH SỬ THI ĐẤU (BATTLE CHRONICLE)</span>
                 </div>
-                <span className="text-[9px] font-mono text-zinc-400 bg-zinc-900 border border-zinc-800 px-3.5 py-1 rounded-md">
+                <span className="text-[9px] font-mono text-zinc-400 bg-zinc-950 border border-zinc-900 px-3.5 py-1 rounded-md">
                   {fighter.fights?.length ?? 0} TRẬN ĐẤU
                 </span>
               </div>
