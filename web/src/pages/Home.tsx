@@ -107,7 +107,7 @@ export default function Home() {
               <span className="text-[9px] font-mono tracking-widest text-red-400 font-bold uppercase">PORTAL CHÍNH THỨC</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-[0.9] text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-[0.9] text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>
               VÕ THUẬT TỔNG HỢP <br/>
               <span className="bg-gradient-to-r from-red-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
                 VIỆT NAM 2026
@@ -165,7 +165,7 @@ export default function Home() {
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
             <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">MMA HOT NEWS</span>
-            <h2 className="text-2xl font-black uppercase text-white tracking-wide" style={{ fontFamily: "'Syne', sans-serif" }}>TIN TỨC & BÊN LỀ ĐẤU TRƯỜNG</h2>
+            <h2 className="text-2xl font-black uppercase text-white tracking-wide" style={{ fontFamily: "'Oswald', sans-serif" }}>TIN TỨC & BÊN LỀ ĐẤU TRƯỜNG</h2>
           </div>
         </div>
 
@@ -200,7 +200,7 @@ export default function Home() {
               <span className="text-[9px] font-mono text-amber-400 font-bold uppercase tracking-widest">Đương Kim Vô Địch Nổi Bật</span>
             </div>
             
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-none" style={{ fontFamily: "'Syne', sans-serif" }}>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-none" style={{ fontFamily: "'Oswald', sans-serif" }}>
               LÊ VĂN TUẦN <br/>
               <span className="text-red-500 text-lg md:text-xl font-mono block mt-3.5 font-bold tracking-widest">&ldquo;THE SOUTHWARK BEAST&rdquo; · 56KG NAM</span>
             </h2>
@@ -342,7 +342,7 @@ export default function Home() {
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
             <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">MMA SCHEDULE</span>
-            <h2 className="text-2xl font-black uppercase text-white" style={{ fontFamily: "'Syne', sans-serif" }}>LỊCH PHÁT SÓNG & SỰ KIỆN SẮP TỚI</h2>
+            <h2 className="text-2xl font-black uppercase text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>LỊCH PHÁT SÓNG & SỰ KIỆN SẮP TỚI</h2>
           </div>
         </div>
 
@@ -374,7 +374,7 @@ export default function Home() {
             <div className="w-1 h-6 bg-red-600 rounded-full" />
             <div>
               <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">VÕ ĐƯỜNG LIÊN KẾT</span>
-              <h2 className="text-2xl font-black uppercase text-white" style={{ fontFamily: "'Syne', sans-serif" }}>CÁC LÒ ĐÀO TẠO MMA HÀNG ĐẦU</h2>
+              <h2 className="text-2xl font-black uppercase text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>CÁC LÒ ĐÀO TẠO MMA HÀNG ĐẦU</h2>
             </div>
           </div>
           <button 
