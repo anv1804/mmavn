@@ -518,7 +518,7 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
                   <svg width="220" height="220" className="overflow-visible">
                     {/* Background concentric rings */}
                     {[25, 50, 75, 100].map((ringVal) => {
-                      const ringPoints = ["STR", "GRP", "SUB", "DEF", "STA", "POW", "IQ"].map((k, i) => {
+                      const ringPoints = ["STR", "GRP", "SUB", "DEF", "STA", "POW", "IQ"].map((_, i) => {
                         const angle = (Math.PI * 2 / 7) * i - Math.PI / 2;
                         const distance = (ringVal / 100) * 80;
                         return `${110 + distance * Math.cos(angle)},${110 + distance * Math.sin(angle)}`;
