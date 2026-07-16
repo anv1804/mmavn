@@ -37,180 +37,214 @@ export default function ClubDetail() {
   const fighters = CLUB_FIGHTERS[club.id] || [];
 
   return (
-    <div className="min-h-screen bg-[#030303] text-white py-10 px-6 relative" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+    <div className="min-h-screen bg-[#030303] text-white pb-24 relative overflow-hidden" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       
-      {/* Background glow sparks */}
-      <div className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-zinc-800/5 blur-[140px] rounded-full pointer-events-none" />
+      {/* Background cyber sparks */}
+      <div className="absolute top-0 right-1/4 w-[700px] h-[400px] bg-red-600/5 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[600px] h-[600px] bg-zinc-800/5 blur-[160px] rounded-full pointer-events-none" />
 
-      {/* Control bar */}
-      <div className="relative z-20 max-w-7xl mx-auto mb-8">
-        <button
-          onClick={() => navigate("/clubs")}
-          className="group flex items-center gap-3 text-[10px] font-mono tracking-[0.25em] text-zinc-400 hover:text-white bg-black/60 border border-zinc-900 hover:border-red-500/40 px-5 py-2.5 rounded-full transition-all duration-300 cursor-pointer"
-        >
-          <span className="group-hover:-translate-x-1 transition-transform duration-200 block">&larr;</span> 
-          <span>DANH SÁCH VÕ ĐƯỜNG</span>
-        </button>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+      {/* ── PANORAMIC ACADEMY HEADER BANNER ── */}
+      <div className="relative h-[220px] md:h-[300px] bg-[#09090b] border-b border-zinc-900/60 overflow-hidden flex items-end">
+        {/* Decorative Grid Mesh overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/60 to-transparent" />
         
-        {/* LEFT COLUMN: OVERVIEW CARD & COACHES (4/12) */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="relative overflow-hidden rounded-3xl border border-zinc-900 bg-zinc-950/60 p-6 flex flex-col items-center group">
-            <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-red-600/30" />
-            <div className="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-red-600/30" />
-            <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b-2 border-l-2 border-red-600/30" />
-            <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-red-600/30" />
-
-            {/* Logo box */}
-            <div className="w-24 h-24 rounded-3xl bg-zinc-900 border border-zinc-800 flex items-center justify-center p-3 overflow-hidden shadow-lg shadow-zinc-900/50">
-              <img src={club.logo} alt={club.name} className="w-full h-full object-contain" />
-            </div>
-
-            <div className="text-center mt-6 w-full space-y-1">
-              <h2 className="text-xl font-black text-white">{club.name}</h2>
-              <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest block">
-                Năm thành lập: {club.foundedYear ?? "—"}
-              </span>
-            </div>
-
-            {/* Contact quicklinks */}
-            <div className="flex gap-2.5 mt-5 w-full border-t border-zinc-900/60 pt-4 justify-center">
-              {club.facebook && (
-                <a href={club.facebook} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center hover:text-blue-500 transition-colors">
-                  <span className="text-xs">FB</span>
-                </a>
-              )}
-              {club.website && (
-                <a href={club.website} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center hover:text-red-500 transition-colors">
-                  <span className="text-xs">🌐</span>
-                </a>
-              )}
-            </div>
-          </div>
-
-          {/* Coaching Roster Card */}
-          <div className="rounded-3xl border border-zinc-900 bg-zinc-950/60 p-6 space-y-4">
-            <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 border-b border-zinc-900 pb-2.5 uppercase">
-              BAN HUẤN LUYỆN
-            </h3>
-            <div className="space-y-3 text-xs">
-              <div className="flex justify-between items-center bg-[#080809] border border-zinc-900 p-3 rounded-xl">
-                <span className="text-zinc-400 font-mono">Huấn luyện viên Trưởng</span>
-                <span className="font-bold text-white">{club.headCoach}</span>
-              </div>
-
-              {club.assistantCoaches && club.assistantCoaches.length > 0 && (
-                <div className="space-y-2.5 pt-2">
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase block">Trợ lý huấn luyện</span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {club.assistantCoaches.map((c) => (
-                      <span key={c} className="bg-zinc-900 text-zinc-300 px-3 py-1 rounded-lg border border-zinc-800/80">
-                        {c}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+        {/* Floating back button */}
+        <div className="absolute top-6 left-6 z-20">
+          <button
+            onClick={() => navigate("/clubs")}
+            className="group flex items-center gap-3 text-[10px] font-mono tracking-[0.2em] text-zinc-400 hover:text-white bg-black/70 border border-zinc-900 hover:border-red-500/40 px-5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer"
+          >
+            <span>&larr;</span> 
+            <span>TẤT CẢ VÕ ĐƯỜNG</span>
+          </button>
         </div>
 
-        {/* RIGHT COLUMN: DETAIL STATS, ACCOMPLISHMENTS, FIGHTERS RETAINED (8/12) */}
-        <div className="lg:col-span-8 space-y-8">
-          
-          {/* Identity Header */}
-          <div className="space-y-3">
-            <span className="text-[9px] font-mono font-bold tracking-[0.2em] text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-md uppercase">
-              {club.city} · VIỆT NAM
-            </span>
-            <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">{club.name}</h1>
-            <p className="text-sm text-zinc-400 leading-relaxed font-light">{club.description}</p>
+        {/* Brand layout title block inside container */}
+        <div className="max-w-7xl mx-auto w-full px-6 pb-8 relative z-10 flex flex-col md:flex-row items-start md:items-end gap-6">
+          {/* Logo container overlapping banner */}
+          <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-[#09090b] border-2 border-zinc-800 p-4 shrink-0 flex items-center justify-center shadow-2xl shadow-black/80">
+            <img src={club.logo} alt={club.name} className="w-full h-full object-contain" />
           </div>
 
-          {/* Full Statistics Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { val: club.statistics.lionFighters, label: "Võ sĩ LION", color: "text-white" },
-              { val: club.statistics.champions, label: "Đai Vô Địch", color: "text-amber-500" },
-              { val: `${club.statistics.wins}-${club.statistics.losses}`, label: "Thành tích (W-L)", color: "text-emerald-400" },
-              { val: `${Math.round((club.statistics.wins / (club.statistics.wins + club.statistics.losses)) * 100)}%`, label: "Tỉ lệ thắng MMA", color: "text-red-500" }
-            ].map((stat, idx) => (
-              <div key={idx} className="bg-zinc-950/60 border border-zinc-900 rounded-2xl p-4 text-center">
-                <div className={`text-2xl font-black font-mono ${stat.color}`}>{stat.val}</div>
-                <div className="text-[8px] font-mono text-zinc-500 uppercase mt-1.5 tracking-wider">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Training Disciplines & Achievements Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[9px] font-mono font-bold tracking-[0.2em] text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-md uppercase">
+                {club.city} · VIỆT NAM
+              </span>
+              <span className="text-[9px] font-mono text-zinc-500 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-md">
+                FOUNDED IN {club.foundedYear ?? "—"}
+              </span>
+            </div>
             
-            {/* Disciplines Card */}
-            <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4">
-              <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 border-b border-zinc-900 pb-2.5 uppercase">
-                BỘ MÔN ĐÀO TẠO
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {club.disciplines.map((discipline) => (
-                  <span key={discipline} className="bg-zinc-900 text-zinc-300 px-3.5 py-1.5 rounded-xl border border-zinc-800 text-xs font-mono">
-                    ✦ {discipline}
-                  </span>
+            <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-white">
+              {club.name}
+            </h1>
+            <p className="text-xs md:text-sm text-zinc-400 font-mono tracking-wide">
+              Huấn luyện viên trưởng: <span className="text-red-400 font-bold font-sans">{club.headCoach}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── MAIN CONTENT WRAPPER ── */}
+      <div className="max-w-7xl mx-auto px-6 mt-8 space-y-10 relative z-10">
+        
+        {/* ── HORIZONTAL METRIC METADATA BAR ── */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-zinc-950/60 border border-zinc-900 rounded-3xl p-5 shadow-lg shadow-black/40">
+          {[
+            { val: club.statistics.lionFighters, label: "VÕ SĨ LION", desc: "Đang thi đấu chuyên nghiệp" },
+            { val: club.statistics.champions, label: "ĐAI VÔ ĐỊCH", desc: "Tổng đai vô địch quốc gia" },
+            { val: `${club.statistics.wins}-${club.statistics.losses}`, label: "THÀNH TÍCH MMA", desc: "Tổng tỉ lệ thắng/thua" },
+            { val: `${Math.round((club.statistics.wins / (club.statistics.wins + club.statistics.losses)) * 100)}%`, label: "TỈ LỆ CHIẾN THẮNG", desc: "Tần suất hạ gục đối thủ" }
+          ].map((stat, idx) => (
+            <div key={idx} className="p-3 text-center md:text-left space-y-1 md:border-r border-zinc-900/60 last:border-r-0">
+              <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest block">{stat.label}</span>
+              <div className="text-3xl font-black text-white font-mono leading-none">{stat.val}</div>
+              <span className="text-[9px] text-zinc-600 block leading-tight font-mono">{stat.desc}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* ── ACADEMY DETAILS GRID (3/3 layout) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* LEFT: DOJO MISSION & RETAINED ROSTER (7/12) */}
+          <div className="lg:col-span-7 space-y-8">
+            
+            {/* Mission Statement */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 border-b border-zinc-900 pb-3">
+                <div className="w-1 h-3.5 bg-red-600 rounded-full" />
+                <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 uppercase">GIỚI THIỆU VÕ ĐƯỜNG</h3>
+              </div>
+              <p className="text-sm text-zinc-300 leading-relaxed font-light">
+                {club.description}
+              </p>
+            </div>
+
+            {/* Registered Roster */}
+            <div className="space-y-5">
+              <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-1 h-3.5 bg-red-600 rounded-full" />
+                  <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 uppercase">
+                    VÕ SĨ TRONG BIÊN CHẾ
+                  </h3>
+                </div>
+                <span className="text-[9px] font-mono text-zinc-500 bg-zinc-900/50 border border-zinc-900 px-3 py-1 rounded-md">
+                  {fighters.length} VÕ SĨ CHỦ LỰC
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {fighters.map((f, idx) => (
+                  <div 
+                    key={idx}
+                    className="group bg-zinc-950/60 border border-zinc-900 hover:border-red-500/30 p-5 rounded-2xl transition-all duration-300 relative overflow-hidden"
+                  >
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-red-600/5 to-transparent pointer-events-none" />
+                    
+                    <div className="space-y-2">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          {f.id ? (
+                            <Link 
+                              to={`/fighter/${f.id}`}
+                              className="text-sm font-bold text-white hover:text-red-400 transition-colors no-underline block"
+                            >
+                              {f.name}
+                            </Link>
+                          ) : (
+                            <span className="text-sm font-bold text-zinc-200 block">{f.name}</span>
+                          )}
+                          <span className="text-[10px] text-zinc-500 font-mono block mt-0.5">{f.class}</span>
+                        </div>
+
+                        <span className="text-[9px] font-mono font-black text-amber-500 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md uppercase">
+                          {f.rank}
+                        </span>
+                      </div>
+
+                      <div className="pt-2 border-t border-zinc-900 flex justify-between items-center text-[10px] font-mono">
+                        <span className="text-zinc-600">Thành tích MMA</span>
+                        <span className="text-zinc-300 font-bold">{f.record}</span>
+                      </div>
+
+                      {f.id && (
+                        <Link 
+                          to={`/fighter/${f.id}`}
+                          className="text-[9px] font-mono font-bold text-red-500 hover:text-red-400 tracking-wider uppercase flex items-center gap-1.5 pt-1.5 no-underline"
+                        >
+                          XEM CHI TIẾT HỒ SƠ &rarr;
+                        </Link>
+                      )}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
 
-            {/* Accomplishments Card */}
+          </div>
+
+          {/* RIGHT: COACHES & TRAINING DISCIPLINES (5/12) */}
+          <div className="lg:col-span-5 space-y-8">
+            
+            {/* Disciplines Card */}
             <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4">
-              <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 border-b border-zinc-900 pb-2.5 uppercase">
-                THÀNH TÍCH ĐÃ ĐẠT
-              </h3>
-              <ul className="space-y-3 text-xs list-none p-0 m-0">
+              <div className="flex items-center gap-2 border-b border-zinc-900 pb-3">
+                <div className="w-1 h-3.5 bg-red-600 rounded-full" />
+                <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 uppercase">
+                  HỆ THỐNG ĐÀO TẠO
+                </h3>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {club.disciplines.map((d) => (
+                  <div key={d} className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-3 text-center hover:border-zinc-700 transition-colors">
+                    <span className="text-lg block mb-1">🥋</span>
+                    <span className="text-xs font-bold text-zinc-200 block font-mono">{d}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Achievements Card */}
+            <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4">
+              <div className="flex items-center gap-2 border-b border-zinc-900 pb-3">
+                <div className="w-1 h-3.5 bg-red-600 rounded-full" />
+                <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 uppercase">
+                  THÀNH TÍCH ĐÃ ĐẠT
+                </h3>
+              </div>
+              <ul className="space-y-3.5 text-xs list-none p-0 m-0">
                 {club.achievements.map((ach, idx) => (
-                  <li key={idx} className="flex gap-2.5 items-start text-zinc-300">
-                    <span className="text-amber-500 font-bold mt-0.5">&bull;</span>
+                  <li key={idx} className="flex gap-3 items-start text-zinc-300 bg-[#080809] border border-zinc-900/60 p-3 rounded-xl">
+                    <span className="text-amber-500 font-bold shrink-0 mt-0.5">✦</span>
                     <span className="leading-relaxed font-light">{ach}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-          </div>
-
-          {/* Fighters Roster Table */}
-          <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4">
-            <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 border-b border-zinc-900 pb-2.5 uppercase">
-              VÕ SĨ TRONG BIÊN CHẾ ({fighters.length})
-            </h3>
-            
-            <div className="space-y-2.5">
-              {fighters.map((f, idx) => (
-                <div 
-                  key={idx}
-                  className="flex items-center justify-between bg-black/40 border border-zinc-900/60 hover:border-zinc-800 p-4 rounded-xl transition-all"
-                >
-                  <div>
-                    {f.id ? (
-                      <Link 
-                        to={`/fighter/${f.id}`}
-                        className="text-sm font-bold text-white hover:text-red-400 transition-colors no-underline"
-                      >
-                        {f.name} <span className="text-[9px] font-mono bg-red-600/10 text-red-500 px-2 py-0.5 rounded border border-red-500/20 ml-1.5 uppercase">Xem hồ sơ</span>
-                      </Link>
-                    ) : (
-                      <span className="text-sm font-bold text-zinc-300">{f.name}</span>
-                    )}
-                    <span className="text-[10px] text-zinc-500 font-mono block mt-1">{f.class} · {f.record}</span>
-                  </div>
-
-                  <span className="text-xs font-mono font-bold text-amber-500 bg-amber-500/5 px-3 py-1 rounded-lg border border-amber-500/15">
-                    {f.rank}
-                  </span>
+            {/* Assistant Coaches Card */}
+            {club.assistantCoaches && club.assistantCoaches.length > 0 && (
+              <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4">
+                <div className="flex items-center gap-2 border-b border-zinc-900 pb-3">
+                  <div className="w-1 h-3.5 bg-red-600 rounded-full" />
+                  <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 uppercase">
+                    TRỢ LÝ HUẤN LUYỆN
+                  </h3>
                 </div>
-              ))}
-            </div>
+                <div className="flex flex-wrap gap-2">
+                  {club.assistantCoaches.map((c) => (
+                    <span key={c} className="bg-zinc-900 text-zinc-300 px-3.5 py-2 rounded-xl border border-zinc-800 text-xs">
+                      👤 {c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
           </div>
 
         </div>
