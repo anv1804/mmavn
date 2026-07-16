@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { mmaClubs } from "../data/clubs";
 import { nam_52 } from "../data/rankings/nam_52";
 import { nam_56 } from "../data/rankings/nam_56";
 import { nam_60 } from "../data/rankings/nam_60";
@@ -443,6 +443,55 @@ export default function Lion() {
             </div>
           </div>
         </div>
+
+        {/* ── SECTION: TOP CLUBS PREVIEW ── */}
+        <div className="mt-20 pt-16 border-t border-zinc-900/60 max-w-6xl mx-auto px-6">
+          <div className="flex items-end justify-between mb-10">
+            <div className="flex items-center gap-3">
+              <div className="w-0.5 h-8 bg-gradient-to-b from-red-500 to-red-700 rounded-full" />
+              <div>
+                <div className="text-[9px] font-mono text-red-500/60 uppercase tracking-[0.3em]">Affiliated Gyms</div>
+                <h2 className="text-lg font-black text-white uppercase tracking-wide">Võ Đường & CLB MMA Tiêu Biểu</h2>
+              </div>
+            </div>
+            <button
+              onClick={() => navigate("/clubs")}
+              className="text-[10px] font-mono font-bold tracking-widest text-red-500 hover:text-red-400 bg-transparent border-none cursor-pointer flex items-center gap-1.5"
+            >
+              XEM TẤT CẢ CLB &rarr;
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {mmaClubs.slice(0, 3).map((club) => (
+              <div
+                key={club.id}
+                onClick={() => navigate(`/club/${club.id}`)}
+                className="group relative overflow-hidden rounded-2xl border border-zinc-900 bg-zinc-950/40 p-5 flex flex-col justify-between hover:border-red-500/30 transition-all duration-300 cursor-pointer hover:bg-zinc-950/70"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-11 h-11 rounded-xl bg-zinc-900 border border-zinc-800/80 flex items-center justify-center p-1.5 overflow-hidden">
+                      <img src={club.logo} alt={club.name} className="w-full h-full object-contain" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-black text-white group-hover:text-red-400 transition-colors leading-tight">{club.name}</h4>
+                      <span className="text-[9px] text-zinc-500 font-mono block mt-0.5">{club.city}</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-zinc-400 leading-relaxed line-clamp-2 font-light">
+                    {club.description}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-zinc-900/60 flex justify-between items-center text-[9px] font-mono text-zinc-500">
+                  <span>HLV: {club.headCoach}</span>
+                  <span className="text-red-500 group-hover:translate-x-1 transition-transform">CHI TIẾT &rarr;</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );
