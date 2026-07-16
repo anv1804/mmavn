@@ -30,22 +30,22 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
   return (
     <div className="min-h-screen bg-[#030303] text-white overflow-hidden relative selection:bg-red-600 selection:text-white" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       
-      {/* ── BACKGROUND GEOMETRICS & NEON ORBS ── */}
+      {/* ── BACKGROUND GLOWS ── */}
       <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(255,30,39,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,30,39,0.01)_1px,transparent_1px)] bg-[size:30px_30px]" />
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-red-600/5 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-red-600/5 blur-[140px] rounded-full pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-zinc-800/5 blur-[140px] rounded-full pointer-events-none" />
 
-      {/* Giant high-tech typography outline background */}
-      <div className="absolute top-[20%] right-[3%] select-none pointer-events-none z-0 opacity-[0.015] text-right font-black uppercase leading-[0.8]">
-        <span className="text-[16vw] block tracking-tighter" style={{ WebkitTextStroke: "1px white", fill: "transparent" }}>VTT</span>
-        <span className="text-[13vw] block tracking-tighter text-red-600">56KG</span>
+      {/* Giant background text */}
+      <div className="absolute top-[25%] right-[5%] select-none pointer-events-none z-0 opacity-[0.01] text-right font-black uppercase leading-none">
+        <span className="text-[15vw] block tracking-tighter" style={{ WebkitTextStroke: "1px white", fill: "transparent" }}>VTT</span>
+        <span className="text-[12vw] block tracking-tighter text-red-600">56KG</span>
       </div>
 
-      {/* ── HEADER ACTION ROW ── */}
+      {/* ── STICKY CONTROL BAR ── */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 pt-6 flex items-center justify-between">
         <button
           onClick={onBack}
-          className="group flex items-center gap-3 text-[10px] font-mono tracking-[0.25em] text-zinc-400 hover:text-white bg-black/80 border border-zinc-900 hover:border-red-500/40 px-5 py-2.5 rounded-full transition-all duration-300 cursor-pointer"
+          className="group flex items-center gap-3 text-[10px] font-mono tracking-[0.25em] text-zinc-400 hover:text-white bg-black/60 border border-zinc-900 hover:border-red-500/40 px-5 py-2.5 rounded-full transition-all duration-300 cursor-pointer"
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-200 block">&larr;</span> 
           <span>QUAY LẠI</span>
@@ -59,30 +59,33 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-8 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* ══════════════════════════════════════
-              LEFT SIDE: IMAGE CARD & ACHIEVEMENTS (4/12)
-              ══════════════════════════════════════ */}
+          {/* ── CỘT TRÁI: ẢNH VÕ SĨ & MẠNG XÃ HỘI (4/12) ── */}
           <div className="lg:col-span-4 space-y-6">
             
-            {/* Visual Fighter Photo Card with high-tech outline */}
+            {/* Visual Fighter Photo Card */}
             <div className="relative overflow-hidden rounded-3xl border border-zinc-900 bg-zinc-950/60 p-6 flex flex-col items-center group">
               {/* Corner neon decorations */}
-              <div className="absolute top-3 left-3 w-3 h-3 border-t border-l border-red-500/40" />
-              <div className="absolute top-3 right-3 w-3 h-3 border-t border-r border-red-500/40" />
-              <div className="absolute bottom-3 left-3 w-3 h-3 border-b border-l border-red-500/40" />
-              <div className="absolute bottom-3 right-3 w-3 h-3 border-b border-r border-red-500/40" />
+              <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-red-600/70" />
+              <div className="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-red-600/70" />
+              <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b-2 border-l-2 border-red-600/70" />
+              <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-red-600/70" />
 
-              {/* Red glowing spotlight */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.12)_0%,transparent_75%)] pointer-events-none" />
-              
-              {/* Fighter image container */}
-              <div className="relative z-10 w-full min-h-[320px] flex items-center justify-center overflow-hidden rounded-2xl bg-black/30 border border-zinc-900/50">
+              {/* Red glowing spotlight background */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.25)_0%,transparent_70%)] pointer-events-none" />
+
+              {/* Fighter image container (Enlarged Photo visually) */}
+              <div className="relative z-10 w-full h-[340px] flex items-center justify-center overflow-hidden rounded-2xl bg-zinc-950/80 border border-zinc-900">
+                {/* Visual tech crosshairs inside image container */}
+                <div className="absolute inset-4 border border-zinc-900/30 pointer-events-none rounded-lg" />
+                
                 {fighter.photo ? (
                   <img
                     src={fighter.photo}
                     alt={fighter.name}
-                    className="w-full max-w-[220px] object-contain drop-shadow-[0_20px_40px_rgba(239,68,68,0.25)] transition-transform duration-500 group-hover:scale-110"
-                    style={{ maxHeight: "360px" }}
+                    className="w-full h-full object-contain relative z-10 transition-transform duration-500 scale-[2.2] translate-y-6 group-hover:scale-[2.4]"
+                    style={{
+                      filter: "drop-shadow(0 15px 25px rgba(239,68,68,0.3))"
+                    }}
                   />
                 ) : (
                   <div className="h-64 w-48 bg-zinc-900 border border-zinc-800 rounded-2xl flex items-center justify-center text-zinc-700 text-6xl">
@@ -100,7 +103,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                 )}
               </div>
 
-              {/* Verified social media SVGs with fixed double instagram bug */}
+              {/* Social media links */}
               {fighter.socialMedia && (
                 <div className="flex items-center justify-center gap-3.5 mt-5 pt-4 border-t border-zinc-900/60 w-full relative z-10">
                   {fighter.socialMedia.facebook && (
@@ -135,7 +138,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
               )}
             </div>
 
-            {/* Achievements Card with Amber/Gold Highlights */}
+            {/* Achievements Card */}
             {fighter.achievements && fighter.achievements.length > 0 && (
               <div className="rounded-3xl border border-amber-500/10 bg-zinc-950/60 p-6 space-y-4 shadow-lg shadow-amber-500/[0.02]">
                 <div className="flex items-center gap-2 border-b border-zinc-900 pb-3">
@@ -185,7 +188,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
               </p>
             </div>
 
-            {/* Wins / Losses Ledger (Tech Dashboard style) */}
+            {/* Wins / Losses Ledger */}
             <div className="grid grid-cols-4 gap-4">
               {[
                 { val: wins, label: "WINS", color: "text-emerald-400" },
@@ -232,7 +235,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
                 </div>
               </div>
 
-              {/* Victory percentages with Glistening gradient bars */}
+              {/* Victory percentages */}
               <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-6 space-y-4.5">
                 <div className="flex items-center gap-2 border-b border-zinc-900 pb-2">
                   <div className="w-1 h-3.5 bg-red-600 rounded-full" />
