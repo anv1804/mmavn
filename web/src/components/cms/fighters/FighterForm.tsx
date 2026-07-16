@@ -25,6 +25,9 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
   // Keep track of which fight indexes are collapsed
   const [collapsedFights, setCollapsedFights] = useState<Record<number, boolean>>({});
 
+  // Keep track of dragged item index for sorting
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+
   const inputClass = `w-full p-2.5 rounded-xl border text-xs ${
     isDark
       ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none"
@@ -152,19 +155,46 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
     set("fights", (fighter.fights || []).filter((_: any, idx: number) => idx !== index));
   };
 
-  const handleMoveFight = (index: number, direction: "up" | "down") => {
+  const handleDragStart = (idx: number) => {
+    setDraggedIndex(idx);
+  };
+
+  const handleDragOver = (e: React.DragEvent, targetIdx: number) => {
+    e.preventDefault(); // Required to allow dropping
+    if (draggedIndex === null || draggedIndex === targetIdx) return;
+    
+    // Sort array in real-time
     const list = [...(fighter.fights || [])];
-    if (direction === "up" && index > 0) {
-      const temp = list[index];
-      list[index] = list[index - 1];
-      list[index - 1] = temp;
-      set("fights", list);
-    } else if (direction === "down" && index < list.length - 1) {
-      const temp = list[index];
-      list[index] = list[index + 1];
-      list[index + 1] = temp;
-      set("fights", list);
-    }
+    const draggedItem = list[draggedIndex];
+    list.splice(draggedIndex, 1);
+    list.splice(targetIdx, 0, draggedItem);
+    
+    // Maintain collapsed states while dragging
+    const nextCollapsed: Record<number, boolean> = {};
+    Object.keys(collapsedFights).forEach((k) => {
+      const parsedKey = parseInt(k);
+      let newKey = parsedKey;
+      if (parsedKey === draggedIndex) {
+        newKey = targetIdx;
+      } else if (draggedIndex < targetIdx) {
+        if (parsedKey > draggedIndex && parsedKey <= targetIdx) {
+          newKey = parsedKey - 1;
+        }
+      } else {
+        if (parsedKey >= targetIdx && parsedKey < draggedIndex) {
+          newKey = parsedKey + 1;
+        }
+      }
+      nextCollapsed[newKey] = collapsedFights[parsedKey];
+    });
+
+    setDraggedIndex(targetIdx);
+    setCollapsedFights(nextCollapsed);
+    set("fights", list);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
   };
 
   const toggleCollapse = (idx: number) => {
@@ -726,8 +756,14 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
                     return (
                       <div 
                         key={idx} 
+                        draggable
+                        onDragStart={() => handleDragStart(idx)}
+                        onDragOver={(e) => handleDragOver(e, idx)}
+                        onDragEnd={handleDragEnd}
                         className={`border rounded-2xl overflow-hidden transition-all ${
-                          isDark ? "bg-zinc-900/10 border-zinc-900" : "bg-zinc-50/20 border-zinc-200"
+                          draggedIndex === idx 
+                            ? "opacity-50 border-red-500 scale-[0.98]" 
+                            : isDark ? "bg-zinc-900/10 border-zinc-900" : "bg-zinc-50/20 border-zinc-200"
                         }`}
                       >
                         
@@ -739,34 +775,16 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
                           onClick={() => toggleCollapse(idx)}
                         >
                           <div className="flex items-center gap-3">
-                            {/* Reorder actions (Move Up / Down) */}
-                            <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
-                              <button
-                                type="button"
-                                disabled={idx === 0}
-                                onClick={() => handleMoveFight(idx, "up")}
-                                className={`w-5 h-5 rounded flex items-center justify-center border text-[10px] cursor-pointer ${
-                                  idx === 0 
-                                    ? "opacity-30 cursor-not-allowed" 
-                                    : isDark ? "border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-white" : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-100"
-                                }`}
-                                title="Di chuyển lên"
-                              >
-                                ▲
-                              </button>
-                              <button
-                                type="button"
-                                disabled={idx === fighter.fights.length - 1}
-                                onClick={() => handleMoveFight(idx, "down")}
-                                className={`w-5 h-5 rounded flex items-center justify-center border text-[10px] cursor-pointer ${
-                                  idx === fighter.fights.length - 1 
-                                    ? "opacity-30 cursor-not-allowed" 
-                                    : isDark ? "border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-white" : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-100"
-                                }`}
-                                title="Di chuyển xuống"
-                              >
-                                ▼
-                              </button>
+                            
+                            {/* Drag Indicator handle icon */}
+                            <div 
+                              className="cursor-grab active:cursor-grabbing text-zinc-500 hover:text-red-500 flex items-center gap-0.5 pr-1 py-1"
+                              onClick={(e) => e.stopPropagation()}
+                              title="Kéo thả để sắp xếp"
+                            >
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8.5 6a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-10 6a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-10 6a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                              </svg>
                             </div>
 
                             <span className="text-[10px] font-mono text-zinc-500 font-bold">#{fighter.fights.length - idx}</span>
