@@ -59,9 +59,9 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        elevated 
-          ? (isDark ? "bg-black/95 backdrop-blur-md shadow-lg shadow-black/20 border-b border-zinc-900/80" : "bg-white/95 backdrop-blur-md shadow-md shadow-zinc-200/10 border-b border-zinc-200/80") 
-          : "bg-transparent"
+        isDark 
+          ? (elevated ? "bg-black/95 backdrop-blur-md shadow-lg shadow-black/20 border-b border-zinc-900/80" : "bg-transparent") 
+          : "bg-white/95 backdrop-blur-md shadow-md shadow-zinc-200/10 border-b border-zinc-200/80"
       }`}
     >
       
