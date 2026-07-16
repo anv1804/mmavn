@@ -35,7 +35,7 @@ export default function CmsFighters() {
       (f.name.toLowerCase().includes(q) || f.nickname?.toLowerCase().includes(q) || f.club?.toLowerCase().includes(q)) &&
       (!filterWeightClass || f.weight_class === filterWeightClass) &&
       (!filterGender || (f.gender || "Nam") === filterGender) &&
-      (!filterStatus || (filterStatus === "active" ? f.active !== false : f.active === false))
+      (!filterStatus || (f.status ?? "Thi đấu") === filterStatus)
     );
   });
 

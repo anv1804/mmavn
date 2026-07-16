@@ -35,8 +35,10 @@ export default function FighterFilters({
   ];
 
   const statusOptions = [
-    { value: "active", label: "Đang hoạt động" },
-    { value: "inactive", label: "Ngưng hoạt động" },
+    { value: "Thi đấu", label: "🟢 Thi đấu" },
+    { value: "Chấn thương", label: "🟠 Chấn thương" },
+    { value: "Giải nghệ", label: "⚪ Giải nghệ" },
+    { value: "Ẩn", label: "⚫ Ẩn" },
   ];
 
   return (

@@ -105,16 +105,30 @@ export default function FighterForm({ fighter, clubs, onChange, onSave, onCancel
         ></textarea>
       </div>
 
-      {/* Trạng thái */}
-      <div className="flex items-center gap-3">
-        <input
-          type="checkbox"
-          id="fighter-active"
-          checked={fighter.active !== false}
-          onChange={(e) => set("active", e.target.checked)}
-          className="accent-red-600 w-4 h-4 cursor-pointer"
-        />
-        <label htmlFor="fighter-active" className="text-xs font-medium cursor-pointer">Đang hoạt động thi đấu</label>
+      {/* Status */}
+      <div className="space-y-2">
+        <label className="text-[10px] text-zinc-400 uppercase block">Trạng thái thi đấu</label>
+        <div className="flex gap-2 flex-wrap">
+          {["Thi đấu", "Chấn thương", "Giải nghệ", "Ẩn"].map((s) => {
+            const isActive = (fighter.status ?? "Thi đấu") === s;
+            return (
+              <button
+                key={s}
+                type="button"
+                onClick={() => set("status", s)}
+                className={`px-4 py-2 rounded-xl text-xs font-medium border transition-all cursor-pointer ${
+                  isActive
+                    ? "border-red-500 bg-red-500/10 text-red-600 dark:text-red-400"
+                    : isDark
+                    ? "border-zinc-800 text-zinc-500 hover:border-zinc-700 hover:text-zinc-300"
+                    : "border-zinc-200 text-zinc-400 hover:border-zinc-300 hover:text-zinc-700"
+                }`}
+              >
+                {s}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Actions */}

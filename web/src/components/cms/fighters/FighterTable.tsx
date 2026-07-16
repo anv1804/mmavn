@@ -20,15 +20,16 @@ function GenderIcon({ gender }: { gender?: string }) {
     : <span className="text-sm text-blue-400 font-bold leading-none" title="Nam">♂</span>;
 }
 
-function StatusDot({ active }: { active?: boolean }) {
-  return (
-    <span
-      title={active !== false ? "Đang hoạt động" : "Ngưng hoạt động"}
-      className={`inline-block w-2.5 h-2.5 rounded-full ${
-        active !== false ? "bg-emerald-500 shadow-sm shadow-emerald-500/60" : "bg-zinc-500"
-      }`}
-    />
-  );
+const STATUS_CONFIG: Record<string, { color: string; label: string }> = {
+  "Thi đấu":     { color: "bg-emerald-500 shadow-sm shadow-emerald-500/60", label: "Thi đấu" },
+  "Chấn thương": { color: "bg-amber-400 shadow-sm shadow-amber-400/60",   label: "Chấn thương" },
+  "Giải nghệ":  { color: "bg-zinc-400",                                    label: "Giải nghệ" },
+  "Ẩn":          { color: "bg-zinc-700",                                    label: "Ẩn" },
+};
+
+function StatusDot({ status }: { status?: string }) {
+  const cfg = STATUS_CONFIG[status ?? "Thi đấu"] ?? STATUS_CONFIG["Giải nghệ"];
+  return <span title={cfg.label} className={`inline-block w-2.5 h-2.5 rounded-full ${cfg.color}`} />;
 }
 
 const THEAD_COLS = ["#", "Võ Sĩ", "Hạng Cân", "Võ Đường", "Quốc tịch", "Trạng thái", ""];
@@ -134,7 +135,7 @@ export default function FighterTable({ fighters, clubs, page, totalPages, total,
 
                     {/* Status */}
                     <td className="px-4 py-3">
-                      <StatusDot active={fighter.active} />
+                      <StatusDot status={fighter.status} />
                     </td>
 
                     {/* Actions */}
