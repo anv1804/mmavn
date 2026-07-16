@@ -70,7 +70,7 @@ export default function Cms() {
   const [selectedRanking, setSelectedRanking] = useState<any | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
 
-  // Fetch initial data
+  // Fetch data
   useEffect(() => {
     if (!isLoggedIn) return;
     async function loadData() {
@@ -277,79 +277,81 @@ export default function Cms() {
   const filteredRankings = rankings.filter(r => r.name.toLowerCase().includes(searchQuery.toLowerCase()));
   const filteredEvents = events.filter(e => e.title.toLowerCase().includes(searchQuery.toLowerCase()) || e.loc.toLowerCase().includes(searchQuery.toLowerCase()));
 
-  // ── RENDER LOGIN GATE IF NOT LOGGED IN ──
+  // ── RENDER DEDICATED LOGIN GATE IF NOT AUTHENTICATED ──
   if (!isLoggedIn) {
     return (
-      <div className={`min-h-screen flex items-center justify-center relative overflow-hidden ${
-        isDark ? "bg-[#050508] text-white" : "bg-[#f8f9fa] text-zinc-900"
-      }`} style={{ fontFamily: "'Outfit', sans-serif" }}>
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#07070a] text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>
         
-        {/* Glow Spheres for Login page */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
+        {/* Cinematic atmospheric glowing spheres */}
+        <div className="absolute top-[-20%] left-[-20%] w-[60vw] h-[60vh] bg-red-650/15 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[10s]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vh] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse duration-[8s]" />
+        
+        {/* Carbon cage line background */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: "32px 32px"
+        }} />
 
-        <div className={`w-full max-w-md p-8 border rounded-3xl relative z-10 shadow-2xl backdrop-blur-md transition-all ${
-          isDark ? "bg-zinc-950/80 border-zinc-900 shadow-black/80" : "bg-white border-zinc-200 shadow-zinc-200/50"
-        }`}>
-          
+        <div className="w-full max-w-md p-8 border border-zinc-800/80 bg-zinc-950/70 backdrop-blur-xl rounded-3xl relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+          {/* Decorative subtle border corners */}
+          <div className="absolute top-4 left-4 w-3 h-3 border-t-2 border-l-2 border-red-500/30" />
+          <div className="absolute bottom-4 right-4 w-3 h-3 border-b-2 border-r-2 border-red-500/30" />
+
           <div className="flex flex-col items-center mb-8">
-            <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-14 h-14 object-contain mb-3 drop-shadow-[0_4px_10px_rgba(239,68,68,0.2)]" />
-            <h2 className="text-2xl font-black uppercase font-mono tracking-tight" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <div className="w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center p-2 mb-3 shadow-lg shadow-black/50">
+              <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-full h-full object-contain" />
+            </div>
+            <h2 className="text-3xl font-black uppercase font-mono tracking-tight text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>
               MMAVN CMS LOGIN
             </h2>
-            <p className="text-[10px] text-zinc-500 font-mono tracking-wider uppercase mt-1">Cổng quản trị cơ sở dữ liệu hệ thống</p>
+            <p className="text-[9px] text-zinc-500 font-mono tracking-widest uppercase mt-1">Hệ thống quản trị đấu trường võ thuật</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-5">
             {authError && (
-              <div className="p-3 bg-red-600/10 border border-red-500/30 rounded-xl text-xs font-mono text-red-500 text-center">
+              <div className="p-3.5 bg-red-950/20 border border-red-500/30 rounded-xl text-[11px] font-mono text-red-400 text-center animate-shake">
                 ⚠️ {authError}
               </div>
             )}
             
-            <div className="space-y-1">
-              <label className="text-[10px] text-zinc-500 font-mono uppercase block">Tài khoản</label>
+            <div className="space-y-1.5">
+              <label className="text-[9px] text-zinc-400 font-mono uppercase tracking-widest block">Tài khoản quản trị</label>
               <input 
                 type="text" 
                 placeholder="Nhập tên đăng nhập"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className={`w-full px-4 py-3 rounded-xl border text-xs transition-all ${
-                  isDark 
-                    ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500 focus:outline-none" 
-                    : "bg-zinc-50 border-zinc-250 text-zinc-900 focus:border-red-500 focus:outline-none"
-                }`}
+                className="w-full px-4 py-3 bg-zinc-900/60 border border-zinc-800 focus:border-red-500/60 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-red-500/20 transition-all font-mono placeholder-zinc-600"
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-[10px] text-zinc-500 font-mono uppercase block">Mật khẩu</label>
+            <div className="space-y-1.5">
+              <label className="text-[9px] text-zinc-400 font-mono uppercase tracking-widest block">Mật khẩu hệ thống</label>
               <input 
                 type="password" 
                 placeholder="Nhập mật khẩu"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`w-full px-4 py-3 rounded-xl border text-xs transition-all ${
-                  isDark 
-                    ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500 focus:outline-none" 
-                    : "bg-zinc-50 border-zinc-250 text-zinc-900 focus:border-red-500 focus:outline-none"
-                }`}
+                className="w-full px-4 py-3 bg-zinc-900/60 border border-zinc-800 focus:border-red-500/60 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-red-500/20 transition-all font-mono placeholder-zinc-600"
               />
             </div>
 
             <button 
               type="submit"
-              className="w-full py-3.5 mt-2 bg-gradient-to-r from-red-700 to-red-600 hover:from-red-650 hover:to-red-550 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer border-none shadow-lg shadow-red-600/20 active:scale-98"
+              className="w-full py-4 mt-2 bg-gradient-to-r from-red-700 via-rose-600 to-red-650 hover:from-red-600 hover:to-rose-550 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer border-none shadow-lg shadow-red-600/20 hover:scale-[1.02] active:scale-95 duration-200"
             >
-              Đăng Nhập
+              Đăng Nhập Dashboard
             </button>
 
             <button 
               type="button"
               onClick={() => navigate("/")}
-              className={`w-full py-2.5 bg-transparent border-none text-[10px] font-mono text-zinc-500 hover:text-zinc-300 cursor-pointer mt-2`}
+              className="w-full py-2.5 bg-transparent border-none text-[10px] font-mono text-zinc-500 hover:text-zinc-350 cursor-pointer mt-1"
             >
-              &larr; Quay lại trang chủ
+              &larr; Quay lại trang chủ MMAVN
             </button>
           </form>
         </div>
@@ -360,22 +362,22 @@ export default function Cms() {
   // ── RENDER DEDICATED CMS DASHBOARD ONCE AUTHENTICATED ──
   return (
     <div className={`h-screen flex overflow-hidden ${
-      isDark ? "bg-[#030303] text-zinc-100" : "bg-[#f8f9fa] text-zinc-900"
+      isDark ? "bg-[#050508] text-zinc-150" : "bg-[#f4f5f8] text-zinc-900"
     }`} style={{ fontFamily: "'Outfit', sans-serif" }}>
       
-      {/* ── LEFT SIDEBAR NAVIGATION ── Styled identically to requested layout */}
+      {/* ── LEFT SIDEBAR NAVIGATION ── Overhauled to ultra-sleek design */}
       <div className={`w-64 flex flex-col justify-between border-r shrink-0 ${
-        isDark ? "bg-zinc-950/90 border-zinc-900" : "bg-white border-zinc-200"
+        isDark ? "bg-zinc-950/80 border-zinc-900/80" : "bg-white border-zinc-200"
       }`}>
         <div className="flex flex-col">
           {/* Logo Brand Header */}
-          <div className="p-6 border-b flex items-center gap-3 cursor-pointer" onClick={() => navigate("/")} style={{ borderColor: isDark ? "#121214" : "#f1f1f4" }}>
-            <div className="w-10 h-10 rounded-2xl bg-emerald-500 flex items-center justify-center text-white font-black text-lg shadow-md shadow-emerald-500/10">
+          <div className="p-6 border-b flex items-center gap-3 cursor-pointer" onClick={() => navigate("/")} style={{ borderColor: isDark ? "rgba(39, 39, 42, 0.4)" : "#e4e4e7" }}>
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-emerald-500/10">
               A
             </div>
             <div>
               <span className="text-xs font-black uppercase tracking-tight block">ANV SPORT</span>
-              <span className="text-[8px] font-mono font-bold text-zinc-400 tracking-wider block">WORKSPACE</span>
+              <span className="text-[8px] font-mono font-bold text-zinc-500 tracking-wider block">WORKSPACE</span>
             </div>
           </div>
 
@@ -388,10 +390,10 @@ export default function Cms() {
               
               <button
                 onClick={() => { setActiveTab("dashboard"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
+                className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
                   activeTab === "dashboard"
-                    ? isDark ? "bg-zinc-900 text-white" : "bg-emerald-50 text-emerald-600"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/50" : "bg-transparent text-zinc-600 hover:bg-zinc-100"
+                    ? isDark ? "bg-zinc-900 text-white shadow-sm" : "bg-emerald-50 text-emerald-600 shadow-sm"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-500 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">🎛️</span>
@@ -400,10 +402,10 @@ export default function Cms() {
 
               <button
                 onClick={() => { setActiveTab("events"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
+                className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
                   activeTab === "events"
-                    ? isDark ? "bg-zinc-900 text-white" : "bg-emerald-50 text-emerald-600"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/50" : "bg-transparent text-zinc-600 hover:bg-zinc-100"
+                    ? isDark ? "bg-zinc-900 text-white shadow-sm" : "bg-emerald-50 text-emerald-600 shadow-sm"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-500 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">📅</span>
@@ -417,10 +419,10 @@ export default function Cms() {
               
               <button
                 onClick={() => { setActiveTab("fighters"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
+                className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
                   activeTab === "fighters"
-                    ? isDark ? "bg-zinc-900 text-white" : "bg-emerald-50 text-emerald-600"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/50" : "bg-transparent text-zinc-600 hover:bg-zinc-100"
+                    ? isDark ? "bg-zinc-900 text-white shadow-sm" : "bg-emerald-50 text-emerald-600 shadow-sm"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-500 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">🥋</span>
@@ -429,10 +431,10 @@ export default function Cms() {
 
               <button
                 onClick={() => { setActiveTab("clubs"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
+                className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
                   activeTab === "clubs"
-                    ? isDark ? "bg-zinc-900 text-white" : "bg-emerald-50 text-emerald-600"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/50" : "bg-transparent text-zinc-600 hover:bg-zinc-100"
+                    ? isDark ? "bg-zinc-900 text-white shadow-sm" : "bg-emerald-50 text-emerald-600 shadow-sm"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-500 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">🏢</span>
@@ -441,10 +443,10 @@ export default function Cms() {
 
               <button
                 onClick={() => { setActiveTab("rankings"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
+                className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-mono font-bold uppercase transition-all border-none cursor-pointer text-left ${
                   activeTab === "rankings"
-                    ? isDark ? "bg-zinc-900 text-white" : "bg-emerald-50 text-emerald-600"
-                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/50" : "bg-transparent text-zinc-600 hover:bg-zinc-100"
+                    ? isDark ? "bg-zinc-900 text-white shadow-sm" : "bg-emerald-50 text-emerald-600 shadow-sm"
+                    : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-500 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
                 <span className="text-sm">🏆</span>
@@ -455,15 +457,15 @@ export default function Cms() {
           </div>
         </div>
 
-        {/* Profile Card & Logout bottom layout */}
-        <div className="p-4 border-t space-y-3" style={{ borderColor: isDark ? "#121214" : "#f1f1f4" }}>
-          <div className={`p-3 rounded-2xl border flex items-center gap-3 ${isDark ? "bg-zinc-900/40 border-zinc-900" : "bg-zinc-50 border-zinc-150"}`}>
-            <span className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-xs text-white">
+        {/* Profile Card & Logout layout */}
+        <div className="p-4 border-t space-y-3" style={{ borderColor: isDark ? "rgba(39, 39, 42, 0.4)" : "#e4e4e7" }}>
+          <div className={`p-3.5 rounded-2xl border flex items-center gap-3 ${isDark ? "bg-zinc-900/40 border-zinc-900/60" : "bg-zinc-50 border-zinc-150"}`}>
+            <span className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-650 flex items-center justify-center font-bold text-xs text-white">
               A
             </span>
             <div className="overflow-hidden">
               <span className="text-[10px] font-bold block leading-none truncate">admin@mmavn.com</span>
-              <span className="inline-block bg-emerald-500/10 text-emerald-500 border border-emerald-500/25 rounded text-[8px] font-mono tracking-widest px-1 py-0.5 mt-1 font-black">
+              <span className="inline-block bg-emerald-500/10 text-emerald-500 border border-emerald-500/25 rounded text-[8px] font-mono tracking-widest px-1.5 py-0.5 mt-1 font-black">
                 ADMIN
               </span>
             </div>
@@ -471,13 +473,13 @@ export default function Cms() {
           
           <button
             onClick={handleLogout}
-            className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border text-[10px] font-mono font-bold uppercase cursor-pointer transition-all ${
+            className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl border text-[10px] font-mono font-bold uppercase cursor-pointer transition-all ${
               isDark 
-                ? "bg-zinc-900/60 hover:bg-red-950/20 hover:text-red-500 border-zinc-800 text-zinc-400" 
-                : "bg-zinc-50 hover:bg-red-50 hover:text-red-600 border-zinc-200 text-zinc-600"
+                ? "bg-zinc-900/60 hover:bg-red-950/20 hover:text-red-500 border-zinc-800/80 text-zinc-400" 
+                : "bg-zinc-50 hover:bg-red-50 hover:text-red-600 border-zinc-200 text-zinc-650"
             }`}
           >
-            <span>🚪 Đăng Xuất</span>
+            <span>🚪 Đăng Xuất Hệ Thống</span>
           </button>
         </div>
       </div>
@@ -487,7 +489,7 @@ export default function Cms() {
         
         {/* Top Header */}
         <header className={`h-16 border-b flex items-center justify-between px-8 z-10 shrink-0 ${
-          isDark ? "bg-zinc-950/40 border-zinc-900" : "bg-white border-zinc-200"
+          isDark ? "bg-zinc-950/40 border-zinc-900/80" : "bg-white border-zinc-200"
         }`}>
           <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
             <span>ANV PORTAL</span>
@@ -511,8 +513,8 @@ export default function Cms() {
           {msg.text && (
             <div className={`fixed bottom-6 right-6 z-50 px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 transition-all text-xs font-bold uppercase tracking-wider ${
               msg.type === "success" 
-                ? "bg-emerald-500 text-white shadow-emerald-500/20" 
-                : "bg-red-600 text-white shadow-red-600/20"
+                ? "bg-emerald-500 text-white shadow-emerald-500/20 animate-slideIn" 
+                : "bg-red-600 text-white shadow-red-600/20 animate-slideIn"
             }`}>
               <span>{msg.type === "success" ? "✓" : "⚠"}</span>
               <span>{msg.text}</span>
@@ -521,7 +523,7 @@ export default function Cms() {
 
           {/* ── TAB: OVERVIEW DASHBOARD ── */}
           {activeTab === "dashboard" && (
-            <div className="space-y-8 animate-fadeIn">
+            <div className="space-y-8">
               
               {/* Title Header */}
               <div>
@@ -529,7 +531,7 @@ export default function Cms() {
                 <p className="text-xs text-zinc-500 font-light mt-1">Theo dõi hiệu suất và số liệu của nền tảng ngày hôm nay.</p>
               </div>
 
-              {/* Dynamic Stats Cards (styled like the requested mockup screenshot) */}
+              {/* Dynamic Stats Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 {/* Card 1: Võ sĩ LION */}
@@ -588,7 +590,7 @@ export default function Cms() {
 
               </div>
 
-              {/* ── ANALYTICS LINE GRAPHS (Styled like the requested mockup screenshot) ── */}
+              {/* ── ANALYTICS LINE GRAPHS ── */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 
                 {/* Graph 1: Lượt xem 24 giờ qua */}
@@ -599,7 +601,6 @@ export default function Cms() {
                     <h3 className="text-xs font-bold uppercase font-mono">Lượt xem 24 giờ qua</h3>
                     <span className="text-[9px] font-mono font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded uppercase">Realtime</span>
                   </div>
-                  {/* Clean SVG Line chart representation */}
                   <div className="h-44 w-full pt-4">
                     <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
                       <path 
@@ -629,7 +630,6 @@ export default function Cms() {
                     <h3 className="text-xs font-bold uppercase font-mono">Lượt xem 7 ngày qua</h3>
                     <span className="text-[9px] font-mono font-bold text-purple-500 bg-purple-500/10 px-2 py-0.5 rounded uppercase">Daily</span>
                   </div>
-                  {/* Clean SVG Line chart representation with gradient fill */}
                   <div className="h-44 w-full pt-4">
                     <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
                       <defs>
@@ -699,10 +699,10 @@ export default function Cms() {
 
           {/* ── TAB 1: CLUBS MANAGEMENT LIST ── */}
           {activeTab === "clubs" && !selectedClub && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeIn">
               {filteredClubs.map((club) => (
                 <div key={club.id} className={`p-4 border rounded-2xl flex items-center justify-between transition-all ${
-                  isDark ? "bg-zinc-950/80 border-zinc-900/60 hover:border-zinc-850" : "bg-white border-zinc-200 hover:border-zinc-300"
+                  isDark ? "bg-zinc-950/80 border-zinc-900/60 hover:border-zinc-800" : "bg-white border-zinc-200 hover:border-zinc-300"
                 }`}>
                   <div className="flex items-center gap-3">
                     <img src={club.logo || "/logo-lionchampionship.png"} alt={club.name} className="w-12 h-12 object-contain bg-zinc-950 rounded-xl p-1" />
@@ -723,10 +723,10 @@ export default function Cms() {
 
           {/* ── TAB 2: FIGHTERS MANAGEMENT LIST ── */}
           {activeTab === "fighters" && !selectedFighter && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeIn">
               {filteredFighters.map((fighter) => (
                 <div key={fighter.id} className={`p-4 border rounded-2xl flex items-center justify-between transition-all ${
-                  isDark ? "bg-zinc-950/80 border-zinc-900/60 hover:border-zinc-850" : "bg-white border-zinc-200 hover:border-zinc-300"
+                  isDark ? "bg-zinc-950/80 border-zinc-900/60 hover:border-zinc-800" : "bg-white border-zinc-200 hover:border-zinc-300"
                 }`}>
                   <div className="flex items-center gap-3">
                     <img src={fighter.photo || "/lvt.png"} alt={fighter.name} className="w-10 h-10 object-cover bg-zinc-950 rounded-full object-top" />
@@ -747,10 +747,10 @@ export default function Cms() {
 
           {/* ── TAB 3: RANKINGS / DIVISIONS LIST ── */}
           {activeTab === "rankings" && !selectedRanking && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeIn">
               {filteredRankings.map((ranking) => (
                 <div key={ranking.id} className={`p-4 border rounded-2xl flex items-center justify-between transition-all ${
-                  isDark ? "bg-zinc-950/80 border-zinc-900/60 hover:border-zinc-850" : "bg-white border-zinc-200 hover:border-zinc-300"
+                  isDark ? "bg-zinc-950/80 border-zinc-900/60 hover:border-zinc-800" : "bg-white border-zinc-200 hover:border-zinc-300"
                 }`}>
                   <div>
                     <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{ranking.name}</h3>
@@ -764,10 +764,10 @@ export default function Cms() {
 
           {/* ── TAB 4: EVENTS LIST ── */}
           {activeTab === "events" && !selectedEvent && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeIn">
               {filteredEvents.map((evt) => (
                 <div key={evt.id} className={`p-4 border rounded-2xl flex items-center justify-between transition-all ${
-                  isDark ? "bg-zinc-950/80 border-zinc-900/60 hover:border-zinc-850" : "bg-white border-zinc-200 hover:border-zinc-300"
+                  isDark ? "bg-zinc-950/80 border-zinc-900/60 hover:border-zinc-800" : "bg-white border-zinc-200 hover:border-zinc-300"
                 }`}>
                   <div>
                     <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{evt.title}</h3>
@@ -800,45 +800,45 @@ export default function Cms() {
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Slug đường dẫn*</label>
-                  <input type="text" value={selectedClub.slug} onChange={(e) => setSelectedClub({ ...selectedClub, slug: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedClub.slug} onChange={(e) => setSelectedClub({ ...selectedClub, slug: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tên Võ đường*</label>
-                  <input type="text" value={selectedClub.name} onChange={(e) => setSelectedClub({ ...selectedClub, name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedClub.name} onChange={(e) => setSelectedClub({ ...selectedClub, name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tên viết tắt (Short Name)</label>
-                  <input type="text" value={selectedClub.short_name || ""} onChange={(e) => setSelectedClub({ ...selectedClub, short_name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedClub.short_name || ""} onChange={(e) => setSelectedClub({ ...selectedClub, short_name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tỉnh / Thành Phố</label>
-                  <input type="text" value={selectedClub.city} onChange={(e) => setSelectedClub({ ...selectedClub, city: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedClub.city} onChange={(e) => setSelectedClub({ ...selectedClub, city: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Địa chỉ chi tiết</label>
-                  <input type="text" value={selectedClub.address || ""} onChange={(e) => setSelectedClub({ ...selectedClub, address: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedClub.address || ""} onChange={(e) => setSelectedClub({ ...selectedClub, address: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Huấn luyện viên trưởng</label>
-                  <input type="text" value={selectedClub.head_coach || ""} onChange={(e) => setSelectedClub({ ...selectedClub, head_coach: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedClub.head_coach || ""} onChange={(e) => setSelectedClub({ ...selectedClub, head_coach: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Năm thành lập</label>
-                  <input type="number" value={selectedClub.founded_year || 2026} onChange={(e) => setSelectedClub({ ...selectedClub, founded_year: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="number" value={selectedClub.founded_year || 2026} onChange={(e) => setSelectedClub({ ...selectedClub, founded_year: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Bộ môn giảng dạy (cách nhau bởi dấu phẩy)</label>
-                  <input type="text" value={selectedClub.disciplines.join(", ")} onChange={(e) => setSelectedClub({ ...selectedClub, disciplines: e.target.value.split(",").map(d => d.trim()) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedClub.disciplines.join(", ")} onChange={(e) => setSelectedClub({ ...selectedClub, disciplines: e.target.value.split(",").map(d => d.trim()) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Đường dẫn Logo URL</label>
-                  <input type="text" value={selectedClub.logo || ""} onChange={(e) => setSelectedClub({ ...selectedClub, logo: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedClub.logo || ""} onChange={(e) => setSelectedClub({ ...selectedClub, logo: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
               </div>
 
               <div className="space-y-1">
                 <label className="text-[10px] text-zinc-400 uppercase font-mono block">Giới thiệu ngắn gọn</label>
-                <textarea value={selectedClub.description || ""} rows={3} onChange={(e) => setSelectedClub({ ...selectedClub, description: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                <textarea value={selectedClub.description || ""} rows={3} onChange={(e) => setSelectedClub({ ...selectedClub, description: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
               </div>
 
               <div className="flex gap-4">
@@ -860,70 +860,70 @@ export default function Cms() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Mã Võ Sĩ (Unique ID)*</label>
-                  <input type="text" value={selectedFighter.id} disabled onChange={(e) => setSelectedFighter({ ...selectedFighter, id: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-zinc-505" : "bg-zinc-100 border-zinc-200"}`} />
+                  <input type="text" value={selectedFighter.id} disabled onChange={(e) => setSelectedFighter({ ...selectedFighter, id: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-805 text-zinc-500" : "bg-zinc-100 border-zinc-200"}`} />
                 </div>
                 <div className="space-y-1 col-span-2">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Họ Tên Võ sĩ*</label>
-                  <input type="text" value={selectedFighter.name} onChange={(e) => setSelectedFighter({ ...selectedFighter, name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedFighter.name} onChange={(e) => setSelectedFighter({ ...selectedFighter, name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Biệt danh (Nickname)</label>
-                  <input type="text" value={selectedFighter.nickname || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, nickname: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedFighter.nickname || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, nickname: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Hạng cân (ví dụ: 56kg, 60kg)</label>
-                  <input type="text" value={selectedFighter.weight_class} onChange={(e) => setSelectedFighter({ ...selectedFighter, weight_class: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedFighter.weight_class} onChange={(e) => setSelectedFighter({ ...selectedFighter, weight_class: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Võ đường trực thuộc</label>
-                  <input type="text" value={selectedFighter.club || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, club: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedFighter.club || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, club: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tuổi</label>
-                  <input type="number" value={selectedFighter.age || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, age: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="number" value={selectedFighter.age || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, age: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Chiều cao (cm)</label>
-                  <input type="number" value={selectedFighter.height || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, height: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="number" value={selectedFighter.height || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, height: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Sải tay (cm)</label>
-                  <input type="number" value={selectedFighter.reach || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, reach: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="number" value={selectedFighter.reach || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, reach: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Thành phố quê quán</label>
-                  <input type="text" value={selectedFighter.hometown || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, hometown: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedFighter.hometown || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, hometown: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Quốc tịch</label>
-                  <input type="text" value={selectedFighter.nationality || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, nationality: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedFighter.nationality || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, nationality: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Quốc kỳ (Emoji)</label>
-                  <input type="text" value={selectedFighter.flag || "🇻🇳"} onChange={(e) => setSelectedFighter({ ...selectedFighter, flag: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" value={selectedFighter.flag || "🇻🇳"} onChange={(e) => setSelectedFighter({ ...selectedFighter, flag: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-950 border-zinc-800 text-white focus:border-red-500" : "bg-white border-zinc-200 text-zinc-900"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Số Trận Thắng</label>
-                  <input type="number" value={selectedFighter.wins || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, wins: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="number" value={selectedFighter.wins || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, wins: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Số Trận Thua</label>
-                  <input type="number" value={selectedFighter.losses || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, losses: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="number" value={selectedFighter.losses || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, losses: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Số Trận Hòa</label>
-                  <input type="number" value={selectedFighter.draws || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, draws: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="number" value={selectedFighter.draws || 0} onChange={(e) => setSelectedFighter({ ...selectedFighter, draws: parseInt(e.target.value) })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
               </div>
 
               <div className="space-y-1">
                 <label className="text-[10px] text-zinc-400 uppercase font-mono block">Đường dẫn ảnh võ sĩ URL</label>
-                <input type="text" value={selectedFighter.photo || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, photo: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                <input type="text" value={selectedFighter.photo || ""} onChange={(e) => setSelectedFighter({ ...selectedFighter, photo: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
               </div>
 
               <div className="space-y-1">
                 <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tiểu sử võ sĩ</label>
-                <textarea value={selectedFighter.bio || ""} rows={3} onChange={(e) => setSelectedFighter({ ...selectedFighter, bio: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                <textarea value={selectedFighter.bio || ""} rows={3} onChange={(e) => setSelectedFighter({ ...selectedFighter, bio: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
               </div>
 
               <div className="flex gap-4">
@@ -950,21 +950,21 @@ export default function Cms() {
                     <input type="text" value={selectedRanking.champion?.name || ""} onChange={(e) => setSelectedRanking({
                       ...selectedRanking,
                       champion: { ...selectedRanking.champion, name: e.target.value }
-                    })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                    })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                   </div>
                   <div className="space-y-1">
                     <label className="text-[9px] text-zinc-500 font-mono uppercase block">Thành tích (ví dụ: 12-2-0)</label>
                     <input type="text" value={selectedRanking.champion?.record || ""} onChange={(e) => setSelectedRanking({
                       ...selectedRanking,
                       champion: { ...selectedRanking.champion, record: e.target.value }
-                    })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                    })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                   </div>
                   <div className="space-y-1">
                     <label className="text-[9px] text-zinc-500 font-mono uppercase block">Võ đường</label>
                     <input type="text" value={selectedRanking.champion?.club || ""} onChange={(e) => setSelectedRanking({
                       ...selectedRanking,
                       champion: { ...selectedRanking.champion, club: e.target.value }
-                    })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                    })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                   </div>
                 </div>
               </div>
@@ -973,7 +973,7 @@ export default function Cms() {
                 <h3 className="text-xs font-mono font-bold text-zinc-400 uppercase tracking-widest">📋 Danh sách xếp hạng từ Top 1 trở đi</h3>
                 <div className="space-y-3">
                   {((selectedRanking.rankings || []) as any[]).map((rankedFighter, rankIdx) => (
-                    <div key={rankIdx} className={`p-3 border rounded-xl grid grid-cols-1 md:grid-cols-12 gap-3 items-center ${isDark ? "bg-zinc-900/40 border-zinc-900" : "bg-zinc-50 border-zinc-150"}`}>
+                    <div key={rankIdx} className={`p-3 border rounded-xl grid grid-cols-1 md:grid-cols-12 gap-3 items-center ${isDark ? "bg-zinc-900/40 border-zinc-900/60" : "bg-zinc-50 border-zinc-150"}`}>
                       <div className="md:col-span-1 text-center font-black font-mono text-zinc-400">
                         Rank {rankedFighter.rank}
                       </div>
@@ -983,7 +983,7 @@ export default function Cms() {
                           const nextRankings = [...selectedRanking.rankings];
                           nextRankings[rankIdx].name = e.target.value;
                           setSelectedRanking({ ...selectedRanking, rankings: nextRankings });
-                        }} className={`w-full px-2 py-1 rounded border text-[11px] ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                        }} className={`w-full px-2 py-1 bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none rounded text-[11px]`} />
                       </div>
                       <div className="md:col-span-3 space-y-1">
                         <label className="text-[8px] text-zinc-500 font-mono block">Thành tích (LION record)</label>
@@ -991,7 +991,7 @@ export default function Cms() {
                           const nextRankings = [...selectedRanking.rankings];
                           nextRankings[rankIdx].record = e.target.value;
                           setSelectedRanking({ ...selectedRanking, rankings: nextRankings });
-                        }} className={`w-full px-2 py-1 rounded border text-[11px] ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                        }} className={`w-full px-2 py-1 bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none rounded text-[11px]`} />
                       </div>
                       <div className="md:col-span-4 space-y-1">
                         <label className="text-[8px] text-zinc-500 font-mono block">Võ đường</label>
@@ -999,7 +999,7 @@ export default function Cms() {
                           const nextRankings = [...selectedRanking.rankings];
                           nextRankings[rankIdx].club = e.target.value;
                           setSelectedRanking({ ...selectedRanking, rankings: nextRankings });
-                        }} className={`w-full px-2 py-1 rounded border text-[11px] ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                        }} className={`w-full px-2 py-1 bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none rounded text-[11px]`} />
                       </div>
                     </div>
                   ))}
@@ -1025,23 +1025,23 @@ export default function Cms() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tiêu đề Sự kiện*</label>
-                  <input type="text" placeholder="LION Championship 34" value={selectedEvent.title} onChange={(e) => setSelectedEvent({ ...selectedEvent, title: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" placeholder="LION Championship 34" value={selectedEvent.title} onChange={(e) => setSelectedEvent({ ...selectedEvent, title: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Thời gian diễn ra*</label>
-                  <input type="text" placeholder="Thứ Bảy, ngày 18 tháng 7, 2026" value={selectedEvent.date} onChange={(e) => setSelectedEvent({ ...selectedEvent, date: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" placeholder="Thứ Bảy, ngày 18 tháng 7, 2026" value={selectedEvent.date} onChange={(e) => setSelectedEvent({ ...selectedEvent, date: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Địa điểm thi đấu</label>
-                  <input type="text" placeholder="Nhà thi đấu Rạch Miễu, TP. HCM" value={selectedEvent.loc} onChange={(e) => setSelectedEvent({ ...selectedEvent, loc: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" placeholder="Nhà thi đấu Rạch Miễu, TP. HCM" value={selectedEvent.loc} onChange={(e) => setSelectedEvent({ ...selectedEvent, loc: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Hạng mục thi đấu (Bout Type)</label>
-                  <input type="text" placeholder="Championship Bout" value={selectedEvent.type} onChange={(e) => setSelectedEvent({ ...selectedEvent, type: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" placeholder="Championship Bout" value={selectedEvent.type} onChange={(e) => setSelectedEvent({ ...selectedEvent, type: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Trạng thái / Thông tin phát sóng</label>
-                  <input type="text" placeholder="Trực tiếp lúc 19:00" value={selectedEvent.status} onChange={(e) => setSelectedEvent({ ...selectedEvent, status: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`} />
+                  <input type="text" placeholder="Trực tiếp lúc 19:00" value={selectedEvent.status} onChange={(e) => setSelectedEvent({ ...selectedEvent, status: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-905 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
               </div>
 
