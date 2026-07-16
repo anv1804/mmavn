@@ -30,13 +30,20 @@ export const leVanTuan: FighterProfile = {
   decisionWins: 2,
 
   age: 26,
-  hometown: "Hà Nội",
+  birthYear: 2000,
+  hometown: "Hà Đông, Hà Nội",
   bio: "Lê Văn Tuần là đương kim vô địch LION Championship hạng cân 56kg Nam. Xuất thân từ nền võ cổ truyền Việt Nam, anh nhanh chóng thích nghi với MMA và trở thành một trong những võ sĩ ấn tượng nhất Việt Nam ở thế hệ 2000s. Với phong cách chiến đấu cân bằng giữa đứng và nằm, Tuần được biết đến với những trận thắng dứt khoát và tinh thần thi đấu quật cường.",
   disciplines: ["MMA", "Muay Thai", "BJJ", "Vật Cổ Truyền"],
+  achievements: [
+    "Đương kim Vô địch LION Championship 56kg Nam (2025 - Hiện tại)",
+    "Huy chương Vàng giải Vô địch Quyền Anh trẻ quốc gia 2021",
+    "Kiện tướng Võ cổ truyền Việt Nam"
+  ],
   socialMedia: {
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
     tiktok: "https://tiktok.com",
+    youtube: "https://youtube.com",
   },
 
   fights: [

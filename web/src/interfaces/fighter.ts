@@ -1,60 +1,55 @@
 export interface FightRecord {
   opponent: string;
   result: "W" | "L" | "D" | "NC";
-  method: string;       // KO, TKO, Submission, Decision, ...
+  method: string;
   round: number;
-  time: string;         // "3:42"
+  time: string;
   event: string;
   date: string;
 }
 
 export interface FighterProfile {
   id: string;
-
-  // Basic
   name: string;
   nickname?: string;
   photo?: string;
   nationality: string;
-  flag?: string;          // emoji
+  flag?: string;
 
-  // Weight
   weightClass: string;
-  weight: string;         // "56 kg"
+  weight: string;
   height?: string;
   reach?: string;
 
-  // Club
   club: string;
   coach?: string;
 
-  // Status
   status: "champion" | "contender" | "active" | "inactive";
   rank?: number;
   title?: string;
 
-  // Stats
   record: {
     wins: number;
     losses: number;
     draws: number;
   };
-  finishRate?: number;   // percent
+  finishRate?: number;
   koWins?: number;
   subWins?: number;
   decisionWins?: number;
 
-  // Bio
   age?: number;
+  birthYear?: number;
   hometown?: string;
   bio?: string;
   disciplines?: string[];
+  achievements?: string[];
   socialMedia?: {
     facebook?: string;
     instagram?: string;
     tiktok?: string;
+    youtube?: string;
   };
 
-  // Fight history
   fights?: FightRecord[];
 }
