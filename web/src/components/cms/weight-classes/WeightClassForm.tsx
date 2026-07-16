@@ -68,12 +68,12 @@ export default function WeightClassForm({ wc, onChange, onSave, onCancel }: Prop
           <label className="text-[10px] text-zinc-400 uppercase block">Trạng thái hiển thị</label>
           <div className="flex gap-2">
             {[
-              { label: "Hoạt động", value: true },
-              { label: "Ẩn", value: false },
+              { label: "Hoạt động", value: "" },
+              { label: "Ẩn", value: "HIDDEN" },
             ].map(s => {
-              const isActive = (wc.active !== false) === s.value;
+              const isActive = (wc.description === "HIDDEN" ? "HIDDEN" : "") === s.value;
               return (
-                <button key={s.label} type="button" onClick={() => set("active", s.value)}
+                <button key={s.label} type="button" onClick={() => set("description", s.value)}
                   className={`flex-1 py-2.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
                     isActive
                       ? "border-red-500 bg-red-500/10 text-red-600"

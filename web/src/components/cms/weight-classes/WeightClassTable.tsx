@@ -121,8 +121,8 @@ export default function WeightClassTable({
                 </td>
                 <td className="px-4 py-3">
                   <span
-                    title={wc.active !== false ? "Hoạt động" : "Ẩn"}
-                    className={`inline-block w-2.5 h-2.5 rounded-full ${wc.active !== false ? "bg-emerald-500 shadow-sm shadow-emerald-500/60" : "bg-zinc-500"}`}
+                    title={wc.description !== "HIDDEN" ? "Hoạt động" : "Ẩn"}
+                    className={`inline-block w-2.5 h-2.5 rounded-full ${wc.description !== "HIDDEN" ? "bg-emerald-500 shadow-sm shadow-emerald-500/60" : "bg-zinc-500"}`}
                   />
                 </td>
                 <td className="px-4 py-3">

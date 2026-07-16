@@ -12,7 +12,7 @@ const NEW_WC_TEMPLATE = {
   name: "", gender: "Nam", sort_order: 0,
   champion: { name: "", record: "", club: "" },
   rankings: [],
-  active: true,
+  description: "", // empty means active, "HIDDEN" means hidden
 };
 
 export default function CmsWeightClasses() {
@@ -32,7 +32,7 @@ export default function CmsWeightClasses() {
     const matchesSearch = wc.name?.toLowerCase().includes(q);
     const matchesGender = !filterGender || wc.gender === filterGender;
     const matchesStatus = !filterStatus || 
-      (filterStatus === "Hoạt động" ? wc.active !== false : wc.active === false);
+      (filterStatus === "Hoạt động" ? wc.description !== "HIDDEN" : wc.description === "HIDDEN");
     return matchesSearch && matchesGender && matchesStatus;
   });
 
