@@ -280,10 +280,10 @@ export default function Cms() {
   // ── RENDER DEDICATED LOGIN GATE IF NOT AUTHENTICATED ──
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#07070a] text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#07070a] text-white" style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
         
         {/* Cinematic atmospheric glowing spheres */}
-        <div className="absolute top-[-20%] left-[-20%] w-[60vw] h-[60vh] bg-red-650/15 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[10s]" />
+        <div className="absolute top-[-20%] left-[-20%] w-[60vw] h-[60vh] bg-red-600/15 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[10s]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vh] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse duration-[8s]" />
         
         {/* Carbon cage line background */}
@@ -296,7 +296,6 @@ export default function Cms() {
         }} />
 
         <div className="w-full max-w-md p-8 border border-zinc-800/80 bg-zinc-950/70 backdrop-blur-xl rounded-3xl relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-          {/* Decorative subtle border corners */}
           <div className="absolute top-4 left-4 w-3 h-3 border-t-2 border-l-2 border-red-500/30" />
           <div className="absolute bottom-4 right-4 w-3 h-3 border-b-2 border-r-2 border-red-500/30" />
 
@@ -304,7 +303,7 @@ export default function Cms() {
             <div className="w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center p-2 mb-3 shadow-lg shadow-black/50">
               <img src="/logo-lionchampionship.png" alt="LION Logo" className="w-full h-full object-contain" />
             </div>
-            <h2 className="text-3xl font-black uppercase tracking-tight text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            <h2 className="text-3xl font-black uppercase tracking-tight text-white">
               MMAVN CMS LOGIN
             </h2>
             <p className="text-[9px] text-zinc-500 font-mono tracking-widest uppercase mt-1">Hệ thống quản trị đấu trường võ thuật</p>
@@ -341,7 +340,7 @@ export default function Cms() {
 
             <button 
               type="submit"
-              className="w-full py-4 mt-2 bg-gradient-to-r from-red-700 via-rose-600 to-red-650 hover:from-red-600 hover:to-rose-550 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer border-none shadow-lg shadow-red-600/20 hover:scale-[1.02] active:scale-95 duration-200"
+              className="w-full py-4 mt-2 bg-gradient-to-r from-red-700 via-red-600 to-red-650 hover:from-red-600 hover:to-red-550 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer border-none shadow-lg shadow-red-600/20 hover:scale-[1.02] active:scale-95 duration-200"
             >
               Đăng Nhập Dashboard
             </button>
@@ -363,16 +362,16 @@ export default function Cms() {
   return (
     <div className={`h-screen flex overflow-hidden ${
       isDark ? "bg-[#030303] text-zinc-100" : "bg-[#f8f9fa] text-zinc-900"
-    }`} style={{ fontFamily: "'Outfit', sans-serif" }}>
+    }`} style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
       
-      {/* ── LEFT SIDEBAR NAVIGATION ── Styled 100% to match user workspace screenshot */}
+      {/* ── LEFT SIDEBAR NAVIGATION ── Styled 100% to match MMAVN Brand Colors (Red theme) */}
       <div className={`w-64 flex flex-col justify-between border-r shrink-0 transition-colors duration-300 ${
         isDark ? "bg-zinc-950/90 border-zinc-900" : "bg-white border-zinc-200"
       }`}>
         <div className="flex flex-col">
           {/* Logo Brand Header */}
           <div className="p-6 border-b flex items-center gap-3 cursor-pointer" onClick={() => navigate("/")} style={{ borderColor: isDark ? "rgba(39, 39, 42, 0.4)" : "#f1f1f4" }}>
-            <div className="w-10 h-10 rounded-full bg-[#10b981] flex items-center justify-center text-white font-black text-lg shadow-md shadow-emerald-500/10">
+            <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-black text-lg shadow-md shadow-red-600/10 animate-pulse">
               A
             </div>
             <div>
@@ -392,7 +391,7 @@ export default function Cms() {
                 onClick={() => { setActiveTab("dashboard"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "dashboard"
-                    ? isDark ? "bg-zinc-900 text-[#10b981] font-bold" : "bg-[#eefcf7] text-[#0fa968] font-bold"
+                    ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
                     : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-650 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
@@ -404,7 +403,7 @@ export default function Cms() {
                 onClick={() => { setActiveTab("events"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "events"
-                    ? isDark ? "bg-zinc-900 text-[#10b981] font-bold" : "bg-[#eefcf7] text-[#0fa968] font-bold"
+                    ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
                     : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-655 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
@@ -421,7 +420,7 @@ export default function Cms() {
                 onClick={() => { setActiveTab("fighters"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "fighters"
-                    ? isDark ? "bg-zinc-900 text-[#10b981] font-bold" : "bg-[#eefcf7] text-[#0fa968] font-bold"
+                    ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
                     : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-655 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
@@ -433,7 +432,7 @@ export default function Cms() {
                 onClick={() => { setActiveTab("clubs"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "clubs"
-                    ? isDark ? "bg-zinc-900 text-[#10b981] font-bold" : "bg-[#eefcf7] text-[#0fa968] font-bold"
+                    ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
                     : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-655 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
@@ -445,7 +444,7 @@ export default function Cms() {
                 onClick={() => { setActiveTab("rankings"); setSelectedClub(null); setSelectedFighter(null); setSelectedRanking(null); setSelectedEvent(null); }}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all border-none cursor-pointer text-left ${
                   activeTab === "rankings"
-                    ? isDark ? "bg-zinc-900 text-[#10b981] font-bold" : "bg-[#eefcf7] text-[#0fa968] font-bold"
+                    ? isDark ? "bg-zinc-900 text-red-500 font-bold" : "bg-red-50 text-red-600 font-bold"
                     : isDark ? "bg-transparent text-zinc-400 hover:bg-zinc-900/40 hover:text-white" : "bg-transparent text-zinc-655 hover:bg-zinc-100 hover:text-black"
                 }`}
               >
@@ -460,12 +459,12 @@ export default function Cms() {
         {/* Profile Card & Logout bottom layout */}
         <div className="p-4 border-t space-y-3" style={{ borderColor: isDark ? "rgba(39, 39, 42, 0.4)" : "#e4e4e7" }}>
           <div className={`p-3.5 rounded-2xl border flex items-center gap-3 ${isDark ? "bg-zinc-900/40 border-zinc-900" : "bg-white border-zinc-200"}`}>
-            <span className="w-8 h-8 rounded-full bg-[#10b981] flex items-center justify-center font-bold text-xs text-white">
+            <span className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center font-bold text-xs text-white shadow-md shadow-red-600/10">
               A
             </span>
             <div className="overflow-hidden">
               <span className="text-[10px] font-bold block leading-none truncate text-zinc-800 dark:text-white">admin@mmavn.com</span>
-              <span className="inline-block bg-[#eefcf7] dark:bg-emerald-500/10 text-[#0fa968] dark:text-emerald-500 border border-emerald-500/25 rounded text-[8px] font-mono tracking-widest px-1.5 py-0.5 mt-1 font-black">
+              <span className="inline-block bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-500 border border-red-500/25 rounded text-[8px] font-mono tracking-widest px-1.5 py-0.5 mt-1 font-black">
                 ADMIN
               </span>
             </div>
@@ -527,7 +526,7 @@ export default function Cms() {
               
               {/* Title Header */}
               <div>
-                <h1 className="text-3xl font-black tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>Tổng Quan Hệ Thống</h1>
+                <h1 className="text-3xl font-black tracking-tight">Tổng Quan Hệ Thống</h1>
                 <p className="text-xs text-zinc-550 font-light mt-1">Theo dõi hiệu suất và số liệu của nền tảng ngày hôm nay.</p>
               </div>
 
@@ -543,11 +542,11 @@ export default function Cms() {
                       <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">VÕ SĨ HOẠT ĐỘNG</span>
                       <span className="text-4xl font-bold font-mono mt-1 block text-zinc-900 dark:text-white">{loading ? "..." : fighters.length}</span>
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 dark:text-emerald-500 dark:bg-emerald-500/10 dark:border-emerald-500/20 px-2 py-0.5 rounded">
+                    <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold text-red-600 bg-red-55/70 border border-red-100 dark:text-red-500 dark:bg-red-500/10 dark:border-red-500/20 px-2 py-0.5 rounded">
                       ↗ Đang hoạt động
                     </span>
                   </div>
-                  <span className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-500/15 flex items-center justify-center text-emerald-550 text-xl">
+                  <span className="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-500/15 flex items-center justify-center text-red-500 text-xl shadow-sm">
                     🥋
                   </span>
                 </div>
@@ -561,11 +560,11 @@ export default function Cms() {
                       <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">VÕ ĐƯỜNG LIÊN KẾT</span>
                       <span className="text-4xl font-bold font-mono mt-1 block text-zinc-900 dark:text-white">{loading ? "..." : clubs.length}</span>
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold text-blue-600 bg-blue-50 border border-blue-105 dark:text-blue-500 dark:bg-blue-500/10 dark:border-blue-500/20 px-2 py-0.5 rounded">
+                    <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold text-red-600 bg-red-55/70 border border-red-100 dark:text-red-500 dark:bg-red-500/10 dark:border-red-500/20 px-2 py-0.5 rounded">
                       ↗ Kết nối ổn định
                     </span>
                   </div>
-                  <span className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-500/15 flex items-center justify-center text-blue-550 text-xl">
+                  <span className="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-500/15 flex items-center justify-center text-red-500 text-xl shadow-sm">
                     🏢
                   </span>
                 </div>
@@ -579,11 +578,11 @@ export default function Cms() {
                       <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">LỊCH SỰ KIỆN LIVE</span>
                       <span className="text-4xl font-bold font-mono mt-1 block text-zinc-900 dark:text-white">{loading ? "..." : events.length}</span>
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold text-amber-600 bg-amber-50 border border-amber-105 dark:text-amber-500 dark:bg-amber-500/10 dark:border-amber-500/20 px-2 py-0.5 rounded">
+                    <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold text-red-600 bg-red-55/70 border border-red-100 dark:text-red-500 dark:bg-red-500/10 dark:border-red-500/20 px-2 py-0.5 rounded">
                       ↗ Đồng bộ hệ thống
                     </span>
                   </div>
-                  <span className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-500/15 flex items-center justify-center text-amber-550 text-xl">
+                  <span className="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-500/15 flex items-center justify-center text-red-500 text-xl shadow-sm">
                     📅
                   </span>
                 </div>
@@ -599,14 +598,14 @@ export default function Cms() {
                 }`}>
                   <div className="flex justify-between items-center">
                     <h3 className="text-xs font-bold uppercase font-mono">Lượt xem 24 giờ qua</h3>
-                    <span className="text-[9px] font-mono font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded uppercase">Realtime</span>
+                    <span className="text-[9px] font-mono font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase">Realtime</span>
                   </div>
                   <div className="h-44 w-full pt-4">
                     <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
                       <path 
                         d="M0,28 Q10,25 20,27 T40,25 T60,20 T80,28 T100,28" 
                         fill="none" 
-                        stroke="#10b981" 
+                        stroke="#ef4444" 
                         strokeWidth="1.5" 
                       />
                       <line x1="0" y1="29" x2="100" y2="29" stroke={isDark ? "#1f1f23" : "#e4e4e7"} strokeWidth="0.5" />
@@ -628,24 +627,24 @@ export default function Cms() {
                 }`}>
                   <div className="flex justify-between items-center">
                     <h3 className="text-xs font-bold uppercase font-mono">Lượt xem 7 ngày qua</h3>
-                    <span className="text-[9px] font-mono font-bold text-purple-500 bg-purple-500/10 px-2 py-0.5 rounded uppercase">Daily</span>
+                    <span className="text-[9px] font-mono font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase">Daily</span>
                   </div>
                   <div className="h-44 w-full pt-4">
                     <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
                       <defs>
-                        <linearGradient id="purpleGrad" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#a855f7" stopOpacity="0.3" />
-                          <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+                        <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#ef4444" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
                         </linearGradient>
                       </defs>
                       <path 
                         d="M0,29 L10,29 L20,29 L30,29 L40,29 L50,29 C55,29 58,10 65,10 C70,10 73,20 80,26 C85,29 90,29 100,29"
-                        fill="url(#purpleGrad)" 
+                        fill="url(#redGrad)" 
                       />
                       <path 
                         d="M0,29 L10,29 L20,29 L30,29 L40,29 L50,29 C55,29 58,10 65,10 C70,10 73,20 80,26 C85,29 90,29 100,29" 
                         fill="none" 
-                        stroke="#a855f7" 
+                        stroke="#ef4444" 
                         strokeWidth="1.5" 
                       />
                       <line x1="0" y1="29" x2="100" y2="29" stroke={isDark ? "#1f1f23" : "#e4e4e7"} strokeWidth="0.5" />
@@ -689,7 +688,7 @@ export default function Cms() {
                     if (activeTab === "fighters") initNewFighter();
                     if (activeTab === "events") initNewEvent();
                   }}
-                  className="w-full sm:w-auto px-5 py-2.5 bg-red-650 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider border-none transition-all shadow-md shadow-red-600/10 cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider border-none transition-all shadow-md shadow-red-600/10 cursor-pointer"
                 >
                   + Tạo mới {activeTab === "clubs" ? "Võ Đường" : activeTab === "fighters" ? "Võ Sĩ" : "Sự Kiện"}
                 </button>
@@ -708,7 +707,7 @@ export default function Cms() {
                     <img src={club.logo || "/logo-lionchampionship.png"} alt={club.name} className="w-12 h-12 object-contain bg-zinc-950 rounded-xl p-1" />
                     <div>
                       <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{club.name}</h3>
-                      <p className="text-[10px] text-zinc-500 font-mono">{club.city} · HLV {club.head_coach}</p>
+                      <p className="text-[10px] text-zinc-555 font-normal">{club.city} · HLV {club.head_coach}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -717,7 +716,7 @@ export default function Cms() {
                   </div>
                 </div>
               ))}
-              {filteredClubs.length === 0 && <p className="text-zinc-500 text-xs py-4 font-mono">Không tìm thấy kết quả.</p>}
+              {filteredClubs.length === 0 && <p className="text-zinc-500 text-xs py-4">Không tìm thấy kết quả.</p>}
             </div>
           )}
 
@@ -732,7 +731,7 @@ export default function Cms() {
                     <img src={fighter.photo || "/lvt.png"} alt={fighter.name} className="w-10 h-10 object-cover bg-zinc-950 rounded-full object-top" />
                     <div>
                       <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{fighter.name} {fighter.nickname && <span className="text-zinc-500 text-xs">({fighter.nickname})</span>}</h3>
-                      <p className="text-[10px] text-zinc-500 font-mono">{fighter.weight_class} · {fighter.club} · {fighter.wins}W-{fighter.losses}L</p>
+                      <p className="text-[10px] text-zinc-555">{fighter.weight_class} · {fighter.club} · {fighter.wins}W-{fighter.losses}L</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -741,7 +740,7 @@ export default function Cms() {
                   </div>
                 </div>
               ))}
-              {filteredFighters.length === 0 && <p className="text-zinc-500 text-xs py-4 font-mono">Không tìm thấy kết quả.</p>}
+              {filteredFighters.length === 0 && <p className="text-zinc-500 text-xs py-4">Không tìm thấy kết quả.</p>}
             </div>
           )}
 
@@ -754,9 +753,9 @@ export default function Cms() {
                 }`}>
                   <div>
                     <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{ranking.name}</h3>
-                    <p className="text-[10px] text-zinc-500 font-mono font-light">Đương kim vô địch: {ranking.champion?.name || "Bỏ trống"}</p>
+                    <p className="text-[10px] text-zinc-555 font-light">Đương kim vô địch: {ranking.champion?.name || "Bỏ trống"}</p>
                   </div>
-                  <button type="button" onClick={() => setSelectedRanking(ranking)} className="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-850 text-zinc-700 dark:text-zinc-400 border-none rounded-lg text-[10px] font-bold uppercase tracking-wider cursor-pointer">Quản lý BXH</button>
+                  <button type="button" onClick={() => setSelectedRanking(ranking)} className="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-855 text-zinc-700 dark:text-zinc-400 border-none rounded-lg text-[10px] font-bold uppercase tracking-wider cursor-pointer">Quản lý BXH</button>
                 </div>
               ))}
             </div>
@@ -771,7 +770,7 @@ export default function Cms() {
                 }`}>
                   <div>
                     <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{evt.title}</h3>
-                    <p className="text-[10px] text-zinc-500 font-mono">{evt.date} · {evt.loc}</p>
+                    <p className="text-[10px] text-zinc-555">{evt.date} · {evt.loc}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button type="button" onClick={() => setSelectedEvent(evt)} className="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-400 border-none rounded-lg text-[10px] font-bold uppercase tracking-wider cursor-pointer">Sửa</button>
@@ -779,7 +778,7 @@ export default function Cms() {
                   </div>
                 </div>
               ))}
-              {filteredEvents.length === 0 && <p className="text-zinc-500 text-xs py-4 font-mono">Không tìm thấy kết quả.</p>}
+              {filteredEvents.length === 0 && <p className="text-zinc-500 text-xs py-4">Không tìm thấy kết quả.</p>}
             </div>
           )}
 
@@ -808,7 +807,7 @@ export default function Cms() {
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tên viết tắt (Short Name)</label>
-                  <input type="text" value={selectedClub.short_name || ""} onChange={(e) => setSelectedClub({ ...selectedClub, short_name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
+                  <input type="text" value={selectedClub.short_name || ""} onChange={(e) => setSelectedClub({ ...selectedClub, short_name: e.target.value })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/65 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] text-zinc-400 uppercase font-mono block">Tỉnh / Thành Phố</label>
@@ -927,7 +926,7 @@ export default function Cms() {
               </div>
 
               <div className="flex gap-4">
-                <button type="submit" className="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border-none transition-all">Lưu võ sĩ</button>
+                <button type="submit" className="px-6 py-2.5 bg-[#dc2626] hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border-none transition-all">Lưu võ sĩ</button>
                 <button type="button" onClick={() => setSelectedFighter(null)} className="px-6 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border-none transition-all">Hủy</button>
               </div>
             </form>
@@ -943,24 +942,24 @@ export default function Cms() {
               </h2>
 
               <div className="space-y-4">
-                <h3 className="text-xs font-mono font-bold text-amber-500 uppercase tracking-widest">🏆 Đương kim vô địch (Champion)</h3>
+                <h3 className="text-xs font-mono font-bold text-red-500 uppercase tracking-widest">🏆 Đương kim vô địch (Champion)</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-1">
-                    <label className="text-[9px] text-zinc-500 font-mono uppercase block">Họ tên Champion</label>
+                    <label className="text-[9px] text-zinc-555 font-normal uppercase block">Họ tên Champion</label>
                     <input type="text" value={selectedRanking.champion?.name || ""} onChange={(e) => setSelectedRanking({
                       ...selectedRanking,
                       champion: { ...selectedRanking.champion, name: e.target.value }
                     })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/65 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[9px] text-zinc-500 font-mono uppercase block">Thành tích (ví dụ: 12-2-0)</label>
+                    <label className="text-[9px] text-zinc-555 font-normal uppercase block">Thành tích (ví dụ: 12-2-0)</label>
                     <input type="text" value={selectedRanking.champion?.record || ""} onChange={(e) => setSelectedRanking({
                       ...selectedRanking,
                       champion: { ...selectedRanking.champion, record: e.target.value }
                     })} className={`w-full p-2.5 rounded-xl border text-xs ${isDark ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500/65 focus:outline-none" : "bg-white border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"}`} />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[9px] text-zinc-500 font-mono uppercase block">Võ đường</label>
+                    <label className="text-[9px] text-zinc-555 font-normal uppercase block">Võ đường</label>
                     <input type="text" value={selectedRanking.champion?.club || ""} onChange={(e) => setSelectedRanking({
                       ...selectedRanking,
                       champion: { ...selectedRanking.champion, club: e.target.value }
@@ -970,7 +969,7 @@ export default function Cms() {
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-xs font-mono font-bold text-zinc-400 uppercase tracking-widest">📋 Danh sách xếp hạng từ Top 1 trở đi</h3>
+                <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest">📋 Danh sách xếp hạng từ Top 1 trở đi</h3>
                 <div className="space-y-3">
                   {((selectedRanking.rankings || []) as any[]).map((rankedFighter, rankIdx) => (
                     <div key={rankIdx} className={`p-3 border rounded-xl grid grid-cols-1 md:grid-cols-12 gap-3 items-center ${isDark ? "bg-zinc-900/40 border-zinc-900/60" : "bg-zinc-50 border-zinc-150"}`}>
@@ -978,7 +977,7 @@ export default function Cms() {
                         Rank {rankedFighter.rank}
                       </div>
                       <div className="md:col-span-4 space-y-1">
-                        <label className="text-[8px] text-zinc-500 font-mono block">Họ Tên</label>
+                        <label className="text-[8px] text-zinc-500 block">Họ Tên</label>
                         <input type="text" value={rankedFighter.name} onChange={(e) => {
                           const nextRankings = [...selectedRanking.rankings];
                           nextRankings[rankIdx].name = e.target.value;
@@ -986,7 +985,7 @@ export default function Cms() {
                         }} className={`w-full px-2 py-1 bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none rounded text-[11px]`} />
                       </div>
                       <div className="md:col-span-3 space-y-1">
-                        <label className="text-[8px] text-zinc-500 font-mono block">Thành tích (LION record)</label>
+                        <label className="text-[8px] text-zinc-500 block">Thành tích (LION record)</label>
                         <input type="text" value={rankedFighter.record} onChange={(e) => {
                           const nextRankings = [...selectedRanking.rankings];
                           nextRankings[rankIdx].record = e.target.value;
@@ -994,7 +993,7 @@ export default function Cms() {
                         }} className={`w-full px-2 py-1 bg-zinc-900 border-zinc-800 text-white focus:border-red-500/60 focus:outline-none rounded text-[11px]`} />
                       </div>
                       <div className="md:col-span-4 space-y-1">
-                        <label className="text-[8px] text-zinc-500 font-mono block">Võ đường</label>
+                        <label className="text-[8px] text-zinc-500 block">Võ đường</label>
                         <input type="text" value={rankedFighter.club} onChange={(e) => {
                           const nextRankings = [...selectedRanking.rankings];
                           nextRankings[rankIdx].club = e.target.value;
@@ -1007,7 +1006,7 @@ export default function Cms() {
               </div>
 
               <div className="flex gap-4">
-                <button type="submit" className="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border-none transition-all">Lưu bảng xếp hạng</button>
+                <button type="submit" className="px-6 py-2.5 bg-[#dc2626] hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border-none transition-all">Lưu bảng xếp hạng</button>
                 <button type="button" onClick={() => setSelectedRanking(null)} className="px-6 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border-none transition-all">Hủy</button>
               </div>
             </form>
@@ -1046,7 +1045,7 @@ export default function Cms() {
               </div>
 
               <div className="flex gap-4">
-                <button type="submit" className="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border-none transition-all">Lưu sự kiện</button>
+                <button type="submit" className="px-6 py-2.5 bg-[#dc2626] hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border-none transition-all">Lưu sự kiện</button>
                 <button type="button" onClick={() => setSelectedEvent(null)} className="px-6 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer border-none transition-all">Hủy</button>
               </div>
             </form>
