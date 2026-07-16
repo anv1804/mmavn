@@ -1,10 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { mmaClubs } from "../data/clubs";
 
-interface HomeProps {
-  setCurrentTab: (tab: string) => void;
-}
-
-export default function Home({ setCurrentTab }: HomeProps) {
+export default function Home() {
+  const navigate = useNavigate();
   const totalFighters = mmaClubs.reduce((sum, club) => sum + club.statistics.lionFighters, 0);
   const totalWins = mmaClubs.reduce((sum, club) => sum + club.statistics.wins, 0);
   const totalKOs = mmaClubs.reduce((sum, club) => sum + club.statistics.koWins, 0);
@@ -39,13 +37,13 @@ export default function Home({ setCurrentTab }: HomeProps) {
 
             <div className="pt-4 flex flex-wrap gap-3.5">
               <button
-                onClick={() => setCurrentTab("lion")}
+                onClick={() => navigate("/lion")}
                 className="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold uppercase tracking-widest border-none cursor-pointer transition-all shadow-lg shadow-red-600/20"
               >
                 🏆 Bảng xếp hạng LION
               </button>
               <button
-                onClick={() => setCurrentTab("community")}
+                onClick={() => navigate("/community")}
                 className="px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white text-xs font-semibold uppercase tracking-widest cursor-pointer transition-all"
               >
                 💬 Diễn đàn thảo luận
@@ -85,7 +83,7 @@ export default function Home({ setCurrentTab }: HomeProps) {
             <h2 className="text-2xl font-black uppercase text-white">CÁC LÒ ĐÀO TẠO MMA HÀNG ĐẦU</h2>
           </div>
           <button 
-            onClick={() => setCurrentTab("community")} 
+            onClick={() => navigate("/community")} 
             className="text-[10px] font-mono tracking-widest text-red-500 hover:text-red-400 bg-transparent border-none cursor-pointer"
           >
             XEM TẤT CẢ &rarr;

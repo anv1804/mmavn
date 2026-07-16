@@ -1,10 +1,11 @@
 import { useState } from "react";
-import type { FighterProfile } from "../interfaces/fighter";
+import { useParams, useNavigate } from "react-router-dom";
+import { leVanTuan } from "../data/fighters/le-van-tuan";
 
-interface FighterDetailProps {
-  fighter: FighterProfile;
-  onBack: () => void;
-}
+// Fighter Database Map for Router loading
+const FIGHTER_DB: Record<string, typeof leVanTuan> = {
+  "le-van-tuan": leVanTuan,
+};
 
 // Stats structure for MMA Radar Chart
 interface CombatStats {
@@ -66,7 +67,13 @@ function getMethodTheme(method: string, isWin: boolean) {
   return { bg: "bg-zinc-800/50", text: "text-zinc-400", border: "border-zinc-700/30" };
 }
 
-export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
+export default function FighterDetail() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  
+  // Find fighter, fallback to leVanTuan if none found
+  const fighter = id && FIGHTER_DB[id] ? FIGHTER_DB[id] : leVanTuan;
+
   const { wins, losses, draws } = fighter.record;
   const total = wins + losses + draws;
   const winRate = total > 0 ? Math.round((wins / total) * 100) : 0;
@@ -138,7 +145,7 @@ export default function FighterDetail({ fighter, onBack }: FighterDetailProps) {
       {/* ── STICKY CONTROL BAR ── */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 pt-6 flex items-center justify-between">
         <button
-          onClick={onBack}
+          onClick={() => navigate("/lion")}
           className="group flex items-center gap-3 text-[10px] font-mono tracking-[0.25em] text-zinc-400 hover:text-white bg-black/60 border border-zinc-900 hover:border-red-500/40 px-5 py-2.5 rounded-full transition-all duration-300 cursor-pointer"
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-200 block">&larr;</span> 

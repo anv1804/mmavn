@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { nam_52 } from "../data/rankings/nam_52";
 import { nam_56 } from "../data/rankings/nam_56";
@@ -18,11 +19,8 @@ const RANK_MEDALS = ["🥇", "🥈", "🥉"];
 
 type GenderFilter = "all" | "nam" | "nu";
 
-interface LionProps {
-  onViewFighter?: (fighterId: string) => void;
-}
-
-export default function Lion({ onViewFighter }: LionProps) {
+export default function Lion() {
+  const navigate = useNavigate();
   const [selectedLionDiv, setSelectedLionDiv] = useState("56_nam");
   const [genderFilter, setGenderFilter] = useState<GenderFilter>("all");
 
@@ -99,7 +97,7 @@ export default function Lion({ onViewFighter }: LionProps) {
               <div
                 className="relative overflow-hidden rounded-2xl border border-zinc-800/60 bg-zinc-900/40 group cursor-pointer hover:border-red-500/30 transition-all duration-300"
                 style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.03)" }}
-                onClick={() => onViewFighter?.("le-van-tuan")}
+                onClick={() => navigate("/fighter/le-van-tuan")}
               >
                 <div className="flex items-stretch gap-0">
                   {/* Fighter photo */}
