@@ -65,7 +65,8 @@ export default function FighterFilters({
       <button
         disabled={!hasFilter}
         onClick={onReset}
-        className={`px-3 py-2 rounded-xl border text-xs transition-all ${
+        title="Xóa bộ lọc"
+        className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all shrink-0 ${
           !hasFilter
             ? isDark
               ? "border-zinc-800 text-zinc-700 cursor-not-allowed"
@@ -75,7 +76,9 @@ export default function FighterFilters({
             : "border-zinc-300 text-zinc-500 hover:text-red-600 hover:border-red-300 cursor-pointer"
         }`}
       >
-        ✕ Xóa bộ lọc
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </button>
     </div>
   );

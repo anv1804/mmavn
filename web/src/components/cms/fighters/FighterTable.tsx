@@ -16,8 +16,8 @@ interface Props {
 
 function GenderIcon({ gender }: { gender?: string }) {
   return gender === "Nữ"
-    ? <span className="text-[11px] text-pink-500 font-bold" title="Nữ">♀</span>
-    : <span className="text-[11px] text-blue-400 font-bold" title="Nam">♂</span>;
+    ? <span className="text-sm text-pink-500 font-bold leading-none" title="Nữ">♀</span>
+    : <span className="text-sm text-blue-400 font-bold leading-none" title="Nam">♂</span>;
 }
 
 function StatusDot({ active }: { active?: boolean }) {
@@ -94,9 +94,6 @@ export default function FighterTable({ fighters, clubs, page, totalPages, total,
                             </p>
                             <GenderIcon gender={fighter.gender} />
                           </div>
-                          {fighter.nickname && (
-                            <p className="text-[10px] text-zinc-500 italic">"{fighter.nickname}"</p>
-                          )}
                         </div>
                       </div>
                     </td>
@@ -146,18 +143,22 @@ export default function FighterTable({ fighters, clubs, page, totalPages, total,
                         <button
                           title="Chỉnh sửa"
                           onClick={() => onEdit(fighter)}
-                          className={`w-8 h-8 rounded-lg text-sm flex items-center justify-center border-none cursor-pointer transition-all ${
-                            isDark ? "bg-zinc-800 hover:bg-zinc-700 text-zinc-300" : "bg-zinc-100 hover:bg-zinc-200 text-zinc-600"
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center border-none cursor-pointer transition-all ${
+                            isDark ? "bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white" : "bg-zinc-100 hover:bg-zinc-200 text-zinc-500 hover:text-zinc-800"
                           }`}
                         >
-                          ✏️
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
                         </button>
                         <button
                           title="Xóa võ sĩ"
                           onClick={() => onDelete(fighter.id)}
-                          className="w-8 h-8 rounded-lg text-sm flex items-center justify-center border-none cursor-pointer transition-all bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center border-none cursor-pointer transition-all text-red-500 bg-red-500/10 hover:bg-red-500 hover:text-white"
                         >
-                          🗑
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
                         </button>
                       </div>
                     </td>
