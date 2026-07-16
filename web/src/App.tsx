@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 
@@ -18,12 +18,14 @@ import { ThemeProvider, useTheme } from "./context/ThemeContext";
 function AppContent() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
+  const location = useLocation();
+  const isCms = location.pathname.startsWith("/cms");
   
   return (
     <div className={`min-h-screen flex flex-col transition-colors duration-300 ${
       isDark ? "bg-[#030303] text-zinc-100" : "bg-[#fafafa] text-zinc-900"
     } selection:bg-red-500 selection:text-white`}>
-      <Header />
+      {!isCms && <Header />}
 
       <main className="flex-1">
         <Routes>
@@ -39,7 +41,7 @@ function AppContent() {
         </Routes>
       </main>
 
-      <Footer />
+      {!isCms && <Footer />}
     </div>
   );
 }
