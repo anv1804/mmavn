@@ -61,8 +61,13 @@ export default function Cms() {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Search filter
+  // Search + filter states
   const [searchQuery, setSearchQuery] = useState("");
+  const [filterWeightClass, setFilterWeightClass] = useState("");
+  const [filterGender, setFilterGender] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
+  const [fighterPage, setFighterPage] = useState(1);
+  const FIGHTERS_PER_PAGE = 25;
 
   // Edit / Form states
   const [selectedClub, setSelectedClub] = useState<any | null>(null);
@@ -273,7 +278,17 @@ export default function Cms() {
   };
 
   const filteredClubs = clubs.filter(c => c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.city.toLowerCase().includes(searchQuery.toLowerCase()));
-  const filteredFighters = fighters.filter(f => f.name.toLowerCase().includes(searchQuery.toLowerCase()) || (f.nickname && f.nickname.toLowerCase().includes(searchQuery.toLowerCase())));
+  const filteredFighters = fighters.filter(f => {
+    const q = searchQuery.toLowerCase();
+    const matchSearch = f.name.toLowerCase().includes(q) || (f.nickname && f.nickname.toLowerCase().includes(q)) || (f.club && f.club.toLowerCase().includes(q));
+    const matchWeight = filterWeightClass === "" || f.weight_class === filterWeightClass;
+    const matchGender = filterGender === "" || (f.gender || "Nam") === filterGender;
+    const matchStatus = filterStatus === "" || (filterStatus === "active" ? f.active !== false : f.active === false);
+    return matchSearch && matchWeight && matchGender && matchStatus;
+  });
+  const uniqueWeightClasses = Array.from(new Set(fighters.map(f => f.weight_class).filter(Boolean))).sort();
+  const fighterTotalPages = Math.ceil(filteredFighters.length / FIGHTERS_PER_PAGE);
+  const pagedFighters = filteredFighters.slice((fighterPage - 1) * FIGHTERS_PER_PAGE, fighterPage * FIGHTERS_PER_PAGE);
   const filteredRankings = rankings.filter(r => r.name.toLowerCase().includes(searchQuery.toLowerCase()));
   const filteredEvents = events.filter(e => e.title.toLowerCase().includes(searchQuery.toLowerCase()) || e.loc.toLowerCase().includes(searchQuery.toLowerCase()));
 
@@ -666,12 +681,12 @@ export default function Cms() {
             </div>
           )}
 
-          {/* Form & List filters row */}
-          {activeTab !== "dashboard" && !selectedClub && !selectedFighter && !selectedRanking && !selectedEvent && (
+          {/* Form & List filters row - generic for clubs/rankings/events */}
+          {activeTab !== "dashboard" && activeTab !== "fighters" && !selectedClub && !selectedFighter && !selectedRanking && !selectedEvent && (
             <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-transparent">
               <input
                 type="text"
-                placeholder={`Tìm kiếm ${activeTab === "clubs" ? "võ đường..." : activeTab === "fighters" ? "võ sĩ..." : activeTab === "rankings" ? "hạng cân..." : "sự kiện..."}`}
+                placeholder={`Tìm kiếm ${activeTab === "clubs" ? "võ đường..." : activeTab === "rankings" ? "hạng cân..." : "sự kiện..."}`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={`px-4 py-2.5 rounded-xl border text-sm w-full sm:max-w-xs transition-all ${
@@ -685,12 +700,11 @@ export default function Cms() {
                 <button
                   onClick={() => {
                     if (activeTab === "clubs") initNewClub();
-                    if (activeTab === "fighters") initNewFighter();
                     if (activeTab === "events") initNewEvent();
                   }}
-                  className="w-full sm:w-auto px-5 py-2.5 bg-red-650 hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider border-none transition-all shadow-md shadow-red-600/10 cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-2.5 bg-[#dc2626] hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider border-none transition-all shadow-md shadow-red-600/10 cursor-pointer"
                 >
-                  + Tạo mới {activeTab === "clubs" ? "Võ Đường" : activeTab === "fighters" ? "Võ Sĩ" : "Sự Kiện"}
+                  + Tạo mới {activeTab === "clubs" ? "Võ Đường" : "Sự Kiện"}
                 </button>
               )}
             </div>
@@ -720,27 +734,312 @@ export default function Cms() {
             </div>
           )}
 
-          {/* ── TAB 2: FIGHTERS MANAGEMENT LIST ── */}
+          {/* ── TAB 2: FIGHTERS MANAGEMENT TABLE ── */}
           {activeTab === "fighters" && !selectedFighter && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {filteredFighters.map((fighter) => (
-                <div key={fighter.id} className={`p-4 border rounded-2xl flex items-center justify-between transition-all ${
-                  isDark ? "bg-zinc-950/80 border-zinc-900/60 hover:border-zinc-850" : "bg-white border-zinc-200 hover:border-zinc-300"
-                }`}>
-                  <div className="flex items-center gap-3">
-                    <img src={fighter.photo || "/lvt.png"} alt={fighter.name} className="w-10 h-10 object-cover bg-zinc-950 rounded-full object-top" />
-                    <div>
-                      <h3 className={`font-bold text-sm ${isDark ? "text-white" : "text-zinc-900"}`}>{fighter.name} {fighter.nickname && <span className="text-zinc-500 text-xs">({fighter.nickname})</span>}</h3>
-                      <p className="text-[10px] text-zinc-500">{fighter.weight_class} · {fighter.club} · {fighter.wins}W-{fighter.losses}L</p>
+            <div className="space-y-4">
+
+              {/* Fighters page header */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <h1 className="text-2xl font-black tracking-tight">Quản Lý Võ Sĩ</h1>
+                  <p className="text-xs text-zinc-500 mt-0.5">{filteredFighters.length} võ sĩ · Trang {fighterPage}/{Math.max(fighterTotalPages, 1)}</p>
+                </div>
+                <button
+                  onClick={initNewFighter}
+                  className="px-5 py-2.5 bg-[#dc2626] hover:bg-red-500 text-white rounded-xl text-xs font-bold uppercase tracking-wider border-none transition-all shadow-md shadow-red-600/20 cursor-pointer"
+                >
+                  + Thêm Võ Sĩ
+                </button>
+              </div>
+
+              {/* Filter bar */}
+              <div className={`p-4 rounded-2xl border flex flex-wrap gap-3 items-center ${
+                isDark ? "bg-zinc-950/60 border-zinc-900" : "bg-white border-zinc-200"
+              }`}>
+                {/* Search */}
+                <div className="relative flex-1 min-w-[180px]">
+                  <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                  <input
+                    type="text"
+                    placeholder="Tìm tên, biệt danh, võ đường..."
+                    value={searchQuery}
+                    onChange={(e) => { setSearchQuery(e.target.value); setFighterPage(1); }}
+                    className={`w-full pl-9 pr-4 py-2 rounded-xl border text-xs transition-all ${
+                      isDark
+                        ? "bg-zinc-900 border-zinc-800 text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+                        : "bg-zinc-50 border-zinc-200 text-zinc-900 placeholder-zinc-400 focus:border-red-500 focus:outline-none"
+                    }`}
+                  />
+                </div>
+
+                {/* Weight class filter */}
+                <select
+                  value={filterWeightClass}
+                  onChange={(e) => { setFilterWeightClass(e.target.value); setFighterPage(1); }}
+                  className={`px-3 py-2 rounded-xl border text-xs cursor-pointer transition-all ${
+                    isDark
+                      ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500 focus:outline-none"
+                      : "bg-zinc-50 border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"
+                  }`}
+                >
+                  <option value="">Tất cả hạng cân</option>
+                  {uniqueWeightClasses.map(wc => (
+                    <option key={wc} value={wc}>{wc}</option>
+                  ))}
+                  {uniqueWeightClasses.length === 0 && (
+                    <>
+                      <option value="52kg">52kg</option>
+                      <option value="56kg">56kg</option>
+                      <option value="60kg">60kg</option>
+                      <option value="65kg">65kg</option>
+                      <option value="70kg">70kg</option>
+                      <option value="77kg">77kg</option>
+                      <option value="84kg">84kg</option>
+                      <option value="93kg">93kg</option>
+                      <option value="+93kg">+93kg</option>
+                    </>
+                  )}
+                </select>
+
+                {/* Gender filter */}
+                <select
+                  value={filterGender}
+                  onChange={(e) => { setFilterGender(e.target.value); setFighterPage(1); }}
+                  className={`px-3 py-2 rounded-xl border text-xs cursor-pointer transition-all ${
+                    isDark
+                      ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500 focus:outline-none"
+                      : "bg-zinc-50 border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"
+                  }`}
+                >
+                  <option value="">Nam &amp; Nữ</option>
+                  <option value="Nam">Nam</option>
+                  <option value="Nữ">Nữ</option>
+                </select>
+
+                {/* Status filter */}
+                <select
+                  value={filterStatus}
+                  onChange={(e) => { setFilterStatus(e.target.value); setFighterPage(1); }}
+                  className={`px-3 py-2 rounded-xl border text-xs cursor-pointer transition-all ${
+                    isDark
+                      ? "bg-zinc-900 border-zinc-800 text-white focus:border-red-500 focus:outline-none"
+                      : "bg-zinc-50 border-zinc-200 text-zinc-900 focus:border-red-500 focus:outline-none"
+                  }`}
+                >
+                  <option value="">Tất cả trạng thái</option>
+                  <option value="active">Đang hoạt động</option>
+                  <option value="inactive">Ngưng hoạt động</option>
+                </select>
+
+                {/* Reset filters */}
+                {(searchQuery || filterWeightClass || filterGender || filterStatus) && (
+                  <button
+                    onClick={() => { setSearchQuery(""); setFilterWeightClass(""); setFilterGender(""); setFilterStatus(""); setFighterPage(1); }}
+                    className={`px-3 py-2 rounded-xl border text-xs cursor-pointer transition-all ${
+                      isDark ? "border-zinc-800 text-zinc-500 hover:text-red-400 hover:border-red-500/40" : "border-zinc-200 text-zinc-500 hover:text-red-600 hover:border-red-300"
+                    }`}
+                  >
+                    ✕ Xóa bộ lọc
+                  </button>
+                )}
+              </div>
+
+              {/* Data Table */}
+              <div className={`rounded-2xl border overflow-hidden ${
+                isDark ? "border-zinc-900" : "border-zinc-200"
+              }`}>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr className={isDark ? "bg-zinc-900/80" : "bg-zinc-50"}>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>#</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Võ Sĩ</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Hạng Cân</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Võ Đường</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Thành Tích</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Quốc tịch</th>
+                        <th className={`text-left px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Trạng thái</th>
+                        <th className={`text-right px-4 py-3 font-semibold text-[11px] uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>Hành động</th>
+                      </tr>
+                    </thead>
+                    <tbody className={`divide-y ${ isDark ? "divide-zinc-900" : "divide-zinc-100" }`}>
+                      {pagedFighters.length === 0 ? (
+                        <tr>
+                          <td colSpan={8} className="text-center py-16">
+                            <div className="flex flex-col items-center gap-3">
+                              <span className="text-4xl">🔍</span>
+                              <p className={`text-sm font-medium ${isDark ? "text-zinc-500" : "text-zinc-400"}`}>Không tìm thấy võ sĩ nào</p>
+                              <p className="text-xs text-zinc-600">Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
+                            </div>
+                          </td>
+                        </tr>
+                      ) : pagedFighters.map((fighter, idx) => (
+                        <tr
+                          key={fighter.id}
+                          className={`transition-colors group ${
+                            isDark
+                              ? "hover:bg-zinc-900/60"
+                              : "hover:bg-zinc-50"
+                          }`}
+                        >
+                          {/* Index */}
+                          <td className={`px-4 py-3 text-[11px] ${isDark ? "text-zinc-600" : "text-zinc-400"}`}>
+                            {(fighterPage - 1) * FIGHTERS_PER_PAGE + idx + 1}
+                          </td>
+
+                          {/* Fighter identity */}
+                          <td className="px-4 py-3">
+                            <div className="flex items-center gap-3">
+                              <div className="relative shrink-0">
+                                <img
+                                  src={fighter.photo || "/lvt.png"}
+                                  alt={fighter.name}
+                                  className="w-9 h-9 rounded-full object-cover object-top"
+                                  style={{ background: isDark ? "#18181b" : "#f4f4f5" }}
+                                />
+                              </div>
+                              <div>
+                                <p className={`font-semibold leading-tight ${isDark ? "text-white" : "text-zinc-900"}`}>{fighter.name}</p>
+                                {fighter.nickname && (
+                                  <p className="text-[10px] text-zinc-500 italic">"{fighter.nickname}"</p>
+                                )}
+                              </div>
+                            </div>
+                          </td>
+
+                          {/* Weight class */}
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold ${
+                              isDark ? "bg-zinc-900 text-zinc-300" : "bg-zinc-100 text-zinc-700"
+                            }`}>
+                              {fighter.weight_class || "—"}
+                            </span>
+                          </td>
+
+                          {/* Club */}
+                          <td className={`px-4 py-3 text-xs ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+                            {fighter.club || <span className="text-zinc-600">—</span>}
+                          </td>
+
+                          {/* Record */}
+                          <td className="px-4 py-3">
+                            <div className="flex items-center gap-1">
+                              <span className="text-emerald-500 font-bold text-[11px]">{fighter.wins ?? 0}W</span>
+                              <span className={isDark ? "text-zinc-700" : "text-zinc-300"}>·</span>
+                              <span className="text-red-500 font-bold text-[11px]">{fighter.losses ?? 0}L</span>
+                              {(fighter.draws ?? 0) > 0 && (
+                                <>
+                                  <span className={isDark ? "text-zinc-700" : "text-zinc-300"}>·</span>
+                                  <span className="text-yellow-500 font-bold text-[11px]">{fighter.draws}D</span>
+                                </>
+                              )}
+                            </div>
+                          </td>
+
+                          {/* Nationality */}
+                          <td className={`px-4 py-3 text-xs ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+                            <span className="flex items-center gap-1.5">
+                              {fighter.flag && <span>{fighter.flag}</span>}
+                              <span>{fighter.nationality || "—"}</span>
+                            </span>
+                          </td>
+
+                          {/* Status */}
+                          <td className="px-4 py-3">
+                            {fighter.active !== false ? (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
+                                Hoạt động
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-500/10 text-zinc-500 border border-zinc-500/20">
+                                <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 inline-block"></span>
+                                Ngưng
+                              </span>
+                            )}
+                          </td>
+
+                          {/* Actions */}
+                          <td className="px-4 py-3">
+                            <div className="flex items-center justify-end gap-2">
+                              <button
+                                type="button"
+                                onClick={() => setSelectedFighter(fighter)}
+                                className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border-none cursor-pointer transition-all ${
+                                  isDark
+                                    ? "bg-zinc-800 hover:bg-zinc-700 text-zinc-300"
+                                    : "bg-zinc-100 hover:bg-zinc-200 text-zinc-700"
+                                }`}
+                              >
+                                ✏️ Sửa
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => deleteFighter(fighter.id)}
+                                className="px-3 py-1.5 rounded-lg text-[10px] font-bold border-none cursor-pointer transition-all bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white"
+                              >
+                                🗑 Xóa
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Pagination footer */}
+                {fighterTotalPages > 1 && (
+                  <div className={`px-4 py-3 border-t flex items-center justify-between ${
+                    isDark ? "border-zinc-900 bg-zinc-950/40" : "border-zinc-100 bg-zinc-50"
+                  }`}>
+                    <span className={`text-[11px] ${isDark ? "text-zinc-500" : "text-zinc-400"}`}>
+                      Hiển thị {(fighterPage - 1) * FIGHTERS_PER_PAGE + 1}–{Math.min(fighterPage * FIGHTERS_PER_PAGE, filteredFighters.length)} / {filteredFighters.length} võ sĩ
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={() => setFighterPage(p => Math.max(1, p - 1))}
+                        disabled={fighterPage === 1}
+                        className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold border-none cursor-pointer transition-all disabled:opacity-30 disabled:cursor-not-allowed ${
+                          isDark ? "bg-zinc-900 hover:bg-zinc-800 text-zinc-300" : "bg-zinc-200 hover:bg-zinc-300 text-zinc-700"
+                        }`}
+                      >
+                        ‹ Trước
+                      </button>
+                      {Array.from({ length: Math.min(fighterTotalPages, 7) }, (_, i) => {
+                        let page = i + 1;
+                        if (fighterTotalPages > 7) {
+                          const start = Math.max(1, fighterPage - 3);
+                          page = start + i;
+                          if (page > fighterTotalPages) return null;
+                        }
+                        return (
+                          <button
+                            key={page}
+                            onClick={() => setFighterPage(page)}
+                            className={`w-8 h-8 rounded-lg text-[11px] font-semibold border-none cursor-pointer transition-all ${
+                              page === fighterPage
+                                ? "bg-[#dc2626] text-white shadow-md shadow-red-600/20"
+                                : isDark ? "bg-zinc-900 hover:bg-zinc-800 text-zinc-400" : "bg-zinc-200 hover:bg-zinc-300 text-zinc-600"
+                            }`}
+                          >
+                            {page}
+                          </button>
+                        );
+                      })}
+                      <button
+                        onClick={() => setFighterPage(p => Math.min(fighterTotalPages, p + 1))}
+                        disabled={fighterPage === fighterTotalPages}
+                        className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold border-none cursor-pointer transition-all disabled:opacity-30 disabled:cursor-not-allowed ${
+                          isDark ? "bg-zinc-900 hover:bg-zinc-800 text-zinc-300" : "bg-zinc-200 hover:bg-zinc-300 text-zinc-700"
+                        }`}
+                      >
+                        Sau ›
+                      </button>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <button type="button" onClick={() => setSelectedFighter(fighter)} className="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-400 border-none rounded-lg text-[10px] font-bold uppercase tracking-wider cursor-pointer">Sửa</button>
-                    <button type="button" onClick={() => deleteFighter(fighter.id)} className="px-3 py-1.5 bg-red-950/20 hover:bg-red-655 text-red-500 border-none rounded-lg text-[10px] font-bold uppercase tracking-wider cursor-pointer">Xóa</button>
-                  </div>
-                </div>
-              ))}
-              {filteredFighters.length === 0 && <p className="text-zinc-555 text-xs py-4">Không tìm thấy kết quả.</p>}
+                )}
+              </div>
             </div>
           )}
 
