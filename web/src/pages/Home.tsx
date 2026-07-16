@@ -68,12 +68,18 @@ export default function Home() {
   const opponentPct = 100 - tuanPct;
 
   return (
-    <div className="min-h-screen bg-[#030303] text-white pb-28 relative overflow-hidden" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+    <div className="min-h-screen bg-gradient-to-b from-[#060002] via-[#020203] to-[#040002] text-white pb-28 relative overflow-hidden" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       
-      {/* Background patterns */}
-      <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(255,30,39,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,30,39,0.015)_1px,transparent_1px)] bg-[size:40px_40px]" />
-      <div className="absolute top-0 left-1/4 w-[600px] h-[350px] bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-zinc-800/5 blur-[150px] rounded-full pointer-events-none" />
+      {/* ── PREMIUM COMBAT SPORTS BACKGROUND SYSTEM ── */}
+      {/* Hexagonal / Octagonal Speed Grid texture overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.015)_1px,transparent_1.5px)] bg-[size:24px_24px]" 
+        style={{ maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0.3) 100%)", WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0.3) 100%)" }}
+      />
+      {/* Multi-layered neon ambient glowing flares */}
+      <div className="absolute top-[-100px] left-[5%] w-[600px] h-[600px] bg-red-600/5 blur-[160px] rounded-full pointer-events-none animate-pulse duration-[8000ms]" />
+      <div className="absolute bottom-[20%] right-[-100px] w-[700px] h-[700px] bg-red-500/[0.03] blur-[180px] rounded-full pointer-events-none" />
+      <div className="absolute top-[40%] left-[45%] w-[400px] h-[400px] bg-zinc-800/10 blur-[150px] rounded-full pointer-events-none" />
 
       {/* ── SECTION 1: HERO PORTAL BANNER ── */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-16">
