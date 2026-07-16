@@ -175,10 +175,14 @@ export default function Header() {
                 `}
                 style={{ fontFamily: "Inter, system-ui, sans-serif" }}
               >
-                {/* Emoji icon */}
-                <span className={`text-xs transition-all duration-300 ${active ? "opacity-100" : "opacity-0 group-hover/nav:opacity-60"}`}>
-                  {link.emoji}
-                </span>
+                {/* Emoji icon or official logo image */}
+                {link.path === "/lion" ? (
+                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-4 h-4 object-contain rounded-full" />
+                ) : (
+                  <span className={`text-xs transition-all duration-300 ${active ? "opacity-100" : "opacity-0 group-hover/nav:opacity-60"}`}>
+                    {link.emoji}
+                  </span>
+                )}
 
                 {link.label}
 
@@ -280,7 +284,11 @@ export default function Header() {
                 }`}
                 style={{ fontFamily: "Inter, system-ui, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}
               >
-                <span className="text-sm">{link.emoji}</span>
+                {link.path === "/lion" ? (
+                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-4 h-4 object-contain rounded-full" />
+                ) : (
+                  <span className="text-sm">{link.emoji}</span>
+                )}
                 <span>{link.label}</span>
                 {active && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-red-400 shrink-0" />}
               </Link>
