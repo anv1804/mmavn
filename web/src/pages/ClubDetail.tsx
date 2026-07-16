@@ -43,52 +43,90 @@ export default function ClubDetail() {
       <div className="absolute top-0 right-1/4 w-[700px] h-[400px] bg-red-600/5 blur-[140px] rounded-full pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[600px] h-[600px] bg-zinc-800/5 blur-[160px] rounded-full pointer-events-none" />
 
-      {/* ── PANORAMIC ACADEMY HEADER BANNER ── */}
-      <div className="relative h-[220px] md:h-[300px] bg-[#09090b] border-b border-zinc-900/60 overflow-hidden flex items-end">
-        {/* Decorative Grid Mesh overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/60 to-transparent" />
+      {/* ── PROFILE COVER BANNER ── */}
+      <div className="relative h-[240px] md:h-[320px] bg-[#09090b] border-b border-zinc-900/60 overflow-hidden">
+        {/* Cover Photo */}
+        {club.cover ? (
+          <img 
+            src={club.cover} 
+            alt={`${club.name} Cover`} 
+            className="w-full h-full object-cover opacity-35 filter brightness-75 scale-105" 
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950" />
+        )}
         
-        {/* Floating back button */}
+        {/* Gradients & grid overlay over the cover */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:30px_30px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-black/40" />
+        
+        {/* Back button */}
         <div className="absolute top-6 left-6 z-20">
           <button
             onClick={() => navigate("/clubs")}
-            className="group flex items-center gap-3 text-[10px] font-mono tracking-[0.2em] text-zinc-400 hover:text-white bg-black/70 border border-zinc-900 hover:border-red-500/40 px-5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer"
+            className="group flex items-center gap-3 text-[10px] font-mono tracking-[0.2em] text-zinc-400 hover:text-white bg-black/80 border border-zinc-900 hover:border-red-500/40 px-5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer"
           >
             <span>&larr;</span> 
             <span>TẤT CẢ VÕ ĐƯỜNG</span>
           </button>
         </div>
+      </div>
 
-        {/* Brand layout title block inside container */}
-        <div className="max-w-7xl mx-auto w-full px-6 pb-8 relative z-10 flex flex-col md:flex-row items-start md:items-end gap-6">
-          {/* Logo container overlapping banner */}
-          <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-[#09090b] border-2 border-zinc-800 p-4 shrink-0 flex items-center justify-center shadow-2xl shadow-black/80">
-            <img src={club.logo} alt={club.name} className="w-full h-full object-contain" />
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[9px] font-mono font-bold tracking-[0.2em] text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-md uppercase">
-                {club.city} · VIỆT NAM
-              </span>
-              <span className="text-[9px] font-mono text-zinc-500 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-md">
-                FOUNDED IN {club.foundedYear ?? "—"}
-              </span>
-            </div>
-            
-            <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-white">
-              {club.name}
-            </h1>
-            <p className="text-xs md:text-sm text-zinc-400 font-mono tracking-wide">
-              Huấn luyện viên trưởng: <span className="text-red-400 font-bold font-sans">{club.headCoach}</span>
-            </p>
+      {/* ── CENTERED AVATAR (LOGO) OVERLAY ── */}
+      <div className="relative z-20 -mt-20 md:-mt-24 flex flex-col items-center px-6">
+        
+        {/* Centered Avatar Frame */}
+        <div className="relative group">
+          {/* Avatar glow effect */}
+          <div className="absolute inset-0 rounded-3xl bg-red-600/20 blur-xl scale-110 opacity-70 group-hover:bg-red-500/30 transition-all duration-300" />
+          
+          <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-3xl bg-[#070709] border-4 border-[#030303] p-4 flex items-center justify-center shadow-2xl shadow-black">
+            <img 
+              src={club.logo} 
+              alt={club.name} 
+              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
+            />
           </div>
         </div>
+
+        {/* Centered Academy Identity Text */}
+        <div className="text-center mt-6 space-y-3 max-w-2xl">
+          <div className="flex justify-center items-center gap-2">
+            <span className="text-[9px] font-mono font-bold tracking-[0.2em] text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-md uppercase">
+              {club.city} · VIỆT NAM
+            </span>
+            <span className="text-[9px] font-mono text-zinc-500 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-md">
+              FOUNDED IN {club.foundedYear ?? "—"}
+            </span>
+          </div>
+
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-white">
+            {club.name}
+          </h1>
+
+          <p className="text-xs md:text-sm text-zinc-400 font-mono tracking-wide">
+            Huấn luyện viên trưởng: <span className="text-red-400 font-bold font-sans">{club.headCoach}</span>
+          </p>
+
+          {/* Social quick links */}
+          <div className="flex gap-2.5 pt-2 justify-center">
+            {club.facebook && (
+              <a href={club.facebook} target="_blank" rel="noreferrer" title="Facebook" className="w-8 h-8 rounded-lg bg-zinc-900/60 border border-zinc-850 flex items-center justify-center hover:text-blue-500 transition-colors">
+                <span className="text-xs font-mono">FB</span>
+              </a>
+            )}
+            {club.website && (
+              <a href={club.website} target="_blank" rel="noreferrer" title="Website" className="w-8 h-8 rounded-lg bg-zinc-900/60 border border-zinc-850 flex items-center justify-center hover:text-red-500 transition-colors">
+                <span className="text-xs">🌐</span>
+              </a>
+            )}
+          </div>
+        </div>
+
       </div>
 
       {/* ── MAIN CONTENT WRAPPER ── */}
-      <div className="max-w-7xl mx-auto px-6 mt-8 space-y-10 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 mt-12 space-y-10 relative z-10">
         
         {/* ── HORIZONTAL METRIC METADATA BAR ── */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-zinc-950/60 border border-zinc-900 rounded-3xl p-5 shadow-lg shadow-black/40">
