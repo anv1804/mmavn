@@ -90,12 +90,13 @@ export default function CmsSelect({ value, onChange, options, placeholder = "Táº
                 : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
             }`}
           >
-            {!value && (
+            {!value ? (
               <svg className="w-3 h-3 text-red-500 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
               </svg>
+            ) : (
+              <span className="w-3 shrink-0" />
             )}
-            {!value && <span className="w-3 shrink-0" />}
             <span>{placeholder}</span>
           </button>
 
