@@ -236,33 +236,19 @@ export default function Header() {
             {isDark ? "☀️" : "🌙"}
           </button>
 
-          {/* Join Community Red Button */}
+          {/* Combined Join Community Red Button with FB Icon */}
           <a
-            href="https://community.mmavn.vn"
+            href="https://facebook.com/groups/mmavn"
+            target="_blank"
+            rel="noreferrer"
             className="
               flex items-center gap-2 h-9 px-4.5 rounded-xl cursor-pointer border no-underline
               bg-red-600 border-red-600 hover:bg-red-500 hover:border-red-500 text-white
               transition-all duration-300 shadow-md shadow-red-600/10 font-mono font-bold text-[9px] uppercase tracking-wider whitespace-nowrap
             "
           >
-            <span>Tham gia cộng đồng</span>
-          </a>
-
-          {/* Facebook Group Icon Link */}
-          <a
-            href="https://facebook.com/groups/mmavn"
-            target="_blank"
-            rel="noreferrer"
-            title="Facebook Group"
-            className={`
-              flex items-center justify-center h-9 w-9 rounded-xl border transition-all duration-300
-              ${isDark
-                ? "bg-zinc-900/60 border-zinc-800 text-zinc-350 hover:text-white hover:border-zinc-700 hover:bg-zinc-900"
-                : "bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-black hover:border-zinc-300 hover:bg-zinc-200"
-              }
-            `}
-          >
             <FacebookIcon />
+            <span>Tham gia cộng đồng</span>
           </a>
         </div>
 
@@ -357,13 +343,16 @@ export default function Header() {
           
           {/* Mobile Join Community button */}
           <a
-            href="https://community.mmavn.vn"
+            href="https://facebook.com/groups/mmavn"
+            target="_blank"
+            rel="noreferrer"
             onClick={() => setMobileOpen(false)}
             className="
               flex items-center justify-center gap-2 h-10 w-full rounded-xl border no-underline mt-3
               bg-red-600 border-red-600 text-white font-mono font-bold text-[10px] uppercase tracking-wider
             "
           >
+            <FacebookIcon />
             <span>Tham gia cộng đồng</span>
           </a>
         </div>
