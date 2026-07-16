@@ -346,7 +346,7 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
 
                   <div className="space-y-1">
                     <label className="text-[10px] text-zinc-400 uppercase block">Giới tính</label>
-                    <select value={fighter.gender ?? "Nam"} onChange={(e) => set("gender", e.target.value)} className={inputClass}>
+                    <select value={getSocial("gender") || "Nam"} onChange={(e) => setSocial("gender", e.target.value)} className={inputClass}>
                       <option value="Nam">♂ Nam</option>
                       <option value="Nữ">♀ Nữ</option>
                     </select>

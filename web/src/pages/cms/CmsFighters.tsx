@@ -74,7 +74,7 @@ export default function CmsFighters() {
     // Omit fields that do not exist as root columns in Supabase schema cache
     const {
       facebook, tiktok, instagram, youtube,
-      birth_date, thumb, cover,
+      birth_date, thumb, cover, gender,
       ...validPayload
     } = selected;
 

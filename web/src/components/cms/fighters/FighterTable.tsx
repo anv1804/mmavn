@@ -93,7 +93,7 @@ export default function FighterTable({ fighters, clubs, page, totalPages, total,
                             <p className={`font-semibold leading-tight ${isDark ? "text-white" : "text-zinc-900"}`}>
                               {fighter.name}
                             </p>
-                            <GenderIcon gender={fighter.gender} />
+                            <GenderIcon gender={fighter.gender || fighter.social_media?.gender} />
                           </div>
                         </div>
                       </div>
