@@ -56,32 +56,36 @@ export default function Header() {
     >
       
       {/* ── TICKER STRIP ── */}
-      <div className="relative h-7 flex items-center overflow-hidden bg-black/60 border-b border-zinc-900/60">
-        
-        {/* LIVE badge */}
-        <div className="shrink-0 flex items-center gap-1.5 px-3.5 h-full bg-red-600">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
-          </span>
-          <span className="text-[8px] font-mono font-bold text-white tracking-[0.2em] uppercase">
-            LIVE
-          </span>
-        </div>
+      <div className="relative h-7 bg-black/60 border-b border-zinc-900/60 w-full">
+        <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+          
+          <div className="flex items-center flex-1 h-full overflow-hidden">
+            {/* LIVE badge */}
+            <div className="shrink-0 flex items-center gap-1.5 px-3.5 h-full bg-red-600">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+              </span>
+              <span className="text-[8px] font-mono font-bold text-white tracking-[0.2em] uppercase">
+                LIVE
+              </span>
+            </div>
 
-        {/* Scrolling text */}
-        <div className="flex-1 overflow-hidden px-4">
-          <p
-            className={`text-[9px] font-mono font-medium text-zinc-400 tracking-wider uppercase whitespace-nowrap transition-all duration-300 ${
-              fade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1.5"
-            }`}
-          >
-            {TICKER[tickerIdx]}
-          </p>
-        </div>
+            {/* Scrolling text */}
+            <div className="flex-1 overflow-hidden px-4">
+              <p
+                className={`text-[9px] font-mono font-medium text-zinc-400 tracking-wider uppercase whitespace-nowrap transition-all duration-300 ${
+                  fade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1.5"
+                }`}
+              >
+                {TICKER[tickerIdx]}
+              </p>
+            </div>
+          </div>
 
-        <div className="shrink-0 px-4 text-[8px] font-mono text-zinc-500 tracking-widest border-l border-zinc-900/65 h-full flex items-center">
-          MMAVN · OFFICIAL
+          <div className="shrink-0 px-4 text-[8px] font-mono text-zinc-500 tracking-widest border-l border-zinc-900/65 h-full flex items-center">
+            MMAVN · OFFICIAL
+          </div>
         </div>
       </div>
 
