@@ -15,10 +15,13 @@ export default function Home() {
   const [clubs, setClubs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Poll state
+  const [voted, setVoted] = useState(false);
+  const [votes, setVotes] = useState({ tuan: 64, opponent: 36 });
+
   useEffect(() => {
     async function loadHomeData() {
       try {
-        // Query clubs
         const { data: clubsData } = await supabase
           .from("clubs")
           .select("*")
@@ -27,7 +30,6 @@ export default function Home() {
         if (clubsData) {
           setClubs(clubsData);
           
-          // Calculate stats from loaded clubs
           const totalFighters = clubsData.reduce((sum: number, c: any) => sum + (c.statistics.lionFighters || 0), 0);
           const totalWins = clubsData.reduce((sum: number, c: any) => sum + (c.statistics.wins || 0), 0);
           const totalKOs = clubsData.reduce((sum: number, c: any) => sum + ((c.statistics.koWins || 0) + (c.statistics.submissionWins || 0)), 0);
@@ -47,8 +49,26 @@ export default function Home() {
     loadHomeData();
   }, []);
 
+  const handleVote = (option: "tuan" | "opponent") => {
+    if (voted) return;
+    setVotes((prev) => {
+      const next = { ...prev };
+      if (option === "tuan") {
+        next.tuan += 1;
+      } else {
+        next.opponent += 1;
+      }
+      return next;
+    });
+    setVoted(true);
+  };
+
+  const totalVotes = votes.tuan + votes.opponent;
+  const tuanPct = Math.round((votes.tuan / totalVotes) * 100);
+  const opponentPct = 100 - tuanPct;
+
   return (
-    <div className="min-h-screen bg-[#030303] text-white pb-24 relative overflow-hidden" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+    <div className="min-h-screen bg-[#030303] text-white pb-28 relative overflow-hidden" style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
       
       {/* Background patterns */}
       <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(255,30,39,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,30,39,0.015)_1px,transparent_1px)] bg-[size:40px_40px]" />
@@ -117,8 +137,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 2: FEATURED CHAMPION SPOTLIGHT ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-12">
+      {/* ── SECTION 2: LATEST MMA NEWS (TIN TỨC NÓNG) ── */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+        <div className="flex items-center gap-3 border-b border-zinc-900 pb-4 mb-8">
+          <div className="w-1 h-6 bg-red-600 rounded-full" />
+          <div>
+            <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">MMA HOT NEWS</span>
+            <h2 className="text-2xl font-black uppercase text-white">TIN TỨC & BÊN LỀ ĐẤU TRƯỜNG</h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { tag: "LION 34", time: "2 giờ trước", title: "Lê Văn Tuần hoàn tất buổi cân thử, sẵn sàng bảo vệ đai vô địch hạng 56kg Nam", desc: "Đương kim vô địch tỏ ra vô cùng tự tin và đạt trạng thái thể lực tốt nhất trước thềm trận đấu tâm điểm ngày mai.", img: "🥊" },
+            { tag: "SỰ KIỆN", time: "1 ngày trước", title: "Johnny Trí Nguyễn chia sẻ chiến thuật độc bản của Liên Phong trước mùa giải mới", desc: "HLV trưởng võ đường Liên Phong tin tưởng dàn võ sĩ trẻ sẽ tạo nên nhiều bất ngờ lớn với sự đột phá trong địa chiến.", img: "🥋" },
+            { tag: "UFC 326", time: "3 ngày trước", title: "Jon Jones chính thức lên tiếng về tin đồn giải nghệ trước thềm đại chiến Aspinall", desc: "Huyền thoại hạng nặng khẳng định anh vẫn khao khát chiến đấu và muốn cống hiến một trận cầu kinh điển cuối cùng.", img: "🔥" }
+          ].map((news, idx) => (
+            <div key={idx} className="group bg-zinc-950/40 border border-zinc-900 hover:border-red-500/20 rounded-2xl p-5 space-y-4 transition-all duration-300">
+              <div className="flex justify-between items-center text-[9px] font-mono">
+                <span className="text-red-500 font-bold bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded uppercase">{news.tag}</span>
+                <span className="text-zinc-500">{news.time}</span>
+              </div>
+              <h3 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors leading-snug line-clamp-2">{news.title}</h3>
+              <p className="text-xs text-zinc-400 leading-relaxed line-clamp-2 font-light">{news.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── SECTION 3: FEATURED CHAMPION SPOTLIGHT ── */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
         <div className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden shadow-xl shadow-black/40">
           <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-red-600/5 to-transparent pointer-events-none" />
           
@@ -176,8 +224,95 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 3: UPCOMING BROADCASTS TIMELINE ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-12">
+      {/* ── SECTION 4: MATCH HIGHLIGHT & FAN POLL (GRID INTERACTIVE) ── */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Fan Poll Widget (5/12) */}
+          <div className="lg:col-span-5 bg-zinc-950/60 border border-zinc-900 rounded-3xl p-6 space-y-4">
+            <div className="flex items-center gap-2 border-b border-zinc-900 pb-3">
+              <span className="text-red-500">🗳️</span>
+              <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 uppercase">FAN POLL & BÌNH CHỌN</h3>
+            </div>
+            
+            <div className="space-y-3">
+              <h4 className="text-xs font-mono text-zinc-500 uppercase">Dự đoán kết quả trận đấu tâm điểm LION 34</h4>
+              <p className="text-sm font-bold text-white leading-snug">Lê Văn Tuần vs Đối thủ thách đấu đai vô địch?</p>
+              
+              {!voted ? (
+                <div className="space-y-2.5 pt-2">
+                  <button 
+                    onClick={() => handleVote("tuan")}
+                    className="w-full text-left bg-zinc-900 border border-zinc-800 hover:border-red-500/40 p-3 rounded-xl text-xs font-bold text-zinc-300 hover:text-white transition-all cursor-pointer"
+                  >
+                    🏆 Lê Văn Tuần thắng bằng khóa siết (Submission)
+                  </button>
+                  <button 
+                    onClick={() => handleVote("opponent")}
+                    className="w-full text-left bg-zinc-900 border border-zinc-800 hover:border-red-500/40 p-3 rounded-xl text-xs font-bold text-zinc-300 hover:text-white transition-all cursor-pointer"
+                  >
+                    ⚡ Thách đấu giành đai thắng điểm đồng thuận (Decision)
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-4 pt-3">
+                  <div className="space-y-1.5">
+                    <div className="flex justify-between text-[10px] font-mono">
+                      <span className="text-red-400 font-bold">Lê Văn Tuần bảo vệ đai</span>
+                      <span className="text-white font-bold">{tuanPct}%</span>
+                    </div>
+                    <div className="h-2 bg-zinc-900 rounded-full overflow-hidden">
+                      <div className="h-full bg-red-600 rounded-full transition-all duration-500" style={{ width: `${tuanPct}%` }} />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <div className="flex justify-between text-[10px] font-mono">
+                      <span className="text-zinc-500">Đổi ngôi vô địch</span>
+                      <span className="text-white font-bold">{opponentPct}%</span>
+                    </div>
+                    <div className="h-2 bg-zinc-900 rounded-full overflow-hidden">
+                      <div className="h-full bg-zinc-700 rounded-full transition-all duration-500" style={{ width: `${opponentPct}%` }} />
+                    </div>
+                  </div>
+                  <p className="text-[9px] font-mono text-zinc-600 text-center">Cảm ơn bạn đã tham gia bình chọn!</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Training Techniques Grid (7/12) */}
+          <div className="lg:col-span-7 bg-zinc-950/60 border border-zinc-900 rounded-3xl p-6 space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-red-500">🥋</span>
+                <h3 className="text-xs font-mono font-bold tracking-widest text-zinc-400 uppercase">GÓC KỸ THUẬT COMBAT TOOLKIT</h3>
+              </div>
+              <span className="text-[9px] font-mono text-zinc-600">MMA TUTORIALS</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { title: "Kỹ thuật đấm Overhand Right", level: "Cơ bản", duration: "Muay Thai / Boxing", desc: "Cách phát lực từ hông và giữ thăng bằng đầu để tạo ra đòn đấm Overhand uy lực nhất vượt qua tay thủ đối phương." },
+                { title: "Cách thoát thế chẹn cổ Rear-Naked Choke", level: "Nâng cao", duration: "BJJ / Grappling", desc: "Các bước gỡ tay khóa, xoay vai hướng về phía mặt đối thủ để thoát hiểm an toàn khi bị kiểm soát lưng." }
+              ].map((tech, idx) => (
+                <div key={idx} className="bg-zinc-900/40 border border-zinc-900 p-4 rounded-xl space-y-2">
+                  <div className="flex justify-between text-[9px] font-mono">
+                    <span className="text-amber-500 font-bold">{tech.level}</span>
+                    <span className="text-zinc-500">{tech.duration}</span>
+                  </div>
+                  <h4 className="text-xs font-bold text-white">{tech.title}</h4>
+                  <p className="text-[11px] text-zinc-500 leading-relaxed font-light">{tech.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── SECTION 5: UPCOMING BROADCASTS TIMELINE ── */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
         <div className="flex items-center gap-3 border-b border-zinc-900 pb-4 mb-8">
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
@@ -207,8 +342,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 4: CLUBS SECTION ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-12">
+      {/* ── SECTION 6: CLUBS SECTION ── */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-8">
         <div className="flex items-center justify-between border-b border-zinc-900 pb-4 mb-8">
           <div className="flex items-center gap-3">
             <div className="w-1 h-6 bg-red-600 rounded-full" />
