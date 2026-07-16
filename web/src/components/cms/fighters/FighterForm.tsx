@@ -23,12 +23,25 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
     isDark ? "bg-zinc-900 border-zinc-800 text-zinc-500" : "bg-zinc-100 border-zinc-200 text-zinc-400"
   }`;
 
+  // Helper set field directly
   const set = (field: string, value: any) => onChange({ ...fighter, [field]: value });
+
+  // Helper set inside nested social_media JSON
+  const setSocial = (field: string, value: any) => {
+    const nextSocial = { ...(fighter.social_media || {}) };
+    nextSocial[field] = value;
+    onChange({ ...fighter, social_media: nextSocial });
+  };
+
+  // Get social_media value safely
+  const getSocial = (field: string) => fighter.social_media?.[field] ?? "";
 
   // Dynamically calculate age from birth_date
   const handleBirthDateChange = (dateVal: string) => {
     if (!dateVal) {
-      onChange({ ...fighter, birth_date: "", age: 0 });
+      const nextSocial = { ...(fighter.social_media || {}) };
+      delete nextSocial.birth_date;
+      onChange({ ...fighter, social_media: nextSocial, age: 0 });
       return;
     }
     const birthDate = new Date(dateVal);
@@ -38,7 +51,10 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       calculatedAge--;
     }
-    onChange({ ...fighter, birth_date: dateVal, age: Math.max(0, calculatedAge) });
+    
+    const nextSocial = { ...(fighter.social_media || {}) };
+    nextSocial.birth_date = dateVal;
+    onChange({ ...fighter, social_media: nextSocial, age: Math.max(0, calculatedAge), birth_year: birthDate.getFullYear() });
   };
 
   const Field = ({ label, field, type = "text", disabled = false, placeholder = "" }: { label: string; field: string; type?: string; disabled?: boolean; placeholder?: string }) => (
@@ -99,8 +115,8 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
           <div className="space-y-2">
             <span className="text-[10px] text-zinc-400 block uppercase pl-1">Thumbnail</span>
             <div className={`w-full aspect-video rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
-              {fighter.thumb ? (
-                <img src={fighter.thumb} alt="Thumbnail" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
+              {getSocial("thumb") ? (
+                <img src={getSocial("thumb")} alt="Thumbnail" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
               ) : (
                 <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
               )}
@@ -111,8 +127,8 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
           <div className="space-y-2">
             <span className="text-[10px] text-zinc-400 block uppercase pl-1">Cover Banner</span>
             <div className={`w-full aspect-[21/9] rounded-2xl overflow-hidden border flex items-center justify-center bg-zinc-900/10 ${isDark ? "border-zinc-800 bg-zinc-900/30" : "border-zinc-200"}`}>
-              {fighter.cover ? (
-                <img src={fighter.cover} alt="Cover Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
+              {getSocial("cover") ? (
+                <img src={getSocial("cover")} alt="Cover Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/lvt.png" }} />
               ) : (
                 <span className="text-zinc-500 text-xs italic">Chưa có ảnh</span>
               )}
@@ -158,7 +174,7 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
                 <label className="text-[10px] text-zinc-400 uppercase block">Ngày sinh</label>
                 <input
                   type="date"
-                  value={fighter.birth_date ?? ""}
+                  value={getSocial("birth_date")}
                   onChange={(e) => handleBirthDateChange(e.target.value)}
                   className={inputClass}
                 />
@@ -186,8 +202,8 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
                 </select>
               </div>
 
-              <Field label="Chiều cao (cm)" field="height" type="number" placeholder="Ví dụ: 168" />
-              <Field label="Sải tay (cm)" field="reach" type="number" placeholder="Ví dụ: 168" />
+              <Field label="Chiều cao (ví dụ: 1m68)" field="height" placeholder="Ví dụ: 1m68" />
+              <Field label="Sải tay (ví dụ: 170 cm)" field="reach" placeholder="Ví dụ: 170 cm" />
               <Field label="Quê quán" field="hometown" placeholder="Ví dụ: Hà Đông, Hà Nội" />
               <Field label="Quốc tịch" field="nationality" placeholder="Ví dụ: Việt Nam" />
               <Field label="Quốc kỳ (Emoji)" field="flag" placeholder="Ví dụ: 🇻🇳" />
@@ -199,9 +215,15 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
             <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">II. Hình ảnh &amp; Đường dẫn</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Field label="Ảnh đại diện / Avatar (avt) URL" field="photo" placeholder="/lvt.png hoặc https://..." />
-              <Field label="Ảnh Thumb / Thumbnail URL (Danh sách)" field="thumb" placeholder="/lvt-thumb.png hoặc https://..." />
-              <div className="md:col-span-2">
-                <Field label="Ảnh bìa / Cover Banner URL (Chi tiết)" field="cover" placeholder="/lvt-cover.png hoặc https://..." />
+              
+              <div className="space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase block">Ảnh Thumb / Thumbnail URL (Danh sách)</label>
+                <input type="text" value={getSocial("thumb")} onChange={e => setSocial("thumb", e.target.value)} placeholder="/lvt-thumb.png hoặc https://..." className={inputClass} />
+              </div>
+
+              <div className="md:col-span-2 space-y-1">
+                <label className="text-[10px] text-zinc-400 uppercase block">Ảnh bìa / Cover Banner URL (Chi tiết)</label>
+                <input type="text" value={getSocial("cover")} onChange={e => setSocial("cover", e.target.value)} placeholder="/lvt-cover.png hoặc https://..." className={inputClass} />
               </div>
             </div>
           </div>
@@ -219,7 +241,7 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
                   </svg>
                   Facebook Link
                 </label>
-                <input type="text" value={fighter.facebook ?? ""} onChange={e => set("facebook", e.target.value)} placeholder="https://facebook.com/..." className={inputClass} />
+                <input type="text" value={getSocial("facebook")} onChange={e => setSocial("facebook", e.target.value)} placeholder="https://facebook.com/..." className={inputClass} />
               </div>
 
               {/* TikTok */}
@@ -230,7 +252,7 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
                   </svg>
                   TikTok Link
                 </label>
-                <input type="text" value={fighter.tiktok ?? ""} onChange={e => set("tiktok", e.target.value)} placeholder="https://tiktok.com/@..." className={inputClass} />
+                <input type="text" value={getSocial("tiktok")} onChange={e => setSocial("tiktok", e.target.value)} placeholder="https://tiktok.com/@..." className={inputClass} />
               </div>
 
               {/* Instagram */}
@@ -243,7 +265,7 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
                   </svg>
                   Instagram Link
                 </label>
-                <input type="text" value={fighter.instagram ?? ""} onChange={e => set("instagram", e.target.value)} placeholder="https://instagram.com/..." className={inputClass} />
+                <input type="text" value={getSocial("instagram")} onChange={e => setSocial("instagram", e.target.value)} placeholder="https://instagram.com/..." className={inputClass} />
               </div>
 
               {/* YouTube */}
@@ -254,7 +276,7 @@ export default function FighterForm({ fighter, clubs, rankings, onChange, onSave
                   </svg>
                   YouTube Link
                 </label>
-                <input type="text" value={fighter.youtube ?? ""} onChange={e => set("youtube", e.target.value)} placeholder="https://youtube.com/c/..." className={inputClass} />
+                <input type="text" value={getSocial("youtube")} onChange={e => setSocial("youtube", e.target.value)} placeholder="https://youtube.com/c/..." className={inputClass} />
               </div>
 
             </div>
