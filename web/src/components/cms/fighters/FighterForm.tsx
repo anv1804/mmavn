@@ -3,12 +3,13 @@ import { useTheme } from "../../../context/ThemeContext";
 interface Props {
   fighter: any;
   clubs: any[];
+  rankings: any[];
   onChange: (updated: any) => void;
   onSave: (e: React.FormEvent) => void;
   onCancel: () => void;
 }
 
-export default function FighterForm({ fighter, clubs, onChange, onSave, onCancel }: Props) {
+export default function FighterForm({ fighter, clubs, rankings, onChange, onSave, onCancel }: Props) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
@@ -60,7 +61,22 @@ export default function FighterForm({ fighter, clubs, onChange, onSave, onCancel
         <Field label="Mã Võ Sĩ (ID)*" field="id" disabled />
         <div className="col-span-2"><Field label="Họ Tên Võ sĩ*" field="name" /></div>
         <Field label="Biệt danh (Nickname)" field="nickname" />
-        <Field label="Hạng cân (ví dụ: 56kg)" field="weight_class" />
+        {/* Hạng cân dropdown dynamic */}
+        <div className="space-y-1">
+          <label className="text-[10px] text-zinc-400 uppercase block">Hạng cân*</label>
+          <select
+            value={fighter.weight_class ?? ""}
+            onChange={(e) => set("weight_class", e.target.value)}
+            className={inputClass}
+          >
+            <option value="">— Chọn hạng cân —</option>
+            {rankings.map((r) => (
+              <option key={r.id} value={r.name}>
+                {r.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Gender select */}
         <div className="space-y-1">

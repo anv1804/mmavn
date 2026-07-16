@@ -15,7 +15,8 @@ const NAV_ITEMS = [
     links: [
       { to: "/cms/fighters", icon: "🥋", label: "Võ Sĩ / VĐV" },
       { to: "/cms/clubs", icon: "🏢", label: "Câu Lạc Bộ" },
-      { to: "/cms/rankings", icon: "🏆", label: "Hạng Cân / BXH" },
+      { to: "/cms/weight-classes", icon: "🏋️", label: "Hạng Cân" },
+      { to: "/cms/rankings", icon: "🏆", label: "Bảng Xếp Hạng" },
     ],
   },
 ];

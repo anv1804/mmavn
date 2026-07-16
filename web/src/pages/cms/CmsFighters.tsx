@@ -17,9 +17,8 @@ const NEW_FIGHTER_TEMPLATE = {
   wins: 0, losses: 0, draws: 0,
   ko_wins: 0, sub_wins: 0, decision_wins: 0, active: true,
 };
-
 export default function CmsFighters() {
-  const { fighters, setFighters, clubs, msg, showMsg } = useCms();
+  const { fighters, setFighters, clubs, rankings, msg, showMsg } = useCms();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [filterWeightClass, setFilterWeightClass] = useState("");
@@ -39,7 +38,7 @@ export default function CmsFighters() {
     );
   });
 
-  const uniqueWeightClasses = Array.from(new Set(fighters.map((f) => f.weight_class).filter(Boolean))).sort() as string[];
+  const uniqueWeightClasses = Array.from(new Set(rankings.map((r) => r.name).filter(Boolean))).sort() as string[];
   const totalPages = Math.max(1, Math.ceil(filtered.length / FIGHTERS_PER_PAGE));
   const paged = filtered.slice((page - 1) * FIGHTERS_PER_PAGE, page * FIGHTERS_PER_PAGE);
   const hasFilter = !!(searchQuery || filterWeightClass || filterGender || filterStatus);
@@ -101,7 +100,7 @@ export default function CmsFighters() {
         </>
       ) : (
         <FighterForm
-          fighter={selected} clubs={clubs}
+          fighter={selected} clubs={clubs} rankings={rankings}
           onChange={setSelected} onSave={handleSave} onCancel={() => setSelected(null)}
         />
       )}

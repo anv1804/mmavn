@@ -18,6 +18,7 @@ import CmsDashboard from "./pages/cms/CmsDashboard";
 import CmsFighters from "./pages/cms/CmsFighters";
 import CmsClubs from "./pages/cms/CmsClubs";
 import CmsRankings from "./pages/cms/CmsRankings";
+import CmsWeightClasses from "./pages/cms/CmsWeightClasses";
 import CmsEvents from "./pages/cms/CmsEvents";
 
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
@@ -48,13 +49,14 @@ function AppContent() {
           <Route path="/club/:id" element={<ClubDetail />} />
 
           {/* CMS nested routes */}
-          <Route path="/cms" element={<CmsLayout />}>
-            <Route index element={<CmsDashboard />} />
-            <Route path="fighters" element={<CmsFighters />} />
-            <Route path="clubs" element={<CmsClubs />} />
-            <Route path="rankings" element={<CmsRankings />} />
-            <Route path="events" element={<CmsEvents />} />
-          </Route>
+           <Route path="/cms" element={<CmsLayout />}>
+             <Route index element={<CmsDashboard />} />
+             <Route path="fighters" element={<CmsFighters />} />
+             <Route path="clubs" element={<CmsClubs />} />
+             <Route path="weight-classes" element={<CmsWeightClasses />} />
+             <Route path="rankings" element={<CmsRankings />} />
+             <Route path="events" element={<CmsEvents />} />
+           </Route>
         </Routes>
       </main>
 
