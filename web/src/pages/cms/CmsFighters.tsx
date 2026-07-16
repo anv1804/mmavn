@@ -152,7 +152,7 @@ export default function CmsFighters() {
         </>
       ) : (
         <FighterForm
-          fighter={selected} clubs={clubs} rankings={rankings}
+          fighter={selected} fighters={fighters} clubs={clubs} rankings={rankings}
           onChange={setSelected} onSave={handleSave} onCancel={handleCancel}
         />
       )}
