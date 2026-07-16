@@ -80,19 +80,22 @@ export default function Home() {
     }`} style={{ fontFamily: "'Outfit', system-ui, -apple-system, sans-serif" }}>
       
       {/* ── PREMIUM CINEMATIC COMBAT SPORTS BACKGROUND ── */}
-      {/* High-fidelity Octagon grid overlay */}
+      {/* High-fidelity Dot-grid (chấm bi) overlay for clean combat sports theme */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.07]" 
+        className="absolute inset-0 pointer-events-none transition-all duration-300" 
         style={{ 
-          backgroundImage: `
-            radial-gradient(circle at 20% 30%, ${isDark ? "rgba(239, 68, 68, 0.15)" : "rgba(239, 68, 68, 0.08)"} 1px, transparent 1px),
-            radial-gradient(circle at 75% 60%, ${isDark ? "rgba(245, 158, 11, 0.15)" : "rgba(245, 158, 11, 0.08)"} 1px, transparent 1px),
-            linear-gradient(${isDark ? "rgba(255, 255, 255, 0.007)" : "rgba(0, 0, 0, 0.015)"} 1px, transparent 1px),
-            linear-gradient(90deg, ${isDark ? "rgba(255, 255, 255, 0.007)" : "rgba(0, 0, 0, 0.015)"} 1px, transparent 1px)
-          `,
-          backgroundSize: "100px 100px, 120px 120px, 40px 40px, 40px 40px",
-          maskImage: "radial-gradient(circle at 50% 30%, black 40%, transparent 90%)",
-          WebkitMaskImage: "radial-gradient(circle at 50% 30%, black 40%, transparent 90%)"
+          backgroundImage: isDark 
+            ? `
+              radial-gradient(circle at 20% 30%, rgba(239, 68, 68, 0.15) 1px, transparent 1px),
+              radial-gradient(circle at 75% 60%, rgba(245, 158, 11, 0.15) 1px, transparent 1px),
+              linear-gradient(rgba(255, 255, 255, 0.007) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px)
+            `
+            : "radial-gradient(circle at center, rgba(0, 0, 0, 0.055) 1.5px, transparent 1.5px)",
+          backgroundSize: isDark ? "100px 100px, 120px 120px, 40px 40px, 40px 40px" : "32px 32px",
+          opacity: isDark ? 0.07 : 0.75,
+          maskImage: isDark ? "radial-gradient(circle at 50% 30%, black 40%, transparent 90%)" : "none",
+          WebkitMaskImage: isDark ? "radial-gradient(circle at 50% 30%, black 40%, transparent 90%)" : "none"
         }}
       />
 
