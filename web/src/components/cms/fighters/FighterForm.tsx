@@ -353,11 +353,11 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
               <div className="space-y-4">
                 <h3 className="text-[11px] font-bold text-red-500 uppercase tracking-widest border-l-2 border-red-500 pl-2">I. Thông tin cá nhân</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Field label="Mã Võ Sĩ (ID)*" field="id" disabled />
+                  <Field label="Mã Võ Sĩ (ID)*" field="id" disabled fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
                   <div className="md:col-span-2">
-                    <Field label="Họ Tên Võ sĩ*" field="name" placeholder="Ví dụ: Lê Văn Tuần" />
+                    <Field label="Họ Tên Võ sĩ*" field="name" placeholder="Ví dụ: Lê Văn Tuần" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
                   </div>
-                  <Field label="Biệt danh (Nickname)" field="nickname" placeholder="Ví dụ: Tuần Trâu" />
+                  <Field label="Biệt danh (Nickname)" field="nickname" placeholder="Ví dụ: Tuần Trâu" fighter={fighter} onChange={onChange} inputClass={inputClass} disabledClass={disabledClass} />
 
                   <div className="space-y-1">
                     <label className="text-[10px] text-zinc-400 uppercase block">Giới tính</label>
