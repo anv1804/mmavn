@@ -118,7 +118,7 @@ export default function Home() {
       }`} />
 
       {/* ── SECTION 1: HERO PORTAL BANNER ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pt-32 pb-20">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pt-32 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
           
           <div className="lg:col-span-8 space-y-6">
@@ -190,7 +190,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 2: LATEST MMA NEWS (TIN TỨC NÓNG) ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-10">
         <div className={`flex items-center gap-3 border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
@@ -224,7 +224,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 3: FEATURED CHAMPION SPOTLIGHT ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-10">
         <div className={`rounded-3xl border p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center relative overflow-hidden shadow-2xl transition-colors duration-300 ${
           isDark 
             ? "bg-gradient-to-r from-zinc-950/70 via-zinc-950/40 to-zinc-950/20 border-zinc-900/80 shadow-black/55 hover:border-amber-500/20" 
@@ -294,7 +294,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 4: MATCH HIGHLIGHT & FAN POLL ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
           
           {/* Fan Poll Widget (5/12) */}
@@ -403,7 +403,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 5: UPCOMING BROADCASTS TIMELINE ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-10">
         <div className={`flex items-center gap-3 border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
           <div className="w-1 h-6 bg-red-600 rounded-full" />
           <div>
@@ -438,7 +438,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 6: CLUBS SECTION ── */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-20">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pb-10">
         <div className={`flex items-center justify-between border-b pb-4 mb-8 ${isDark ? "border-zinc-900/60" : "border-zinc-200"}`}>
           <div className="flex items-center gap-3">
             <div className="w-1 h-6 bg-red-600 rounded-full" />
