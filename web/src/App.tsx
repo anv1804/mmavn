@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import FighterDetail from "./pages/FighterDetail";
 import Clubs from "./pages/Clubs";
 import ClubDetail from "./pages/ClubDetail";
+import Cms from "./pages/Cms";
 
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 
@@ -34,6 +35,7 @@ function AppContent() {
           <Route path="/fighter/:id" element={<FighterDetail />} />
           <Route path="/clubs" element={<Clubs />} />
           <Route path="/club/:id" element={<ClubDetail />} />
+          <Route path="/cms" element={<Cms />} />
         </Routes>
       </main>
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
 export default function Footer() {
@@ -12,7 +13,9 @@ export default function Footer() {
     }`}>
       <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p>© 2026 MMAVN Community. Thiết kế phi lợi nhuận cho người hâm mộ võ thuật.</p>
-        <div className={`flex gap-4 font-mono text-[9px] ${isDark ? "text-zinc-600" : "text-zinc-400"}`}>
+        <div className={`flex items-center gap-4 font-mono text-[9px] ${isDark ? "text-zinc-600" : "text-zinc-400"}`}>
+          <Link to="/cms" className="hover:text-red-500 transition-colors no-underline">Trang quản trị (CMS)</Link>
+          <span>•</span>
           <span>React 19 + Vite + Supabase</span>
         </div>
       </div>
