@@ -3,11 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
 const NAV = [
-  { label: "Trang chủ",        path: "/",          emoji: "⬡" },
-  { label: "LION Championship", path: "/lion",      emoji: "🦁" },
-  { label: "UFC",               path: "/ufc",       emoji: "🥊" },
-  { label: "Cộng đồng",         path: "/community", emoji: "💬" },
-  { label: "Liên hệ",           path: "/contact",   emoji: "📡" },
+  { label: "Trang chủ",        path: "/",          icon: "home" },
+  { label: "LION Championship", path: "/lion",      icon: "trophy" },
+  { label: "UFC",               path: "/ufc",       icon: "gloves" },
+  { label: "Cộng đồng",         path: "/community", icon: "users" },
+  { label: "Liên hệ",           path: "/contact",   icon: "mail" },
 ];
 
 const TICKER = [
@@ -18,6 +18,63 @@ const TICKER = [
   "⚡  THÔNG TIN VMMAF CHÍNH THỨC TẠI MMAVN.VN",
 ];
 
+// High-quality SVG Icon Pack
+function getNavIcon(icon: string) {
+  switch (icon) {
+    case "home":
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      );
+    case "trophy":
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+          <path d="M4 22h16"/>
+          <path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"/>
+          <path d="M12 2a6 6 0 0 1 6 6v1a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z"/>
+        </svg>
+      );
+    case "gloves":
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2v20M2 12h20"/>
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+      );
+    case "users":
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      );
+    case "mail":
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect width="20" height="16" x="2" y="4" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+// Facebook Group SVG Icon
+function FacebookIcon() {
+  return (
+    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+      <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.95z"/>
+    </svg>
+  );
+}
+
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [elevated, setElevated]     = useState(false);
@@ -27,11 +84,9 @@ export default function Header() {
   const location = useLocation();
   const currentPath = location.pathname;
   
-  // Theme context hook
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
 
-  // Change active path header background on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -44,7 +99,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Cycle news ticker
   useEffect(() => {
     const interval = setInterval(() => {
       setFade(false);
@@ -105,73 +159,76 @@ export default function Header() {
 
       {/* ── MAIN NAV BAR ── */}
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-[65px] relative">
-        {/* ── Logo ── */}
+        
+        {/* ── Logo & Title ── */}
         <Link
           to="/"
           onClick={() => setMobileOpen(false)}
-          className="flex items-center shrink-0 group no-underline"
-          title="MMAVN Home"
+          className="flex items-center gap-3 shrink-0 group no-underline"
         >
           {/* Logo container */}
-          <div className={`relative h-12 w-12 flex items-center justify-center rounded-2xl transition-all duration-300 overflow-hidden border ${
+          <div className={`relative h-11 w-11 flex items-center justify-center rounded-xl transition-all duration-300 overflow-hidden border ${
             isDark ? "bg-zinc-900/60 border-zinc-800/80 group-hover:border-red-600/30" : "bg-zinc-100 border-zinc-200 group-hover:border-red-500/40"
           }`}>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.1)_0%,transparent_75%)] pointer-events-none" />
             <img 
               src="/log-mmavn.png" 
               alt="MMAVN Logo" 
-              className="h-10 w-10 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110" 
+              className="h-9 w-9 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110" 
             />
+          </div>
+
+          {/* Title Text */}
+          <div className="text-left leading-none">
+            <div className="flex items-baseline gap-0.5">
+              <span className={`text-xl font-black uppercase tracking-tighter transition-colors ${
+                isDark ? "text-white" : "text-zinc-900"
+              }`}>MMA</span>
+              <span className="text-xl font-black uppercase tracking-tighter text-red-500">VN</span>
+            </div>
+            <span className="block text-[8px] font-mono text-zinc-500 uppercase tracking-[0.25em] mt-1 group-hover:text-zinc-400 transition-colors">
+              VIETNAM COMBAT HUB
+            </span>
           </div>
         </Link>
 
-        {/* ── Desktop Nav Links (Icons Only with Tooltips) ── */}
-        <nav className="hidden md:flex items-center gap-3 h-full">
+        {/* ── Desktop Nav Links ── */}
+        <nav className="hidden lg:flex items-center gap-1 h-full">
           {NAV.map((link) => {
             const active = currentPath === link.path;
             return (
               <Link
                 key={link.path}
                 to={link.path}
-                title={link.label}
                 className={`
-                  relative flex items-center justify-center h-10 w-10 rounded-xl
-                  transition-all duration-200 no-underline group
+                  relative flex items-center gap-1.5 px-3 py-2 rounded-xl
+                  text-[10px] font-mono font-bold uppercase tracking-wider
+                  outline-none transition-all duration-200 no-underline whitespace-nowrap
                   ${active
-                    ? "text-red-500 bg-red-500/10 border border-red-500/20"
+                    ? "text-red-500 bg-red-500/5 border border-red-500/10"
                     : isDark 
                       ? "text-zinc-400 hover:text-white border border-transparent hover:bg-zinc-900/40"
-                      : "text-zinc-650 hover:text-black border border-transparent hover:bg-zinc-100"
+                      : "text-zinc-600 hover:text-black border border-transparent hover:bg-zinc-100"
                   }
                 `}
               >
-                {link.path === "/lion" ? (
-                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-5 h-5 object-contain" />
-                ) : (
-                  <span className="text-base select-none">
-                    {link.emoji}
-                  </span>
-                )}
-                
-                {/* Premium floating tooltip */}
-                <span className={`absolute bottom-[-36px] scale-0 group-hover:scale-100 transition-all duration-150 rounded-lg bg-zinc-950 text-white text-[9px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 pointer-events-none shadow-xl z-30 whitespace-nowrap border ${
-                  isDark ? "border-zinc-800" : "border-zinc-200/80"
-                }`}>
-                  {link.label}
+                <span className={`transition-opacity ${active ? "opacity-100 text-red-500" : "opacity-60"}`}>
+                  {getNavIcon(link.icon)}
                 </span>
+                <span>{link.label}</span>
               </Link>
             );
           })}
         </nav>
 
         {/* ── Right Dashboard CTA & Controls ── */}
-        <div className="hidden md:flex items-center gap-3.5">
+        <div className="hidden md:flex items-center gap-2.5">
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
             className={`
-              flex items-center justify-center h-8 w-8 rounded-xl cursor-pointer border transition-all duration-300
+              flex items-center justify-center h-9 w-9 rounded-xl cursor-pointer border transition-all duration-300
               ${isDark 
                 ? "bg-zinc-900/60 border-zinc-800 text-zinc-300 hover:border-zinc-700 hover:bg-zinc-900" 
                 : "bg-zinc-100 border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:bg-zinc-200"
@@ -181,33 +238,34 @@ export default function Header() {
             {isDark ? "☀️" : "🌙"}
           </button>
 
-          {/* Trophy BXH Link */}
-          <Link
-            to="/lion"
+          {/* Join Community Red Button */}
+          <a
+            href="https://community.mmavn.vn"
+            className="
+              flex items-center gap-2 h-9 px-4.5 rounded-xl cursor-pointer border no-underline
+              bg-red-600 border-red-600 hover:bg-red-500 hover:border-red-500 text-white
+              transition-all duration-300 shadow-md shadow-red-600/10 font-mono font-bold text-[9px] uppercase tracking-wider whitespace-nowrap
+            "
+          >
+            <span>Tham gia cộng đồng</span>
+          </a>
+
+          {/* Facebook Group Icon Link */}
+          <a
+            href="https://facebook.com/groups/mmavn"
+            target="_blank"
+            rel="noreferrer"
+            title="Facebook Group"
             className={`
-              flex items-center gap-2 h-8 px-4 rounded-xl cursor-pointer border no-underline transition-all duration-300 group/trophy
+              flex items-center justify-center h-9 w-9 rounded-xl border transition-all duration-300
               ${isDark
-                ? "bg-zinc-900/60 border-zinc-800 hover:border-amber-500/30 hover:bg-zinc-900"
-                : "bg-zinc-100 border-zinc-200 hover:border-amber-500/40 hover:bg-zinc-200"
+                ? "bg-zinc-900/60 border-zinc-800 text-zinc-350 hover:text-white hover:border-zinc-700 hover:bg-zinc-900"
+                : "bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-black hover:border-zinc-300 hover:bg-zinc-200"
               }
             `}
           >
-            <span className="text-xs group-hover/trophy:scale-110 transition-transform">🏆</span>
-            <span className="text-[9px] font-mono font-bold text-amber-500 tracking-wider uppercase">
-              BẢNG XẾP HẠNG
-            </span>
-          </Link>
-
-          {/* Glowing Status Indicator */}
-          <div className="flex items-center gap-2 bg-red-500/[0.04] border border-red-500/10 px-3 py-1.5 rounded-xl">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-600" />
-            </span>
-            <span className="text-[8px] font-mono font-black text-red-500 tracking-widest uppercase">
-              LIVE
-            </span>
-          </div>
+            <FacebookIcon />
+          </a>
         </div>
 
         {/* ── Mobile Hamburger & Toggle ── */}
@@ -282,16 +340,26 @@ export default function Header() {
                 }`}
                 style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}
               >
-                {link.path === "/lion" ? (
-                  <img src="/logo-lionchampionship.png" alt="Lion Logo" className="w-3.5 h-3.5 object-contain" />
-                ) : (
-                  <span className="text-xs">{link.emoji}</span>
-                )}
+                <span className={`transition-opacity ${active ? "opacity-100 text-red-500" : "opacity-60"}`}>
+                  {getNavIcon(link.icon)}
+                </span>
                 <span>{link.label}</span>
                 {active && <span className="ml-auto h-1 w-1 rounded-full bg-red-500 shrink-0" />}
               </Link>
             );
           })}
+          
+          {/* Mobile Join Community button */}
+          <a
+            href="https://community.mmavn.vn"
+            onClick={() => setMobileOpen(false)}
+            className="
+              flex items-center justify-center gap-2 h-10 w-full rounded-xl border no-underline mt-3
+              bg-red-600 border-red-600 text-white font-mono font-bold text-[10px] uppercase tracking-wider
+            "
+          >
+            <span>Tham gia cộng đồng</span>
+          </a>
         </div>
       </div>
     </header>
