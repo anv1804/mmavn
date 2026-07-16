@@ -78,6 +78,16 @@ export default function CmsFighters() {
       ...validPayload
     } = selected;
 
+    // Format raw 'Khác: ' methods inside fights history
+    if (validPayload.fights && Array.isArray(validPayload.fights)) {
+      validPayload.fights = validPayload.fights.map((f: any) => {
+        if (f.method && f.method.startsWith("Khác: ")) {
+          return { ...f, method: f.method.replace("Khác: ", "").trim() };
+        }
+        return f;
+      });
+    }
+
     const { error } = await supabase.from("fighters").upsert(validPayload);
     if (error) return showMsg("Lỗi lưu võ sĩ: " + error.message, "error");
     const idx = fighters.findIndex((f) => f.id === selected.id);

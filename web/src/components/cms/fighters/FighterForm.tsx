@@ -754,39 +754,60 @@ export default function FighterForm({ fighter, fighters, clubs, rankings, onChan
                           <div className="space-y-1">
                             <label className="text-[9px] text-zinc-400 uppercase">Phương thức kết thúc</label>
                             <select 
-                              value={FIGHT_METHODS.includes(fight.method) ? fight.method : "Khác"} 
+                              value={
+                                FIGHT_METHODS.includes(fight.method) 
+                                  ? fight.method 
+                                  : fight.method === "" 
+                                  ? "" 
+                                  : "Khác"
+                              } 
                               onChange={e => {
                                 const val = e.target.value;
                                 if (val !== "Khác") {
                                   handleEditFight(idx, "method", val);
                                 } else {
-                                  handleEditFight(idx, "method", "");
+                                  handleEditFight(idx, "method", "Khác: ");
                                 }
                               }} 
                               className={inputClass}
                             >
                               <option value="">— Chọn phương thức —</option>
-                              {FIGHT_METHODS.map((m) => (
-                                <option key={m} value={m}>{m}</option>
-                              ))}
-                              <option value="Khác">Khác... (Nhập thủ công bên dưới)</option>
+                              
+                              <optgroup label="Knockouts (Đo ván)">
+                                <option value="KO (Knockout)">KO (Knockout)</option>
+                                <option value="TKO (Technical Knockout)">TKO (Technical Knockout)</option>
+                              </optgroup>
+
+                              <optgroup label="Submissions (Siết / Khóa)">
+                                <option value="Submission (Rear-Naked Choke)">Submission (Rear-Naked Choke)</option>
+                                <option value="Submission (Guillotine Choke)">Submission (Guillotine Choke)</option>
+                                <option value="Submission (Armbar)">Submission (Armbar)</option>
+                                <option value="Submission (Triangle Choke)">Submission (Triangle Choke)</option>
+                                <option value="Submission (Ankle Lock)">Submission (Ankle Lock)</option>
+                                <option value="Submission (Heel Hook)">Submission (Heel Hook)</option>
+                              </optgroup>
+
+                              <optgroup label="Decisions (Tính điểm)">
+                                <option value="Decision (Unanimous)">Decision (Unanimous)</option>
+                                <option value="Decision (Split)">Decision (Split)</option>
+                                <option value="Decision (Majority)">Decision (Majority)</option>
+                              </optgroup>
+
+                              <optgroup label="Khác">
+                                <option value="DQ (Disqualification)">DQ (Disqualification)</option>
+                                <option value="No Contest">No Contest</option>
+                                <option value="Khác">Phương thức khác (Nhập tay)...</option>
+                              </optgroup>
                             </select>
                             
+                            {/* If the current value is not one of the pre-configured choices, or if user chose manual entry */}
                             {(!FIGHT_METHODS.includes(fight.method) && fight.method !== "") && (
                               <input 
                                 type="text" 
-                                value={fight.method ?? ""} 
-                                onChange={e => handleEditFight(idx, "method", e.target.value)} 
-                                placeholder="Nhập phương thức khác..." 
-                                className={`${inputClass} mt-1.5`} 
-                              />
-                            )}
-                            {fight.method === "" && (
-                              <input 
-                                type="text" 
-                                onChange={e => handleEditFight(idx, "method", e.target.value)} 
-                                placeholder="Nhập phương thức khác..." 
-                                className={`${inputClass} mt-1.5`} 
+                                value={fight.method.startsWith("Khác: ") ? fight.method.replace("Khác: ", "") : fight.method} 
+                                onChange={e => handleEditFight(idx, "method", e.target.value ? `Khác: ${e.target.value}` : "Khác: ")} 
+                                placeholder="Nhập chi tiết phương thức khác..." 
+                                className={`${inputClass} mt-1.5 border-amber-500/50 focus:border-amber-500`} 
                               />
                             )}
                           </div>
