@@ -107,7 +107,7 @@ export default function Home() {
               <span className="text-[9px] font-mono tracking-widest text-red-400 font-bold uppercase">PORTAL CHÍNH THỨC</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-[0.9] text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-[1.15] text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>
               VÕ THUẬT TỔNG HỢP <br/>
               <span className="bg-gradient-to-r from-red-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">
                 VIỆT NAM 2026
@@ -200,7 +200,7 @@ export default function Home() {
               <span className="text-[9px] font-mono text-amber-400 font-bold uppercase tracking-widest">Đương Kim Vô Địch Nổi Bật</span>
             </div>
             
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-none" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-[1.2]" style={{ fontFamily: "'Oswald', sans-serif" }}>
               LÊ VĂN TUẦN <br/>
               <span className="text-red-500 text-lg md:text-xl font-mono block mt-3.5 font-bold tracking-widest">&ldquo;THE SOUTHWARK BEAST&rdquo; · 56KG NAM</span>
             </h2>
