@@ -19,8 +19,10 @@ export default function RankingsPage() {
         id: r.fighter.id,
         name: r.fighter.name,
         nickname: r.fighter.nickname,
+        avatar: r.fighter.avatar,
+        styles: r.fighter.styles,
         record: r.fighter.record,
-        isChampion: r.position === 0 || r.fighter.isChampion,
+        isChampion: r.position === 0,
         eloRating: r.points || r.fighter.eloRating || 0,
         gymName: r.fighter.gym?.name || r.fighter.gymName,
       },
@@ -30,8 +32,11 @@ export default function RankingsPage() {
   });
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-white">Bảng Xếp Hạng</h1>
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8 space-y-6 sm:space-y-8">
+      <div className="space-y-1">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">Bảng Xếp Hạng</h1>
+        <p className="text-sm sm:text-base text-muted-foreground">Thứ hạng chính thức các võ sĩ MMA Việt Nam theo từng hạng cân và bảng P4P toàn năng</p>
+      </div>
       <RankingsClient divisions={divisions} rankingsByDivision={rankingsByDivision} />
     </div>
   );

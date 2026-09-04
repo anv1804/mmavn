@@ -84,6 +84,11 @@ export interface Gym {
   foundedYear?: number;
   openingHours?: string;
   image?: string;
+  logo?: string;
+  coverImage?: string;
+  rating?: number;
+  memberCount?: number;
+  facilities?: string[];
   notableFighterIds?: string[];
 }
 

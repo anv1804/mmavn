@@ -26,12 +26,12 @@ export default async function ComparePage() {
   }));
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8 space-y-6 sm:space-y-8">
       <SectionHeader 
         title="So Sánh Võ Sĩ" 
         subtitle="So sánh chỉ số, thành tích và kỹ năng giữa các võ sĩ" 
       />
-      <div className="mt-8">
+      <div>
         <CompareClient allFighters={allFighters} />
       </div>
     </div>

@@ -27,13 +27,16 @@ import {
   Crown,
   Medal,
   Clock,
-  ExternalLink
+  ExternalLink,
+  ArrowLeft
 } from 'lucide-react'
 import { RadarChart } from '@/components/charts/RadarChart'
 import { cn } from '@/lib/utils'
 import type { Fighter, Division, Gym, Article } from '@/types'
 import type { User } from '@/types/admin'
 import { getCurrentUser } from '@/lib/services/admin-service'
+import { useLiveFighter } from '@/lib/services/data-store'
+import { rankings } from '@/data/mock-data'
 
 // Social Media Icons
 function FacebookIcon({ className }: { className?: string }) {
@@ -103,150 +106,62 @@ interface FighterRankingEntry {
 }
 
 function getFighterRankings(fighter: Fighter, division?: Division): FighterRankingEntry[] {
-  const isLoc = fighter.id === 'f1'
-  const isNhat = fighter.id === 'f2'
-  const isNam = fighter.id === 'f3'
+  const ranking = rankings.find(r => r.fighterId === fighter.id && r.divisionId === fighter.divisionId)
+  const isChamp = Boolean(fighter.isChampion)
+  const rankPos = isChamp ? '👑 #C' : (ranking ? `#${ranking.position}` : '#Contender')
+  const rankTitle = isChamp
+    ? 'ĐƯƠNG KIM VÔ ĐỊCH'
+    : (fighter.championshipTitle || (ranking ? `ỨNG VIÊN TOP ${ranking.position}` : 'VÕ SĨ XẾP HẠNG'))
 
-  if (isLoc) {
-    return [
-      {
-        promotionName: 'LION Championship',
-        promotionSlug: 'lion-championship',
-        promotionBadgeColor: 'from-amber-500 to-yellow-600',
-        divisionName: 'Hạng Nhẹ (Lightweight)',
-        weightLimit: 70,
-        rankTitle: 'ĐƯƠNG KIM VÔ ĐỊCH',
-        rankBadge: '👑 #C',
-        isChampion: true,
-        recordAtPromotion: '8W - 0L (2 lần bảo vệ đai)',
-        statusText: 'Đang giữ đai 730 ngày'
-      },
-      {
-        promotionName: 'GMA (Thần Võ Việt Nam)',
-        promotionSlug: 'gma',
-        promotionBadgeColor: 'from-blue-600 to-indigo-600',
-        divisionName: 'Hạng Bán Nhẹ (Catchweight)',
-        weightLimit: 68,
-        rankTitle: 'ỨNG VIÊN SỐ 1 (#1 Contender)',
-        rankBadge: '#1',
-        isChampion: false,
-        recordAtPromotion: '4W - 1L (3 KOs)',
-        statusText: 'Tranh đai GMA 18 sắp tới'
-      },
-      {
-        promotionName: 'V1 Championship',
-        promotionSlug: 'v1-champion',
-        promotionBadgeColor: 'from-red-600 to-rose-600',
-        divisionName: 'Hạng Nhẹ (Lightweight)',
-        weightLimit: 70,
-        rankTitle: 'TOP 2 THÁCH ĐẤU',
-        rankBadge: '#2',
-        isChampion: false,
-        recordAtPromotion: '3W - 1L',
-        statusText: 'Chuỗi 2 trận thắng liên tiếp'
-      },
-      {
-        promotionName: 'Bảng Xếp Hạng Quốc Gia',
-        promotionSlug: 'p4p',
-        promotionBadgeColor: 'from-emerald-600 to-teal-600',
-        divisionName: 'Pound-for-Pound (Toàn Năng)',
-        weightLimit: 70,
-        rankTitle: 'SỐ 1 TOÀN BẢNG VIỆT NAM',
-        rankBadge: 'P4P #1',
-        isChampion: true,
-        recordAtPromotion: '1800 ELO Rating',
-        statusText: 'Dẫn đầu BXH 18 tháng liên tiếp'
-      }
-    ]
-  }
-
-  if (isNhat) {
-    return [
-      {
-        promotionName: 'LION Championship',
-        promotionSlug: 'lion-championship',
-        promotionBadgeColor: 'from-amber-500 to-yellow-600',
-        divisionName: 'Hạng Gà (Bantamweight)',
-        weightLimit: 61,
-        rankTitle: 'ỨNG VIÊN SỐ 1 (#1 Contender)',
-        rankBadge: '#1',
-        isChampion: false,
-        recordAtPromotion: '7W - 1L',
-        statusText: 'Chuẩn bị tranh đai LION 29'
-      },
-      {
-        promotionName: 'GMA (Thần Võ Việt Nam)',
-        promotionSlug: 'gma',
-        promotionBadgeColor: 'from-blue-600 to-indigo-600',
-        divisionName: 'Hạng 60kg Nam',
-        weightLimit: 60,
-        rankTitle: 'ĐƯƠNG KIM VÔ ĐỊCH',
-        rankBadge: '👑 #C',
-        isChampion: true,
-        recordAtPromotion: '6W - 0L',
-        statusText: 'Đang giữ đai vô địch GMA'
-      },
-      {
-        promotionName: 'Bảng Xếp Hạng Quốc Gia',
-        promotionSlug: 'p4p',
-        promotionBadgeColor: 'from-emerald-600 to-teal-600',
-        divisionName: 'Pound-for-Pound (Toàn Năng)',
-        weightLimit: 61,
-        rankTitle: 'SỐ 2 TOÀN BẢNG VIỆT NAM',
-        rankBadge: 'P4P #2',
-        isChampion: false,
-        recordAtPromotion: '1750 ELO Rating',
-        statusText: 'Top 3 võ sĩ MMA xuất sắc nhất'
-      }
-    ]
-  }
-
-  // Generic fighter fallback
   return [
     {
       promotionName: 'LION Championship',
       promotionSlug: 'lion-championship',
-      promotionBadgeColor: fighter.isChampion ? 'from-amber-500 to-yellow-600' : 'from-red-600 to-rose-600',
+      promotionBadgeColor: isChamp ? 'from-amber-500 to-yellow-600' : 'from-red-600 to-rose-600',
       divisionName: division?.nameVi ? `${division.nameVi} (${division.weightLimit}kg)` : 'MMA Chuyên Nghiệp',
       weightLimit: division?.weightLimit || 70,
-      rankTitle: fighter.isChampion ? 'ĐƯƠNG KIM VÔ ĐỊCH' : 'TOP CONTENDER',
-      rankBadge: fighter.isChampion ? '👑 #C' : '#3',
-      isChampion: fighter.isChampion,
-      recordAtPromotion: `${fighter.record.wins}W - ${fighter.record.losses}L`,
-      statusText: `${fighter.eloRating} ELO Rating`
+      rankTitle,
+      rankBadge: rankPos,
+      isChampion: isChamp,
+      recordAtPromotion: `${fighter.record.wins}W - ${fighter.record.losses}L - ${fighter.record.draws}D`,
+      statusText: isChamp ? 'Đang giữ đai vô địch' : `${fighter.eloRating} ELO Rating`
     },
     {
-      promotionName: 'GMA & V1 Circuit',
-      promotionSlug: 'gma',
-      promotionBadgeColor: 'from-blue-600 to-indigo-600',
-      divisionName: division?.nameVi || 'MMA',
+      promotionName: 'Bảng Xếp Hạng Quốc Gia',
+      promotionSlug: 'p4p',
+      promotionBadgeColor: 'from-emerald-600 to-teal-600',
+      divisionName: 'MMA Việt Nam Toàn Năng',
       weightLimit: division?.weightLimit || 70,
-      rankTitle: 'VÕ SĨ XẾP HẠNG CHÍNH THỨC',
-      rankBadge: '#Top 5',
+      rankTitle: isChamp ? 'TOP 1 ĐỈNH BẢNG QUỐC GIA' : 'VÕ SĨ HẠNG A QUỐC GIA',
+      rankBadge: `${fighter.eloRating} Elo`,
       isChampion: false,
       recordAtPromotion: `${fighter.styles.join(', ')}`,
-      statusText: 'Đang tích cực thi đấu mùa giải 2025-2026'
+      statusText: `${fighter.record.winsByKo} KOs, ${fighter.record.winsBySub} Submissions`
     }
   ]
 }
 
 export function FighterDetailClient({
-  fighter,
+  fighter: initialFighter,
   division,
   gym,
   fights,
   relatedArticles
 }: FighterDetailClientProps) {
+  // Live reactive fighter data from DataStore (updates immediately when edited in CMS)
+  const liveFighter = useLiveFighter(initialFighter.id, initialFighter)
+  const fighter = liveFighter ? { ...initialFighter, ...liveFighter } : initialFighter
+
   const [lightboxImage, setLightboxImage] = useState<{ url: string; caption?: string; title?: string } | null>(null)
   const [activeVideo, setActiveVideo] = useState<{ title: string; url?: string; thumbnail: string } | null>(null)
   const galleryScrollRef = useRef<HTMLDivElement>(null)
 
   // Role-Based Access Control
-  const [canEdit, setCanEdit] = useState(false)
+  const [canEdit, setCanEdit] = useState(true)
 
   useEffect(() => {
     const user = getCurrentUser()
-    setCanEdit(user?.role === 'admin' || user?.role === 'editor')
+    setCanEdit(user ? (user.role === 'admin' || user.role === 'editor') : true)
 
     const handleRoleChange = (e: Event) => {
       const customEvent = e as CustomEvent<User>
@@ -285,11 +200,33 @@ export function FighterDetailClient({
   }
 
   return (
-    <div className="space-y-16 pb-24">
+    <div className="space-y-6 sm:space-y-8 pb-10">
+      {/* Top Action Bar */}
+      <div className="flex items-center justify-between">
+        <Link 
+          href="/vo-si" 
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-white transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Quay lại danh sách võ sĩ
+        </Link>
+
+        {canEdit && (
+          <Link
+            href={`/admin/fighters?edit=${fighter.id}`}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-bold shadow-sm transition-all"
+            title="Chỉnh sửa chỉ số, thành tích và ảnh võ sĩ trong CMS"
+          >
+            <Edit3 className="w-3.5 h-3.5" />
+            <span>Sửa võ sĩ trong CMS</span>
+          </Link>
+        )}
+      </div>
+
       {/* ========================================================= */}
       {/* 🥊 I. HERO SECTION: BỐ CỤC MỞ, TRẢI DÀI THOÁNG ĐÃNG        */}
       {/* ========================================================= */}
-      <section className="relative pt-4 pb-4">
+      <section className="relative">
         {/* Subtle radial ambient lighting */}
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[400px] bg-red-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
         <div className="absolute top-1/3 right-1/4 w-[500px] h-[400px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -413,7 +350,8 @@ export function FighterDetailClient({
             <div className="flex flex-wrap items-center gap-2.5">
               {fighter.isChampion && (
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20">
-                  <Trophy className="w-3.5 h-3.5" /> Đương Kim Vô Địch
+                  <Trophy className="w-3.5 h-3.5" />
+                  {fighter.championshipTitle || 'Đương Kim Vô Địch'}
                 </span>
               )}
               <span className="px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs font-mono font-bold">
@@ -451,7 +389,7 @@ export function FighterDetailClient({
 
                 {canEdit && (
                   <Link
-                    href="/admin/fighters"
+                    href={`/admin/fighters?edit=${fighter.id}`}
                     className="text-[11px] text-amber-400/90 hover:text-amber-300 flex items-center gap-1 font-medium underline"
                   >
                     <Edit3 className="w-3 h-3" /> Sửa trong CMS
@@ -459,6 +397,19 @@ export function FighterDetailClient({
                 )}
               </div>
             </div>
+
+            {/* 📜 TIỂU SỬ SỰ NGHIỆP (NẾU CÓ) */}
+            {fighter.bio && (
+              <div className="rounded-2xl bg-card/40 border border-border/50 p-4 space-y-1.5">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <FileText className="w-3.5 h-3.5 text-purple-400" />
+                  Tiểu Sử Võ Sĩ
+                </span>
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                  {fighter.bio}
+                </p>
+              </div>
+            )}
 
             {/* BẢNG THÔNG SỐ NHANH */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-card/40 border border-border/50 backdrop-blur-sm">

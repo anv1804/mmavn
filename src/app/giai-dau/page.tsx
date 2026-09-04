@@ -14,22 +14,41 @@ export default function TournamentsPage() {
   const rulesComparison = getPromotionRulesComparison()
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl space-y-10">
-      {/* Header Banner */}
-      <div className="text-center max-w-3xl mx-auto space-y-4 pt-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-semibold">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl pt-8 sm:pt-12 pb-16 space-y-10">
+      {/* Header Hero Banner */}
+      <div className="text-center max-w-4xl mx-auto space-y-4">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/15 text-primary border border-primary/25 text-xs font-bold shadow-sm">
           <Swords className="w-3.5 h-3.5" />
-          <span>Hệ Thống Giải Đấu MMA Việt Nam</span>
+          <span>Hệ Thống Đấu Trường &amp; Giải Đấu Võ Thuật Tổng Hợp Quốc Gia</span>
         </div>
         
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
-          Đấu Trường & <span className="text-primary">Giải Đấu</span> MMA
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+          Đấu Trường &amp; <span className="text-primary">Giải Đấu</span> MMA Việt Nam
         </h1>
         
-        <p className="text-base sm:text-lg text-muted leading-relaxed">
-          Tìm hiểu bản sắc và luật lệ của 3 tổ chức võ thuật tổng hợp tiêu biểu tại Việt Nam: 
-          Lồng bát giác chuyên nghiệp (LION), Bệ phóng bán chuyên (GMA), và Đại hội Grand Prix loại trực tiếp (V1).
+        <p className="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal">
+          Khám phá bản sắc thi đấu, luật lệ kỹ thuật, hệ thống đai vàng và lịch trình sự kiện của 3 tổ chức võ thuật hàng đầu định hình nền MMA chuyên nghiệp Việt Nam.
         </p>
+
+        {/* 4 League Metric Badges */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 max-w-3xl mx-auto">
+          <div className="p-3 rounded-2xl bg-card/70 border border-border/70 text-center">
+            <span className="text-2xl font-black text-white font-mono block">3</span>
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wide">Giải đấu chính thức</span>
+          </div>
+          <div className="p-3 rounded-2xl bg-card/70 border border-border/70 text-center">
+            <span className="text-2xl font-black text-amber-400 font-mono block">19</span>
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wide">Đai vô địch các hạng</span>
+          </div>
+          <div className="p-3 rounded-2xl bg-card/70 border border-border/70 text-center">
+            <span className="text-2xl font-black text-emerald-400 font-mono block">45+</span>
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wide">Sự kiện đã tổ chức</span>
+          </div>
+          <div className="p-3 rounded-2xl bg-card/70 border border-border/70 text-center">
+            <span className="text-2xl font-black text-cyan-400 font-mono block">120+</span>
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wide">Võ sĩ thượng đài</span>
+          </div>
+        </div>
       </div>
 
       {/* Interactive List & Comparison Client Component */}

@@ -33,8 +33,11 @@ export default function EventsPage() {
   const completedEvents = getCompletedEventsWithDetails().map(mapEvent);
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-white">Sự kiện</h1>
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8 space-y-6 sm:space-y-8">
+      <div className="space-y-1">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">Lịch Sự Kiện</h1>
+        <p className="text-sm sm:text-base text-muted-foreground">Lịch thi đấu, kết quả và thông tin chi tiết các sự kiện MMA Việt Nam</p>
+      </div>
       <EventsClient upcomingEvents={upcomingEvents} completedEvents={completedEvents} />
     </div>
   );

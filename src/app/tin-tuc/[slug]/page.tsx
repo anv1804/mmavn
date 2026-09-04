@@ -41,7 +41,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   }).format(date);
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <div className="container mx-auto px-4 sm:px-6 max-w-4xl py-6 sm:py-8">
       <Card className="h-64 md:h-96 w-full mb-8 relative overflow-hidden bg-gradient-to-br from-card to-background border-border">
         {article.coverImage && (
           <img 

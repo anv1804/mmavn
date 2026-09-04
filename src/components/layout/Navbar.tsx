@@ -19,18 +19,20 @@ import {
   BookOpen,
   ChevronDown,
   Sparkles,
-  Search
+  Search,
+  ShoppingBag,
+  Home
 } from 'lucide-react'
 import { UserNavWidget } from '@/components/layout/UserNavWidget'
 
-// Primary navigation links
+// Primary navigation links - Streamlined & elegant
 const PRIMARY_NAV_LINKS = [
-  { href: '/', label: 'Trang chủ', icon: null },
+  { href: '/', label: 'Trang chủ', icon: Home },
   { href: '/giai-dau', label: 'Giải đấu', icon: Swords },
   { href: '/vo-si', label: 'Võ sĩ', icon: Users },
   { href: '/bang-xep-hang', label: 'BXH', icon: Trophy },
   { href: '/su-kien', label: 'Sự kiện', icon: Calendar },
-  { href: '/dien-dan', label: 'Diễn đàn', icon: MessageSquare },
+  { href: '/cua-hang', label: 'Cửa hàng', icon: ShoppingBag, isShop: true },
   { 
     href: '/du-doan', 
     label: 'Dự đoán', 
@@ -42,6 +44,13 @@ const PRIMARY_NAV_LINKS = [
 // Secondary navigation links grouped into "Khám phá"
 const EXPLORE_LINKS = [
   {
+    href: '/dien-dan',
+    label: 'Diễn đàn & Mạng xã hội',
+    description: 'Tin tức, thảo luận & cộng đồng võ đạo',
+    icon: MessageSquare,
+    accentColor: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
+  },
+  {
     href: '/so-sanh',
     label: 'So sánh võ sĩ',
     description: 'Đối đầu chỉ số, thể hình & Elo',
@@ -50,7 +59,7 @@ const EXPLORE_LINKS = [
   },
   {
     href: '/tin-tuc',
-    label: 'Tin tức',
+    label: 'Tin tức & Phân tích',
     description: 'Cập nhật giải đấu & chuyển nhượng',
     icon: Newspaper,
     accentColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20',
@@ -134,7 +143,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/90 backdrop-blur-xl border-b border-border/70 shadow-sm transition-all">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-2 md:gap-4">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl h-16 flex items-center justify-between gap-2 md:gap-4">
         {/* Brand / Logo */}
         <Link 
           href="/" 
@@ -153,30 +162,36 @@ export function Navbar() {
         </Link>
 
         {/* Primary Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center max-w-2xl">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 flex-1 justify-center max-w-2xl">
           {PRIMARY_NAV_LINKS.map((link) => {
             const isActive = link.href === '/' 
               ? pathname === '/' 
               : pathname === link.href || pathname?.startsWith(`${link.href}/`)
-            const Icon = link.icon
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap",
+                  "px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-sm font-medium transition-all duration-200 flex items-center gap-1 whitespace-nowrap",
                   isActive
-                    ? "text-primary bg-primary/10 border border-primary/20 shadow-xs"
-                    : "text-slate-300 hover:text-white hover:bg-card-hover/80"
+                    ? "text-primary bg-primary/10 font-bold border border-primary/20 shadow-xs"
+                    : link.isShop
+                      ? "text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 font-semibold"
+                      : "text-slate-300 hover:text-white hover:bg-card-hover/80"
                 )}
               >
-                {Icon && <Icon className="w-3.5 h-3.5" />}
+                {link.isShop && <ShoppingBag className="w-3.5 h-3.5 text-amber-400" />}
                 <span>{link.label}</span>
+                {link.isShop && (
+                  <span className="text-[9px] font-bold px-1 py-0.2 rounded bg-amber-400/20 text-amber-300 uppercase">
+                    Shop
+                  </span>
+                )}
                 {link.hasFlameBadge && (
-                  <span className="relative flex h-2 w-2">
+                  <span className="relative flex h-1.5 w-1.5 ml-0.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
                   </span>
                 )}
               </Link>
@@ -193,9 +208,9 @@ export function Navbar() {
             <button
               onClick={() => setIsExploreOpen(!isExploreOpen)}
               className={cn(
-                "px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap cursor-pointer",
+                "px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-sm font-medium transition-all duration-200 flex items-center gap-1 whitespace-nowrap cursor-pointer",
                 isExploreActive
-                  ? "text-primary bg-primary/10 border border-primary/20"
+                  ? "text-primary bg-primary/10 border border-primary/20 font-bold"
                   : "text-slate-300 hover:text-white hover:bg-card-hover/80"
               )}
             >

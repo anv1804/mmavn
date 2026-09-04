@@ -11,6 +11,7 @@ export interface FighterCardProps {
     id: string;
     name: string;
     nickname?: string;
+    avatar?: string;
     record: {
       wins: number;
       losses: number;
@@ -32,7 +33,7 @@ export interface FighterCardProps {
 }
 
 export function FighterCard({ fighter, compact = false }: FighterCardProps) {
-  const { name, nickname, record, isChampion, styles, eloRating, divisionName, gymName, id } = fighter;
+  const { name, nickname, avatar, record, isChampion, styles, eloRating, divisionName, gymName, id } = fighter;
   
   // Format initials
   const initials = name
@@ -87,13 +88,24 @@ export function FighterCard({ fighter, compact = false }: FighterCardProps) {
           {/* Fighter Info */}
           <div className="flex items-center gap-3">
             <div className={cn(
-              "rounded-full p-0.5 shrink-0",
+              "rounded-full p-0.5 shrink-0 overflow-hidden",
               isChampion
                 ? "bg-gradient-to-tr from-amber-400 via-yellow-500 to-amber-600"
                 : "bg-gradient-to-tr from-primary via-red-500 to-amber-500/70"
             )}>
-              <div className="w-11 h-11 rounded-full bg-neutral-950 flex items-center justify-center font-black text-sm text-slate-100 group-hover:text-primary transition-colors">
-                {initials}
+              <div className="w-11 h-11 rounded-full bg-neutral-950 overflow-hidden flex items-center justify-center">
+                {avatar ? (
+                  <img
+                    src={avatar}
+                    alt={name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="font-black text-sm text-slate-100 group-hover:text-primary transition-colors">
+                    {initials}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -170,13 +182,22 @@ export function FighterCard({ fighter, compact = false }: FighterCardProps) {
           <div className="flex items-start gap-4 mb-3 relative z-10">
             {/* Martial Arts Avatar with stylish gradient ring */}
             <div className={cn(
-              "rounded-full p-1 shrink-0 transition-transform duration-300 group-hover:scale-105",
+              "rounded-full p-1 shrink-0 transition-transform duration-300 group-hover:scale-105 overflow-hidden",
               isChampion
                 ? "bg-gradient-to-tr from-amber-400 via-yellow-500 to-amber-600 shadow-md shadow-amber-500/20"
                 : "bg-gradient-to-tr from-primary via-red-500 to-amber-500/80 shadow-md shadow-primary/20"
             )}>
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-neutral-900 to-neutral-950 flex items-center justify-center font-black text-xl text-white group-hover:text-primary transition-colors border border-white/10">
-                {initials}
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-neutral-900 to-neutral-950 overflow-hidden flex items-center justify-center font-black text-xl text-white group-hover:text-primary transition-colors border border-white/10">
+                {avatar ? (
+                  <img
+                    src={avatar}
+                    alt={name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                ) : (
+                  initials
+                )}
               </div>
             </div>
 

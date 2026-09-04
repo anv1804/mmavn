@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/mobile/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -23,6 +24,9 @@
 # misc
 .DS_Store
 *.pem
+*.apk
+.expo/
+mobile/.expo/
 
 # debug
 npm-debug.log*

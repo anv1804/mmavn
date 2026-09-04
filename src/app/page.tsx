@@ -7,7 +7,8 @@ import { Badge } from '@/components/ui/Badge'
 import { getUpcomingEventsWithDetails } from '@/lib/services/event-service'
 import { getChampions, getTopRankedFighters } from '@/lib/services/fighter-service'
 import { getAllPromotions } from '@/lib/services/promotion-service'
-import { fighters, events, fights, articles } from '@/data/mock-data'
+import { getAllGymsWithDetails } from '@/lib/services/gym-service'
+import { fighters, events, fights, articles, gyms } from '@/data/mock-data'
 import Link from 'next/link'
 import { 
   ChevronRight, 
@@ -19,7 +20,13 @@ import {
   ShieldCheck, 
   ArrowUpRight,
   Activity,
-  Layers
+  Layers,
+  Crown,
+  Medal,
+  MapPin,
+  Dumbbell,
+  Star,
+  CheckCircle2
 } from 'lucide-react'
 
 // Specific visual branding for the 3 major national MMA promotions
@@ -87,9 +94,12 @@ export default function HomePage() {
   const topFighters = getTopRankedFighters().slice(0, 5)
   const latestArticles = articles.slice(0, 3)
   const tournamentPromotions = getAllPromotions()
+  const featuredGyms = getAllGymsWithDetails().slice(0, 4)
+  const f19 = fighters.find(f => f.id === 'f19')
+  const f20 = fighters.find(f => f.id === 'f20')
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6 md:py-10 space-y-16 md:space-y-24">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 md:py-10 space-y-16 md:space-y-24">
       {/* Modern, Borderless Sports-Tech Hero Section */}
       <section className="relative overflow-hidden pt-4 pb-8 md:py-12">
         {/* Subtle Background Radial Glowing Gradients */}
@@ -204,6 +214,118 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Featured Blockbuster Matchup: Chung kết tranh đai 52kg LC34/LC35 */}
+      {f19 && f20 && (
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400">
+                <Flame className="w-4 h-4" />
+              </span>
+              <div>
+                <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                  Tâm Điểm Đại Chiến: Chung Kết Tranh Đai 52kg
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-400">
+                  Trận tranh đai vô địch hạng Rơm được mong đợi nhất tại LION Championship 35
+                </p>
+              </div>
+            </div>
+            <Link href="/su-kien/e-lc35">
+              <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white gap-1 text-xs">
+                <span>Chi tiết LC35</span>
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
+
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-red-950/40 via-card to-slate-900 border border-amber-500/30 p-6 sm:p-8 shadow-2xl">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+              {/* Fighter 1: Lê Hoàng Đức */}
+              <Link href={`/vo-si/${f19.id}`} className="flex-1 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left group">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden p-1 bg-gradient-to-tr from-amber-500 to-red-600 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                  <img src={f19.avatar} alt={f19.name} className="w-full h-full object-cover rounded-xl" />
+                </div>
+                <div>
+                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-1">
+                    #1 Contender
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-primary transition-colors">
+                    {f19.name}
+                  </h3>
+                  <p className="text-xs text-amber-400/90 italic font-medium">"{f19.nickname}"</p>
+                  <div className="text-xs text-slate-300 mt-1">
+                    <span className="font-mono font-bold text-emerald-400">{f19.record.wins}W</span>
+                    <span className="text-slate-500"> - </span>
+                    <span className="font-mono font-bold text-rose-400">{f19.record.losses}L</span>
+                    <span className="text-slate-400 ml-1">• No.1 Muay Club</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* VS Centerpiece */}
+              <div className="flex flex-col items-center justify-center shrink-0 px-4 py-2">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-amber-500 flex items-center justify-center text-white font-black text-base shadow-lg shadow-primary/30 animate-pulse">
+                  VS
+                </div>
+                <div className="text-[11px] font-black uppercase tracking-wider text-amber-400 mt-2">
+                  5 HIỆP TRANH ĐAI
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono">
+                  12/09/2026 • NTĐ Xuân Đỉnh
+                </div>
+              </div>
+
+              {/* Fighter 2: Bùi Đình Khải */}
+              <Link href={`/vo-si/${f20.id}`} className="flex-1 flex flex-col sm:flex-row-reverse items-center gap-4 text-center sm:text-right group">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden p-1 bg-gradient-to-tr from-cyan-500 to-blue-600 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                  <img src={f20.avatar} alt={f20.name} className="w-full h-full object-cover rounded-xl" />
+                </div>
+                <div>
+                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 mb-1">
+                    #2 Contender
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-primary transition-colors">
+                    {f20.name}
+                  </h3>
+                  <p className="text-xs text-cyan-400/90 italic font-medium">"{f20.nickname}"</p>
+                  <div className="text-xs text-slate-300 mt-1">
+                    <span className="font-mono font-bold text-emerald-400">{f20.record.wins}W</span>
+                    <span className="text-slate-500"> - </span>
+                    <span className="font-mono font-bold text-rose-400">{f20.record.losses}L</span>
+                    <span className="text-slate-400 ml-1">• Xuân Bắc / The Champ</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            {/* Matchup Quick Actions */}
+            <div className="mt-6 pt-4 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+              <div className="text-slate-300 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>Người chiến thắng sẽ chính thức sở hữu đai vô địch 52kg LION đầu tiên trong lịch sử</span>
+              </div>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <Link href="/du-doan" className="flex-1 sm:flex-initial">
+                  <Button size="sm" className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-xs gap-1">
+                    <Flame className="w-3.5 h-3.5" />
+                    Bình chọn kết quả
+                  </Button>
+                </Link>
+                <Link href="/su-kien/e-lc35" className="flex-1 sm:flex-initial">
+                  <Button variant="outline" size="sm" className="w-full text-xs text-slate-200 hover:text-white border-border">
+                    Xem toàn bộ Fight Card
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Tournament Hub Showcase: High-tier League Cards */}
       <section className="space-y-6">
@@ -379,46 +501,70 @@ export default function HomePage() {
               // Normalize Elo progress bar: 1000 = 0%, 1800 = 100%
               const eloPercentage = Math.min(Math.max(((fighter.eloRating - 1000) / 800) * 100, 10), 100)
 
-              const rankBadge = 
-                rank === 1 ? (
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 font-black text-sm shadow-sm">
-                    🥇 1
-                  </span>
-                ) : rank === 2 ? (
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-300/20 text-slate-200 border border-slate-400/40 font-black text-sm shadow-sm">
-                    🥈 2
-                  </span>
-                ) : rank === 3 ? (
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-700/20 text-amber-400 border border-amber-700/40 font-black text-sm shadow-sm">
-                    🥉 3
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-800 text-slate-400 font-bold text-sm">
+              // Clean SVG medal rank badges (NO ugly emoji line-wrapping)
+              const renderRankBadge = () => {
+                if (rank === 1) {
+                  return (
+                    <div className="flex flex-col items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-b from-amber-500/25 to-yellow-600/10 border border-amber-500/50 shadow-md shadow-amber-500/10 text-amber-300">
+                      <Crown className="w-4 h-4 text-amber-400 fill-amber-400/30" />
+                      <span className="text-[11px] font-black leading-none mt-0.5">#1</span>
+                    </div>
+                  )
+                }
+                if (rank === 2) {
+                  return (
+                    <div className="flex flex-col items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-b from-slate-300/20 to-slate-400/5 border border-slate-400/40 shadow-sm text-slate-200">
+                      <Medal className="w-4 h-4 text-slate-300" />
+                      <span className="text-[11px] font-black leading-none mt-0.5">#2</span>
+                    </div>
+                  )
+                }
+                if (rank === 3) {
+                  return (
+                    <div className="flex flex-col items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-b from-amber-700/20 to-amber-800/5 border border-amber-700/40 shadow-sm text-amber-500">
+                      <Medal className="w-4 h-4 text-amber-500" />
+                      <span className="text-[11px] font-black leading-none mt-0.5">#3</span>
+                    </div>
+                  )
+                }
+                return (
+                  <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800/80 border border-border/80 font-mono font-bold text-sm text-slate-400">
                     #{rank}
-                  </span>
+                  </div>
                 )
+              }
 
               return (
                 <Link
                   key={fighter.id}
                   href={`/vo-si/${fighter.id}`}
-                  className="block hover:bg-card-hover/60 transition-colors group"
+                  className="block hover:bg-card-hover/80 transition-colors group"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-4 sm:px-6 py-4 items-center">
                     {/* Rank Number */}
                     <div className="flex md:justify-center items-center gap-3 md:col-span-1">
-                      {rankBadge}
-                      {/* Mobile-only name display helper */}
+                      {renderRankBadge()}
                       <span className="md:hidden text-xs font-bold text-slate-400">
                         Hạng #{rank} Toàn quốc
                       </span>
                     </div>
 
                     {/* Fighter Avatar & Names */}
-                    <div className="flex items-center gap-3 md:col-span-4 min-w-0">
-                      <div className="w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-primary via-red-500 to-amber-500/60 shrink-0">
-                        <div className="w-full h-full rounded-full bg-neutral-950 flex items-center justify-center font-black text-sm text-slate-200 group-hover:text-primary transition-colors">
-                          {initials}
+                    <div className="flex items-center gap-3.5 md:col-span-4 min-w-0">
+                      <div className="w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-primary via-red-500 to-amber-500 shrink-0 shadow-md">
+                        <div className="w-full h-full rounded-full bg-neutral-950 overflow-hidden flex items-center justify-center">
+                          {fighter.avatar ? (
+                            <img
+                              src={fighter.avatar}
+                              alt={fighter.name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <span className="font-black text-sm text-slate-200">
+                              {initials}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="min-w-0 flex-1">
@@ -427,8 +573,13 @@ export default function HomePage() {
                             {fighter.name}
                           </h4>
                           {fighter.isChampion && (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                              🏆 Vô địch
+                            <span className="inline-flex items-center gap-1 text-[10px] font-black px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                              👑 Vô địch
+                            </span>
+                          )}
+                          {!fighter.isChampion && fighter.championshipTitle?.includes('Cựu') && (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700/60">
+                              Cựu VĐ
                             </span>
                           )}
                         </div>
@@ -446,8 +597,9 @@ export default function HomePage() {
                         <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" />
                         <span>{divisionName}</span>
                       </div>
-                      <div className="text-slate-400 truncate">
-                        {gymName}
+                      <div className="text-slate-400 truncate flex items-center gap-1">
+                        <MapPin className="w-3 h-3 text-slate-500 shrink-0" />
+                        <span className="truncate">{gymName}</span>
                       </div>
                     </div>
 
@@ -465,6 +617,9 @@ export default function HomePage() {
                           </>
                         )}
                       </span>
+                      <div className="text-[10px] text-slate-500 hidden md:block mt-0.5">
+                        {fighter.record.winsByKo} KO • {fighter.record.winsBySub} Sub
+                      </div>
                     </div>
 
                     {/* Elo Power Progress Bar */}
@@ -493,6 +648,67 @@ export default function HomePage() {
               )
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Featured Training Academies (Mạng lưới phòng tập tiêu biểu) */}
+      <section className="space-y-6">
+        <SectionHeader 
+          title="Lò Đào Tạo & CLB Hàng Đầu" 
+          subtitle="Các trung tâm huấn luyện MMA chuyên nghiệp sản sinh ra những nhà vô địch quốc gia"
+          action={
+            <Link href="/phong-tap">
+              <Button variant="ghost" className="text-slate-300 hover:text-white gap-1.5">
+                <span>Xem tất cả 25 CLB</span>
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          } 
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {featuredGyms.map((gym) => (
+            <Link key={gym.id} href="/phong-tap" className="group block">
+              <div className="h-full rounded-2xl bg-card border border-border hover:border-primary/50 overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col">
+                <div className="relative h-32 w-full overflow-hidden bg-slate-900 shrink-0">
+                  <img
+                    src={gym.coverImage || gym.image}
+                    alt={gym.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                  <div className="absolute top-2 left-2">
+                    <Badge variant="primary" size="sm">
+                      {gym.city}
+                    </Badge>
+                  </div>
+                  {gym.rating && (
+                    <div className="absolute top-2 right-2 flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-black/60 text-amber-400 text-[11px] font-bold">
+                      <Star className="w-3 h-3 fill-amber-400" />
+                      <span>{gym.rating.toFixed(1)}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h4 className="font-bold text-base text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                      {gym.name}
+                    </h4>
+                    <p className="text-xs text-muted line-clamp-1 mt-0.5">
+                      HLV: {gym.headCoach || 'Ban huấn luyện'}
+                    </p>
+                  </div>
+                  <div className="pt-3 mt-3 border-t border-border/60 flex items-center justify-between text-xs text-muted">
+                    <span className="text-primary font-semibold">
+                      {gym.fighterCount} võ sĩ biên chế
+                    </span>
+                    <span className="text-slate-400 group-hover:text-white flex items-center gap-0.5">
+                      Chi tiết <ArrowUpRight className="w-3 h-3" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 

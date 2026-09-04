@@ -20,7 +20,7 @@ export default function PredictionsPage() {
   const statsSummary = getPredictionStatsSummary();
 
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8">
       <PredictionsClient
         upcomingEvents={upcomingEvents}
         initialPredictions={initialPredictions}

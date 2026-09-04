@@ -51,9 +51,9 @@ export default async function EventDetailPage({ params }: { params: Promise<{ id
   };
 
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8">
       {/* Event Header */}
-      <div className="mb-10 text-center space-y-4">
+      <div className="mb-8 text-center space-y-3">
         {event.promotion && (
           <Badge variant="outline" className="mb-2 text-red-500 border-red-500">{event.promotion.name}</Badge>
         )}

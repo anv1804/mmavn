@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "MMAVN Hub",
+    "slug": "mmavn-hub",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#090d16",
+    "primaryColor": "#ef4444",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#090d16"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "userInterfaceStyle": "dark"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#090d16"
+      },
+      "userInterfaceStyle": "dark"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

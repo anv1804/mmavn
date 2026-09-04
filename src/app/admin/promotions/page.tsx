@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect, Suspense } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import {
   Flame,
   Shield,
@@ -22,15 +23,63 @@ import {
   ChevronRight,
   Sparkles,
   FileText,
-  Building
+  Building,
+  Image as ImageIcon,
+  RotateCcw
 } from 'lucide-react'
-import { promotions as initialPromotions, fighters as initialFighters, divisions } from '@/data/mock-data'
+import { divisions } from '@/data/mock-data'
+import { 
+  getStoredPromotions, 
+  saveAllStoredPromotions, 
+  getStoredFighters, 
+  resetStoredPromotions 
+} from '@/lib/services/data-store'
 import type { Promotion, ChampionshipBelt, PromotionRules, PromotionFormat, Gender } from '@/types'
 
 export default function AdminPromotionsPage() {
-  const [promotionsList, setPromotionsList] = useState<Promotion[]>(initialPromotions)
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-mono text-sm">Đang tải trung tâm quản trị giải đấu...</div>}>
+      <AdminPromotionsContent />
+    </Suspense>
+  )
+}
+
+function AdminPromotionsContent() {
+  const searchParams = useSearchParams()
+  const editQueryId = searchParams.get('edit')
+
+  const [promotionsList, setPromotionsList] = useState<Promotion[]>([])
   const [selectedPromoId, setSelectedPromoId] = useState<string>('p1')
-  const [fightersList] = useState(initialFighters)
+  const [fightersList, setFightersList] = useState<any[]>([])
+
+  // Load from Data Store on Mount
+  useEffect(() => {
+    const storedPromos = getStoredPromotions()
+    setPromotionsList(storedPromos)
+    setFightersList(getStoredFighters())
+
+    if (editQueryId) {
+      const match = storedPromos.find(
+        p => p.id.toLowerCase() === editQueryId.toLowerCase() ||
+             (p.slug && p.slug.toLowerCase() === editQueryId.toLowerCase()) ||
+             p.shortName.toLowerCase() === editQueryId.toLowerCase()
+      )
+      if (match) {
+        setSelectedPromoId(match.id)
+        setPromoFormData({
+          name: match.name,
+          shortName: match.shortName,
+          tagline: match.tagline,
+          formatType: match.formatType,
+          formatDescription: match.formatDescription,
+          headquarters: match.headquarters,
+          foundedYear: match.foundedYear,
+          description: match.description
+        })
+        setIsEditPromoModalOpen(true)
+      }
+    }
+  }, [editQueryId])
 
   // Toast
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null)
@@ -41,7 +90,7 @@ export default function AdminPromotionsPage() {
 
   // Active promotion
   const activePromo = useMemo(() => {
-    return promotionsList.find(p => p.id === selectedPromoId) || promotionsList[0]
+    return promotionsList.find(p => p.id === selectedPromoId) || promotionsList[0] || {} as Promotion
   }, [promotionsList, selectedPromoId])
 
   // Modals state
@@ -85,6 +134,7 @@ export default function AdminPromotionsPage() {
 
   // Open Edit Promotion Modal
   const handleOpenEditPromo = () => {
+    if (!activePromo) return
     setPromoFormData({
       name: activePromo.name,
       shortName: activePromo.shortName,
@@ -98,7 +148,7 @@ export default function AdminPromotionsPage() {
     setIsEditPromoModalOpen(true)
   }
 
-  // Save Promotion Info
+  // Save Promotion Info to Data Store
   const handleSavePromo = () => {
     const updated = promotionsList.map(p => {
       if (p.id === activePromo.id) {
@@ -110,19 +160,20 @@ export default function AdminPromotionsPage() {
       return p
     })
     setPromotionsList(updated)
+    saveAllStoredPromotions(updated)
     setIsEditPromoModalOpen(false)
-    showToast(`Đã cập nhật thông tin giải đấu "${promoFormData.name}"!`)
+    showToast(`Đã lưu và đồng bộ thông tin giải đấu "${promoFormData.name}" vào hệ thống!`)
   }
 
   // Open Edit Rules Modal
   const handleOpenEditRules = () => {
-    if (activePromo.rules) {
+    if (activePromo && activePromo.rules) {
       setRulesFormData({ ...activePromo.rules })
     }
     setIsEditRulesModalOpen(true)
   }
 
-  // Save Rules
+  // Save Rules to Data Store
   const handleSaveRules = () => {
     const updated = promotionsList.map(p => {
       if (p.id === activePromo.id) {
@@ -134,8 +185,9 @@ export default function AdminPromotionsPage() {
       return p
     })
     setPromotionsList(updated)
+    saveAllStoredPromotions(updated)
     setIsEditRulesModalOpen(false)
-    showToast(`Đã cập nhật điều lệ thi đấu của ${activePromo.name}!`)
+    showToast(`Đã lưu và đồng bộ điều lệ thi đấu của ${activePromo.name}!`)
   }
 
   // Add a special rule bullet
@@ -218,6 +270,7 @@ export default function AdminPromotionsPage() {
     })
 
     setPromotionsList(updatedPromos)
+    saveAllStoredPromotions(updatedPromos)
     setIsBeltModalOpen(false)
     showToast(editingBeltId ? 'Đã cập nhật danh hiệu đai!' : 'Đã thêm hạng đai mới vào giải đấu!')
   }
@@ -234,6 +287,7 @@ export default function AdminPromotionsPage() {
       return p
     })
     setPromotionsList(updatedPromos)
+    saveAllStoredPromotions(updatedPromos)
     showToast(`Đã xóa đai "${beltName}" khỏi hệ thống`, 'info')
   }
 

@@ -13,12 +13,12 @@ export default function NewsPage() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8 space-y-6 sm:space-y-8">
       <SectionHeader 
         title="Tin Tức MMA" 
         subtitle="Cập nhật thông tin mới nhất về giới võ thuật tổng hợp Việt Nam" 
       />
-      <div className="mt-8">
+      <div>
         <NewsClient articles={sortedArticles} />
       </div>
     </div>

@@ -8,655 +8,1703 @@ export const promotions: Promotion[] = [
     shortName: 'LION',
     slug: 'lion-championship',
     foundedYear: 2022,
-    description: 'Giải vô địch Sư tử Võ thuật tổng hợp Việt Nam - Đấu trường MMA chuyên nghiệp số 1 quốc gia',
+    description: 'Giải vô địch Võ thuật tổng hợp Chuyên nghiệp số 1 Việt Nam - Đấu trường đỉnh cao trực thuộc Liên đoàn VMMAF',
     tagline: 'Đấu trường MMA Chuyên nghiệp hàng đầu Việt Nam',
     type: 'professional',
     formatType: 'Pro Cage',
-    formatDescription: 'Thi đấu trong lồng bát giác (Octagon) đạt chuẩn quốc tế, áp dụng bộ luật Unified MMA chuyên nghiệp với các trận tranh đai vô địch 5 hiệp đầy kịch tính.',
+    formatDescription: 'Thi đấu trong lồng bát giác (Octagon) đạt chuẩn quốc tế 9m, áp dụng bộ luật Unified MMA chuyên nghiệp với các trận tranh đai 5 hiệp đỉnh cao.',
     headquarters: 'Hà Nội & TP. Hồ Chí Minh',
     rules: {
-      cageType: 'Lồng bát giác (Octagon Cage) tiêu chuẩn quốc tế 9m',
+      cageType: 'Lồng bát giác (Octagon Cage) tiêu chuẩn quốc tế 9m với lưới bảo vệ an toàn cao cấp',
       roundDuration: 'Trận thường: 3 hiệp x 5 phút | Trận tranh đai: 5 hiệp x 5 phút (nghỉ 1 phút giữa hiệp)',
-      elbowStrikes: 'Cho phép đòn chỏ toàn diện khi đứng và khi địa chiến (tuân thủ góc đòn hợp lệ)',
-      kneesToHead: 'Cho phép khi cả hai võ sĩ ở tư thế đứng; cấm gối vào đầu khi đối thủ chạm sàn (grounded)',
-      groundAndPound: 'Được phép đấm và chỏ vào phần thân và mặt đối thủ khi địa chiến',
-      scoringSystem: 'Hệ thống tính điểm 10 điểm bắt buộc (10-Point Must System) bởi 3 giám định độc lập',
-      weightCutting: 'Cân trọng lượng chính thức 24h trước trận đấu kèm kiểm tra y tế chuyên sâu',
+      elbowStrikes: 'Cho phép đòn chỏ toàn diện khi đứng và khi địa chiến (Đã chính thức bãi bỏ lệnh cấm chỏ 12-6 theo chuẩn Unified Rules quốc tế mới nhất)',
+      kneesToHead: 'Cho phép gối vào đầu khi cả hai võ sĩ ở tư thế đứng; cấm gối vào đầu khi đối thủ chạm sàn (grounded opponent)',
+      groundAndPound: 'Được phép đấm và chỏ vào phần thân và mặt đối thủ khi địa chiến kiểm soát',
+      scoringSystem: 'Hệ thống tính điểm 10 điểm bắt buộc (10-Point Must System) bởi 3 giám định viên độc lập (Sát thương > Chủ động > Kiểm soát)',
+      weightCutting: 'Cân trọng lượng chính thức 24h trước trận đấu. Trận thường dung sai +0.5kg; Trận tranh đai TUYỆT ĐỐI KHÔNG DUNG SAI (0.0 tolerance)',
       equipment: 'Găng MMA hở ngón 4oz chuyên nghiệp, bảo hộ hàm, quần short thi đấu tiêu chuẩn, không bảo hộ chân',
       specialRules: [
         'Hệ thống phân chia Hạng A (Chuyên nghiệp) & Hạng B (Tuyển chọn thăng hạng)',
         'Đai vô địch kim loại đúc nguyên khối mạ vàng danh giá được bảo trợ bởi Liên đoàn VMMAF',
-        'Quy trình kiểm tra y tế võ sĩ và xét nghiệm phòng chống doping nghiêm ngặt trước & sau trận'
+        'Quy trình kiểm tra y tế võ sĩ và xét nghiệm phòng chống doping nghiêm ngặt trước & sau trận',
+        'Bổ sung thể thức MMA Duo (2v2), Striking & Ground Fight mở rộng sân chơi'
       ]
     },
     belts: [
       { id: 'b-lion-52m', divisionId: 'd-m-52', divisionName: 'Hạng Rơm (52kg Nam)', weightLimit: 52, gender: 'male', status: 'vacant' },
-      { id: 'b-lion-56m', divisionId: 'd-m-56', divisionName: 'Hạng Ruồi (56kg Nam)', weightLimit: 56, gender: 'male', currentChampionId: 'f3', defenseCount: 1, status: 'active' },
-      { id: 'b-lion-61m', divisionId: 'd-m-61', divisionName: 'Hạng Gà (61kg Nam)', weightLimit: 61, gender: 'male', status: 'vacant' },
+      { id: 'b-lion-56m', divisionId: 'd-m-56', divisionName: 'Hạng Ruồi (56kg Nam)', weightLimit: 56, gender: 'male', currentChampionId: 'f16', defenseCount: 1, status: 'active' },
+      { id: 'b-lion-61m', divisionId: 'd-m-61', divisionName: 'Hạng Gà (60kg Nam)', weightLimit: 60, gender: 'male', currentChampionId: 'f9', defenseCount: 0, status: 'active' },
       { id: 'b-lion-65m', divisionId: 'd-m-65', divisionName: 'Hạng Lông (65kg Nam)', weightLimit: 65, gender: 'male', status: 'vacant' },
-      { id: 'b-lion-70m', divisionId: 'd-m-70', divisionName: 'Hạng Nhẹ (70kg Nam)', weightLimit: 70, gender: 'male', currentChampionId: 'f1', defenseCount: 2, status: 'active' },
-      { id: 'b-lion-77m', divisionId: 'd-m-77', divisionName: 'Hạng Bán Trung (77kg Nam)', weightLimit: 77, gender: 'male', status: 'vacant' },
-      { id: 'b-lion-84m', divisionId: 'd-m-84', divisionName: 'Hạng Trung (84kg Nam)', weightLimit: 84, gender: 'male', status: 'vacant' },
+      { id: 'b-lion-70m', divisionId: 'd-m-70', divisionName: 'Hạng Nhẹ (70kg Nam)', weightLimit: 70, gender: 'male', currentChampionId: 'f30', defenseCount: 1, status: 'active' },
+      { id: 'b-lion-77m', divisionId: 'd-m-77', divisionName: 'Hạng Bán Trung (77kg Nam)', weightLimit: 77, gender: 'male', status: 'active', defenseCount: 1 },
+      { id: 'b-lion-84m', divisionId: 'd-m-84', divisionName: 'Hạng Trung (84kg Nam)', weightLimit: 84, gender: 'male', currentChampionId: 'f17', defenseCount: 1, status: 'active' },
       { id: 'b-lion-52f', divisionId: 'd-f-52', divisionName: 'Hạng Rơm (52kg Nữ)', weightLimit: 52, gender: 'female', currentChampionId: 'f4', defenseCount: 1, status: 'active' },
-      { id: 'b-lion-56f', divisionId: 'd-f-56', divisionName: 'Hạng Ruồi (56kg Nữ)', weightLimit: 56, gender: 'female', status: 'vacant' }
+      { id: 'b-lion-56f', divisionId: 'd-f-56', divisionName: 'Hạng Ruồi (56kg Nữ)', weightLimit: 56, gender: 'female', currentChampionId: 'f18', defenseCount: 1, status: 'active' },
+      { id: 'b-lion-60f', divisionId: 'd-f-61', divisionName: 'Hạng Gà (60kg Nữ)', weightLimit: 60, gender: 'female', currentChampionId: 'f26', defenseCount: 1, status: 'active' }
     ],
     keyMetrics: [
-      { label: 'Sự kiện tổ chức', value: '28+ sự kiện', detail: 'Phủ sóng tại Hà Nội, TP.HCM, Đà Nẵng, Phú Quốc' },
-      { label: 'Võ sĩ chuyên nghiệp', value: '60+ võ sĩ', detail: 'Hội tụ những tên tuổi hàng đầu làng võ Việt' },
-      { label: 'Tỉ lệ knock-out/sub', value: '68%', detail: 'Tỉ lệ kết liễu trận đấu mãn nhãn' },
-      { label: 'Khán giả / sự kiện', value: '4,500+', detail: 'Khán đài chật kín tại các nhà thi đấu lớn' }
+      { label: 'Sự kiện tổ chức', value: '35+ sự kiện', detail: 'Tổ chức từ LC01 đến LC35+ tại Hà Nội, TP.HCM, Phú Quốc, Cam Ranh' },
+      { label: 'Võ sĩ chuyên nghiệp', value: '150+ võ sĩ', detail: 'Hội tụ những tay đấm đỉnh cao khắp các lò võ trong nước & quốc tế' },
+      { label: 'Tỉ lệ knock-out/sub', value: '74%', detail: 'Tỉ lệ kết liễu trận đấu mãn nhãn bùng nổ khán đài' },
+      { label: 'Khán giả / sự kiện', value: '5,000+', detail: 'Khán đài chật kín tại Tây Hồ, Rạch Miễu, Quần Ngựa, Xuân Đỉnh' }
     ],
     highlights: [
-      'Tổ chức chuyên nghiệp với lồng bát giác đạt chuẩn quốc tế hàng đầu khu vực',
-      'Phát sóng trực tiếp truyền hình quốc gia và hệ thống mạng xã hội hàng triệu view',
-      'Chế độ bảo hiểm và thù lao thi đấu cao nhất trong các giải võ thuật Việt Nam',
-      'Cánh cửa mở thẳng tới các đấu trường quốc tế như ONE Championship và Road to UFC'
+      'Tổ chức chuyên nghiệp với lồng bát giác 9m đạt chuẩn quốc tế hàng đầu khu vực',
+      'Phát sóng trực tiếp truyền hình VTVcab và hệ thống mạng xã hội hàng triệu view',
+      'Đã bãi bỏ lệnh cấm đòn chỏ 12-6 theo chuẩn Unified MMA Rules quốc tế mới nhất',
+      'Cánh cửa vươn tầm thế giới: Road to UFC, ONE Championship, WLF'
     ]
   },
   {
     id: 'p2',
-    name: 'GMA',
+    name: 'GMA (Gods of Martial Arts - Thần Võ Việt Nam)',
     shortName: 'GMA',
     slug: 'gma',
-    foundedYear: 2019,
-    description: 'Gods of Martial Arts - Giải đấu bán chuyên và bệ phóng ươm mầm tài năng võ thuật tổng hợp',
-    tagline: 'Bệ phóng bán chuyên & Ươm mầm tài năng trẻ võ thuật',
-    type: 'amateur',
-    formatType: 'Semi-Pro Grassroots',
-    formatDescription: 'Định dạng giải đấu bán chuyên phong trào, tối ưu hóa mức độ an toàn nhằm phát hiện, cọ xát và đào tạo lứa võ sĩ trẻ từ các lò võ khắp cả nước.',
-    headquarters: 'TP. Hồ Chí Minh',
+    foundedYear: 2024,
+    description: 'Đấu trường Thần Võ Việt Nam do Johnny Trí Nguyễn sáng lập & phối hợp cùng Liên đoàn HMMAF',
+    tagline: 'Đấu trường Thần Võ Việt Nam - Bản lĩnh võ học Á Đông',
+    type: 'professional',
+    formatType: 'Pro Cage',
+    formatDescription: 'Thi đấu trên Đài Lục Giác (Hexagon Ring) dây văng mở rộng, phân hạng cân theo 6 Thần Thú / Linh vật Á Đông, ưu tiên sát thương thực tế.',
+    headquarters: 'TP. Hồ Chí Minh & The Grand Hồ Tràm (Bà Rịa - Vũng Tàu)',
     rules: {
-      cageType: 'Sàn đài lục giác (Hexagon) / Thảm đấu an toàn có đệm chống sốc',
-      roundDuration: '3 hiệp x 3 phút (nghỉ 1 phút giữa hiệp), hiệp phụ 3 phút khi bất phân thắng bại',
-      elbowStrikes: 'Hạn chế cùi chỏ nguy hiểm; cấm hoàn toàn cùi chỏ vào vùng đầu và cấm khi địa chiến',
-      kneesToHead: 'Cấm hoàn toàn đòn gối vào đầu trong mọi tư thế (chỉ cho phép gối vào thân)',
-      groundAndPound: 'Được phép đấm thân; cấm đòn giã mặt dồn dập khi đối thủ đã mất thế phòng ngự',
-      scoringSystem: 'Chấm điểm chú trọng kỹ thuật kiểm soát thế trận, độ tích cực và khả năng chuyển vị trí',
-      weightCutting: 'Cân trọng lượng trong ngày thi đấu (Same-day Weigh-in) để bảo vệ sức khỏe võ sĩ trẻ',
-      equipment: 'Găng bán chuyên dày 6oz-7oz có đệm ngón, bảo vệ ống đồng và mu bàn chân, bảo vệ hàm bắt buộc',
+      cageType: 'Sàn đài lục giác (Hexagon Ring) có dây văng chịu lực kết hợp góc đài mở tối ưu góc nhìn',
+      roundDuration: 'Trận thường: 3 hiệp x 5 phút | Trận tranh đai Thần Võ Độc Tôn: 5 hiệp x 5 phút (nghỉ 1 phút)',
+      elbowStrikes: 'Cho phép đòn chỏ toàn diện cả khi đánh đứng lẫn khi địa chiến áp đảo',
+      kneesToHead: 'Cho phép khi cả hai ở tư thế đứng; cấm gối vào đầu khi đối thủ chạm sàn',
+      groundAndPound: 'Kỹ thuật giã gạo (Ground & Pound) rất thoáng, ưu tiên võ sĩ tấn công dứt điểm trận đấu',
+      scoringSystem: 'Chấm điểm 10-point must ưu tiên tuyệt đối Sát thương thực tế (Damage) của Johnny Trí Nguyễn, triệt tiêu lối đánh nằm đè câu giờ',
+      weightCutting: 'Cân trọng lượng chính thức có giám sát y tế chuyên môn HMMAF',
+      equipment: 'Găng MMA hở ngón chuyên nghiệp 4oz-5oz, bảo hộ hàm, đồng phục Thần Võ',
       specialRules: [
-        'Cơ chế kết nối đưa tài năng xuất sắc trực tiếp lên sàn đấu chuyên nghiệp LION Championship',
-        'Phân nhóm Tân binh (Novice) và Bán chuyên (Semi-Pro) để tránh chênh lệch trình độ',
-        'Trọng tài can thiệp sớm ngay khi phát hiện nguy cơ chấn thương nhằm bảo vệ võ sĩ'
+        'Hệ thống 6 hạng cân đặt tên theo Thần Thú: Đường Lang (53kg), Hổ Mang (55kg), Kim Kê (57kg), Chim Ưng (59kg), Hắc Báo (63kg), Mãnh Hổ (68kg)',
+        'Quy chế tước đai nghiêm ngặt nếu võ sĩ không hoàn thành nghĩa vụ bảo vệ đai định kỳ',
+        'Chuỗi giải đấu nhánh trẻ GMA Warrior và chuỗi sự kiện quốc tế GMA International'
       ]
     },
     belts: [
-      { id: 'b-gma-52m', divisionId: 'd-m-52', divisionName: 'Hạng Rơm (52kg Nam)', weightLimit: 52, gender: 'male', status: 'vacant' },
-      { id: 'b-gma-56m', divisionId: 'd-m-56', divisionName: 'Hạng Ruồi (56kg Nam)', weightLimit: 56, gender: 'male', currentChampionId: 'f17', defenseCount: 0, status: 'active' },
-      { id: 'b-gma-61m', divisionId: 'd-m-61', divisionName: 'Hạng Gà (61kg Nam)', weightLimit: 61, gender: 'male', currentChampionId: 'f11', defenseCount: 1, status: 'active' },
-      { id: 'b-gma-65m', divisionId: 'd-m-65', divisionName: 'Hạng Lông (65kg Nam)', weightLimit: 65, gender: 'male', currentChampionId: 'f16', defenseCount: 0, status: 'active' },
-      { id: 'b-gma-52f', divisionId: 'd-f-52', divisionName: 'Hạng Rơm (52kg Nữ)', weightLimit: 52, gender: 'female', currentChampionId: 'f14', defenseCount: 0, status: 'active' }
+      { id: 'b-gma-53', divisionId: 'd-m-52', divisionName: 'Hạng Đường Lang (53kg Nam)', weightLimit: 53, gender: 'male', defenseCount: 0, status: 'active' },
+      { id: 'b-gma-55', divisionId: 'd-m-56', divisionName: 'Hạng Hổ Mang (55kg Nam)', weightLimit: 55, gender: 'male', currentChampionId: 'f13', defenseCount: 1, status: 'active' },
+      { id: 'b-gma-57', divisionId: 'd-m-56', divisionName: 'Hạng Kim Kê (57kg Nam)', weightLimit: 57, gender: 'male', currentChampionId: 'f23', defenseCount: 1, status: 'active' },
+      { id: 'b-gma-59', divisionId: 'd-m-61', divisionName: 'Hạng Chim Ưng (59kg Nam)', weightLimit: 59, gender: 'male', currentChampionId: 'f27', defenseCount: 1, status: 'active' },
+      { id: 'b-gma-63', divisionId: 'd-m-65', divisionName: 'Hạng Hắc Báo (63kg Nam)', weightLimit: 63, gender: 'male', defenseCount: 0, status: 'active' },
+      { id: 'b-gma-68', divisionId: 'd-m-70', divisionName: 'Hạng Mãnh Hổ (68kg Nam)', weightLimit: 68, gender: 'male', defenseCount: 0, status: 'vacant' }
     ],
     keyMetrics: [
-      { label: 'CLB & Võ đường liên kết', value: '45+ lò võ', detail: 'Mạng lưới kết nối lò võ khắp 3 miền đất nước' },
-      { label: 'Trận đấu mỗi mùa', value: '120+ trận', detail: 'Mật độ thi đấu dày đặc tạo kinh nghiệm thực chiến' },
-      { label: 'Tỉ lệ lên sàn Pro', value: '35%', detail: 'Võ sĩ đạt thành tích cao được tuyển chọn lên giải chuyên nghiệp' },
-      { label: 'Chỉ số an toàn y tế', value: '99.5%', detail: 'Kiểm soát chấn thương nghiêm ngặt bởi đội ngũ bác sĩ' }
+      { label: 'Sàn đấu Hexagon', value: '6 Cạnh mở', detail: 'Góc nhìn điện ảnh sắc nét xóa bỏ rào cản lưới sắt' },
+      { label: 'Hạng cân Thần thú', value: '6 Hạng', detail: 'Tối ưu thể trạng người Việt từ 53kg đến 68kg' },
+      { label: 'Đai Thần Võ', value: 'Độc Tôn', detail: 'Chiếc đai mạ vàng biểu tượng linh vật dũng mãnh' },
+      { label: 'Địa điểm tâm điểm', value: 'Hồ Tràm Strip', detail: 'Khu phức hợp 5 sao quốc tế The Grand Ho Tram' }
     ],
     highlights: [
-      'Luật thi đấu bán chuyên an toàn tuyệt đối, phù hợp cho võ sinh trẻ cọ xát',
-      'Cân ký cùng ngày thi đấu xóa bỏ hoàn toàn rủi ro ép cân nguy hại sức khỏe',
-      'Bệ phóng phát hiện các viên ngọc thô từ BJJ, Muay Thái, Tán thủ, Vovinam',
-      'Chi phí hợp lý, tạo điều kiện thuận lợi nhất cho các câu lạc bộ cơ sở'
+      'Đài thi đấu lục giác Hexagon Ring độc đáo giàu tính điện ảnh và thị giác',
+      'Hệ thống hạng cân linh vật Á Đông thuần Việt độc nhất vô nhị',
+      'Luật địa chiến giã gạo GnP thoáng đãng, triệt tiêu lối ôm ghì câu giờ',
+      'Đại bản doanh tại Võ đường Liên Phong của Johnny Trí Nguyễn'
     ]
   },
   {
     id: 'p3',
-    name: 'V1 Champion',
+    name: 'V1 Champion (V1 Combat)',
     shortName: 'V1',
     slug: 'v1-champion',
     foundedYear: 2020,
-    description: 'Đại hội võ thuật thể thức Grand Prix loại trực tiếp & thách đấu liên môn đỉnh cao',
-    tagline: 'Đại hội Grand Prix loại trực tiếp & Thách đấu đa môn',
-    type: 'semi-pro',
+    description: 'Đấu trường Modern Muay Thai & Kickboxing chuyên nghiệp găng nhỏ 4oz đỉnh cao Việt Nam',
+    tagline: 'Modern Muay & Kickboxing găng nhỏ - Bản lĩnh khai mở vinh quang',
+    type: 'professional',
     formatType: 'Grand Prix',
-    formatDescription: 'Đấu trường thể thức nhánh đấu Knock-out 8 người và 4 người đầy kịch tính, kết hợp tinh hoa giữa MMA, Kickboxing, Boxing và Tán Thủ.',
-    headquarters: 'TP. Hồ Chí Minh & Hà Nội',
+    formatDescription: 'Đấu trường striking hiện đại sử dụng găng hở ngón MMA nhỏ (4oz), cấm ôm ghì câu giờ, nhịp độ giao đấu cực cao với tỉ lệ KO đột phá.',
+    headquarters: 'TP. Hồ Chí Minh',
     rules: {
-      cageType: 'Sàn đài dây vuông (Roped Ring) kết hợp góc đài rào chắn chuyển đổi',
-      roundDuration: 'Vòng loại & Tứ kết: 3 hiệp x 3 phút | Trận Chung kết: 3 hiệp x 4 phút (Hiệp phụ 3 phút)',
-      elbowStrikes: 'Cho phép chỏ khi đứng có bọc bảo hộ mỏng; cấm chỏ cắm 12-to-6',
-      kneesToHead: 'Cho phép đòn gối bay và đòn gối đơn trong tư thế ôm ghì (clinch) tối đa 3 giây',
-      groundAndPound: 'Giới hạn thời gian địa chiến (30-45 giây nếu không có chuyển vị trí hoặc đòn dứt điểm)',
-      scoringSystem: 'Ưu tiên tối đa cho võ sĩ tấn công chủ động, đổi đòn cống hiến và gây tổn thương',
-      weightCutting: 'Cân ký trước 12h, theo dõi chỉ số hydrat hóa và thể trạng nghiêm ngặt',
-      equipment: 'Găng hở ngón chuyên biệt 5oz, bọc cùi chỏ co giãn mềm, bảo vệ hàm tiêu chuẩn',
+      cageType: 'Sàn đài dây vuông (Roped Ring) tiêu chuẩn quốc tế',
+      roundDuration: '3 hiệp x 3 phút (nghỉ 1 phút giữa hiệp), hiệp phụ 3 phút khi hòa điểm',
+      elbowStrikes: 'Đầy đủ đòn chỏ Muay Thai khi đứng; uy lực sát thương tăng bội phần với găng nhỏ 4oz',
+      kneesToHead: 'Cho phép đòn gối bay, lên gối trực diện khi đứng; cấm ôm ghì (clinch) câu giờ quá 3 giây',
+      groundAndPound: 'Không áp dụng địa chiến - Đứng sàn đối kháng 100%, tách đài ngay khi võ sĩ ngã',
+      scoringSystem: 'Chấm điểm chú trọng độ nặng của đòn đánh, đòn đánh trúng đích gây choáng và tinh thần dồn ép đối thủ',
+      weightCutting: 'Cân trọng lượng chính thức trước ngày thi đấu',
+      equipment: 'Găng hở ngón MMA 4oz nhỏ, bảo hộ hàm, quần Muay/Kickboxing chuyên nghiệp',
       specialRules: [
-        'Thể thức nhánh đấu loại trực tiếp (8-Man / 4-Man Grand Prix Bracket) trong một mùa giải',
-        'Quy chế trận đấu dự bị (Reserve Fight) thay thế võ sĩ chấn thương ở các vòng trong',
-        'Các trận Siêu thách đấu liên môn (Super-Fights) giữa các nhà vô địch môn phái khác nhau'
+        'Sử dụng găng hở ngón MMA 4oz thay cho găng Boxing 8oz-10oz truyền thống',
+        'Tổng quỹ tiền thưởng sự kiện 2026 lên tới 720 triệu đồng',
+        'Hoạt động thiện nguyện: 100% doanh thu bán vé ủng hộ bệnh nhân nghèo Bệnh viện Ung Bướu TP.HCM'
       ]
     },
     belts: [
-      { id: 'b-v1-77m', divisionId: 'd-m-77', divisionName: 'Grand Prix Bán Trung (77kg)', weightLimit: 77, gender: 'male', currentChampionId: 'f18', defenseCount: 0, status: 'active' },
-      { id: 'b-v1-84m', divisionId: 'd-m-84', divisionName: 'Grand Prix Hạng Trung (84kg)', weightLimit: 84, gender: 'male', currentChampionId: 'f8', defenseCount: 1, status: 'active' },
-      { id: 'b-v1-93m', divisionId: 'd-m-93', divisionName: 'Vô Địch Mở Rộng Hạng Nặng (93kg)', weightLimit: 120, gender: 'male', currentChampionId: 'f15', defenseCount: 1, status: 'active' }
+      { id: 'b-v1-54m', divisionId: 'd-m-56', divisionName: 'Hạng 54kg Nam', weightLimit: 54, gender: 'male', status: 'active', defenseCount: 0 },
+      { id: 'b-v1-60m', divisionId: 'd-m-61', divisionName: 'Hạng 60kg Nam', weightLimit: 60, gender: 'male', status: 'active', defenseCount: 1 },
+      { id: 'b-v1-65m', divisionId: 'd-m-65', divisionName: 'Hạng 65kg Nam', weightLimit: 65, gender: 'male', status: 'active', defenseCount: 0 }
     ],
     keyMetrics: [
-      { label: 'Thể thức tranh tài', value: 'Grand Prix 8-Man', detail: 'Loại trực tiếp từng chặng cực kỳ kịch tính' },
-      { label: 'Tỉ lệ KO/TKO', value: '72%', detail: 'Nhịp độ dồn dập khuyến khích đôi công đòn đứng' },
-      { label: 'Giao thoa võ thuật', value: '5+ trường phái', detail: 'Muay Thai, Kickboxing, Boxing, Tán thủ, BJJ' },
-      { label: 'Giải thưởng chặng', value: 'Hấp dẫn bậc nhất', detail: 'Tiền thưởng theo từng trận thắng và cúp vô địch' }
+      { label: 'Găng thi đấu', value: '4oz MMA', detail: 'Tăng tối đa tốc độ ra đòn và tỷ lệ Knock-out' },
+      { label: 'Quỹ thưởng 2026', value: '720 Triệu', detail: 'Cơ cấu giải thưởng và thưởng nóng KO hấp dẫn' },
+      { label: 'Thiện nguyện', value: '479 Triệu', detail: '100% tiền vé trao tặng Bệnh viện Ung Bướu TP.HCM' },
+      { label: 'Địa điểm tổ chức', value: 'NTĐ Rạch Miễu', detail: 'Khán đài sôi động cuồng nhiệt tại trung tâm TP.HCM' }
     ],
     highlights: [
-      'Thể thức giải đấu nhánh Knock-out kịch tính, đòi hỏi chiến thuật và thể lực thép',
-      'Không gian sàn đài dây hoài niệm phong cách Pride FC & K-1 huyền thoại',
-      'Khuyến khích giao tranh đổi đòn nảy lửa, hạn chế giằng co làm nguội trận đấu',
-      'Sân chơi chứng minh bản lĩnh của các tay đấm striking hàng đầu Việt Nam'
+      'Thể thức Modern Muay với găng hở ngón 4oz kịch tính nghẹt thở',
+      'Tập hợp các tay đấm striking hàng đầu Việt Nam và võ sĩ quốc tế',
+      'Ý nghĩa xã hội cao cả với 100% doanh thu vé quyên góp từ thiện',
+      'Nhịp độ bão táp, cấm ôm ghì câu giờ, mãn nhãn người hâm mộ'
     ]
   }
 ];
 
 // 2. DIVISIONS
 export const divisions: Division[] = [
-  { id: 'd-m-52', name: 'Strawweight', nameVi: 'Hạng Rơm', weightLimit: 52, gender: 'male' },
-  { id: 'd-f-52', name: 'Women\'s Strawweight', nameVi: 'Hạng Rơm', weightLimit: 52, gender: 'female' },
-  { id: 'd-m-56', name: 'Flyweight', nameVi: 'Hạng Ruồi', weightLimit: 56, gender: 'male' },
-  { id: 'd-f-56', name: 'Women\'s Flyweight', nameVi: 'Hạng Ruồi', weightLimit: 56, gender: 'female' },
-  { id: 'd-m-61', name: 'Bantamweight', nameVi: 'Hạng Gà', weightLimit: 61, gender: 'male' },
-  { id: 'd-f-61', name: 'Women\'s Bantamweight', nameVi: 'Hạng Gà', weightLimit: 61, gender: 'female' },
-  { id: 'd-m-65', name: 'Featherweight', nameVi: 'Hạng Lông', weightLimit: 65, gender: 'male' },
-  { id: 'd-m-70', name: 'Lightweight', nameVi: 'Hạng Nhẹ', weightLimit: 70, gender: 'male' },
-  { id: 'd-m-77', name: 'Welterweight', nameVi: 'Hạng Bán Trung', weightLimit: 77, gender: 'male' },
-  { id: 'd-m-84', name: 'Middleweight', nameVi: 'Hạng Trung', weightLimit: 84, gender: 'male' },
-  { id: 'd-m-93', name: 'Heavyweight', nameVi: 'Hạng Nặng', weightLimit: 120, gender: 'male' }
+  { id: 'd-m-52', name: 'Strawweight', nameVi: 'Hạng Rơm (52kg Nam)', weightLimit: 52, gender: 'male' },
+  { id: 'd-f-52', name: "Women's Strawweight", nameVi: 'Hạng Rơm (52kg Nữ)', weightLimit: 52, gender: 'female' },
+  { id: 'd-m-56', name: 'Flyweight', nameVi: 'Hạng Ruồi (56kg Nam)', weightLimit: 56, gender: 'male' },
+  { id: 'd-f-56', name: "Women's Flyweight", nameVi: 'Hạng Ruồi (56kg Nữ)', weightLimit: 56, gender: 'female' },
+  { id: 'd-m-61', name: 'Bantamweight', nameVi: 'Hạng Gà (60-61kg Nam)', weightLimit: 61, gender: 'male' },
+  { id: 'd-f-61', name: "Women's Bantamweight", nameVi: 'Hạng Gà (60kg Nữ)', weightLimit: 61, gender: 'female' },
+  { id: 'd-m-65', name: 'Featherweight', nameVi: 'Hạng Lông (65kg Nam)', weightLimit: 65, gender: 'male' },
+  { id: 'd-m-70', name: 'Lightweight', nameVi: 'Hạng Nhẹ (70kg Nam)', weightLimit: 70, gender: 'male' },
+  { id: 'd-m-77', name: 'Welterweight', nameVi: 'Hạng Bán Trung (77kg Nam)', weightLimit: 77, gender: 'male' },
+  { id: 'd-m-84', name: 'Middleweight', nameVi: 'Hạng Trung (84kg Nam)', weightLimit: 84, gender: 'male' },
+  { id: 'd-m-93', name: 'Heavyweight', nameVi: 'Hạng Nặng (93-120kg Nam)', weightLimit: 120, gender: 'male' }
 ];
 
-// 3. GYMS
+// 3. GYMS (TOP 13 CÂU LẠC BỘ MMA HÀNG ĐẦU VIỆT NAM - CẬP NHẬT THỰC TẾ 2026)
 export const gyms: Gym[] = [
   {
-    id: 'g1',
-    name: 'Vietnam Top Team',
-    city: 'TP.HCM',
-    address: 'Số 15 đường Số 4, Thảo Điền, TP. Thủ Đức, TP.HCM',
-    disciplines: ['MMA', 'BJJ', 'Muay Thai', 'Boxing'],
-    headCoach: 'Johnny Walker (BJJ Black Belt)',
-    coaches: ['Johnny Walker (BJJ Black Belt)', 'Nguyễn Văn Tuấn (Muay Thai)', 'Dave Miller (Wrestling)'],
+    id: 'g-the-champ',
+    name: 'The Champ MMA Training Center',
+    city: 'Hà Nội',
+    address: 'Tầng 4, Tòa nhà Rosary, 89 Lạc Long Quân, P. Nghĩa Đô, Q. Cầu Giấy (Tây Hồ), Hà Nội',
+    phone: '0931 685 898',
+    email: 'contact@thechampmma.vn',
+    website: 'https://thechampmma.vn',
+    disciplines: ['MMA', 'Wushu Tán Thủ', 'Vật Tự Do', 'BJJ', 'Muay Thai'],
+    headCoach: 'Ban Huấn Luyện The Champ MMA & Nghiêm Văn Ý',
+    coaches: ['Nghiêm Văn Ý', 'Đỗ Huy Hoàng', 'Bạch Văn Nghĩa', 'Bùi Đình Khải', 'Lý Văn Huỳnh', 'Đinh Văn Hương'],
     contact: {
-      phone: '0903 123 456',
-      email: 'info@vietnamtopteam.vn',
-      facebook: 'facebook.com/vietnamtopteam',
-      website: 'https://vietnamtopteam.vn',
+      phone: '0931 685 898',
+      email: 'contact@thechampmma.vn',
+      facebook: 'facebook.com/thechampmma',
+      website: 'https://thechampmma.vn'
     },
-    description: 'Lò đào tạo MMA chuyên nghiệp hàng đầu tại miền Nam, nơi sản sinh và quy tụ nhiều nhà vô địch LION Championship với cơ sở vật chất chuẩn quốc tế gồm lồng bát giác, khu thảm grappling chuyên dụng và phòng tập thể lực chuyên sâu.',
+    description: 'Lò đào tạo MMA hàng đầu miền Bắc, cái nôi sản sinh các nhà vô địch LION Championship và đấu sĩ Road to UFC. Cơ sở vật chất 5 sao với lồng Octagon tiêu chuẩn quốc tế, thảm sàn chống trượt cao cấp, khu tạ Functional Training chuyên biệt cho võ sĩ đối kháng.',
+    foundedYear: 2020,
+    openingHours: '06:00 - 22:00 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 650,
+    facilities: ['Lồng bát giác 9m Octagon', 'Thảm sàn BJJ tiêu chuẩn Olympic', 'Khu tạ Functional Strength', 'Phòng xông hơi Sauna & Băng đăng phục hồi'],
+    notableFighterIds: ['f1', 'f2', 'f3', 'f4', 'f5', 'f15', 'f20', 'f21']
+  },
+  {
+    id: 'g-ssc',
+    name: 'Saigon Sports Club (SSC)',
+    city: 'TP.HCM',
+    address: '514B Huỳnh Tấn Phát, P. Bình Thuận, Quận 7, TP.HCM',
+    phone: '028 3773 0514',
+    email: 'info@saigonsportsclub.com',
+    website: 'https://saigonsportsclub.com',
+    disciplines: ['MMA', 'Boxing', 'Muay Thai', 'BJJ', 'Wrestling', 'Conditioning & Fitness'],
+    headCoach: 'Ban Huấn Luyện Chuyên Gia Quốc Tế SSC',
+    coaches: ['HLV Boxing Cuba', 'HLV BJJ Black Belt Brazil', 'HLV Muay Thái Lan', 'Chuyên gia thể lực quốc tế'],
+    contact: {
+      phone: '028 3773 0514',
+      email: 'info@saigonsportsclub.com',
+      facebook: 'facebook.com/saigonsportsclub',
+      website: 'https://saigonsportsclub.com'
+    },
+    description: 'Trung tâm thể thao võ thuật quy mô hơn 7.000m2 lớn nhất Đông Nam Á với trang thiết bị 5 sao chuẩn Olympic: Lồng bát giác thi đấu quốc tế, sàn đài boxing chuyên nghiệp, hồ bơi bán Olympic và phòng phục hồi thể lực đỉnh cao.',
+    foundedYear: 2013,
+    openingHours: '06:00 - 22:00 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    rating: 5.0,
+    memberCount: 1500,
+    facilities: ['Tổ hợp võ thuật 7.000m2', 'Sàn đấu Boxing & Octagon Cage', 'Hồ bơi bán Olympic ngoài trời', 'Khu phục hồi Hydrotherapy & Sauna'],
+    notableFighterIds: ['f8', 'f9']
+  },
+  {
+    id: 'g-lien-phong',
+    name: 'Võ đường Liên Phong (Liên Phong MMA)',
+    city: 'TP.HCM',
+    address: '101/29/15 Hẻm 5 Lê Văn Lương, Ấp 3, Xã Phước Kiển, Huyện Nhà Bè, TP.HCM',
+    phone: '0345 475 335',
+    email: 'lienphongmma@gmail.com',
+    website: 'https://lienphongmma.com',
+    disciplines: ['MMA', 'Võ Cổ Truyền', 'Boxing', 'BJJ', 'Muay Thai'],
+    headCoach: 'Johnny Trí Nguyễn (Võ sư, Diễn viên, Nhà sáng lập GMA)',
+    coaches: ['Johnny Trí Nguyễn', 'Nguyễn Hoàng Thạch (The Captain)', 'Bùi Trường Sinh'],
+    contact: {
+      phone: '0345 475 335',
+      email: 'lienphongmma@gmail.com',
+      facebook: 'facebook.com/lienphongmma',
+      website: 'https://lienphongmma.com'
+    },
+    description: 'Đại bản doanh sinh thái độc nhất vô nhị rộng 1.800m2 rợp bóng cây xanh và mái lá tại Nhà Bè do Johnny Trí Nguyễn sáng lập. Nơi phát triển trường phái MMA mang bản sắc võ học truyền thống Việt Nam và là bệ phóng của giải đấu Thần Võ Việt Nam (GMA).',
+    foundedYear: 2011,
+    openingHours: '06:30 - 21:00 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 450,
+    facilities: ['Đài Lục Giác Hexagon Ring GMA', 'Khu huấn luyện võ cổ truyền sinh thái', 'Thảm tập địa chiến ngoài trời thoáng mát', 'Khu rèn thể lực mộc mạc chuyên sâu'],
+    notableFighterIds: ['f13', 'f23']
+  },
+  {
+    id: 'g-c88',
+    name: 'C88 Martial Arts - Fitness - Yoga',
+    city: 'TP.HCM',
+    address: '109/8 Xa Lộ Hà Nội, P. Thảo Điền, TP. Thủ Đức, TP.HCM & Quận 7',
+    phone: '0865 255 957',
+    email: 'contact@c88martialarts.com',
+    website: 'https://c88martialarts.com',
+    disciplines: ['BJJ', 'MMA', 'Muay Thai', 'Jujitsu', 'Yoga & Thể lực'],
+    headCoach: 'Robson de Oliveira Soares (Đai đen BJJ Tam đẳng Brazil)',
+    coaches: ['Robson Oliveira', 'Đội ngũ chuyên gia Nhu thuật Brazil', 'HLV Striking quốc tế'],
+    contact: {
+      phone: '0865 255 957',
+      email: 'contact@c88martialarts.com',
+      facebook: 'facebook.com/c88martialarts',
+      website: 'https://c88martialarts.com'
+    },
+    description: 'Học viện chuyên sâu về Nhu thuật Brazil (BJJ) và MMA hàng đầu tại TP.HCM, do võ sĩ người Brazil Robson Oliveira trực tiếp dẫn dắt với thảm BJJ chuyên dụng nhập khẩu và hệ thống bài tập thể lực hiện đại.',
+    foundedYear: 2021,
+    openingHours: '07:00 - 21:30 (Thứ 2 - Thứ 7)',
+    logo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 380,
+    facilities: ['Sàn thảm BJJ chuyên dụng nhập khẩu', 'Khu lồng đấu Octagon mini', 'Phòng tập Yoga & Thể lực hồi phục', 'Tủ khóa & Phòng tắm nóng lạnh'],
+    notableFighterIds: ['f6']
+  },
+  {
+    id: 'g-kickfit',
+    name: 'Kickfit Sports MMA',
+    city: 'Hà Nội',
+    address: 'Số 9 Thành Thái, P. Dịch Vọng, Q. Cầu Giấy, Hà Nội',
+    phone: '0961 111 222',
+    email: 'contact@kickfitsports.vn',
+    website: 'https://kickfitsports.vn',
+    disciplines: ['MMA', 'Kickboxing', 'BJJ', 'Muay Thai', 'Boxing', 'Fitness & Thể lực'],
+    headCoach: 'Ban Huấn Luyện Kickfit Sports & Lê Văn Tuần',
+    coaches: ['Lê Văn Tuần', 'Dương Thị Thanh Bình', 'HLV BJJ Quốc Tế', 'HLV Boxing Kiện Tướng'],
+    contact: {
+      phone: '0961 111 222',
+      email: 'contact@kickfitsports.vn',
+      facebook: 'facebook.com/kickfitsports',
+      website: 'https://kickfitsports.vn'
+    },
+    description: 'Hệ thống trung tâm thể thao võ thuật cao cấp phủ sóng thủ đô với 14 cơ sở. Nơi rèn giũa của hai nhà đương kim vô địch LION Championship: Lê Văn Tuần (56kg nam) và Dương Thị Thanh Bình (56kg nữ).',
     foundedYear: 2018,
-    openingHours: '06:00 - 21:30 (Thứ 2 - Chủ Nhật)',
-    notableFighterIds: ['f1', 'f9', 'f17'],
+    openingHours: '06:00 - 22:00 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 850,
+    facilities: ['Khu lồng Octagon chuẩn LION', 'Sàn đài Kickboxing tiêu chuẩn', 'Hệ thống bao cát chuyên dụng hạng nặng', 'Khu thể hình Cardio & Tạ tự do'],
+    notableFighterIds: ['f16', 'f18']
+  },
+  {
+    id: 'g-wushu-king',
+    name: 'Wushu King Training Center',
+    city: 'Hà Nội',
+    address: 'Trung tâm Huấn luyện TTQG Hà Nội (Nhổn), Q. Bắc Từ Liêm, Hà Nội',
+    phone: '0912 345 678',
+    email: 'wushuking@gmail.com',
+    website: 'https://wushuking.vn',
+    disciplines: ['Wushu Tán Thủ', 'MMA Striking', 'Kickboxing', 'Boxing', 'Takedown Defense'],
+    headCoach: 'Ban Huấn Luyện Đội tuyển Tán thủ Hà Nội & Phạm Công Minh',
+    coaches: ['HLV Tán thủ Quốc gia', 'Kiện tướng Tán thủ', 'Phạm Công Minh', 'Bàn Văn Hoàng'],
+    contact: {
+      phone: '0912 345 678',
+      email: 'wushuking@gmail.com',
+      facebook: 'facebook.com/wushukingvn'
+    },
+    description: 'Lò đào tạo striking và Tán thủ lừng danh miền Bắc. Sản sinh những tay đấm sở hữu sức mạnh knock-out hủy diệt bậc nhất võ đài MMA Việt Nam như Phạm Công Minh và Bàn Văn Hoàng.',
+    foundedYear: 2017,
+    openingHours: '07:00 - 21:00 (Thứ 2 - Chủ Nhật)',
+    logo: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 400,
+    facilities: ['Sàn thảm Tán thủ Quốc gia', 'Lồng tập đối kháng MMA', 'Dàn bao cát tải trọng lớn', 'Phòng tập thể lực chuyên sâu'],
+    notableFighterIds: ['f11', 'f17']
+  },
+  {
+    id: 'g6',
+    name: 'No.1 Muay Club',
+    city: 'TP.HCM',
+    address: 'Số 1 Huyền Trân Công Chúa, P. Bến Thành, Quận 1, TP.HCM',
+    phone: '0903 180 030',
+    email: 'no1muayclub@gmail.com',
+    website: 'https://no1muayclub.com',
+    disciplines: ['Muay Thai', 'MMA Striking', 'Kickboxing', 'Boxing', 'Submission Grappling'],
+    headCoach: 'Nguyễn Trần Duy Nhất (Độc Cô Cầu Bại - 7x VĐTG Muay)',
+    coaches: ['Nguyễn Trần Duy Nhất', 'Lê Hoàng Đức', 'Mùi Trọng Vinh', 'Bùi Trần Tấn Hải'],
+    contact: {
+      phone: '0903 180 030',
+      email: 'no1muayclub@gmail.com',
+      facebook: 'facebook.com/no.1muayclub',
+      website: 'https://no1muayclub.com'
+    },
+    description: 'Lò luyện Muay Thái và Striking danh tiếng bậc nhất do tượng đài Nguyễn Trần Duy Nhất sáng lập ngay trung tâm Quận 1. Đào tạo các võ sĩ thiện chiến hàng đầu cho đấu trường quốc tế AFC và giải quốc nội.',
+    foundedYear: 2015,
+    openingHours: '06:00 - 21:00 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&auto=format&fit=crop&q=80',
+    rating: 5.0,
+    memberCount: 700,
+    facilities: ['Sàn đài Muay Thai chuẩn quốc tế', 'Lồng tập đối kháng MMA', 'Dàn bao chuối Fairtex Thái Lan', 'Khu rèn thể lực Cardio & Functional'],
+    notableFighterIds: ['f19', 'f27']
+  },
+  {
+    id: 'g-raptor',
+    name: 'Raptor MMA',
+    city: 'Hà Nội',
+    address: 'Tầng 3, Số 8 Hoàng Cầu Mới, P. Trung Liệt, Q. Đống Đa, Hà Nội',
+    phone: '0977 123 456',
+    email: 'raptormma@gmail.com',
+    website: 'https://raptormma.vn',
+    disciplines: ['Muay Thai', 'MMA', 'Kickboxing', 'BJJ', 'Striking Đột Biến'],
+    headCoach: 'Ban Huấn Luyện Raptor MMA',
+    coaches: ['HLV Muay Thai', 'HLV Kickboxing', 'Hà Thế Anh', 'Danh Quốc'],
+    contact: {
+      phone: '0977 123 456',
+      email: 'raptormma@gmail.com',
+      facebook: 'facebook.com/raptormma'
+    },
+    description: 'Câu lạc bộ võ thuật tổng hợp hiện đại nổi bật với dàn võ sĩ thể hình cao lớn, sải tay vượt trội và thế mạnh striking tầm xa đột biến, mang lại những pha kết liễu nghẹt thở.',
+    foundedYear: 2021,
+    openingHours: '07:00 - 21:00 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1584466977773-e625c37cdd50?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1584466977773-e625c37cdd50?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 350,
+    facilities: ['Lồng bát giác đối kháng', 'Sàn thảm BJJ & Grappling', 'Trang thiết bị Muay Thai nhập khẩu', 'Khu tạ tự do tăng sức mạnh'],
+    notableFighterIds: ['f12', 'f22']
+  },
+  {
+    id: 'g-tank',
+    name: 'Tank Club',
+    city: 'Hà Nội',
+    address: 'Ngõ 234 Hoàng Quốc Việt, P. Cổ Nhuế, Q. Bắc Từ Liêm, Hà Nội',
+    phone: '0982 777 999',
+    email: 'tankclub.mma@gmail.com',
+    website: 'https://tankclubmma.vn',
+    disciplines: ['MMA', 'Boxing Hạng Nặng', 'BJJ', 'Tán Thủ', 'Power Punching'],
+    headCoach: 'Dương Đức Tùng (Tùng Búa - Vô Địch Cúp MMA 2021)',
+    coaches: ['Dương Đức Tùng', 'Phan Huy Hoàng', 'HLV Thể lực & Boxing'],
+    contact: {
+      phone: '0982 777 999',
+      email: 'tankclub.mma@gmail.com',
+      facebook: 'facebook.com/tankclubmma'
+    },
+    description: 'Câu lạc bộ MMA với phong cách thi đấu bốc lửa, giàu thể lực và những đòn tay nặng tựa búa tạ. Đại bản doanh rèn luyện sức chịu đựng và lối đánh áp sát vũ bão.',
+    foundedYear: 2020,
+    openingHours: '08:00 - 21:30 (Thứ 2 - Thứ 7)',
+    logo: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.7,
+    memberCount: 300,
+    facilities: ['Lồng đấu MMA thép chịu lực', 'Bao cát Boxing tải trọng lớn', 'Khu tập tạ Heavy Lifting', 'Hệ thống đo lực đấm điện tử'],
+    notableFighterIds: ['f10', 'f24']
   },
   {
     id: 'g2',
     name: 'Saigon MMA Academy',
     city: 'TP.HCM',
     address: '216/3 Nguyễn Văn Hưởng, P. Thảo Điền, TP. Thủ Đức, TP.HCM',
-    disciplines: ['MMA', 'Boxing', 'Wrestling', 'BJJ'],
-    headCoach: 'Jean-Charles Skarbowsky',
-    coaches: ['Jean-Charles Skarbowsky (Muay/MMA)', 'Hoàng Tú (BJJ Purple Belt)', 'Đỗ Văn Thành (Wrestling)'],
+    phone: '0938 789 101',
+    email: 'saigonmma@gmail.com',
+    website: 'https://saigonmma.com',
+    disciplines: ['MMA', 'Combat Sambo', 'Wrestling', 'BJJ', 'Boxing', 'Muay Thai'],
+    headCoach: 'Jean-Charles Skarbowsky & Ban Huấn Luyện Sambo Quốc Tế',
+    coaches: ['Jean-Charles Skarbowsky', 'Jovidon Khojaev', 'Hoàng Tú (BJJ)', 'Lê Văn Thế Anh'],
     contact: {
       phone: '0938 789 101',
       email: 'saigonmma@gmail.com',
       facebook: 'facebook.com/saigonmmaacademy',
-      website: 'https://saigonmma.com',
+      website: 'https://saigonmma.com'
     },
-    description: 'Trung tâm võ thuật đối kháng tổng hợp với giáo trình chuẩn quốc tế, thế mạnh đào tạo địa chiến Wrestling và khóa siết BJJ.',
+    description: 'Trung tâm võ thuật đối kháng tổng hợp với giáo trình chuẩn quốc tế giữa khu biệt thự Thảo Điền. Đại bản doanh của ĐKVĐ 70kg LION Jovidon Khojaev và nhà vô địch MMA Châu Á Lò Thị Phung.',
     foundedYear: 2017,
     openingHours: '06:30 - 21:00 (Thứ 2 - Thứ 7)',
-    notableFighterIds: ['f4', 'f11', 'f20'],
+    logo: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 520,
+    facilities: ['Octagon Cage tiêu chuẩn quốc tế', 'Thảm Sambo & BJJ chuyên nghiệp', 'Phòng xông hơi phục hồi Sauna', 'Quầy bar sinh tố dinh dưỡng thể thao'],
+    notableFighterIds: ['f14', 'f25', 'f30']
   },
   {
-    id: 'g3',
-    name: 'C-Gym MMA',
-    city: 'TP.HCM',
-    address: '45 Lê Văn Lương, Phường Tân Phong, Quận 7, TP.HCM',
-    disciplines: ['MMA', 'Kickboxing', 'Boxing', 'BJJ'],
-    headCoach: 'Lê Minh Cường',
-    coaches: ['Lê Minh Cường (Head Coach)', 'Trương Mỹ Linh (Striking Coach)'],
-    contact: {
-      phone: '0908 555 789',
-      email: 'cgym.mma@gmail.com',
-      facebook: 'facebook.com/cgymmma',
-    },
-    description: 'Câu lạc bộ MMA hiện đại tại Quận 7, không gian tập luyện chuyên nghiệp cho cả người mới bắt đầu và võ sĩ bán chuyên / chuyên nghiệp.',
-    foundedYear: 2020,
-    openingHours: '07:00 - 22:00 (Hàng ngày)',
-    notableFighterIds: ['f5', 'f14'],
-  },
-  {
-    id: 'g4',
-    name: 'Hanoi Combat Club',
+    id: 'g1',
+    name: 'Vietnam Top Team (VTT)',
     city: 'Hà Nội',
-    address: 'Số 8 Trịnh Hoài Đức, P. Cát Linh, Đống Đa, Hà Nội',
-    disciplines: ['MMA', 'Wrestling', 'Boxing', 'BJJ'],
-    headCoach: 'Nguyễn Văn Nam',
-    coaches: ['Nguyễn Văn Nam (Cựu HLV Vật Quốc Gia)', 'Phạm Văn Nam', 'Bùi Đức Anh (Boxing Coach)'],
+    address: '153 Đội Cấn, P. Ngọc Hà, Q. Ba Đình & 15 Trịnh Hoài Đức, Q. Đống Đa, Hà Nội',
+    phone: '0903 123 456',
+    email: 'info@vietnamtopteam.vn',
+    website: 'https://vietnamtopteam.vn',
+    disciplines: ['MMA', 'BJJ', 'Muay Thai', 'Catch Wrestling', 'Boxing'],
+    headCoach: 'Kamil Michal Nguyen Van (BJJ Black Belt)',
+    coaches: ['Kamil Michal Nguyen Van', 'HLV Boxing Nga', 'HLV Vật Quốc Gia', 'Chelsey Cashwell'],
     contact: {
-      phone: '0989 112 233',
-      email: 'hcc@hanoicombat.vn',
-      facebook: 'facebook.com/hanoicombatclub',
-      website: 'https://hanoicombat.vn',
+      phone: '0903 123 456',
+      email: 'info@vietnamtopteam.vn',
+      facebook: 'facebook.com/vietnamtopteam',
+      website: 'https://vietnamtopteam.vn'
     },
-    description: 'Đội tuyển và câu lạc bộ MMA hàng đầu miền Bắc, đặc biệt nổi tiếng với bộ môn Vật cổ truyền & Vật tự do thích ứng MMA đỉnh cao.',
-    foundedYear: 2019,
-    openingHours: '06:00 - 21:00 (Thứ 2 - Chủ Nhật)',
-    notableFighterIds: ['f3', 'f10', 'f18'],
-  },
-  {
-    id: 'g5',
-    name: 'Dragon Fight Gym',
-    city: 'Đà Nẵng',
-    address: '56 Duy Tân, P. Hòa Thuận Đông, Hải Châu, Đà Nẵng',
-    disciplines: ['MMA', 'Vovinam', 'Muay Thai', 'BJJ'],
-    headCoach: 'Huỳnh Anh Tuấn',
-    coaches: ['Huỳnh Anh Tuấn (Vovinam Đệ Tam Đẳng)', 'Hoàng Hữu Thái', 'Nguyễn Tấn Đạt'],
-    contact: {
-      phone: '0905 112 244',
-      email: 'dragonfightdanang@gmail.com',
-      facebook: 'facebook.com/dragonfightgym',
-      website: 'https://dragonfight.vn',
-    },
-    description: 'Trung tâm võ thuật đối kháng quy mô lớn nhất miền Trung, kết hợp đòn chân Vovinam độc đáo vào đấu trường bát giác MMA.',
-    foundedYear: 2021,
-    openingHours: '07:00 - 21:00 (Thứ 2 - Thứ 7)',
-    notableFighterIds: ['f6', 'f12', 'f19'],
-  },
-  {
-    id: 'g6',
-    name: 'Muay Thái Nguyễn Trần Duy Nhất Academy',
-    city: 'TP.HCM',
-    address: 'Số 1 Trịnh Hoài Đức, Phường 13, Quận 5, TP.HCM',
-    disciplines: ['Muay Thai', 'MMA', 'Kickboxing', 'Boxing'],
-    headCoach: 'Nguyễn Trần Duy Nhất',
-    coaches: ['Nguyễn Trần Duy Nhất (Tượng đài Muay Thai)', 'Nguyễn Trần Tự Do', 'Mai Khắc Tuấn'],
-    contact: {
-      phone: '0912 345 678',
-      email: 'no1muaythai@gmail.com',
-      facebook: 'facebook.com/no1muaythaiclub',
-    },
-    description: 'Lò võ của "Độc cô cầu bại" Nguyễn Trần Duy Nhất, chuyên sâu về striking Muay Thai và phát triển các võ sĩ thi đấu LION Championship và đấu trường quốc tế.',
+    description: 'Lò đào tạo MMA chuyên nghiệp lâu đời và uy tín bậc nhất Việt Nam. Nơi gắn liền với sự nghiệp của Kamil Michal Nguyen Van, nhà vô địch nữ Chelsey Cashwell và tay đấm hạng nặng Trần Quốc Toản.',
     foundedYear: 2016,
-    openingHours: '06:30 - 21:30 (Thứ 2 - Chủ Nhật)',
-    notableFighterIds: ['f2', 'f13'],
+    openingHours: '06:00 - 21:30 (Thứ 2 - Chủ Nhật)',
+    logo: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 600,
+    facilities: ['Lồng bát giác đối kháng', 'Sàn thảm BJJ Gi & No-Gi', 'Khu bao đấm liên hoàn Boxing', 'Khu thể lực tạ ấm Kettlebell & Đòn tạ Olympic'],
+    notableFighterIds: ['f7', 'f26', 'f28']
   },
   {
-    id: 'g7',
-    name: 'No.1 Fight Team Hanoi',
-    city: 'Hà Nội',
-    address: '125 Nguyễn Sơn, P. Gia Thụy, Long Biên, Hà Nội',
-    disciplines: ['MMA', 'BJJ', 'Muay Thai', 'Boxing'],
-    headCoach: 'Vũ Hải Long',
-    coaches: ['Vũ Hải Long (BJJ Black Belt)', 'Vũ Minh Hiếu'],
+    id: 'g-xuanbac',
+    name: 'Trung tâm MMA & Fitness Xuân Bắc Ninh Bình',
+    city: 'Ninh Bình',
+    address: 'Đường Trần Hưng Đạo, P. Ninh Khánh, TP. Ninh Bình, Tỉnh Ninh Bình',
+    phone: '0979 222 333',
+    email: 'xuanbacmma@gmail.com',
+    website: 'https://xuanbacmma.vn',
+    disciplines: ['MMA', 'Boxing', 'Kickboxing', 'Functional Fitness & Thể Hình'],
+    headCoach: 'Ban Huấn Luyện Xuân Bắc & Bùi Đình Khải',
+    coaches: ['Bùi Đình Khải', 'HLV Striking Ninh Bình', 'HLV Boxing Kiện Tướng'],
     contact: {
-      phone: '0966 888 999',
-      email: 'no1hanoi@fightteam.vn',
-      facebook: 'facebook.com/no1fightteamhanoi',
+      phone: '0979 222 333',
+      email: 'xuanbacmma@gmail.com',
+      facebook: 'facebook.com/xuanbacmma'
     },
-    description: 'Điểm đến hàng đầu cho cộng đồng Brazilian Jiu-Jitsu và MMA tại thủ đô với nhiều võ sĩ giành huy chương quốc tế.',
-    foundedYear: 2019,
-    openingHours: '07:00 - 21:30 (Hàng ngày)',
-    notableFighterIds: ['f7', 'f16'],
-  },
-  {
-    id: 'g8',
-    name: 'Pacific MMA',
-    city: 'TP.HCM',
-    address: '88 Song Hành, Thảo Điền, TP. Thủ Đức, TP.HCM',
-    disciplines: ['MMA', 'Kickboxing', 'BJJ', 'Boxing'],
-    headCoach: 'Sean Murphy',
-    coaches: ['Sean Murphy (BJJ Brown Belt)', 'Võ Thành Đạt (Striking Coach)'],
-    contact: {
-      phone: '0977 444 333',
-      email: 'info@pacificmma.vn',
-      facebook: 'facebook.com/pacificmma',
-      website: 'https://pacificmma.vn',
-    },
-    description: 'Phòng tập cao cấp với lồng Octagon tiêu chuẩn, trang thiết bị tối tân và các khóa huấn luyện MMA từ cơ bản đến chuyên nghiệp.',
-    foundedYear: 2020,
-    openingHours: '06:00 - 22:00 (Thứ 2 - Chủ Nhật)',
-    notableFighterIds: ['f8', 'f15'],
-  },
-  {
-    id: 'g9',
-    name: 'Danang BJJ & MMA Club',
-    city: 'Đà Nẵng',
-    address: '12 An Đồn 4, An Hải Bắc, Sơn Trà, Đà Nẵng',
-    disciplines: ['BJJ', 'MMA', 'Muay Thai', 'Boxing'],
-    headCoach: 'Carlos Ribeiro',
-    coaches: ['Carlos Ribeiro (BJJ Black Belt)', 'Trần Hải Đăng'],
-    contact: {
-      phone: '0935 889 977',
-      email: 'danangbjj@gmail.com',
-      facebook: 'facebook.com/danangbjjmma',
-    },
-    description: 'Cộng đồng Grappling và MMA sôi động bên bờ biển Đà Nẵng, điểm đến thu hút nhiều võ sĩ quốc tế và các tài năng trẻ miền Trung.',
+    description: 'Trung tâm thể thao võ thuật đối kháng tiêu biểu của vùng đất cố đô Ninh Bình với diện tích hơn 1.200m2. Bệ phóng của tài năng trẻ Bùi Đình Khải lọt vào trận chung kết tranh đai 52kg LION Championship tại LC34.',
     foundedYear: 2021,
-    openingHours: '07:00 - 21:00 (Thứ 2 - Chủ Nhật)',
-    notableFighterIds: ['f6', 'f12'],
+    openingHours: '06:30 - 21:30 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 420,
+    facilities: ['Diện tích 1.200m2 thoáng rộng', 'Sàn đấu Boxing & MMA đối kháng', 'Khu máy tập thể hình Gym cao cấp', 'Phòng xông hơi phục hồi'],
+    notableFighterIds: ['f20']
   },
   {
-    id: 'g10',
-    name: 'Vietnam Top Team Hanoi',
+    id: 'g-hadong',
+    name: 'Hà Đông Fighters Union',
     city: 'Hà Nội',
-    address: '48 Võ Thị Sáu, P. Thanh Nhàn, Hai Bà Trưng, Hà Nội',
-    disciplines: ['MMA', 'BJJ', 'Muay Thai', 'Boxing'],
-    headCoach: 'Alex Silva',
-    coaches: ['Alex Silva (MMA Specialist)', 'Trần Mạnh Hùng (Boxing Coach)'],
+    address: 'Khu Đô Thị Văn Quán, P. Văn Quán, Q. Hà Đông, Hà Nội',
+    phone: '0912 888 777',
+    email: 'hadongfighters@gmail.com',
+    website: 'https://hadongfighters.vn',
+    disciplines: ['MMA', 'Wushu Tán Thủ', 'BJJ', 'Vật Tự Do', 'Boxing'],
+    headCoach: 'Nghiêm Tùng Lâm (Thái Tử Hà Đông - Cựu VĐ Tán Thủ QG)',
+    coaches: ['Nghiêm Tùng Lâm', 'HLV Tán thủ Hà Đông', 'Kiện tướng Vật Hà Tây cũ'],
     contact: {
-      phone: '0945 678 890',
-      email: 'hanoi@vietnamtopteam.vn',
-      facebook: 'facebook.com/vtthanoi',
-      website: 'https://vietnamtopteam.vn',
+      phone: '0912 888 777',
+      email: 'hadongfighters@gmail.com',
+      facebook: 'facebook.com/hadongfighters'
     },
-    description: 'Chi nhánh phía Bắc của hệ thống VTT, trang bị đầy đủ sàn đấu và chương trình huấn luyện MMA bài bản.',
-    foundedYear: 2022,
+    description: 'Đại bản doanh võ thuật đối kháng kỳ cựu của khu vực Hà Đông. Lò đào tạo quy tụ những chiến binh giàu kinh nghiệm thực chiến và là ngọn cờ đầu truyền lửa cho phong trào MMA thủ đô.',
+    foundedYear: 2018,
+    openingHours: '07:00 - 21:00 (Thứ 2 - Chủ Nhật)',
+    logo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 320,
+    facilities: ['Thảm tập vật và địa chiến', 'Khu bao cát rèn đòn tay Tán thủ', 'Lồng tập luyện kỹ năng áp lồng', 'Dụng cụ thể lực đối kháng'],
+    notableFighterIds: ['f29']
+  },
+  {
+    id: 'g-agoge',
+    name: 'CLB MMA Agoge Fight Club',
+    city: 'Hà Nội',
+    address: '250 Thụy Khuê, P. Thụy Khuê, Q. Tây Hồ, Hà Nội',
+    phone: '0983 234 567',
+    email: 'agogefightclub@gmail.com',
+    website: 'https://facebook.com/agogecombat',
+    disciplines: ['MMA', 'BJJ', 'Muay Thai', 'Boxing', 'Wrestling'],
+    headCoach: 'HLV Alexander D. & Võ sư BJJ Black Belt',
+    coaches: ['Alexander D.', 'HLV BJJ Nhu thuật', 'HLV Boxing nghiệp dư'],
+    contact: {
+      phone: '0983 234 567',
+      email: 'agogefightclub@gmail.com',
+      facebook: 'facebook.com/agogecombat'
+    },
+    description: 'Không gian tập luyện MMA Spartan phong cách châu Âu nhìn thẳng ra Hồ Tây. Nơi hội tụ các chuyên gia BJJ quốc tế và võ sĩ ngoại binh chất lượng cao tại Hà Nội.',
+    foundedYear: 2019,
+    openingHours: '06:00 - 21:30 (Thứ 2 - Chủ Nhật)',
+    logo: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 380,
+    facilities: ['Lồng Bát Giác Octagon 7m', 'Thảm sàn BJJ tiêu chuẩn IBJJF', 'Phòng xông khô Sauna', 'Khu tạ Functional CrossFit'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-vfc',
+    name: 'Vietnam Fight Club (VFC Hà Nội)',
+    city: 'Hà Nội',
+    address: '88 Láng Hạ, P. Láng Hạ, Q. Đống Đa, Hà Nội',
+    phone: '0966 554 321',
+    email: 'vfc.contact@gmail.com',
+    website: 'https://vfc.vn',
+    disciplines: ['MMA', 'Boxing', 'Kickboxing', 'Thể Lực Võ Thuật'],
+    headCoach: 'Ban Huấn Luyện VFC & Kiện tướng Boxing Quốc Gia',
+    coaches: ['HLV Boxing QG', 'HLV Kickboxing Sea Games', 'HLV Thể lực'],
+    contact: {
+      phone: '0966 554 321',
+      email: 'vfc.contact@gmail.com',
+      facebook: 'facebook.com/vfchanoi'
+    },
+    description: 'Một trong những câu lạc bộ võ thuật phong trào và bán chuyên có bề dày lịch sử phát triển mạnh mẽ nhất thủ đô, cung cấp lực lượng võ sĩ dồi dào cho các giải đấu nghiệp dư và V1.',
+    foundedYear: 2015,
+    openingHours: '06:30 - 22:00 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 520,
+    facilities: ['Sàn Boxing Ring 6x6m', 'Hệ thống bao cát Heavy Bag 12 trụ', 'Khu thể hình Cardio', 'Phòng tắm nóng lạnh'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-cand',
+    name: 'CLB Tán Thủ & MMA CAND',
+    city: 'Hà Nội',
+    address: 'Trung tâm Huấn luyện Thể thao CAND, 396 Nguyễn Xiển, Thanh Trì, Hà Nội',
+    phone: '024 3858 1111',
+    email: 'candmartialarts@gmail.com',
+    website: 'https://cand.com.vn',
+    disciplines: ['MMA', 'Wushu Tán Thủ', 'Võ Chiến Đấu CAND', 'Vật Tự Do'],
+    headCoach: 'Đại tá, HLV Trưởng Đội tuyển Võ CAND',
+    coaches: ['HLV Tán thủ CAND', 'Kiện tướng Vật QG', 'Chuyên gia cận chiến'],
+    contact: {
+      phone: '024 3858 1111',
+      email: 'candmartialarts@gmail.com',
+      facebook: 'facebook.com/candfight'
+    },
+    description: 'Cái nôi rèn luyện của các chiến sĩ công an với kỷ luật thép, kỹ năng quật ngã uy lực và sức bền vô song, thường xuyên tham gia tranh tài ở các hạng cân trung và nặng tại LION Championship.',
+    foundedYear: 2010,
+    openingHours: '07:00 - 19:30 (Thứ 2 - Thứ 7)',
+    logo: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 300,
+    facilities: ['Thảm sàn Tán thủ đạt chuẩn quốc tế', 'Lồng sắt phục vụ nghiệp vụ', 'Khu tập thể lực quân sự', 'Nhà ăn tiêu chuẩn VĐV'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-lion-heart',
+    name: 'Lion Heart MMA Club Long Biên',
+    city: 'Hà Nội',
+    address: '12 Ngô Gia Tự, P. Đức Giang, Q. Long Biên, Hà Nội',
+    phone: '0977 123 456',
+    email: 'lionheartlongbien@gmail.com',
+    website: 'https://facebook.com/lionheartmma',
+    disciplines: ['MMA', 'BJJ', 'Kickboxing', 'Boxing'],
+    headCoach: 'HLV Vũ Đình Nam & Ban Huấn Luyện Lion Heart',
+    coaches: ['Vũ Đình Nam', 'HLV BJJ Blue Belt', 'HLV Muay Thai'],
+    contact: {
+      phone: '0977 123 456',
+      email: 'lionheartlongbien@gmail.com',
+      facebook: 'facebook.com/lionheartmma'
+    },
+    description: 'Địa điểm luyện tập võ thuật tổng hợp hiện đại và tràn đầy nhiệt huyết tại cửa ngõ phía Đông Hà Nội, ươm mầm cho các tài năng trẻ tham gia giải Hạng B LION.',
+    foundedYear: 2021,
+    openingHours: '08:00 - 21:30 (Thứ 2 - Chủ Nhật)',
+    logo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 280,
+    facilities: ['Thảm tập MMA cao su non', 'Khung rào Octagon mini', 'Dàn tạ kettlebell & xà đơn', 'Khu vực nghỉ ngơi'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-b52',
+    name: 'CLB MMA B52 Sài Gòn',
+    city: 'TP.HCM',
+    address: '105 Nơ Trang Long, P. 11, Q. Bình Thạnh, TP.HCM',
+    phone: '0908 525 252',
+    email: 'mmab52saigon@gmail.com',
+    website: 'https://facebook.com/b52mma',
+    disciplines: ['MMA', 'Muay Thai', 'BJJ', 'Võ Tự Do'],
+    headCoach: 'Võ sư Bùi Văn Tuấn (Tuấn B52)',
+    coaches: ['Bùi Văn Tuấn', 'HLV Muay Chuyên Nghiệp', 'HLV BJJ Nhu thuật'],
+    contact: {
+      phone: '0908 525 252',
+      email: 'mmab52saigon@gmail.com',
+      facebook: 'facebook.com/b52mma'
+    },
+    description: 'Thương hiệu đối kháng khét tiếng tại Sài Gòn với phong cách thi đấu bùng nổ, đòn tay dũng mãnh và tinh thần thi đấu quả cảm không lùi bước.',
+    foundedYear: 2017,
+    openingHours: '06:00 - 22:00 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 460,
+    facilities: ['Võ đài Ring 4 dây', 'Lồng Octagon 6m', 'Hệ thống giàn tạ Powerlifting', 'Khu bao cát boxing da thật'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-warrior',
+    name: 'Warrior MMA & Boxing Club',
+    city: 'TP.HCM',
+    address: '285 Cách Mạng Tháng 8, P. 12, Quận 10, TP.HCM',
+    phone: '0938 112 233',
+    email: 'warriormma.vn@gmail.com',
+    website: 'https://warriormma.vn',
+    disciplines: ['MMA', 'Boxing Pro', 'Muay Thai', 'BJJ'],
+    headCoach: 'HLV Trưởng Lê Quốc Nam & Ban Huấn Luyện Warrior',
+    coaches: ['Lê Quốc Nam', 'HLV Boxing Philippines', 'HLV Địa chiến BJJ'],
+    contact: {
+      phone: '0938 112 233',
+      email: 'warriormma.vn@gmail.com',
+      facebook: 'facebook.com/warriormmaclub'
+    },
+    description: 'Phòng tập trung tâm Quận 10 với cơ sở hạ tầng sang trọng, giáo trình huấn luyện chuyên nghiệp theo tiêu chuẩn các võ sĩ đấu chuông tại châu Á.',
+    foundedYear: 2018,
+    openingHours: '06:00 - 22:00 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 510,
+    facilities: ['Sàn đấu tiêu chuẩn', 'Khu thảm grappling cao su ép', 'Phòng tắm cao cấp', 'Khu bổ sung dinh dưỡng Protein Bar'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-silverback',
+    name: 'Silverback BJJ & MMA Academy',
+    city: 'TP.HCM',
+    address: '45 Thảo Điền, P. Thảo Điền, TP. Thủ Đức, TP.HCM',
+    phone: '0909 333 444',
+    email: 'info@silverbackbjj.com',
+    website: 'https://silverbackbjj.com',
+    disciplines: ['BJJ Gi & No-Gi', 'MMA', 'Wrestling', 'Submission Only'],
+    headCoach: 'Professor Fernando Santos (Đai Đen BJJ Tam Đẳng)',
+    coaches: ['Fernando Santos', 'HLV No-Gi Grappling', 'HLV Wrestling Mỹ'],
+    contact: {
+      phone: '0909 333 444',
+      email: 'info@silverbackbjj.com',
+      facebook: 'facebook.com/silverbackacademy'
+    },
+    description: 'Học viện nhu thuật và địa chiến hàng đầu khu vực Thảo Điền, sở hữu đội ngũ võ sĩ submission grappling thiện chiến và thường xuyên giành huy chương vàng quốc tế.',
+    foundedYear: 2019,
+    openingHours: '06:30 - 21:00 (Thứ 2 - Thứ 7)',
+    logo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1200&auto=format&fit=crop&q=80',
+    rating: 5.0,
+    memberCount: 390,
+    facilities: ['Thảm đấu Dollamur nhập khẩu Mỹ', 'Khu vực phục hồi cơ Ice Bath', 'Phòng xông hơi Sauna', 'Khu đồ uống điện giải'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-binh-duong',
+    name: 'CLB MMA Bình Dương Combat',
+    city: 'Bình Dương',
+    address: '188 Đại lộ Bình Dương, P. Phú Hòa, TP. Thủ Dầu Một, Bình Dương',
+    phone: '0274 388 9999',
+    email: 'mmabinhduong@gmail.com',
+    website: 'https://facebook.com/mmabinhduong',
+    disciplines: ['MMA', 'Võ Cổ Truyền', 'Muay Thai', 'Boxing'],
+    headCoach: 'Võ sư Nguyễn Văn Hùng (Cựu HLV Tỉnh Bình Dương)',
+    coaches: ['Nguyễn Văn Hùng', 'HLV Muay Thái', 'HLV Boxing trẻ'],
+    contact: {
+      phone: '0274 388 9999',
+      email: 'mmabinhduong@gmail.com',
+      facebook: 'facebook.com/mmabinhduong'
+    },
+    description: 'Ngọn cờ đầu phong trào MMA của thủ phủ công nghiệp Đông Nam Bộ, nơi sản sinh ra những đấu sĩ có thể lực bền bỉ và ý chí thi đấu kiên cường.',
+    foundedYear: 2020,
+    openingHours: '06:00 - 21:30 (Thứ 2 - Chủ Nhật)',
+    logo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 310,
+    facilities: ['Lồng tập MMA 6m', 'Thảm tập vật đa năng', 'Khu máy tập thể lực Gym', 'Bao cát đòn chân hạng nặng'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-can-tho',
+    name: 'CLB MMA Cần Thơ (Mekong Combat)',
+    city: 'Cần Thơ',
+    address: '124 Đường 3 Tháng 2, P. Xuân Khánh, Q. Ninh Kiều, Cần Thơ',
+    phone: '0292 388 7788',
+    email: 'mekongcombat@gmail.com',
+    website: 'https://facebook.com/mekongcombat',
+    disciplines: ['MMA', 'Võ Cổ Truyền Miền Tây', 'Kickboxing', 'BJJ'],
+    headCoach: 'Võ sư Trần Thanh Hùng (HLV Võ Thuật Tây Đô)',
+    coaches: ['Trần Thanh Hùng', 'HLV Kickboxing Cần Thơ', 'HLV BJJ Blue Belt'],
+    contact: {
+      phone: '0292 388 7788',
+      email: 'mekongcombat@gmail.com',
+      facebook: 'facebook.com/mekongcombat'
+    },
+    description: 'Đại bản doanh MMA lớn nhất miền Tây Nam Bộ, đưa phong trào võ thuật tổng hợp về với vùng sông nước Mekong và phát hiện nhiều nhân tố tiềm năng cho giải GMA.',
+    foundedYear: 2021,
     openingHours: '06:30 - 21:30 (Hàng ngày)',
-    notableFighterIds: ['f3', 'f7'],
+    logo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 290,
+    facilities: ['Thảm sàn tập luyện 300m2', 'Võ đài Ring 4 dây', 'Khu vực Functional Strength', 'Phòng thay đồ khép kín'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-danang',
+    name: 'Danang Fighters MMA Club',
+    city: 'Đà Nẵng',
+    address: '56 Duy Tân, P. Hòa Thuận Đông, Q. Hải Châu, TP. Đà Nẵng',
+    phone: '0236 366 8899',
+    email: 'danangfighters@gmail.com',
+    website: 'https://facebook.com/danangfighters',
+    disciplines: ['MMA', 'BJJ', 'Muay Thai', 'Boxing'],
+    headCoach: 'HLV Nguyễn Hoàng Long (Kiện tướng Wushu Tán thủ miền Trung)',
+    coaches: ['Nguyễn Hoàng Long', 'HLV BJJ Nhu thuật', 'HLV Muay Thái'],
+    contact: {
+      phone: '0236 366 8899',
+      email: 'danangfighters@gmail.com',
+      facebook: 'facebook.com/danangfighters'
+    },
+    description: 'Đại bản doanh võ thuật đối kháng số 1 miền Trung, nơi huấn luyện các chiến binh biển đảo dũng cảm với nền tảng thể lực và sự nhanh nhẹn vượt trội.',
+    foundedYear: 2019,
+    openingHours: '06:00 - 21:30 (Thứ 2 - Chủ Nhật)',
+    logo: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 370,
+    facilities: ['Lồng Bát Giác Octagon 7m', 'Thảm sàn BJJ Grappling', 'Khu bao cát gió biển thoáng đãng', 'Phòng xông hơi phục hồi'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-haiphong',
+    name: 'Haiphong Combat Club (CLB Võ Thuật Hải Phòng)',
+    city: 'Hải Phòng',
+    address: '82 Lạch Tray, Q. Ngô Quyền, Hải Phòng',
+    phone: '0225 382 8282',
+    email: 'haiphongcombat@gmail.com',
+    website: 'https://facebook.com/haiphongcombat',
+    disciplines: ['MMA', 'Wushu Tán Thủ', 'Vật Cổ Truyền', 'Boxing'],
+    headCoach: 'HLV Vũ Bá Toàn & Cựu VĐV Đội tuyển Hải Phòng',
+    coaches: ['Vũ Bá Toàn', 'HLV Boxing Đất Cảng', 'Kiện tướng Vật tự do'],
+    contact: {
+      phone: '0225 382 8282',
+      email: 'haiphongcombat@gmail.com',
+      facebook: 'facebook.com/haiphongcombat'
+    },
+    description: 'Đất Cảng là cái nôi sản sinh ra những võ sĩ có đòn tay nặng đô, kỹ năng vật áp đảo và tinh thần rực lửa như hoa phượng đỏ. Đội ngũ võ sĩ thường xuyên góp mặt tại chung kết LION.',
+    foundedYear: 2017,
+    openingHours: '06:30 - 21:30 (Hàng ngày)',
+    logo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.9,
+    memberCount: 410,
+    facilities: ['Sàn đài thi đấu chuyên nghiệp', 'Thảm sàn vật truyền thống & địa chiến', 'Khu bao tạ rèn thể lực đòn tay', 'Phòng y tế và phục hồi'],
+    notableFighterIds: []
+  },
+  {
+    id: 'g-nhatrang',
+    name: 'Nha Trang Combat Center (Khánh Hòa)',
+    city: 'Khánh Hòa',
+    address: '34 Trần Phú, P. Lộc Thọ, TP. Nha Trang, Khánh Hòa',
+    phone: '0258 388 9988',
+    email: 'nhatrangcombat@gmail.com',
+    website: 'https://facebook.com/nhatrangcombat',
+    disciplines: ['MMA', 'BJJ', 'Muay Thai', 'Boxing'],
+    headCoach: 'HLV Đinh Quang Huy & Chuyên gia BJJ Quốc Tế',
+    coaches: ['Đinh Quang Huy', 'HLV BJJ Nước Ngoài', 'HLV Muay Thái'],
+    contact: {
+      phone: '0258 388 9988',
+      email: 'nhatrangcombat@gmail.com',
+      facebook: 'facebook.com/nhatrangcombat'
+    },
+    description: 'Trung tâm huấn luyện võ thuật đối kháng và thể lực kết hợp du lịch nghỉ dưỡng hàng đầu tại Nha Trang, thu hút đông đảo võ sĩ quốc tế đến tập huấn và cọ xát kỹ năng.',
+    foundedYear: 2020,
+    openingHours: '06:00 - 21:00 (Thứ 2 - Chủ Nhật)',
+    logo: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=400&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&auto=format&fit=crop&q=80',
+    rating: 4.8,
+    memberCount: 260,
+    facilities: ['Lồng tập Octagon view biển', 'Thảm BJJ tiêu chuẩn thi đấu', 'Phòng xông hơi nước & khô', 'Khu quầy Bar dinh dưỡng Protein'],
+    notableFighterIds: []
   }
+
 ];
 
-
-// 4. FIGHTERS
+// 4. FIGHTERS (TOP 30 VÕ SĨ MMA VIỆT NAM - CẬP NHẬT THÁNG 9/2026)
 export const fighters: Fighter[] = [
   {
-    id: 'f1', name: 'Trần Quang Lộc', nickname: 'Quái Vật Biển', isChampion: true, gymId: 'g1', divisionId: 'd-m-70',
-    record: { wins: 15, losses: 2, draws: 0, noContests: 0, winsByKo: 8, winsBySub: 5, winsByDec: 2 },
-    stats: { strikingAccuracy: 55, strikingDefense: 60, takedownAccuracy: 50, takedownDefense: 65, finishRate: 85, striking: 4, wrestling: 3, clinch: 4, groundGame: 3, defense: 4, cardio: 5 },
-    eloRating: 1800, styles: ['Tán Thủ', 'MMA'], height: 175, reach: 178, dateOfBirth: '1989-01-01', nationality: 'VN',
+    id: 'f1',
+    name: 'Nghiêm Văn Ý',
+    nickname: 'Chiến Binh Sanda',
+    isChampion: false,
+    championshipTitle: 'Cựu Vô Địch LION Championship 65kg | Bán Kết Road to UFC',
+    gymId: 'g-the-champ',
+    divisionId: 'd-m-65',
+    record: { wins: 6, losses: 2, draws: 0, noContests: 0, winsByKo: 4, winsBySub: 0, winsByDec: 2 },
+    stats: { strikingAccuracy: 54, strikingDefense: 71, takedownAccuracy: 50, takedownDefense: 90, finishRate: 67, striking: 5, wrestling: 4, clinch: 4, groundGame: 3, defense: 5, cardio: 5 },
+    eloRating: 1850,
+    styles: ['Wushu Tán Thủ', 'MMA Striking'],
+    height: 170,
+    reach: 173,
+    dateOfBirth: '1999-05-15',
+    nationality: 'VN',
     image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
     fullBodyImage: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
-    quote: 'Khi bước vào lồng bát giác, tôi không chỉ chiến đấu cho riêng mình, mà chiến đấu vì màu cờ sắc áo Việt Nam và niềm tự hào của hàng triệu người hâm mộ võ thuật nước nhà.',
-    quoteAuthor: 'Trần Quang Lộc — Đương kim Vô địch Hạng 70kg LION Championship',
-    socialLinks: {
-      facebook: 'https://facebook.com/tranquanglocmma',
-      instagram: 'https://instagram.com/tranquangloc_mma',
-      youtube: 'https://youtube.com/@tranquangloc_official',
-      tiktok: 'https://tiktok.com/@tranquangloc'
-    },
-    gallery: [
-      { id: 'g1', url: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&auto=format&fit=crop&q=80', caption: 'Khoảnh khắc tung đòn móc trái sấm sét hạ gục đối thủ tại hiệp 2 giải LION 28.', title: 'Cú Knockout định đoạt trận đấu' },
-      { id: 'g2', url: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1200&auto=format&fit=crop&q=80', caption: 'Giây phút đăng quang bảo vệ thành công đai vô địch 70kg trước 5,000 khán giả cuồng nhiệt.', title: 'Bảo vệ đai vô địch thuyết phục' },
-      { id: 'g3', url: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80', caption: 'Tập luyện cường độ cao các bài phối hợp đòn tay và vật tại Vietnam Top Team.', title: 'Tập huấn kỹ chiến thuật' },
-      { id: 'g4', url: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&auto=format&fit=crop&q=80', caption: 'Bước lên bàn cân chính thức đạt đúng mốc 70.0kg tại buổi Ceremonial Weigh-in.', title: 'Buổi cân ký chính thức' },
-      { id: 'g5', url: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=1200&auto=format&fit=crop&q=80', caption: 'Kiểm soát vị trí mount áp đảo và ra đòn Ground & Pound dồn dập.', title: 'Thế trận địa chiến vượt trội' },
-      { id: 'g6', url: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=1200&auto=format&fit=crop&q=80', caption: 'Tập trung cao độ trong phòng thay đồ cùng HLV trưởng trước giờ bước ra sàn đấu.', title: 'Tập trung trước giờ xuất trận' }
-    ],
-    highlightVideos: [
-      { id: 'v1', title: 'Top 5 pha Knockout kinh điển của Trần Quang Lộc tại đấu trường LION Championship', thumbnail: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&auto=format&fit=crop&q=80', duration: '06:45', views: '280K lượt xem' },
-      { id: 'v2', title: 'Trần Quang Lộc vs Hoàng Hữu Thái | Toàn bộ trận bảo vệ đai LION 28 mãn nhãn', thumbnail: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=600&auto=format&fit=crop&q=80', duration: '15:20', views: '450K lượt xem' },
-      { id: 'v3', title: 'Phỏng vấn độc quyền: Hành trình từ võ sĩ Tán Thủ đường phố đến ngôi vương MMA Việt', thumbnail: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80', duration: '18:10', views: '195K lượt xem' },
-      { id: 'v4', title: 'Một ngày tập luyện đỉnh cao của "Quái Vật Biển" tại đại bản doanh Liên Phong MMA', thumbnail: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&auto=format&fit=crop&q=80', duration: '11:35', views: '135K lượt xem' }
-    ]
+    bio: 'Võ sĩ tiêu biểu của The Champ MMA và Wushu Tán thủ Việt Nam. Từng giành HCĐ ASIAD 2018, vô địch LION Championship 65kg mùa 2022 và tái chiếm đai tại LC20 (KO Felipe Negochadle). Là võ sĩ Việt Nam đầu tiên vào Bán kết Road to UFC Season 4 (2025). Tháng 8/2026 chính thức giải nghệ ở tuổi 27 để tập trung đào tạo.',
+    quote: 'Khi bước vào lồng bát giác, tôi mang theo tinh thần thượng võ và niềm kiêu hãnh của võ thuật Việt Nam ra trường quốc tế.',
+    quoteAuthor: 'Nghiêm Văn Ý — The Champ MMA',
+    socialLinks: { facebook: 'https://facebook.com/nghiemvany.thechamp' }
   },
   {
-    id: 'f2', name: 'Nguyễn Trần Duy Nhất', nickname: 'No.1', isChampion: false, gymId: 'g6', divisionId: 'd-m-61',
-    record: { wins: 18, losses: 3, draws: 0, noContests: 0, winsByKo: 12, winsBySub: 2, winsByDec: 4 },
-    stats: { strikingAccuracy: 75, strikingDefense: 70, takedownAccuracy: 40, takedownDefense: 60, finishRate: 75, striking: 5, wrestling: 2, clinch: 4, groundGame: 2, defense: 4, cardio: 5 },
-    eloRating: 1750, styles: ['Muay Thai'], height: 168, reach: 170, dateOfBirth: '1989-03-21', nationality: 'VN',
+    id: 'f2',
+    name: 'Đỗ Huy Hoàng',
+    nickname: 'Cỗ Máy Knock-out',
+    isChampion: false,
+    championshipTitle: 'Á quân LION Championship | HCB SEA Games 32 & World Games 2025',
+    gymId: 'g-the-champ',
+    divisionId: 'd-m-61',
+    record: { wins: 4, losses: 1, draws: 0, noContests: 0, winsByKo: 4, winsBySub: 0, winsByDec: 0 },
+    stats: { strikingAccuracy: 65, strikingDefense: 62, takedownAccuracy: 55, takedownDefense: 85, finishRate: 100, striking: 5, wrestling: 3, clinch: 4, groundGame: 3, defense: 4, cardio: 5 },
+    eloRating: 1780,
+    styles: ['Wushu Tán Thủ', 'Striking Bão Táp'],
+    height: 169,
+    reach: 168,
+    dateOfBirth: '2002-01-01',
+    nationality: 'VN',
     image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
     fullBodyImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80',
-    quote: 'Võ thuật không chỉ là những đòn thế hủy diệt, võ thuật là đạo đức, là ý chí thép không bao giờ lùi bước trước bất kỳ nghịch cảnh nào.',
-    quoteAuthor: 'Nguyễn Trần Duy Nhất — Độc cô cầu bại Muay Thai Việt Nam',
-    socialLinks: {
-      facebook: 'https://facebook.com/duynhatno1',
-      instagram: 'https://instagram.com/nguyentranduynhat_no1',
-      youtube: 'https://youtube.com/@no1muaythai',
-      tiktok: 'https://tiktok.com/@duynhatno1'
-    },
-    gallery: [
-      { id: 'g2-1', url: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80', caption: 'Cú đá high-kick sở trường trúng đích hạ đo ván đối thủ.', title: 'Cú đá tầm cao sát thủ' },
-      { id: 'g2-2', url: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&auto=format&fit=crop&q=80', caption: 'Màn ăn mừng rực lửa sau chiến thắng KO chớp nhoáng tại LION 26.', title: 'Niềm vui chiến thắng' },
-      { id: 'g2-3', url: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&auto=format&fit=crop&q=80', caption: 'Tập luyện đánh pad cùng HLV tại No.1 Muay Club.', title: 'Rèn luyện đòn đánh' },
-      { id: 'g2-4', url: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&auto=format&fit=crop&q=80', caption: 'Tự tin đối mặt đối thủ trong buổi họp báo face-off.', title: 'Face-off nảy lửa' }
-    ],
-    highlightVideos: [
-      { id: 'v2-1', title: 'Tuyển tập những cú đá Headkick làm nên thương hiệu "Độc Cô Cầu Bại" Duy Nhất', thumbnail: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80', duration: '08:22', views: '520K lượt xem' },
-      { id: 'v2-2', title: 'Nguyễn Trần Duy Nhất vs Đỗ Văn Thành | Trận thư hùng lịch sử tại LION Championship', thumbnail: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&auto=format&fit=crop&q=80', duration: '12:40', views: '380K lượt xem' }
-    ]
+    bio: 'Tài năng trẻ nổi bật của The Champ MMA, sở hữu tỉ lệ Knock-out 100% tại các trận thắng MMA. Từng giành HCB SEA Games 32 và HCB World Games 2025. Tái xuất sàn MMA tại LC31 (09/05/2026), anh hạ knock-out ngay hiệp 1 đối thủ John Dave Almanza (Philippines).',
+    quote: 'Mục tiêu của tôi khi bước lên võ đài là tạo ra một trận đấu bùng nổ và hạ gục đối thủ bằng những cú ra đòn quyết định.',
+    quoteAuthor: 'Đỗ Huy Hoàng — The Champ MMA',
+    socialLinks: { facebook: 'https://facebook.com/dohuyhoang.thechamp' }
   },
   {
-    id: 'f3', name: 'Phạm Văn Nam', nickname: 'Nam Tốc Độ', isChampion: true, gymId: 'g4', divisionId: 'd-m-56',
-    record: { wins: 12, losses: 1, draws: 0, noContests: 0, winsByKo: 4, winsBySub: 6, winsByDec: 2 },
-    stats: { strikingAccuracy: 50, strikingDefense: 55, takedownAccuracy: 70, takedownDefense: 65, finishRate: 80, striking: 3, wrestling: 5, clinch: 4, groundGame: 4, defense: 4, cardio: 5 },
-    eloRating: 1680, styles: ['Wrestling', 'BJJ'], height: 165, reach: 165, dateOfBirth: '1995-12-10', nationality: 'VN',
+    id: 'f3',
+    name: 'Bạch Văn Nghĩa',
+    nickname: 'Đô Vật Thép',
+    isChampion: false,
+    championshipTitle: 'Ứng viên Số 1 Tranh Đai Vô Địch 60kg LION Championship',
+    gymId: 'g-the-champ',
+    divisionId: 'd-m-61',
+    record: { wins: 4, losses: 2, draws: 0, noContests: 0, winsByKo: 1, winsBySub: 1, winsByDec: 2 },
+    stats: { strikingAccuracy: 48, strikingDefense: 58, takedownAccuracy: 75, takedownDefense: 78, finishRate: 50, striking: 3, wrestling: 5, clinch: 4, groundGame: 4, defense: 4, cardio: 5 },
+    eloRating: 1690,
+    styles: ['Vật Cổ Truyền', 'Ground & Pound', 'BJJ'],
+    height: 168,
+    reach: 169,
+    dateOfBirth: '2003-06-05',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Chiến binh xuất thân từ Vật cổ truyền của The Champ MMA. Nổi tiếng với kỹ năng quật ngã áp đảo. Tại LION Championship 33 (11/07/2026), anh đã lội ngược dòng đánh bại Danh Quốc bằng tính điểm đồng thuận để giành vé chính thức tranh đai vô địch 60kg.',
+    quote: 'Trên sàn đấu, ý chí quật cường và kỹ thuật địa chiến sẽ khuất phục bất kỳ đối thủ nào.',
+    quoteAuthor: 'Bạch Văn Nghĩa — The Champ MMA',
+    socialLinks: { facebook: 'https://facebook.com/bachvannghia.thechamp' }
+  },
+  {
+    id: 'f4',
+    name: 'Nguyễn Vũ Quỳnh Hoa',
+    nickname: 'Bông Hồng Thép',
+    isChampion: true,
+    championshipTitle: 'Đương Kim Vô Địch Hạng 52kg Nữ LION Championship',
+    gymId: 'g-the-champ',
+    divisionId: 'd-f-52',
+    record: { wins: 5, losses: 1, draws: 0, noContests: 0, winsByKo: 2, winsBySub: 1, winsByDec: 2 },
+    stats: { strikingAccuracy: 55, strikingDefense: 68, takedownAccuracy: 52, takedownDefense: 80, finishRate: 60, striking: 4, wrestling: 4, clinch: 4, groundGame: 4, defense: 5, cardio: 5 },
+    eloRating: 1730,
+    styles: ['Muay Thái', 'Tán Thủ', 'BJJ'],
+    height: 165,
+    reach: 165,
+    dateOfBirth: '2003-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
+    bio: 'Biểu tượng nữ số 1 của The Champ MMA. Đăng quang ngôi vô địch LION 52kg nữ tại LC25 và bảo vệ thành công đai vô địch tại LC33 (11/07/2026) trước Lò Thị Phung. Tuyển thủ ĐTQG MMA tham dự SEA Games 33.',
+    quote: 'Sàn đấu bát giác là nơi phái nữ chứng minh sức mạnh, sự kiên định và phẩm chất vô địch không giới hạn.',
+    quoteAuthor: 'Nguyễn Vũ Quỳnh Hoa — ĐKVĐ LION Championship',
+    socialLinks: { facebook: 'https://facebook.com/quynhhoa.thechamp' }
+  },
+  {
+    id: 'f5',
+    name: 'Lý Văn Huỳnh',
+    nickname: 'Cước Sát Thủ',
+    isChampion: false,
+    championshipTitle: 'Ứng Viên Số 1 Tranh Đai 77kg LION Championship',
+    gymId: 'g-the-champ',
+    divisionId: 'd-m-77',
+    record: { wins: 4, losses: 2, draws: 0, noContests: 0, winsByKo: 3, winsBySub: 0, winsByDec: 1 },
+    stats: { strikingAccuracy: 60, strikingDefense: 55, takedownAccuracy: 40, takedownDefense: 75, finishRate: 75, striking: 5, wrestling: 3, clinch: 3, groundGame: 3, defense: 4, cardio: 4 },
+    eloRating: 1640,
+    styles: ['Kickboxing', 'Striking Hạng Nặng'],
+    height: 180,
+    reach: 182,
+    dateOfBirth: '1998-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&auto=format&fit=crop&q=80',
+    bio: 'Võ sĩ hạng bán trung của The Champ MMA, sở hữu chiều cao 1m80 và cú đá trái sát thủ có tính sát thương cực lớn. Giành suất tranh đai 77kg sau khi hạ TKO Đỗ Thành Chương tại LC27.',
+    quote: 'Chỉ cần một khoảnh khắc sơ hở, cú đá của tôi sẽ định đoạt kết cục trận đấu.',
+    quoteAuthor: 'Lý Văn Huỳnh — The Champ MMA',
+    socialLinks: { facebook: 'https://facebook.com/lyvanhuynh.thechamp' }
+  },
+  {
+    id: 'f6',
+    name: 'Robson de Oliveira Soares',
+    nickname: 'The Monkey King',
+    isChampion: false,
+    championshipTitle: 'Cựu Vô Địch Hạng 60kg LION Championship | Đai Đen BJJ Tam Đẳng',
+    gymId: 'g-c88',
+    divisionId: 'd-m-61',
+    record: { wins: 7, losses: 1, draws: 0, noContests: 0, winsByKo: 1, winsBySub: 5, winsByDec: 1 },
+    stats: { strikingAccuracy: 45, strikingDefense: 60, takedownAccuracy: 80, takedownDefense: 75, finishRate: 86, striking: 3, wrestling: 5, clinch: 4, groundGame: 5, defense: 5, cardio: 5 },
+    eloRating: 1840,
+    styles: ['Brazilian Jiu-Jitsu (Đai đen Tam đẳng)', 'Grappling'],
+    height: 163,
+    reach: 166,
+    dateOfBirth: '1993-01-03',
+    nationality: 'BR',
+    image: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=300&auto=format&fit=crop&q=80',
+    bio: 'Cao thủ Nhu thuật Brazil sinh sống tại Việt Nam. Vô địch hạng 60kg LION Championship sau khi hạ Bùi Trường Sinh bằng Armbar. Bất bại bằng đòn khóa siết tại đấu trường ONE Friday Fights danh giá.',
+    quote: 'Trên mặt sàn thảm đấu, tôi kiểm soát mọi chuyển động và đối thủ không có lối thoát.',
+    quoteAuthor: 'Robson Oliveira — C88 Martial Arts',
+    socialLinks: { facebook: 'https://facebook.com/robsonbjj' }
+  },
+  {
+    id: 'f7',
+    name: 'Kamil Michal Nguyen Van',
+    nickname: 'Chiến Binh Sói',
+    isChampion: false,
+    championshipTitle: 'Cựu Vô Địch Hạng 70kg LION Championship | Đai Đen BJJ',
+    gymId: 'g1',
+    divisionId: 'd-m-70',
+    record: { wins: 6, losses: 3, draws: 0, noContests: 0, winsByKo: 0, winsBySub: 4, winsByDec: 2 },
+    stats: { strikingAccuracy: 52, strikingDefense: 62, takedownAccuracy: 65, takedownDefense: 75, finishRate: 67, striking: 4, wrestling: 4, clinch: 4, groundGame: 5, defense: 4, cardio: 5 },
+    eloRating: 1810,
+    styles: ['Brazilian Jiu-Jitsu (Đai đen)', 'Boxing Kỹ Thuật'],
+    height: 183,
+    reach: 193,
+    dateOfBirth: '1984-01-01',
+    nationality: 'PL',
+    image: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=300&auto=format&fit=crop&q=80',
+    bio: 'Võ sĩ gốc Ba Lan gắn bó trọn đời với MMA Việt Nam, linh hồn của Vietnam Top Team. Sở hữu sải tay 1m93 dài nhất hạng 70kg và kỹ năng BJJ bậc thầy, từng giữ đai vô địch 70kg LION.',
+    quote: 'Tuổi tác chỉ là con số khi bạn có kỷ luật thép và niềm đam mê bất tận với võ thuật.',
+    quoteAuthor: 'Kamil Michal Nguyen Van — Vietnam Top Team',
+    socialLinks: { facebook: 'https://facebook.com/kamil.mma' }
+  },
+  {
+    id: 'f8',
+    name: 'Phạm Văn Nam',
+    nickname: 'Nam Chou',
+    isChampion: false,
+    championshipTitle: 'Cựu Vô Địch 56kg LION Championship | Thắng KO ONE Friday Fights 76',
+    gymId: 'g-ssc',
+    divisionId: 'd-m-56',
+    record: { wins: 7, losses: 2, draws: 0, noContests: 0, winsByKo: 2, winsBySub: 3, winsByDec: 2 },
+    stats: { strikingAccuracy: 52, strikingDefense: 58, takedownAccuracy: 75, takedownDefense: 70, finishRate: 71, striking: 3, wrestling: 5, clinch: 4, groundGame: 4, defense: 4, cardio: 5 },
+    eloRating: 1730,
+    styles: ['Vật Cổ Truyền', 'BJJ', 'MMA'],
+    height: 165,
+    reach: 166,
+    dateOfBirth: '1992-05-27',
+    nationality: 'VN',
     image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1000&auto=format&fit=crop&q=80',
     fullBodyImage: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1000&auto=format&fit=crop&q=80',
-    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&auto=format&fit=crop&q=80',
-    quote: 'Trên sàn đấu, ai nắm giữ được tốc độ và kiểm soát được mặt sàn, người đó nắm giữ chìa khóa đến ngôi vị vô địch.',
-    quoteAuthor: 'Phạm Văn Nam — Đương kim Vô địch Hạng 56kg LION Championship',
-    socialLinks: {
-      facebook: 'https://facebook.com/phamvannam_mma',
-      instagram: 'https://instagram.com/nam_speed_mma',
-      youtube: 'https://youtube.com/@phamvannam_fighter',
-      tiktok: 'https://tiktok.com/@namtocdo_mma'
-    },
-    gallery: [
-      { id: 'g3-1', url: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&auto=format&fit=crop&q=80', caption: 'Pha bắt chân quật ngã đối thủ chuẩn xác bằng đòn Double Leg Takedown.', title: 'Cú vật hoàn hảo' },
-      { id: 'g3-2', url: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1200&auto=format&fit=crop&q=80', caption: 'Chiến thắng nghẹt thở bảo vệ ngôi vương hạng cân 56kg.', title: 'Vinh quang của Nam Tốc Độ' }
-    ],
-    highlightVideos: [
-      { id: 'v3-1', title: 'Top những pha Takedown và siết cổ Rear-Naked Choke đỉnh cao của Phạm Văn Nam', thumbnail: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&auto=format&fit=crop&q=80', duration: '05:50', views: '210K lượt xem' }
-    ]
+    avatar: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=300&auto=format&fit=crop&q=80',
+    bio: 'Biểu tượng nghị lực của MMA Việt Nam. Đương kim vô địch 56kg đầu tiên của LION Championship. Tỏa sáng rực rỡ tại ONE Friday Fights 76 với chiến thắng Knock-out trước Estrada Donga-as.',
+    quote: 'Từ một người phụ hồ chạy xe ôm đến võ đài quốc tế, không có gì là không thể nếu bạn dám chiến đấu hết mình.',
+    quoteAuthor: 'Phạm Văn Nam — Saigon Sports Club',
+    socialLinks: { facebook: 'https://facebook.com/namchou.mma' }
   },
   {
-    id: 'f4', name: 'Nguyễn Thị Hằng', nickname: 'Sát Thủ', isChampion: true, gymId: 'g2', divisionId: 'd-f-52',
-    record: { wins: 9, losses: 0, draws: 0, noContests: 0, winsByKo: 3, winsBySub: 4, winsByDec: 2 },
-    stats: { strikingAccuracy: 48, strikingDefense: 60, takedownAccuracy: 55, takedownDefense: 70, finishRate: 75, striking: 3, wrestling: 4, clinch: 4, groundGame: 5, defense: 4, cardio: 5 },
-    eloRating: 1650, styles: ['BJJ'], height: 158, reach: 160, dateOfBirth: '1998-05-15', nationality: 'VN',
+    id: 'f9',
+    name: 'Trần Ngọc Lượng',
+    nickname: 'Hiệp Sĩ Sàn Đấu',
+    isChampion: true,
+    championshipTitle: 'Đương Kim Vô Địch 60kg LION Championship (LC25) | Top 1 P4P LION 2026',
+    gymId: 'g-ssc',
+    divisionId: 'd-m-61',
+    record: { wins: 6, losses: 3, draws: 0, noContests: 0, winsByKo: 2, winsBySub: 2, winsByDec: 2 },
+    stats: { strikingAccuracy: 60, strikingDefense: 65, takedownAccuracy: 68, takedownDefense: 72, finishRate: 67, striking: 4, wrestling: 4, clinch: 4, groundGame: 5, defense: 4, cardio: 5 },
+    eloRating: 1860,
+    styles: ['Tán Thủ', 'BJJ (Đai nâu)', 'Kiện tướng Jujitsu'],
+    height: 165,
+    reach: 167,
+    dateOfBirth: '1993-05-16',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    bio: 'Đội trưởng MMA Saigon Sports Club, Kiện tướng Jujitsu quốc gia. Đăng quang vô địch 60kg LION tại LC25 và xếp vị trí số 1 trên BXH Pound-for-Pound toàn giải đấu. Giành chiến thắng KO tại giải quốc tế WLF MMA 80.',
+    quote: 'Sự kiên trì, bản lĩnh và tôn trọng đối thủ là cốt lõi của một võ sĩ chân chính.',
+    quoteAuthor: 'Trần Ngọc Lượng — Saigon Sports Club',
+    socialLinks: { facebook: 'https://facebook.com/tranngocluong.mma' }
+  },
+  {
+    id: 'f10',
+    name: 'Dương Đức Tùng',
+    nickname: 'Tùng Búa (Hulk Việt Nam)',
+    isChampion: false,
+    championshipTitle: 'Vô Địch Cúp Võ Thuật Tổng Hợp Việt Nam 2021',
+    gymId: 'g-tank',
+    divisionId: 'd-m-77',
+    record: { wins: 4, losses: 3, draws: 0, noContests: 0, winsByKo: 3, winsBySub: 0, winsByDec: 1 },
+    stats: { strikingAccuracy: 65, strikingDefense: 45, takedownAccuracy: 35, takedownDefense: 60, finishRate: 75, striking: 5, wrestling: 3, clinch: 3, groundGame: 2, defense: 3, cardio: 4 },
+    eloRating: 1510,
+    styles: ['Tán Thủ', 'Power Puncher'],
+    height: 170,
+    reach: 172,
+    dateOfBirth: '1996-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Trụ cột của Tank Club, nổi tiếng với biệt danh "Tùng Búa" với những cú đấm móc búa tạ khiến đối thủ gục ngã trên sàn đấu LION Championship.',
+    quote: 'Tôi bước vào lồng đấu là để tung hết sức mạnh trong từng cú đấm.',
+    quoteAuthor: 'Dương Đức Tùng — Tank Club',
+    socialLinks: { facebook: 'https://facebook.com/duongductung.tank' }
+  },
+  {
+    id: 'f11',
+    name: 'Bàn Văn Hoàng',
+    nickname: 'Sói Chiến (Bức Tường Lửa)',
+    isChampion: false,
+    championshipTitle: 'Á Quân LION Championship 70kg | Top 1 Contender',
+    gymId: 'g-wushu-king',
+    divisionId: 'd-m-70',
+    record: { wins: 5, losses: 3, draws: 0, noContests: 0, winsByKo: 4, winsBySub: 0, winsByDec: 1 },
+    stats: { strikingAccuracy: 62, strikingDefense: 58, takedownAccuracy: 45, takedownDefense: 70, finishRate: 80, striking: 5, wrestling: 3, clinch: 4, groundGame: 3, defense: 4, cardio: 5 },
+    eloRating: 1650,
+    styles: ['Wushu Tán Thủ', 'Striking Tầm Xa'],
+    height: 177,
+    reach: 177,
+    dateOfBirth: '2003-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    bio: 'Võ sĩ người Dao từ Lạng Sơn đại diện cho Wushu King. Mệnh danh là "Bức tường lửa" hạng 70kg, từng hạ knock-out Nghiêm Tùng Lâm và Lê Văn Thế Anh, đối đầu rực lửa với Châu La tại LC31 (5/2026).',
+    quote: 'Mỗi trận đấu là một lần tôi cháy hết mình vì khát khao chạm tay vào đai vô địch.',
+    quoteAuthor: 'Bàn Văn Hoàng — Wushu King',
+    socialLinks: { facebook: 'https://facebook.com/banvanhoang.wushuking' }
+  },
+  {
+    id: 'f12',
+    name: 'Hà Thế Anh',
+    nickname: 'Thần Võ',
+    isChampion: false,
+    championshipTitle: 'Chuỗi 5 Trận Bất Bại Quốc Nội | Main Event LC28',
+    gymId: 'g-raptor',
+    divisionId: 'd-m-70',
+    record: { wins: 5, losses: 1, draws: 0, noContests: 0, winsByKo: 3, winsBySub: 1, winsByDec: 1 },
+    stats: { strikingAccuracy: 58, strikingDefense: 55, takedownAccuracy: 42, takedownDefense: 65, finishRate: 80, striking: 4, wrestling: 3, clinch: 3, groundGame: 3, defense: 3, cardio: 4 },
+    eloRating: 1560,
+    styles: ['Muay Thái', 'Kickboxing'],
+    height: 183,
+    reach: 183,
+    dateOfBirth: '2002-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Võ sĩ của Raptor MMA với chiều cao 1m83 lý tưởng. Sở hữu chuỗi 5 trận toàn thắng quốc nội trước khi tham gia trận Main Event tại LC28 Phú Quốc.',
+    quote: 'Sải tay dài và tốc độ là vũ khí lợi hại nhất của tôi.',
+    quoteAuthor: 'Hà Thế Anh — Raptor MMA',
+    socialLinks: { facebook: 'https://facebook.com/hatheanh.mma' }
+  },
+  {
+    id: 'f13',
+    name: 'Nguyễn Hoàng Thạch',
+    nickname: 'The Captain (Hắc Báo)',
+    isChampion: false,
+    championshipTitle: 'Đương Kim Vô Địch 55kg Giải GMA (Thần Võ Độc Tôn) | Võ Đường Liên Phong',
+    gymId: 'g-lien-phong',
+    divisionId: 'd-m-56',
+    record: { wins: 6, losses: 2, draws: 0, noContests: 0, winsByKo: 3, winsBySub: 1, winsByDec: 2 },
+    stats: { strikingAccuracy: 58, strikingDefense: 62, takedownAccuracy: 65, takedownDefense: 68, finishRate: 67, striking: 4, wrestling: 4, clinch: 4, groundGame: 4, defense: 4, cardio: 5 },
+    eloRating: 1680,
+    styles: ['Boxing', 'Liên Phong MMA', 'Jujitsu'],
+    height: 163,
+    reach: 163,
+    dateOfBirth: '1991-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    bio: 'Đội trưởng chuyên môn của Võ đường Liên Phong do Johnny Trí Nguyễn dẫn dắt. Đăng quang Thần Võ Độc Tôn hạng 55kg giải GMA 09 và từng giành giải Fight of the Year tại LION Championship.',
+    quote: 'Chiến thuật thông minh và tinh thần đồng đội là chìa khóa dẫn tới mọi vinh quang.',
+    quoteAuthor: 'Nguyễn Hoàng Thạch — Võ đường Liên Phong',
+    socialLinks: { facebook: 'https://facebook.com/nguyenhoangthach.lienphong' }
+  },
+  {
+    id: 'f14',
+    name: 'Lê Văn Thế Anh',
+    nickname: 'Tia Chớp Vovinam',
+    isChampion: false,
+    championshipTitle: 'Kỷ Lục Knock-out 22 Giây LION Championship | Đấu Sĩ AFC 21',
+    gymId: 'g2',
+    divisionId: 'd-m-77',
+    record: { wins: 3, losses: 3, draws: 0, noContests: 0, winsByKo: 2, winsBySub: 0, winsByDec: 1 },
+    stats: { strikingAccuracy: 50, strikingDefense: 50, takedownAccuracy: 35, takedownDefense: 55, finishRate: 67, striking: 4, wrestling: 3, clinch: 3, groundGame: 2, defense: 3, cardio: 4 },
+    eloRating: 1420,
+    styles: ['Vovinam Việt Võ Đạo', 'Striking Bất Ngờ'],
+    height: 176,
+    reach: 180,
+    dateOfBirth: '1995-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Võ sĩ xuất thân từ Vovinam Việt Võ Đạo, nắm giữ kỷ lục hạ đo ván đối thủ chỉ trong 22 giây tại LION 2022. Từng đại diện Việt Nam tranh tài tại đấu trường quốc tế AFC 21 ở Hồ Tràm.',
+    quote: 'Tinh hoa Vovinam khi được kết hợp với MMA hiện đại sẽ tạo ra những bất ngờ khó đoán.',
+    quoteAuthor: 'Lê Văn Thế Anh — Vovinam MMA',
+    socialLinks: { facebook: 'https://facebook.com/theanh.mma' }
+  },
+  {
+    id: 'f15',
+    name: 'Quàng Văn Minh',
+    nickname: 'Chiến Thần Săn Tây',
+    isChampion: false,
+    championshipTitle: 'Huy Chương Vàng Lịch Sử MMA SEA Games 33 | Ứng Viên Số 1 Tranh Đai 65kg LION',
+    gymId: 'g-the-champ',
+    divisionId: 'd-m-65',
+    record: { wins: 5, losses: 1, draws: 0, noContests: 0, winsByKo: 3, winsBySub: 1, winsByDec: 1 },
+    stats: { strikingAccuracy: 60, strikingDefense: 65, takedownAccuracy: 60, takedownDefense: 75, finishRate: 80, striking: 5, wrestling: 4, clinch: 4, groundGame: 4, defense: 4, cardio: 5 },
+    eloRating: 1760,
+    styles: ['Wushu Tán Thủ', 'Muay Thái'],
+    height: 172,
+    reach: 173,
+    dateOfBirth: '1999-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    bio: 'Chàng trai dân tộc Thái đến từ Sơn La làm nên lịch sử khi là võ sĩ Việt Nam đầu tiên giành HCV môn MMA tại SEA Games 33 (12/2025). Nổi tiếng với biệt danh "Chiến thần săn Tây" tại LION Championship và là ứng viên số 1 cho chiếc đai bỏ trống hạng 65kg.',
+    quote: 'Tôi chiến đấu bằng ý chí của núi rừng Tây Bắc và màu cờ Tổ quốc trên ngực áo.',
+    quoteAuthor: 'Quàng Văn Minh — Nhà Vô Địch SEA Games 33',
+    socialLinks: { facebook: 'https://facebook.com/quangvanminh.mma' }
+  },
+
+  {
+    id: 'f16',
+    name: 'Lê Văn Tuần',
+    nickname: 'Tuần Gấu Biển',
+    isChampion: true,
+    championshipTitle: 'Đương Kim Vô Địch Hạng 56kg LION Championship',
+    gymId: 'g-kickfit',
+    divisionId: 'd-m-56',
+    record: { wins: 6, losses: 2, draws: 0, noContests: 0, winsByKo: 1, winsBySub: 4, winsByDec: 1 },
+    stats: { strikingAccuracy: 50, strikingDefense: 65, takedownAccuracy: 70, takedownDefense: 75, finishRate: 83, striking: 4, wrestling: 4, clinch: 4, groundGame: 5, defense: 4, cardio: 5 },
+    eloRating: 1810,
+    styles: ['Kickboxing', 'BJJ', 'Võ Cổ Truyền'],
+    height: 168,
+    reach: 170,
+    dateOfBirth: '1994-08-03',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    bio: 'Từ cậu bé vùng cao Cao Bằng làm đủ nghề mưu sinh như chạy xe ôm công nghệ, bán bún phở, Văn Tuần đã vươn lên đỉnh cao MMA Việt Nam. Hạ bệ Phạm Văn Nam tại LC23 và bảo vệ đai LC30 trước Trần Trọng Kim bằng đòn Armbar hiệp 2.',
+    quote: 'Nghịch cảnh cuộc sống đã rèn luyện cho tôi một tinh thần thép không bao giờ lùi bước trước bất kỳ đối thủ nào.',
+    quoteAuthor: 'Lê Văn Tuần — ĐKVĐ 56kg LION Championship',
+    socialLinks: { facebook: 'https://facebook.com/levantuan.mma' }
+  },
+  {
+    id: 'f17',
+    name: 'Phạm Công Minh',
+    nickname: 'Minh Búa Tạ',
+    isChampion: true,
+    championshipTitle: 'Đương Kim Vô Địch Hạng 84kg LION Championship | Kỷ Lục Knock-out 15 Giây',
+    gymId: 'g-wushu-king',
+    divisionId: 'd-m-84',
+    record: { wins: 6, losses: 0, draws: 0, noContests: 0, winsByKo: 6, winsBySub: 0, winsByDec: 0 },
+    stats: { strikingAccuracy: 68, strikingDefense: 60, takedownAccuracy: 65, takedownDefense: 80, finishRate: 100, striking: 5, wrestling: 4, clinch: 4, groundGame: 3, defense: 4, cardio: 4 },
+    eloRating: 1830,
+    styles: ['Wushu Tán Thủ', 'Heavy Striking'],
+    height: 190,
+    reach: 194,
+    dateOfBirth: '1994-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Tượng đài Tán thủ Việt Nam với 8 năm liên tiếp vô địch quốc gia, HCB Wushu Thế giới 2019. Nắm giữ kỷ lục KO 15 giây lịch sử LION Championship và sở hữu tỷ lệ kết liễu 100% bằng đòn đánh đứng sấm sét.',
+    quote: 'Sức mạnh thực sự đến từ sự khổ luyện bền bỉ mỗi ngày và sự tự tin tuyệt đối vào đòn đánh của mình.',
+    quoteAuthor: 'Phạm Công Minh — ĐKVĐ 84kg LION Championship',
+    socialLinks: { facebook: 'https://facebook.com/phamcongminh.mma' }
+  },
+  {
+    id: 'f18',
+    name: 'Dương Thị Thanh Bình',
+    nickname: 'Đóa Hoa Cao Lan',
+    isChampion: true,
+    championshipTitle: 'Đương Kim Vô Địch 56kg Nữ LION Championship | HCB SEA Games 33',
+    gymId: 'g-kickfit',
+    divisionId: 'd-f-56',
+    record: { wins: 5, losses: 0, draws: 0, noContests: 0, winsByKo: 0, winsBySub: 3, winsByDec: 2 },
+    stats: { strikingAccuracy: 52, strikingDefense: 66, takedownAccuracy: 60, takedownDefense: 78, finishRate: 60, striking: 4, wrestling: 4, clinch: 4, groundGame: 5, defense: 5, cardio: 5 },
+    eloRating: 1710,
+    styles: ['Tán Thủ', 'Muay Thai', 'BJJ'],
+    height: 163,
+    reach: 164,
+    dateOfBirth: '2003-01-01',
+    nationality: 'VN',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&auto=format&fit=crop&q=80',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
-    quote: 'Là phụ nữ bước lên sàn đấu MMA, tôi muốn chứng minh rằng sự dẻo dai, kỷ luật và tinh thần thượng võ không hề có giới hạn giới tính.',
-    quoteAuthor: 'Nguyễn Thị Hằng — Đương kim Vô địch Nữ 52kg LION Championship',
-    socialLinks: {
-      facebook: 'https://facebook.com/nguyenthihang_mma',
-      instagram: 'https://instagram.com/hang_assassin_mma',
-      youtube: 'https://youtube.com/@nguyenthihang_bjj',
-      tiktok: 'https://tiktok.com/@hang_mma_vietnam'
-    },
-    gallery: [
-      { id: 'g4-1', url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&auto=format&fit=crop&q=80', caption: 'Pha bẻ tay Armbar quyết định ở hiệp đấu thứ 3 đem về đai vàng danh giá.', title: 'Kỹ thuật khóa siết hoàn mỹ' }
-    ],
-    highlightVideos: [
-      { id: 'v4-1', title: 'Hành trình bất bại 9 trận toàn thắng của "Sát Thủ" Nguyễn Thị Hằng', thumbnail: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80', duration: '09:15', views: '310K lượt xem' }
-    ]
+    bio: 'Võ sĩ dân tộc Cao Lan tỉnh Thái Nguyên. Đăng quang vô địch LION 2022 bằng đòn Armbar thần tốc, bảo vệ đai thành công tại LC15 trước Bianka Balajti và giành tấm HCB danh giá tại kỳ SEA Games 33.',
+    quote: 'Tôi muốn chứng minh rằng phụ nữ Việt Nam có thể chinh phục những đỉnh cao khắc nghiệt nhất của thể thao đối kháng.',
+    quoteAuthor: 'Dương Thị Thanh Bình — ĐKVĐ 56kg Nữ LION',
+    socialLinks: { facebook: 'https://facebook.com/thanhbinh.mma' }
   },
   {
-    id: 'f5', name: 'Lê Văn Tuấn', nickname: 'Báo Gấm', isChampion: false, gymId: 'g3', divisionId: 'd-m-65',
-    record: { wins: 10, losses: 5, draws: 0, noContests: 0, winsByKo: 6, winsBySub: 1, winsByDec: 3 },
-    stats: { strikingAccuracy: 60, strikingDefense: 50, takedownAccuracy: 35, takedownDefense: 55, finishRate: 70, striking: 4, wrestling: 2, clinch: 3, groundGame: 2, defense: 3, cardio: 4 },
-    eloRating: 1500, styles: ['Boxing'], height: 170, reach: 172, dateOfBirth: '1993-08-22', nationality: 'VN'
+    id: 'f19',
+    name: 'Lê Hoàng Đức',
+    nickname: 'Tượng Đài Muay',
+    isChampion: false,
+    championshipTitle: 'Ứng Viên Tranh Đai 52kg LION Championship (Lọt Chung Kết LC34) | 2x Vô Địch Thế Giới Muay',
+    gymId: 'g6',
+    divisionId: 'd-m-52',
+    record: { wins: 2, losses: 0, draws: 0, noContests: 0, winsByKo: 0, winsBySub: 1, winsByDec: 1 },
+    stats: { strikingAccuracy: 66, strikingDefense: 64, takedownAccuracy: 45, takedownDefense: 75, finishRate: 50, striking: 5, wrestling: 3, clinch: 5, groundGame: 4, defense: 4, cardio: 5 },
+    eloRating: 1650,
+    styles: ['Muay Thái Đỉnh Cao', 'Leg Locks', 'Submission Grappling'],
+    height: 162,
+    reach: 163,
+    dateOfBirth: '1991-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Tượng đài Muay Việt Nam với 13 năm bất bại và 2 lần vô địch thế giới. Bước sang MMA, anh gây ấn tượng bằng đòn Heel Hook tại LC30 và chiến thắng bán kết LC34 trước Võ Tiến Đạt để vào chung kết tranh đai 52kg.',
+    quote: 'Kinh nghiệm và sự tĩnh tại là vũ khí sắc bén nhất khi bước vào lồng bát giác.',
+    quoteAuthor: 'Lê Hoàng Đức — Cựu Vô Địch Thế Giới Muay',
+    socialLinks: { facebook: 'https://facebook.com/lehoangduc.muay' }
   },
   {
-    id: 'f6', name: 'Hoàng Hữu Thái', nickname: 'Rồng Lửa', isChampion: false, gymId: 'g5', divisionId: 'd-m-70',
-    record: { wins: 5, losses: 2, draws: 0, noContests: 0, winsByKo: 2, winsBySub: 1, winsByDec: 2 },
-    stats: { strikingAccuracy: 45, strikingDefense: 50, takedownAccuracy: 45, takedownDefense: 50, finishRate: 60, striking: 3, wrestling: 3, clinch: 3, groundGame: 3, defense: 3, cardio: 4 },
-    eloRating: 1250, styles: ['Vovinam'], height: 173, reach: 175, dateOfBirth: '2000-04-05', nationality: 'VN'
+    id: 'f20',
+    name: 'Bùi Đình Khải',
+    nickname: 'Võ Sĩ Đầu Bếp',
+    isChampion: false,
+    championshipTitle: 'Ứng Viên Tranh Đai 52kg LION Championship (Lọt Chung Kết LC34)',
+    gymId: 'g-xuanbac',
+    divisionId: 'd-m-52',
+    record: { wins: 4, losses: 2, draws: 0, noContests: 0, winsByKo: 2, winsBySub: 1, winsByDec: 1 },
+    stats: { strikingAccuracy: 58, strikingDefense: 54, takedownAccuracy: 48, takedownDefense: 68, finishRate: 75, striking: 4, wrestling: 3, clinch: 3, groundGame: 3, defense: 4, cardio: 5 },
+    eloRating: 1680,
+    styles: ['Striking Hiện Đại', 'Kickboxing', 'Boxing'],
+    height: 166,
+    reach: 168,
+    dateOfBirth: '2001-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    bio: 'Chàng đầu bếp Ninh Bình mang tinh thần chiến binh quả cảm. Tại LC34 (15/08/2026), Đình Khải hạ TKO Bùi Xuân Nguyên ngay hiệp 1 bằng đòn đá thẳng phá gan sườn để tiến vào trận chung kết tranh đai 52kg.',
+    quote: 'Mỗi cú ra đòn là sự tập trung tối đa của đam mê và khát khao chiến thắng.',
+    quoteAuthor: 'Bùi Đình Khải — Xuân Bắc Ninh Bình',
+    socialLinks: { facebook: 'https://facebook.com/buidinhkhai.mma' }
   },
   {
-    id: 'f7', name: 'Đặng Yến Nhi', nickname: 'Queen B', isChampion: false, gymId: 'g7', divisionId: 'd-f-56',
-    record: { wins: 6, losses: 2, draws: 0, noContests: 0, winsByKo: 1, winsBySub: 3, winsByDec: 2 },
-    stats: { strikingAccuracy: 40, strikingDefense: 55, takedownAccuracy: 65, takedownDefense: 60, finishRate: 65, striking: 2, wrestling: 4, clinch: 3, groundGame: 5, defense: 4, cardio: 4 },
-    eloRating: 1400, styles: ['BJJ'], height: 162, reach: 163, dateOfBirth: '1999-09-12', nationality: 'VN'
+    id: 'f21',
+    name: 'Đinh Văn Hương',
+    nickname: 'Người Sắt Tán Thủ',
+    isChampion: false,
+    championshipTitle: 'Huy Chương Vàng Wushu Tán Thủ Châu Á | Á Quân 56kg LION Championship',
+    gymId: 'g-the-champ',
+    divisionId: 'd-m-56',
+    record: { wins: 4, losses: 2, draws: 0, noContests: 0, winsByKo: 3, winsBySub: 0, winsByDec: 1 },
+    stats: { strikingAccuracy: 64, strikingDefense: 58, takedownAccuracy: 60, takedownDefense: 72, finishRate: 75, striking: 5, wrestling: 4, clinch: 4, groundGame: 3, defense: 4, cardio: 4 },
+    eloRating: 1685,
+    styles: ['Wushu Tán Thủ', 'Striking Bùng Nổ'],
+    height: 168,
+    reach: 169,
+    dateOfBirth: '1995-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Cao thủ Tán thủ Quảng Ngãi với HCV Châu Á 2016 và HCĐ SEA Games 30. Nổi danh với các pha knock-out bằng đòn đá xoay gót và trận so găng kinh điển với Phạm Văn Nam tại LC08.',
+    quote: 'Đòn đánh chuẩn xác xuất phát từ tinh thần tập trung cao độ và không ngừng trui rèn.',
+    quoteAuthor: 'Đinh Văn Hương — HCV Tán thủ Châu Á',
+    socialLinks: { facebook: 'https://facebook.com/dinhvanhuong.mma' }
   },
   {
-    id: 'f8', name: 'Võ Thành Đạt', nickname: 'Cỗ Máy', isChampion: false, gymId: 'g8', divisionId: 'd-m-77',
-    record: { wins: 14, losses: 4, draws: 1, noContests: 0, winsByKo: 9, winsBySub: 2, winsByDec: 3 },
-    stats: { strikingAccuracy: 65, strikingDefense: 60, takedownAccuracy: 50, takedownDefense: 65, finishRate: 75, striking: 5, wrestling: 3, clinch: 4, groundGame: 3, defense: 3, cardio: 5 },
-    eloRating: 1580, styles: ['Kickboxing'], height: 180, reach: 182, dateOfBirth: '1990-11-20', nationality: 'VN'
+    id: 'f22',
+    name: 'Danh Quốc',
+    nickname: 'Joker Danh Quốc',
+    isChampion: false,
+    championshipTitle: 'Kỷ Lục Nhiều Trận Knock-out Nhất LION Championship | Top Contender 60kg',
+    gymId: 'g-raptor',
+    divisionId: 'd-m-61',
+    record: { wins: 5, losses: 2, draws: 0, noContests: 0, winsByKo: 4, winsBySub: 0, winsByDec: 1 },
+    stats: { strikingAccuracy: 63, strikingDefense: 52, takedownAccuracy: 42, takedownDefense: 65, finishRate: 80, striking: 5, wrestling: 3, clinch: 3, groundGame: 3, defense: 4, cardio: 4 },
+    eloRating: 1670,
+    styles: ['Striking Tự Do', 'Kickboxing', 'Phản Đòn Đột Biến'],
+    height: 168,
+    reach: 170,
+    dateOfBirth: '2004-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Võ sĩ trẻ cá tính bậc nhất lồng bát giác với biệt danh "Joker". Nắm giữ kỷ lục nhiều trận KO nhất tại LION Championship, liên tiếp hạ knock-out các đối thủ trước khi có màn đại chiến rực lửa với Bạch Văn Nghĩa tại LC33.',
+    quote: 'Bước vào lồng đấu là để cống hiến những phút giây mãn nhãn và bùng nổ nhất cho khán giả.',
+    quoteAuthor: 'Danh Quốc — Raptor MMA',
+    socialLinks: { facebook: 'https://facebook.com/danhquoc.mma' }
   },
   {
-    id: 'f9', name: 'Trịnh Cát Tường', nickname: 'Lucky', isChampion: false, gymId: 'g1', divisionId: 'd-f-61',
-    record: { wins: 3, losses: 1, draws: 0, noContests: 0, winsByKo: 1, winsBySub: 0, winsByDec: 2 },
-    stats: { strikingAccuracy: 55, strikingDefense: 50, takedownAccuracy: 40, takedownDefense: 55, finishRate: 33, striking: 4, wrestling: 2, clinch: 4, groundGame: 2, defense: 3, cardio: 4 },
-    eloRating: 1150, styles: ['Muay Thai'], height: 165, reach: 166, dateOfBirth: '2002-01-30', nationality: 'VN'
+    id: 'f23',
+    name: 'Bùi Trường Sinh',
+    nickname: 'Mãnh Tướng Liên Phong',
+    isChampion: false,
+    championshipTitle: 'Đương Kim Vô Địch Hạng Kim Kê (57kg) Giải GMA | Á Quân 60kg LION Championship',
+    gymId: 'g-lien-phong',
+    divisionId: 'd-m-56',
+    record: { wins: 7, losses: 3, draws: 0, noContests: 0, winsByKo: 4, winsBySub: 1, winsByDec: 2 },
+    stats: { strikingAccuracy: 60, strikingDefense: 58, takedownAccuracy: 55, takedownDefense: 70, finishRate: 71, striking: 5, wrestling: 4, clinch: 4, groundGame: 4, defense: 4, cardio: 5 },
+    eloRating: 1630,
+    styles: ['Liên Phong MMA', 'Võ Cổ Truyền', 'Kickboxing'],
+    height: 168,
+    reach: 170,
+    dateOfBirth: '1996-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    bio: 'Chiến binh chủ lực của Võ đường Liên Phong do Johnny Trí Nguyễn rèn luyện. Từng vào chung kết LION 60kg, đoạt đai Thần Võ Độc Tôn 57kg GMA và ghi dấu ấn với cú gối bay KO đối thủ Campuchia tại GMA 05.',
+    quote: 'Bản lĩnh của người võ sĩ là không ngần ngại đối đầu với thử thách lớn nhất.',
+    quoteAuthor: 'Bùi Trường Sinh — Võ đường Liên Phong',
+    socialLinks: { facebook: 'https://facebook.com/buitruongsinh.lienphong' }
   },
   {
-    id: 'f10', name: 'Bùi Đức Anh', nickname: 'Người Đá', isChampion: false, gymId: 'g4', divisionId: 'd-m-84',
-    record: { wins: 8, losses: 3, draws: 0, noContests: 0, winsByKo: 5, winsBySub: 2, winsByDec: 1 },
-    stats: { strikingAccuracy: 50, strikingDefense: 65, takedownAccuracy: 50, takedownDefense: 70, finishRate: 85, striking: 4, wrestling: 3, clinch: 3, groundGame: 3, defense: 5, cardio: 4 },
-    eloRating: 1450, styles: ['Boxing'], height: 185, reach: 188, dateOfBirth: '1994-06-18', nationality: 'VN'
+    id: 'f24',
+    name: 'Phan Huy Hoàng',
+    nickname: 'Cỗ Xe Tăng',
+    isChampion: false,
+    championshipTitle: 'Đại Diện Việt Nam Thi Đấu AFC 25 | Đề Cử Knock-out Of The Year LION',
+    gymId: 'g-tank',
+    divisionId: 'd-m-61',
+    record: { wins: 4, losses: 4, draws: 0, noContests: 0, winsByKo: 2, winsBySub: 1, winsByDec: 1 },
+    stats: { strikingAccuracy: 54, strikingDefense: 50, takedownAccuracy: 45, takedownDefense: 62, finishRate: 75, striking: 4, wrestling: 3, clinch: 4, groundGame: 3, defense: 4, cardio: 5 },
+    eloRating: 1650,
+    styles: ['Boxing', 'Tán Thủ', 'MMA Striking'],
+    height: 167,
+    reach: 168,
+    dateOfBirth: '1996-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Đấu sĩ quả cảm của lồng bát giác LION và sàn đấu quốc tế AFC tại Hồ Tràm Strip. Nổi bật với tinh thần càn quét chủ động và những màn so tài không khoan nhượng.',
+    quote: 'Chỉ có áp sát dồn dập mới thể hiện được hết bản năng và nhiệt huyết của một võ sĩ.',
+    quoteAuthor: 'Phan Huy Hoàng — Minhsang Club / Tank Club',
+    socialLinks: { facebook: 'https://facebook.com/phanhuyhoang.mma' }
   },
   {
-    id: 'f11', name: 'Đỗ Văn Thành', nickname: 'Thợ Săn', isChampion: false, gymId: 'g2', divisionId: 'd-m-61',
-    record: { wins: 11, losses: 6, draws: 0, noContests: 0, winsByKo: 4, winsBySub: 5, winsByDec: 2 },
-    stats: { strikingAccuracy: 48, strikingDefense: 55, takedownAccuracy: 60, takedownDefense: 60, finishRate: 80, striking: 3, wrestling: 4, clinch: 4, groundGame: 4, defense: 3, cardio: 4 },
-    eloRating: 1380, styles: ['Wrestling'], height: 168, reach: 170, dateOfBirth: '1992-04-14', nationality: 'VN'
+    id: 'f25',
+    name: 'Lò Thị Phung',
+    nickname: 'Cô Giáo Nhu Thuật',
+    isChampion: false,
+    championshipTitle: 'Huy Chương Vàng Giải Vô Địch MMA Châu Á 2026 | 2x Á Quân 52kg Nữ LION Championship',
+    gymId: 'g2',
+    divisionId: 'd-f-52',
+    record: { wins: 4, losses: 2, draws: 0, noContests: 0, winsByKo: 0, winsBySub: 3, winsByDec: 1 },
+    stats: { strikingAccuracy: 44, strikingDefense: 62, takedownAccuracy: 72, takedownDefense: 74, finishRate: 75, striking: 3, wrestling: 4, clinch: 4, groundGame: 5, defense: 5, cardio: 5 },
+    eloRating: 1600,
+    styles: ['Brazilian Jiu-Jitsu (Đai tím)', 'Jujitsu Cận Chiến'],
+    height: 158,
+    reach: 159,
+    dateOfBirth: '1996-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
+    bio: 'Từ cô giáo mầm non bước lên bục cao nhất của giải MMA Châu Á 2026 khi hạ võ sĩ Iran sau 50 giây. Cô là đối thủ duyên nợ lớn nhất của Nguyễn Vũ Quỳnh Hoa qua 2 trận tranh đai 5 hiệp đỉnh cao.',
+    quote: 'Nhu thuật dạy tôi rằng kỹ thuật và sự khéo léo có thể hóa giải mọi sức mạnh cơ bắp.',
+    quoteAuthor: 'Lò Thị Phung — HCV MMA Châu Á 2026',
+    socialLinks: { facebook: 'https://facebook.com/lothiphung.mma' }
   },
   {
-    id: 'f12', name: 'Lý Hoàng', nickname: 'Vua Hổ', isChampion: false, gymId: 'g5', divisionId: 'd-m-56',
-    record: { wins: 4, losses: 0, draws: 0, noContests: 0, winsByKo: 3, winsBySub: 1, winsByDec: 0 },
-    stats: { strikingAccuracy: 70, strikingDefense: 65, takedownAccuracy: 30, takedownDefense: 55, finishRate: 100, striking: 5, wrestling: 2, clinch: 4, groundGame: 2, defense: 3, cardio: 4 },
-    eloRating: 1250, styles: ['Muay Thai'], height: 166, reach: 168, dateOfBirth: '2003-10-10', nationality: 'VN'
+    id: 'f26',
+    name: 'Chelsey Cashwell',
+    nickname: 'Machete',
+    isChampion: true,
+    championshipTitle: 'Đương Kim Vô Địch Hạng 60kg Nữ LION Championship | Bất Bại Submission 100%',
+    gymId: 'g1',
+    divisionId: 'd-f-61',
+    record: { wins: 4, losses: 0, draws: 0, noContests: 0, winsByKo: 0, winsBySub: 4, winsByDec: 0 },
+    stats: { strikingAccuracy: 50, strikingDefense: 65, takedownAccuracy: 82, takedownDefense: 80, finishRate: 100, striking: 4, wrestling: 5, clinch: 4, groundGame: 5, defense: 5, cardio: 5 },
+    eloRating: 1690,
+    styles: ['Brazilian Jiu-Jitsu', 'Catch Wrestling'],
+    height: 170,
+    reach: 172,
+    dateOfBirth: '1992-06-15',
+    nationality: 'US',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
+    bio: 'Võ sĩ người Mỹ thống trị tuyệt đối hạng 60kg nữ LION Championship với 100% chiến thắng bằng khóa siết (Armbar, RNC). Đại diện tiêu biểu cho sự gắn bó của các tài năng quốc tế với MMA Việt Nam.',
+    quote: 'Khi cuộc chiến chuyển xuống mặt sàn, mọi tính toán của đối thủ đều nằm trong tầm kiểm soát của tôi.',
+    quoteAuthor: 'Chelsey Cashwell — ĐKVĐ 60kg Nữ LION',
+    socialLinks: { facebook: 'https://facebook.com/chelseycashwell.mma' }
   },
   {
-    id: 'f13', name: 'Mai Khắc Tuấn', nickname: 'Cuồng Phong', isChampion: false, gymId: 'g6', divisionId: 'd-m-70',
-    record: { wins: 16, losses: 8, draws: 0, noContests: 0, winsByKo: 7, winsBySub: 4, winsByDec: 5 },
-    stats: { strikingAccuracy: 55, strikingDefense: 50, takedownAccuracy: 55, takedownDefense: 60, finishRate: 65, striking: 4, wrestling: 3, clinch: 3, groundGame: 3, defense: 4, cardio: 5 },
-    eloRating: 1520, styles: ['Kickboxing'], height: 174, reach: 176, dateOfBirth: '1988-12-05', nationality: 'VN'
+    id: 'f27',
+    name: 'Mùi Trọng Vinh',
+    nickname: 'Vinh Chim Ưng',
+    isChampion: false,
+    championshipTitle: 'Đương Kim Vô Địch Hạng Chim Ưng (59kg) Giải GMA | No.1 Muay Club',
+    gymId: 'g6',
+    divisionId: 'd-m-61',
+    record: { wins: 6, losses: 2, draws: 0, noContests: 0, winsByKo: 3, winsBySub: 0, winsByDec: 3 },
+    stats: { strikingAccuracy: 64, strikingDefense: 62, takedownAccuracy: 45, takedownDefense: 85, finishRate: 50, striking: 5, wrestling: 3, clinch: 4, groundGame: 3, defense: 5, cardio: 5 },
+    eloRating: 1760,
+    styles: ['Muay Thái No.1', 'Boxing Uy Lực', 'Takedown Defense'],
+    height: 169,
+    reach: 171,
+    dateOfBirth: '1998-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    bio: 'Học trò xuất sắc của Nguyễn Trần Duy Nhất tại No.1 Muay Club. Đăng quang Thần Võ Độc Tôn hạng 59kg GMA và liên tục hạ gục các võ sĩ quốc tế tại các kỳ AFC 28, AFC 30, AFC 40 ở Hồ Tràm Strip.',
+    quote: 'Sự kiên định và tinh thần quả cảm của lò võ No.1 luôn theo tôi trên mọi đấu trường quốc tế.',
+    quoteAuthor: 'Mùi Trọng Vinh — ĐKVĐ 59kg GMA',
+    socialLinks: { facebook: 'https://facebook.com/muitrongvinh.mma' }
   },
   {
-    id: 'f14', name: 'Trương Mỹ Linh', nickname: 'Tiên Nữ', isChampion: false, gymId: 'g3', divisionId: 'd-f-52',
-    record: { wins: 5, losses: 3, draws: 0, noContests: 0, winsByKo: 0, winsBySub: 2, winsByDec: 3 },
-    stats: { strikingAccuracy: 40, strikingDefense: 55, takedownAccuracy: 55, takedownDefense: 60, finishRate: 40, striking: 3, wrestling: 3, clinch: 3, groundGame: 4, defense: 4, cardio: 4 },
-    eloRating: 1280, styles: ['Vovinam'], height: 160, reach: 160, dateOfBirth: '1997-07-22', nationality: 'VN'
+    id: 'f28',
+    name: 'Trần Quốc Toản',
+    nickname: 'Toản Gấu Rừng',
+    isChampion: false,
+    championshipTitle: 'Á Quân Hạng 84kg LION Championship | HCV Wushu Tán Thủ Quốc Gia',
+    gymId: 'g1',
+    divisionId: 'd-m-84',
+    record: { wins: 3, losses: 2, draws: 0, noContests: 0, winsByKo: 2, winsBySub: 0, winsByDec: 1 },
+    stats: { strikingAccuracy: 58, strikingDefense: 52, takedownAccuracy: 55, takedownDefense: 68, finishRate: 67, striking: 4, wrestling: 4, clinch: 4, groundGame: 3, defense: 4, cardio: 4 },
+    eloRating: 1620,
+    styles: ['Wushu Tán Thủ Hạng Nặng', 'Muay Thai', 'Heavy Punching'],
+    height: 185,
+    reach: 187,
+    dateOfBirth: '1993-01-01',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Võ sĩ với 11 năm kinh nghiệm thi đấu Wushu Tán thủ và Muay Thái đỉnh cao. Gương mặt quen thuộc ở hạng nặng 84kg LION Championship, từng tranh đai vô địch LC11 với Phạm Công Minh.',
+    quote: 'Dù khó khăn trong cuộc sống mưu sinh, niềm đam mê võ đài trong tôi chưa bao giờ nguội lạnh.',
+    quoteAuthor: 'Trần Quốc Toản — Á quân 84kg LION',
+    socialLinks: { facebook: 'https://facebook.com/tranquoctoan.mma' }
   },
   {
-    id: 'f15', name: 'Đoàn Thanh Lâm', nickname: 'Búa Tạ', isChampion: false, gymId: 'g8', divisionId: 'd-m-93',
-    record: { wins: 7, losses: 1, draws: 0, noContests: 0, winsByKo: 7, winsBySub: 0, winsByDec: 0 },
-    stats: { strikingAccuracy: 60, strikingDefense: 50, takedownAccuracy: 20, takedownDefense: 55, finishRate: 100, striking: 5, wrestling: 2, clinch: 3, groundGame: 2, defense: 3, cardio: 3 },
-    eloRating: 1420, styles: ['Boxing'], height: 188, reach: 195, dateOfBirth: '1995-03-30', nationality: 'VN'
+    id: 'f29',
+    name: 'Nghiêm Tùng Lâm',
+    nickname: 'Thái Tử Hà Đông',
+    isChampion: false,
+    championshipTitle: 'Cựu Vô Địch Tán Thủ Quốc Gia | Kỳ Cựu LION Championship 70kg',
+    gymId: 'g-hadong',
+    divisionId: 'd-m-70',
+    record: { wins: 3, losses: 3, draws: 0, noContests: 0, winsByKo: 1, winsBySub: 1, winsByDec: 1 },
+    stats: { strikingAccuracy: 52, strikingDefense: 54, takedownAccuracy: 58, takedownDefense: 65, finishRate: 67, striking: 4, wrestling: 4, clinch: 4, groundGame: 4, defense: 4, cardio: 4 },
+    eloRating: 1520,
+    styles: ['Wushu Tán Thủ', 'Brazilian Jiu-Jitsu', 'MMA Cổ Điển'],
+    height: 175,
+    reach: 176,
+    dateOfBirth: '1987-08-12',
+    nationality: 'VN',
+    image: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1552072805-2a9039d00e57?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    bio: 'Cánh chim đầu đàn của phong trào MMA Hà Đông. Từng hạ submission Bàn Văn Hoàng và có cú knock-out bằng lên gối đỉnh cao tại LION 2022. Là người thầy truyền lửa cho nhiều thế hệ võ sĩ trẻ miền Bắc.',
+    quote: 'Võ thuật đối kháng là hành trình chiến thắng chính bản thân mình trước khi bước lên sàn đấu.',
+    quoteAuthor: 'Nghiêm Tùng Lâm — Hà Đông Fighters Union',
+    socialLinks: { facebook: 'https://facebook.com/nghiemtunglam.mma' }
   },
   {
-    id: 'f16', name: 'Vũ Minh Hiếu', nickname: 'Kẻ Huỷ Diệt', isChampion: false, gymId: 'g7', divisionId: 'd-m-65',
-    record: { wins: 9, losses: 2, draws: 0, noContests: 0, winsByKo: 4, winsBySub: 3, winsByDec: 2 },
-    stats: { strikingAccuracy: 52, strikingDefense: 55, takedownAccuracy: 48, takedownDefense: 60, finishRate: 75, striking: 4, wrestling: 3, clinch: 3, groundGame: 3, defense: 4, cardio: 4 },
-    eloRating: 1480, styles: ['Tán Thủ'], height: 171, reach: 172, dateOfBirth: '1996-09-25', nationality: 'VN'
-  },
-  {
-    id: 'f17', name: 'Tạ Văn Tuấn', nickname: 'The Dragon', isChampion: false, gymId: 'g1', divisionId: 'd-m-52',
-    record: { wins: 2, losses: 0, draws: 0, noContests: 0, winsByKo: 1, winsBySub: 1, winsByDec: 0 },
-    stats: { strikingAccuracy: 45, strikingDefense: 50, takedownAccuracy: 45, takedownDefense: 55, finishRate: 100, striking: 3, wrestling: 3, clinch: 3, groundGame: 3, defense: 3, cardio: 4 },
-    eloRating: 1050, styles: ['Vovinam'], height: 162, reach: 164, dateOfBirth: '2004-02-14', nationality: 'VN'
-  },
-  {
-    id: 'f18', name: 'Phan Minh Tiến', nickname: 'Iron Fist', isChampion: false, gymId: 'g4', divisionId: 'd-m-77',
-    record: { wins: 10, losses: 4, draws: 0, noContests: 0, winsByKo: 8, winsBySub: 0, winsByDec: 2 },
-    stats: { strikingAccuracy: 68, strikingDefense: 55, takedownAccuracy: 35, takedownDefense: 65, finishRate: 80, striking: 5, wrestling: 2, clinch: 3, groundGame: 2, defense: 3, cardio: 4 },
-    eloRating: 1410, styles: ['Boxing'], height: 178, reach: 180, dateOfBirth: '1994-08-08', nationality: 'VN'
-  },
-  {
-    id: 'f19', name: 'Nguyễn Tấn Đạt', nickname: 'Thép', isChampion: false, gymId: 'g5', divisionId: 'd-m-61',
-    record: { wins: 0, losses: 1, draws: 0, noContests: 0, winsByKo: 0, winsBySub: 0, winsByDec: 0 },
-    stats: { strikingAccuracy: 35, strikingDefense: 40, takedownAccuracy: 30, takedownDefense: 45, finishRate: 0, striking: 2, wrestling: 2, clinch: 2, groundGame: 3, defense: 2, cardio: 3 },
-    eloRating: 980, styles: ['BJJ'], height: 167, reach: 168, dateOfBirth: '2005-11-11', nationality: 'VN'
-  },
-  {
-    id: 'f20', name: 'Hoàng Tú', nickname: 'Bóng Ma', isChampion: false, gymId: 'g2', divisionId: 'd-m-56',
-    record: { wins: 18, losses: 5, draws: 1, noContests: 0, winsByKo: 5, winsBySub: 10, winsByDec: 3 },
-    stats: { strikingAccuracy: 45, strikingDefense: 55, takedownAccuracy: 75, takedownDefense: 65, finishRate: 83, striking: 3, wrestling: 4, clinch: 3, groundGame: 5, defense: 4, cardio: 4 },
-    eloRating: 1550, styles: ['BJJ'], height: 164, reach: 165, dateOfBirth: '1991-05-19', nationality: 'VN'
+    id: 'f30',
+    name: 'Jovidon Khojaev',
+    nickname: 'Tajik Warrior',
+    isChampion: true,
+    championshipTitle: 'Đương Kim Vô Địch Hạng 70kg LION Championship | Thắng TKO Tại AFC 41',
+    gymId: 'g2',
+    divisionId: 'd-m-70',
+    record: { wins: 6, losses: 1, draws: 0, noContests: 0, winsByKo: 2, winsBySub: 3, winsByDec: 1 },
+    stats: { strikingAccuracy: 56, strikingDefense: 65, takedownAccuracy: 80, takedownDefense: 85, finishRate: 83, striking: 4, wrestling: 5, clinch: 5, groundGame: 5, defense: 5, cardio: 5 },
+    eloRating: 1820,
+    styles: ['Combat Sambo', 'Wrestling Áp Đảo', 'Submission Grappling'],
+    height: 178,
+    reach: 180,
+    dateOfBirth: '2000-01-01',
+    nationality: 'TJ',
+    image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
+    fullBodyImage: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1000&auto=format&fit=crop&q=80',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80',
+    bio: 'Chiến binh Tajikistan coi Việt Nam là quê hương thứ hai. Sở hữu kỹ năng Combat Sambo và địa chiến áp đảo, soán ngôi vô địch hạng 70kg LION trước Kamil Michal và giành thắng lợi TKO tại AFC 41 (06/2026).',
+    quote: 'Mỗi khi bước lên lồng đấu, tôi luôn tự hào chiến đấu vì màu cờ và người hâm mộ võ thuật Việt Nam.',
+    quoteAuthor: 'Jovidon Khojaev — ĐKVĐ 70kg LION Championship',
+    socialLinks: { facebook: 'https://facebook.com/jovidon.mma' }
   }
 ];
 
-// 5. EVENTS
+// 5. EVENTS (2024 - THÁNG 9/2026)
 export const events: MmaEvent[] = [
-  { id: 'e1', name: 'LION Championship 25', promotionId: 'p1', date: '2024-04-10T19:00:00Z', venue: 'Nhà thi đấu Rạch Miễu', city: 'TP.HCM', status: 'completed' },
-  { id: 'e2', name: 'LION Championship 26', promotionId: 'p1', date: '2024-06-15T19:00:00Z', venue: 'Quần ngựa', city: 'Hà Nội', status: 'completed' },
-  { id: 'e3', name: 'LION Championship 27', promotionId: 'p1', date: '2024-09-20T19:00:00Z', venue: 'Cung thể thao Tiên Sơn', city: 'Đà Nẵng', status: 'completed' },
-  { id: 'e4', name: 'LION Championship 28', promotionId: 'p1', date: '2025-01-12T19:00:00Z', venue: 'Nhà thi đấu Nguyễn Du', city: 'TP.HCM', status: 'completed' },
-  { id: 'e5', name: 'LION Championship 29', promotionId: 'p1', date: '2026-10-15T19:00:00Z', venue: 'Nhà thi đấu Mỹ Đình', city: 'Hà Nội', status: 'upcoming' },
-  { id: 'e6', name: 'LION Championship 30', promotionId: 'p1', date: '2026-12-20T19:00:00Z', venue: 'Nhà thi đấu Phú Thọ', city: 'TP.HCM', status: 'upcoming' },
-  { id: 'e7', name: 'GMA 15', promotionId: 'p2', date: '2024-05-05T18:00:00Z', venue: 'SSC', city: 'TP.HCM', status: 'completed' },
-  { id: 'e8', name: 'GMA 16', promotionId: 'p2', date: '2024-11-10T18:00:00Z', venue: 'Hanoi Martial Arts Center', city: 'Hà Nội', status: 'completed' },
-  { id: 'e9', name: 'V1 Champion 8', promotionId: 'p3', date: '2024-08-22T19:30:00Z', venue: 'Nhà thi đấu Lãnh Binh Thăng', city: 'TP.HCM', status: 'completed' },
-  { id: 'e10', name: 'V1 Champion 9', promotionId: 'p3', date: '2026-11-05T19:30:00Z', venue: 'Cung thể thao Quần Ngựa', city: 'Hà Nội', status: 'upcoming' }
+  { id: 'e-lc20', name: 'LION Championship 20', promotionId: 'p1', date: '2024-12-14T19:00:00Z', venue: 'Nhà thi đấu Tây Hồ', city: 'Hà Nội', status: 'completed' },
+  { id: 'e-lc22', name: 'LION Championship 22', promotionId: 'p1', date: '2025-05-10T19:00:00Z', venue: 'Nhà thi đấu Tây Hồ', city: 'Hà Nội', status: 'completed' },
+  { id: 'e-lc23', name: 'LION Championship 23', promotionId: 'p1', date: '2025-06-14T19:00:00Z', venue: 'Nhà thi đấu Tây Hồ', city: 'Hà Nội', status: 'completed' },
+  { id: 'e-lc25', name: 'LION Championship 25', promotionId: 'p1', date: '2025-08-16T19:00:00Z', venue: 'Quảng trường Cam Ranh', city: 'Khánh Hòa', status: 'completed' },
+  { id: 'e-lc27', name: 'LION Championship 27', promotionId: 'p1', date: '2025-10-11T19:00:00Z', venue: 'Nhà thi đấu Tây Hồ', city: 'Hà Nội', status: 'completed' },
+  { id: 'e-lc28', name: 'LION Championship 28', promotionId: 'p1', date: '2025-11-08T19:00:00Z', venue: 'Quảng trường Corona Resort', city: 'Phú Quốc', status: 'completed' },
+  { id: 'e-lc30', name: 'LION Championship 30', promotionId: 'p1', date: '2026-04-18T19:00:00Z', venue: 'Nhà thi đấu phường Xuân Đỉnh', city: 'Hà Nội', status: 'completed' },
+  { id: 'e-lc31', name: 'LION Championship 31', promotionId: 'p1', date: '2026-05-09T19:00:00Z', venue: 'Nhà thi đấu phường Xuân Đỉnh', city: 'Hà Nội', status: 'completed' },
+  { id: 'e-lc32', name: 'LION Championship 32', promotionId: 'p1', date: '2026-06-06T19:00:00Z', venue: 'Nhà thi đấu phường Xuân Đỉnh', city: 'Hà Nội', status: 'completed' },
+  { id: 'e-lc33', name: 'LION Championship 33', promotionId: 'p1', date: '2026-07-11T19:00:00Z', venue: 'Cung thể thao Quần Ngựa', city: 'Hà Nội', status: 'completed' },
+  { id: 'e-lc34', name: 'LION Championship 34', promotionId: 'p1', date: '2026-08-15T19:00:00Z', venue: 'Nhà thi đấu Rạch Miễu', city: 'TP.HCM', status: 'completed' },
+  { id: 'e-lc35', name: 'LION Championship 35', promotionId: 'p1', date: '2026-09-12T19:00:00Z', venue: 'Nhà thi đấu phường Xuân Đỉnh', city: 'Hà Nội', status: 'upcoming' },
+  { id: 'e-gma09', name: 'GMA 09 - Thần Võ Độc Tôn', promotionId: 'p2', date: '2025-10-18T18:00:00Z', venue: 'The Grand Ho Tram Strip', city: 'Bà Rịa - Vũng Tàu', status: 'completed' },
+  { id: 'e-gma10', name: 'GMA 10 - Đại Chiến Thần Thú', promotionId: 'p2', date: '2026-10-10T18:00:00Z', venue: 'GMA Arena Nhà Bè', city: 'TP.HCM', status: 'upcoming' },
+  { id: 'e-v1-2026', name: 'V1 Championship 2026: The Glory Born', promotionId: 'p3', date: '2026-08-23T18:00:00Z', venue: 'Nhà thi đấu Rạch Miễu', city: 'TP.HCM', status: 'completed' },
+  { id: 'e-afc41', name: 'AFC 41: International MMA Super Fight', promotionId: 'p1', date: '2026-06-20T19:00:00Z', venue: 'The Grand Ho Tram Strip', city: 'Bà Rịa - Vũng Tàu', status: 'completed' }
 ];
 
-// 6. FIGHTS
+// 6. FIGHTS (LỊCH SỬ ĐẤU CHI TIẾT TỪNG TRẬN - FULL AUTHENTIC FIGHT HISTORY)
 export const fights: Fight[] = [
-  // LION 25
-  { id: 'ft1', eventId: 'e1', fighter1Id: 'f1', fighter2Id: 'f13', divisionId: 'd-m-70', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f1', method: 'KO', round: 2, time: '2:15' } },
-  { id: 'ft2', eventId: 'e1', fighter1Id: 'f5', fighter2Id: 'f16', divisionId: 'd-m-65', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f16', method: 'Decision (Unanimous)', round: 3, time: '5:00' } },
-  { id: 'ft3', eventId: 'e1', fighter1Id: 'f9', fighter2Id: 'f7', divisionId: 'd-f-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims', result: { winnerId: 'f7', method: 'Submission', round: 1, time: '4:10' } },
-  
-  // LION 26
-  { id: 'ft4', eventId: 'e2', fighter1Id: 'f3', fighter2Id: 'f20', divisionId: 'd-m-56', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f3', method: 'Decision (Unanimous)', round: 5, time: '5:00' } },
-  { id: 'ft5', eventId: 'e2', fighter1Id: 'f2', fighter2Id: 'f11', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f2', method: 'KO', round: 1, time: '1:30' } },
-  { id: 'ft6', eventId: 'e2', fighter1Id: 'f10', fighter2Id: 'f15', divisionId: 'd-m-84', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims', result: { winnerId: 'f15', method: 'KO', round: 2, time: '3:45' } },
-
-  // LION 27
-  { id: 'ft7', eventId: 'e3', fighter1Id: 'f4', fighter2Id: 'f14', divisionId: 'd-f-52', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f4', method: 'Submission', round: 3, time: '2:50' } },
-  { id: 'ft8', eventId: 'e3', fighter1Id: 'f8', fighter2Id: 'f18', divisionId: 'd-m-77', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f8', method: 'Decision (Unanimous)', round: 3, time: '5:00' } },
-  { id: 'ft9', eventId: 'e3', fighter1Id: 'f6', fighter2Id: 'f13', divisionId: 'd-m-70', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims', result: { winnerId: 'f13', method: 'Decision (Unanimous)', round: 3, time: '5:00' } },
-
-  // LION 28
-  { id: 'ft10', eventId: 'e4', fighter1Id: 'f1', fighter2Id: 'f6', divisionId: 'd-m-70', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f1', method: 'KO', round: 1, time: '0:45' } },
-  { id: 'ft11', eventId: 'e4', fighter1Id: 'f2', fighter2Id: 'f19', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f2', method: 'KO', round: 1, time: '0:15' } },
-  { id: 'ft12', eventId: 'e4', fighter1Id: 'f12', fighter2Id: 'f20', divisionId: 'd-m-56', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims', result: { winnerId: 'f20', method: 'Submission', round: 2, time: '1:12' } },
-
-  // GMA 15
-  { id: 'ft13', eventId: 'e7', fighter1Id: 'f17', fighter2Id: 'f3', divisionId: 'd-m-52', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f3', method: 'Submission', round: 1, time: '3:05' } },
-  { id: 'ft14', eventId: 'e7', fighter1Id: 'f9', fighter2Id: 'f14', divisionId: 'd-f-52', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims', result: { winnerId: 'f9', method: 'Decision (Unanimous)', round: 3, time: '3:00' } },
-
-  // GMA 16
-  { id: 'ft15', eventId: 'e8', fighter1Id: 'f11', fighter2Id: 'f19', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f11', method: 'Submission', round: 2, time: '2:20' } },
-  { id: 'ft16', eventId: 'e8', fighter1Id: 'f16', fighter2Id: 'f5', divisionId: 'd-m-65', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f16', method: 'Decision (Unanimous)', round: 3, time: '3:00' } },
-
-  // V1 Champion 8
-  { id: 'ft17', eventId: 'e9', fighter1Id: 'f8', fighter2Id: 'f10', divisionId: 'd-m-84', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f8', method: 'KO', round: 2, time: '1:50' } },
-  { id: 'ft18', eventId: 'e9', fighter1Id: 'f18', fighter2Id: 'f8', divisionId: 'd-m-77', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f18', method: 'Decision (Unanimous)', round: 3, time: '3:00' } },
-  { id: 'ft19', eventId: 'e9', fighter1Id: 'f15', fighter2Id: 'f10', divisionId: 'd-m-84', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims', result: { winnerId: 'f15', method: 'KO', round: 1, time: '2:10' } },
-
-  // LION 29 (Upcoming)
-  { id: 'ft20', eventId: 'e5', fighter1Id: 'f1', fighter2Id: 'f8', divisionId: 'd-m-70', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card' },
-  { id: 'ft21', eventId: 'e5', fighter1Id: 'f2', fighter2Id: 'f5', divisionId: 'd-m-65', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card' },
-  { id: 'ft22', eventId: 'e5', fighter1Id: 'f3', fighter2Id: 'f12', divisionId: 'd-m-56', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card' },
-  { id: 'ft23', eventId: 'e5', fighter1Id: 'f4', fighter2Id: 'f7', divisionId: 'd-f-56', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims' },
-  { id: 'ft24', eventId: 'e5', fighter1Id: 'f16', fighter2Id: 'f13', divisionId: 'd-m-65', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims' },
-  { id: 'ft25', eventId: 'e5', fighter1Id: 'f9', fighter2Id: 'f14', divisionId: 'd-f-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims' },
-
-  // LION 30 (Upcoming)
-  { id: 'ft26', eventId: 'e6', fighter1Id: 'f2', fighter2Id: 'f11', divisionId: 'd-m-61', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card' },
-  { id: 'ft27', eventId: 'e6', fighter1Id: 'f3', fighter2Id: 'f20', divisionId: 'd-m-56', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card' },
-  { id: 'ft28', eventId: 'e6', fighter1Id: 'f18', fighter2Id: 'f8', divisionId: 'd-m-77', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims' },
-  { id: 'ft29', eventId: 'e6', fighter1Id: 'f15', fighter2Id: 'f10', divisionId: 'd-m-84', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims' },
-  
-  // V1 Champion 9 (Upcoming)
-  { id: 'ft30', eventId: 'e10', fighter1Id: 'f17', fighter2Id: 'f12', divisionId: 'd-m-52', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card' },
-  { id: 'ft31', eventId: 'e10', fighter1Id: 'f19', fighter2Id: 'f11', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'prelims' }
+  // LC20
+  { id: 'ft-lc20-1', eventId: 'e-lc20', fighter1Id: 'f1', fighter2Id: 'f15', divisionId: 'd-m-65', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f1', method: 'KO', round: 1, time: '3:04' } },
+  { id: 'ft-lc20-2', eventId: 'e-lc20', fighter1Id: 'f7', fighter2Id: 'f30', divisionId: 'd-m-70', numberOfRounds: 5, isTitleFight: true, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f30', method: 'Submission', round: 1, time: '4:08' } },
+  { id: 'ft-lc20-3', eventId: 'e-lc20', fighter1Id: 'f26', fighter2Id: 'f25', divisionId: 'd-f-61', numberOfRounds: 5, isTitleFight: true, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f26', method: 'Submission', round: 2, time: '3:45' } },
+  { id: 'ft-lc20-4', eventId: 'e-lc20', fighter1Id: 'f9', fighter2Id: 'f22', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f9', method: 'Decision (Unanimous)', round: 3, time: '5:00' } },
+  // LC22
+  { id: 'ft-lc22-1', eventId: 'e-lc22', fighter1Id: 'f17', fighter2Id: 'f28', divisionId: 'd-m-84', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f17', method: 'TKO', round: 2, time: '5:00' } },
+  { id: 'ft-lc22-2', eventId: 'e-lc22', fighter1Id: 'f24', fighter2Id: 'f2', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f2', method: 'Decision (Unanimous)', round: 3, time: '5:00' } },
+  // LC23
+  { id: 'ft-lc23-1', eventId: 'e-lc23', fighter1Id: 'f8', fighter2Id: 'f16', divisionId: 'd-m-56', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f16', method: 'TKO', round: 1, time: '2:00' } },
+  { id: 'ft-lc23-2', eventId: 'e-lc23', fighter1Id: 'f20', fighter2Id: 'f21', divisionId: 'd-m-56', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f21', method: 'TKO', round: 3, time: '4:30' } },
+  // LC25
+  { id: 'ft-lc25-1', eventId: 'e-lc25', fighter1Id: 'f9', fighter2Id: 'f16', divisionId: 'd-m-61', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f9', method: 'TKO', round: 3, time: '2:45' } },
+  { id: 'ft-lc25-2', eventId: 'e-lc25', fighter1Id: 'f4', fighter2Id: 'f25', divisionId: 'd-f-52', numberOfRounds: 5, isTitleFight: true, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f4', method: 'Decision (Unanimous)', round: 5, time: '5:00' } },
+  { id: 'ft-lc25-3', eventId: 'e-lc25', fighter1Id: 'f3', fighter2Id: 'f23', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f3', method: 'Decision (Unanimous)', round: 3, time: '5:00' } },
+  { id: 'ft-lc25-4', eventId: 'e-lc25', fighter1Id: 'f15', fighter2Id: 'f1', divisionId: 'd-m-65', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f15', method: 'Decision (Unanimous)', round: 3, time: '5:00' } },
+  // LC27
+  { id: 'ft-lc27-1', eventId: 'e-lc27', fighter1Id: 'f5', fighter2Id: 'f10', divisionId: 'd-m-77', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f5', method: 'TKO', round: 2, time: '2:15' } },
+  // LC28
+  { id: 'ft-lc28-1', eventId: 'e-lc28', fighter1Id: 'f12', fighter2Id: 'f11', divisionId: 'd-m-70', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f11', method: 'Submission', round: 1, time: '3:45' } },
+  // LC30
+  { id: 'ft-lc30-1', eventId: 'e-lc30', fighter1Id: 'f16', fighter2Id: 'f8', divisionId: 'd-m-56', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f16', method: 'Submission', round: 2, time: '3:20' } },
+  { id: 'ft-lc30-2', eventId: 'e-lc30', fighter1Id: 'f19', fighter2Id: 'f20', divisionId: 'd-m-52', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f19', method: 'Submission', round: 1, time: '2:40' } },
+  // LC31
+  { id: 'ft-lc31-1', eventId: 'e-lc31', fighter1Id: 'f2', fighter2Id: 'f13', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f2', method: 'KO', round: 1, time: '2:18' } },
+  { id: 'ft-lc31-2', eventId: 'e-lc31', fighter1Id: 'f22', fighter2Id: 'f24', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f22', method: 'TKO', round: 2, time: '1:50' } },
+  { id: 'ft-lc31-3', eventId: 'e-lc31', fighter1Id: 'f11', fighter2Id: 'f7', divisionId: 'd-m-70', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f7', method: 'Submission', round: 2, time: '4:48' } },
+  // LC32
+  { id: 'ft-lc32-1', eventId: 'e-lc32', fighter1Id: 'f23', fighter2Id: 'f21', divisionId: 'd-m-56', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f23', method: 'KO', round: 1, time: '1:20' } },
+  // LC33
+  { id: 'ft-lc33-1', eventId: 'e-lc33', fighter1Id: 'f4', fighter2Id: 'f25', divisionId: 'd-f-52', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f4', method: 'Decision (Split)', round: 5, time: '5:00' } },
+  { id: 'ft-lc33-2', eventId: 'e-lc33', fighter1Id: 'f3', fighter2Id: 'f22', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f3', method: 'Decision (Unanimous)', round: 3, time: '5:00' } },
+  // LC34 (15/08/2026 tại Rạch Miễu)
+  { id: 'ft-lc34-1', eventId: 'e-lc34', fighter1Id: 'f19', fighter2Id: 'f21', divisionId: 'd-m-52', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f19', method: 'Decision (Unanimous)', round: 3, time: '5:00' } },
+  { id: 'ft-lc34-2', eventId: 'e-lc34', fighter1Id: 'f20', fighter2Id: 'f10', divisionId: 'd-m-52', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f20', method: 'TKO', round: 1, time: '1:15' } },
+  { id: 'ft-lc34-3', eventId: 'e-lc34', fighter1Id: 'f24', fighter2Id: 'f9', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card', result: { winnerId: 'f9', method: 'KO', round: 2, time: '3:10' } },
+  // GMA09
+  { id: 'ft-gma09-1', eventId: 'e-gma09', fighter1Id: 'f13', fighter2Id: 'f8', divisionId: 'd-m-56', numberOfRounds: 5, isTitleFight: true, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f13', method: 'Decision (Unanimous)', round: 5, time: '5:00' } },
+  // AFC 41
+  { id: 'ft-afc41-1', eventId: 'e-afc41', fighter1Id: 'f30', fighter2Id: 'f11', divisionId: 'd-m-70', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card', result: { winnerId: 'f30', method: 'TKO', round: 2, time: '3:20' } },
+  // LC35 (12/09/2026 - Upcoming)
+  { id: 'ft-lc35-1', eventId: 'e-lc35', fighter1Id: 'f15', fighter2Id: 'f12', divisionId: 'd-m-65', numberOfRounds: 3, isTitleFight: false, isMainEvent: true, cardPosition: 'main-card' },
+  { id: 'ft-lc35-2', eventId: 'e-lc35', fighter1Id: 'f2', fighter2Id: 'f22', divisionId: 'd-m-61', numberOfRounds: 3, isTitleFight: false, isMainEvent: false, cardPosition: 'main-card' },
+  { id: 'ft-lc35-3', eventId: 'e-lc35', fighter1Id: 'f19', fighter2Id: 'f20', divisionId: 'd-m-52', numberOfRounds: 5, isTitleFight: true, isMainEvent: false, cardPosition: 'main-card' }
 ];
 
-// 7. RANKINGS
+// 7. RANKINGS (BẢNG XẾP HẠNG CHÍNH THỨC VMMAF & LION - THÁNG 9/2026)
 export const rankings: Ranking[] = [
-  // Lightweight (70kg)
-  { position: 1, fighterId: 'f1', divisionId: 'd-m-70', previousPosition: 1, eloRating: 1800, type: 'official' },
-  { position: 2, fighterId: 'f13', divisionId: 'd-m-70', previousPosition: 2, eloRating: 1520, type: 'official' },
-  { position: 3, fighterId: 'f6', divisionId: 'd-m-70', previousPosition: 4, eloRating: 1250, type: 'official' },
-  { position: 4, fighterId: 'f5', divisionId: 'd-m-70', previousPosition: 3, eloRating: 1200, type: 'official' },
-  { position: 5, fighterId: 'f8', divisionId: 'd-m-70', previousPosition: 5, eloRating: 1100, type: 'official' },
+  // Strawweight (52kg Nam) - ĐAI ĐANG BỎ TRỐNG (VACANT)
+  { position: 1, fighterId: 'f19', divisionId: 'd-m-52', previousPosition: 2, eloRating: 1650, type: 'official' },
+  { position: 2, fighterId: 'f20', divisionId: 'd-m-52', previousPosition: 3, eloRating: 1680, type: 'official' },
 
-  // Bantamweight (61kg)
-  { position: 1, fighterId: 'f2', divisionId: 'd-m-61', previousPosition: 1, eloRating: 1750, type: 'official' },
-  { position: 2, fighterId: 'f11', divisionId: 'd-m-61', previousPosition: 2, eloRating: 1380, type: 'official' },
-  { position: 3, fighterId: 'f19', divisionId: 'd-m-61', previousPosition: 3, eloRating: 980, type: 'official' },
-  { position: 4, fighterId: 'f3', divisionId: 'd-m-61', previousPosition: 4, eloRating: 950, type: 'official' },
-  { position: 5, fighterId: 'f10', divisionId: 'd-m-61', previousPosition: 5, eloRating: 900, type: 'official' },
+  // Flyweight (56kg Nam) - ĐKVĐ LÊ VĂN TUẦN
+  { position: 0, fighterId: 'f16', divisionId: 'd-m-56', previousPosition: 0, eloRating: 1810, type: 'official' },
+  { position: 1, fighterId: 'f8', divisionId: 'd-m-56', previousPosition: 1, eloRating: 1730, type: 'official' },
+  { position: 2, fighterId: 'f21', divisionId: 'd-m-56', previousPosition: 2, eloRating: 1685, type: 'official' },
+  { position: 3, fighterId: 'f23', divisionId: 'd-m-56', previousPosition: 4, eloRating: 1630, type: 'official' },
+  { position: 4, fighterId: 'f13', divisionId: 'd-m-56', previousPosition: 3, eloRating: 1680, type: 'official' },
+  { position: 5, fighterId: 'f2', divisionId: 'd-m-56', previousPosition: 5, eloRating: 1780, type: 'official' },
 
-  // Women's Strawweight (52kg)
-  { position: 1, fighterId: 'f4', divisionId: 'd-f-52', previousPosition: 1, eloRating: 1650, type: 'official' },
-  { position: 2, fighterId: 'f14', divisionId: 'd-f-52', previousPosition: 3, eloRating: 1280, type: 'official' },
-  { position: 3, fighterId: 'f7', divisionId: 'd-f-52', previousPosition: 2, eloRating: 1200, type: 'official' },
-  { position: 4, fighterId: 'f9', divisionId: 'd-f-52', previousPosition: 4, eloRating: 1100, type: 'official' },
-  { position: 5, fighterId: 'f17', divisionId: 'd-f-52', previousPosition: 5, eloRating: 1050, type: 'official' }
+  // Bantamweight (60-61kg Nam) - ĐKVĐ TRẦN NGỌC LƯỢNG
+  { position: 0, fighterId: 'f9', divisionId: 'd-m-61', previousPosition: 0, eloRating: 1860, type: 'official' },
+  { position: 1, fighterId: 'f6', divisionId: 'd-m-61', previousPosition: 1, eloRating: 1840, type: 'official' },
+  { position: 2, fighterId: 'f3', divisionId: 'd-m-61', previousPosition: 3, eloRating: 1690, type: 'official' },
+  { position: 3, fighterId: 'f22', divisionId: 'd-m-61', previousPosition: 2, eloRating: 1670, type: 'official' },
+  { position: 4, fighterId: 'f24', divisionId: 'd-m-61', previousPosition: 4, eloRating: 1650, type: 'official' },
+
+  // Featherweight (65kg Nam) - ĐAI ĐANG BỎ TRỐNG (VACANT)
+  { position: 1, fighterId: 'f15', divisionId: 'd-m-65', previousPosition: 2, eloRating: 1760, type: 'official' },
+  { position: 2, fighterId: 'f1', divisionId: 'd-m-65', previousPosition: 1, eloRating: 1850, type: 'official' },
+
+  // Lightweight (70kg Nam) - ĐKVĐ JOVIDON KHOJAEV
+  { position: 0, fighterId: 'f30', divisionId: 'd-m-70', previousPosition: 0, eloRating: 1820, type: 'official' },
+  { position: 1, fighterId: 'f7', divisionId: 'd-m-70', previousPosition: 1, eloRating: 1810, type: 'official' },
+  { position: 2, fighterId: 'f11', divisionId: 'd-m-70', previousPosition: 2, eloRating: 1650, type: 'official' },
+  { position: 3, fighterId: 'f12', divisionId: 'd-m-70', previousPosition: 3, eloRating: 1560, type: 'official' },
+  { position: 4, fighterId: 'f29', divisionId: 'd-m-70', previousPosition: 4, eloRating: 1520, type: 'official' },
+
+  // Welterweight (77kg Nam) - ỨNG VIÊN SỐ 1 LÝ VĂN HUỲNH
+  { position: 1, fighterId: 'f5', divisionId: 'd-m-77', previousPosition: 1, eloRating: 1640, type: 'official' },
+  { position: 2, fighterId: 'f10', divisionId: 'd-m-77', previousPosition: 2, eloRating: 1510, type: 'official' },
+  { position: 3, fighterId: 'f14', divisionId: 'd-m-77', previousPosition: 3, eloRating: 1420, type: 'official' },
+
+  // Middleweight (84kg Nam) - ĐKVĐ PHẠM CÔNG MINH
+  { position: 0, fighterId: 'f17', divisionId: 'd-m-84', previousPosition: 0, eloRating: 1830, type: 'official' },
+  { position: 1, fighterId: 'f28', divisionId: 'd-m-84', previousPosition: 1, eloRating: 1620, type: 'official' },
+
+  // Strawweight (52kg Nữ) - ĐKVĐ NGUYỄN VŨ QUỲNH HOA
+  { position: 0, fighterId: 'f4', divisionId: 'd-f-52', previousPosition: 0, eloRating: 1730, type: 'official' },
+  { position: 1, fighterId: 'f25', divisionId: 'd-f-52', previousPosition: 1, eloRating: 1600, type: 'official' },
+
+  // Flyweight (56kg Nữ) - ĐKVĐ DƯƠNG THỊ THANH BÌNH
+  { position: 0, fighterId: 'f18', divisionId: 'd-f-56', previousPosition: 0, eloRating: 1710, type: 'official' },
+
+  // Bantamweight (60kg Nữ) - ĐKVĐ CHELSEY CASHWELL
+  { position: 0, fighterId: 'f26', divisionId: 'd-f-61', previousPosition: 0, eloRating: 1690, type: 'official' }
 ];
 
 // 8. ARTICLES
 export const articles: Article[] = [
-  { id: 'a1', title: 'Trần Quang Lộc bảo vệ thành công đai vô địch LION 28', slug: 'tran-quang-loc-bao-ve-thanh-cong-dai-vo-dich-lion-28', excerpt: 'Nhà vô địch hạng 70kg đã có chiến thắng chớp nhoáng trước Hoàng Hữu Thái.', content: '', author: 'MMAVN', publishedAt: '2025-01-13T09:00:00Z', category: 'breaking', coverImage: '/images/articles/a1.jpg', tags: ['LION Championship', 'Trần Quang Lộc'], relatedFighterIds: ['f1', 'f6'] },
-  { id: 'a2', title: 'Phân tích kỹ thuật: Cú đá quyết định của Nguyễn Trần Duy Nhất', slug: 'phan-tich-ky-thuat-cu-da-quyet-dinh-cua-nguyen-tran-duy-nhat', excerpt: 'Cùng xem lại cú đá headkick đã làm nên chiến thắng tại LION 26.', content: '', author: 'Chuyên gia võ thuật', publishedAt: '2024-06-16T10:00:00Z', category: 'analysis', coverImage: '/images/articles/a2.jpg', tags: ['Kỹ thuật', 'Nguyễn Trần Duy Nhất'], relatedFighterIds: ['f2', 'f11'] },
-  { id: 'a3', title: 'Phỏng vấn độc quyền: Phạm Văn Nam nói về trận tái đấu', slug: 'phong-van-doc-quyen-pham-van-nam-noi-ve-tran-tai-dau', excerpt: 'Nam Tốc Độ đã sẵn sàng cho đối thủ tiếp theo tại LION 29 sắp tới.', content: '', author: 'Phóng viên MMAVN', publishedAt: '2026-08-15T14:00:00Z', category: 'interview', coverImage: '/images/articles/a3.jpg', tags: ['Phỏng vấn', 'Phạm Văn Nam'], relatedFighterIds: ['f3', 'f20'] },
-  { id: 'a4', title: 'Cách chống Take-down hiệu quả từ các võ sĩ hàng đầu', slug: 'cach-chong-take-down-hieu-qua-tu-cac-vo-si-hang-dau', excerpt: 'Kỹ thuật phòng thủ vật là một phần không thể thiếu trong MMA hiện đại.', content: '', author: 'HLV MMA', publishedAt: '2026-07-20T08:00:00Z', category: 'technique', coverImage: '/images/articles/a4.jpg', tags: ['Kỹ thuật', 'Vật'], relatedFighterIds: ['f1', 'f3', 'f4'] },
-  { id: 'a5', title: 'Góc nhìn: Tương lai của MMA nữ Việt Nam', slug: 'goc-nhin-tuong-lai-cua-mma-nu-viet-nam', excerpt: 'Với sự nổi lên của Nguyễn Thị Hằng, MMA nữ Việt Nam đang có những bước tiến đáng kể.', content: '', author: 'Nhà báo thể thao', publishedAt: '2026-08-01T09:30:00Z', category: 'opinion', coverImage: '/images/articles/a5.jpg', tags: ['MMA Nữ', 'Phân tích'], relatedFighterIds: ['f4', 'f7', 'f14'] },
-  { id: 'a6', title: 'Tiêu điểm phòng tập: Vietnam Top Team', slug: 'tieu-diem-phong-tap-vietnam-top-team', excerpt: 'Tìm hiểu về lò đào tạo võ sĩ chuyên nghiệp hàng đầu TP.HCM.', content: '', author: 'MMAVN', publishedAt: '2026-08-25T11:00:00Z', category: 'gym-spotlight', coverImage: '/images/articles/a6.jpg', tags: ['Phòng tập', 'Vietnam Top Team'], relatedFighterIds: ['f1', 'f9'] }
+  { id: 'a1', title: 'Điểm nhấn LC34: Lê Hoàng Đức và Bùi Đình Khải giành vé vào chung kết tranh đai 52kg', slug: 'diem-nhan-lc34-chung-ket-52kg', excerpt: 'Sự kiện LC34 tại Rạch Miễu chứng kiến sự thăng hoa của tượng đài Lê Hoàng Đức và đòn TKO mạn sườn của Bùi Đình Khải.', content: '', author: 'Ban Biên Tập MMAVN', publishedAt: '2026-08-16T09:00:00Z', category: 'breaking', coverImage: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&auto=format&fit=crop&q=80', tags: ['LC34', '52kg', 'Lê Hoàng Đức', 'Bùi Đình Khải'], relatedFighterIds: ['f19', 'f20'] },
+  { id: 'a2', title: 'Tâm điểm LION Championship 35 (12/09/2026): Đại chiến tại Nhà thi đấu phường Xuân Đỉnh', slug: 'tam-diem-lion-championship-35-xuan-dinh', excerpt: 'Sự kiện mở màn tháng 9 với 6 cặp đấu nảy lửa tranh thứ hạng Hạng A và các ứng viên tranh đai.', content: '', author: 'Phóng viên LION', publishedAt: '2026-09-01T10:00:00Z', category: 'analysis', coverImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&auto=format&fit=crop&q=80', tags: ['LC35', 'Xuân Đỉnh', 'Hà Nội'], relatedFighterIds: ['f15', 'f2'] },
+  { id: 'a3', title: 'Bạch Văn Nghĩa và The Champ MMA: Hành trình tiến tới đai vô địch 60kg mùa giải 2026', slug: 'bach-van-nghia-the-champ-mma-hanh-trinh-vo-dich', excerpt: 'Chiến thắng quả cảm trước Danh Quốc tại LC33 đưa ngôi sao The Champ MMA tiến thẳng vào trận tranh đai cùng Robson Oliveira.', content: '', author: 'Chuyên gia võ thuật', publishedAt: '2026-07-15T14:00:00Z', category: 'interview', coverImage: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd208?w=1200&auto=format&fit=crop&q=80', tags: ['The Champ MMA', 'Bạch Văn Nghĩa', 'Robson Oliveira'], relatedFighterIds: ['f3', 'f6'] },
+  { id: 'a4', title: 'Nguyễn Vũ Quỳnh Hoa bảo vệ thành công đai vô địch 52kg nữ: Đẳng cấp nhà vô địch', slug: 'quynh-hoa-bao-ve-dai-thanh-cong-lc33', excerpt: 'Màn so găng nghẹt thở qua 5 hiệp với Lò Thị Phung khẳng định vị thế số 1 của bông hồng The Champ MMA.', content: '', author: 'MMAVN News', publishedAt: '2026-07-12T08:00:00Z', category: 'breaking', coverImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&auto=format&fit=crop&q=80', tags: ['MMA Nữ', 'The Champ MMA', 'Quỳnh Hoa'], relatedFighterIds: ['f4', 'f25'] },
+  { id: 'a5', title: 'V1 Championship 2026 "The Glory Born": 479 triệu đồng tiền vé trao tặng Bệnh viện Ung Bướu', slug: 'v1-championship-2026-thien-nguyen', excerpt: 'Giải đấu Modern Muay găng 4oz khép lại với những trận đấu đỉnh cao và hành động nhân văn sâu sắc.', content: '', author: 'Thể Thao & Xã Hội', publishedAt: '2026-08-24T11:00:00Z', category: 'opinion', coverImage: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&auto=format&fit=crop&q=80', tags: ['V1 Champion', 'Thiện Nguyện'], relatedFighterIds: [] }
 ];
 
 // 9. HELPER FUNCTIONS
@@ -691,756 +1739,52 @@ export function getFighterFights(fighterId: string): Fight[] {
 
 // 10. TECHNIQUES
 export const techniques: Technique[] = [
-  // --- Striking ---
   {
     id: 'tech-head-kick',
     name: 'Head Kick (Đá Cao)',
     nameVi: 'Cú đá cao vòng cầu vào đầu (High Kick / Head Kick)',
     category: 'striking',
     difficulty: 'Nâng cao',
-    description: 'Kỹ thuật tung đòn chân vươn tới vùng thái dương, quai hàm hoặc cổ của đối phương từ góc khuất thị giác. Đây là một trong những đòn dứt điểm knockout mãn nhãn và có sức hủy diệt lớn nhất trong MMA.',
-    executionSteps: [
-      'Vào thế tấn cân bằng, ngụy trang bằng cú chọc nhử (Jab) hoặc cú đá thấp (Calf Kick).',
-      'Xoay mũi bàn chân trụ ra ngoài góc khoảng 90 - 135 độ, xoay hông tối đa để dồn toàn bộ trọng lượng cơ thể vào cú đá.',
-      'Vung cánh tay cùng phía với chân đá ra sau để tạo đà quán tính và giữ thăng bằng, tay còn lại che sát thái dương và cằm.',
-      'Tiếp xúc mục tiêu bằng phần dưới của ống đồng (cẳng chân) thay vì mu bàn chân để tối đa hóa lực va chạm.',
-      'Thu hồi chân nhanh chóng trở về thế thủ cân bằng tránh bị đối phương bắt chân quật ngã.'
-    ],
-    keyPoints: [
-      'Xoay hông là yếu tố quyết định 80% lực phát ra của cú đá.',
-      'Luôn luôn che chắn cằm bằng vai và tay còn lại.',
-      'Tạo nhịp đòn đánh bất ngờ, tránh ra đòn khi đối thủ đang tập trung cao độ quan sát chân.'
-    ],
-    counters: [
-      'Thụt lùi né đòn (Lean back) hoặc cúi luồn (Duck under).',
-      'Dùng cẳng tay hai lớp (Double arm block) che chắn chặt chẽ.',
-      'Bắt chân (Catch the kick) rồi lập tức quét chân trụ quật ngã.'
-    ],
-    commonMistakes: [
-      'Không xoay chân trụ khiến cú đá bị gò bó lực và dễ chấn thương khớp gối.',
-      'Hạ tay phòng thủ làm hở toàn bộ phần mặt trước cú phản đòn của đối thủ.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f2',
-        fighterName: 'Nguyễn Trần Duy Nhất',
-        highlight: 'Cú đá cao chân trái sấm sét mang thương hiệu "Độc cô cầu bại", từng knockout nhiều đối thủ tại đấu trường LION Championship và quốc tế.'
-      },
-      {
-        fighterId: 'f12',
-        fighterName: 'Lý Hoàng',
-        highlight: 'Sở trường đá cao bất ngờ từ thế đảo chân (switch kick) với tốc độ chớp nhoáng.'
-      }
-    ]
+    description: 'Kỹ thuật đá vòng cầu vào vùng đầu đối phương, khai thác điểm mù khi đối thủ hạ tay thủ.',
+    keyPoints: ['Xoay hông và chân trụ tối thiểu 90-180 độ', 'Gập gối nâng cao trước khi vung cẳng chân', 'Đưa vai che cằm để phòng ngự phản đòn', 'Đảm bảo độ dẻo và cân bằng cơ thể'],
+    executionSteps: ['Từ thế đứng chiến đấu, bước chân trước sang góc 45 độ', 'Xoay mũi chân trụ ra ngoài, nâng đầu gối chân đá lên cao ngang ngực', 'Xoay hông mạnh mẽ, duỗi cẳng chân quất vào vùng đầu đối thủ', 'Thu chân nhanh về tư thế thăng bằng'],
+    commonMistakes: ['Không xoay chân trụ dẫn đến mất thăng bằng và giảm lực', 'Hạ tay phòng thủ khi đá khiến dễ bị phản đòn đấm', 'Đá quá thấp hoặc không gập gối tạo đà'],
+    notableFighters: [{ fighterId: 'f2', fighterName: 'Đỗ Huy Hoàng', highlight: 'Cú đá Head Kick hạ gục đối thủ tại giải vô địch' }]
   },
-  {
-    id: 'tech-overhand-right',
-    name: 'Overhand Right (Đấm Móc Vòng)',
-    nameVi: 'Cú đấm móc vòng qua đầu (Overhand Right)',
-    category: 'striking',
-    difficulty: 'Cơ bản',
-    description: 'Đòn đấm vòng qua tay phòng thủ của đối phương theo quỹ đạo vòng cung hướng xuống, tận dụng sức nặng cơ thể và đà xoay của vai để tạo nên cú đấm knock-out một phát đo ván.',
-    executionSteps: [
-      'Hạ thấp đầu và hơi nghiêng người sang phía tay trước (tránh tầm đấm thẳng của đối thủ).',
-      'Đạp mạnh chân sau, xoay gót chân, hông và vai cùng lúc theo chiều kim đồng hồ.',
-      'Vung tay sau vòng qua đỉnh găng tay che chắn của đối thủ, cổ tay hơi cụp xuống để điểm tiếp xúc là hai đốt ngón tay đầu.',
-      'Đầu gối khuỵu thấp tạo độ vững chắc khi va chạm mục tiêu.'
-    ],
-    keyPoints: [
-      'Đầu phải lệch khỏi trục trung tâm (off the centerline) để không bị ăn đòn thẳng.',
-      'Không vung tay quá rộng khiến đối phương dễ dàng nhận biết và né tránh.',
-      'Có thể cài cắm sau một cú chọc nhử hoặc sau pha giả vờ lao vào quật ngã (faked takedown).'
-    ],
-    counters: [
-      'Bước lùi thẳng cự ly hoặc bước chéo sang phải.',
-      'Cú đấm xúc (Uppercut) phản công ngay khi đối thủ cúi người.',
-      'Hạ thấp người lao vào bắt hai chân (Double Leg Takedown).'
-    ],
-    commonMistakes: [
-      'Mất thăng bằng ngã chúi người về phía trước nếu đòn đấm trượt đích.',
-      'Nhắm mắt khi tung đòn khiến mất phương hướng phản ứng tiếp theo.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f1',
-        fighterName: 'Trần Quang Lộc',
-        highlight: 'Vũ khí knock-out đáng sợ nhất của cựu vương LION 70kg, tận dụng đà né đòn rồi quăng quả overhand sấm sét.'
-      },
-      {
-        fighterId: 'f10',
-        fighterName: 'Bùi Đức Anh',
-        highlight: 'Tận dụng thể hình đầm chắc để quăng cú overhand búa bổ đè bẹp phòng ngự.'
-      }
-    ]
-  },
-  {
-    id: 'tech-spinning-back-kick',
-    name: 'Spinning Back Kick (Đá Xoay Sau)',
-    nameVi: 'Cú đạp gót xoay người sau (Spinning Back Kick)',
-    category: 'striking',
-    difficulty: 'Nâng cao',
-    description: 'Kỹ thuật xoay người 360 độ đầy bất ngờ để phóng gót chân trực diện vào ngực hoặc mạng sườn đối thủ, tạo ra lực đẩy cực mạnh có khả năng gây khó thở hoặc gãy xương sườn ngay lập tức.',
-    executionSteps: [
-      'Bước chân trước chéo qua trục đối thủ để tạo góc xoay mượt mà.',
-      'Xoay đầu và thân trên trước, mắt nhìn thấy mục tiêu qua vai trước khi bung đòn chân.',
-      'Co gối chân sau sát ngực rồi đạp thẳng gót chân ra phía sau như một chiếc pít-tông.',
-      'Gót chân tiếp xúc vào vùng chấn thủy hoặc mạn sườn đối phương.',
-      'Thu chân nhanh và xoay người trở lại tư thế bảo vệ.'
-    ],
-    keyPoints: [
-      'Tốc độ xoay đầu quyết định độ chính xác của cú đá.',
-      'Đường đạp chân phải đi thẳng theo một đường chỉ, không đá quạt vòng tròn.',
-      'Thời điểm ra đòn tốt nhất là khi đối thủ đang bước tới gây áp lực.'
-    ],
-    counters: [
-      'Chủ động bước chéo áp sát góc mù của đối thủ khi họ vừa bắt đầu xoay lưng.',
-      'Lao vào ôm ghì (Clinch) hoặc ôm hông quật ngã từ phía sau.'
-    ],
-    commonMistakes: [
-      'Đá mù khi chưa kịp nhìn thấy đối thủ qua vai.',
-      'Quay lưng quá lâu tạo cơ hội cho đối phương nhảy lên ôm cổ bắt đòn khóa.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f6',
-        fighterName: 'Hoàng Hữu Thái',
-        highlight: 'Vận dụng tinh hoa đòn chân Vovinam vào lồng bát giác tạo nên những pha ra đòn ngoạn mục.'
-      },
-      {
-        fighterId: 'f13',
-        fighterName: 'Mai Khắc Tuấn',
-        highlight: 'Thường xuyên gài đòn xoay người phản công khi đối thủ hung hãn dồn ép.'
-      }
-    ]
-  },
-  {
-    id: 'tech-liver-shot',
-    name: 'Liver Shot (Đấm Móc Gan)',
-    nameVi: 'Cú đấm móc mạn sườn gan (Left Hook to the Body / Liver Shot)',
-    category: 'striking',
-    difficulty: 'Cơ bản',
-    description: 'Đòn đấm móc tay trái nhắm thẳng vào vùng hạ sườn phải của đối phương (nơi đặt lá gan). Khi trúng đòn, xung lực gây co thắt cơ hoành và sốc hệ thần kinh tự chủ khiến đối thủ tê liệt và quỵ xuống sàn.',
-    executionSteps: [
-      'Gài đòn bằng cách nhá đòn đấm thẳng lên đầu để đối thủ nâng cao tay thủ.',
-      'Hơi khuỵu gối trái và chuyển trọng tâm sang chân trước góc 45 độ.',
-      'Tung cú hook tay trái xéo góc từ dưới lên chếch vào vùng sườn dưới xương sườn số 9-10 của đối thủ.',
-      'Xoay hông và vai trái tạo lực chèn ép sâu vào bên trong nội tạng.',
-      'Thu tay trái về cằm ngay lập tức.'
-    ],
-    keyPoints: [
-      'Góc đấm phải xiên chéo khoảng 45 độ chứ không chỉ là đấm ngang sườn.',
-      'Sự thư giãn trước khi va chạm giúp đòn đấm xuyên sâu vào mô cơ.',
-      'Đặc biệt hiệu quả khi đối thủ thở dốc hoặc hở tay thủ sườn.'
-    ],
-    counters: [
-      'Hạ thấp cùi chỏ phải ép sát sườn che chắn (Elbow block).',
-      'Bước lùi hoặc tung cú đấm thẳng phải phản công.'
-    ],
-    commonMistakes: [
-      'Đấm quá nông hoặc nhắm quá cao vào ngực thay vì vùng gan.',
-      'Hạ tay phải phòng thủ làm lộ cằm trước cú móc trái của đối phương.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f8',
-        fighterName: 'Võ Thành Đạt',
-        highlight: 'Sở hữu những cú móc sườn gan uy lực từ nền tảng Kickboxing khiến đối phương khuỵu gối tức thì.'
-      },
-      {
-        fighterId: 'f15',
-        fighterName: 'Đoàn Thanh Lâm',
-        highlight: 'Sức mạnh đòn đấm hạng nặng làm vỡ lá chắn sườn đối thủ chỉ sau vài pha chạm.'
-      }
-    ]
-  },
-  {
-    id: 'tech-calf-kick',
-    name: 'Calf Kick (Đá Bắp Chuối)',
-    nameVi: 'Cú đá tầm thấp vào mép bắp chân (Low Calf Kick)',
-    category: 'striking',
-    difficulty: 'Cơ bản',
-    description: 'Cú đá nhắm vào dây thần kinh mác (peroneal nerve) ở ngoài cẳng chân đối phương. Đòn đá này làm giảm khả năng di chuyển, hạn chế sức bật và có thể làm liệt tạm thời chân trụ của đối thủ.',
-    executionSteps: [
-      'Giữ cự ly an toàn ngoài tầm đấm của đối phương.',
-      'Bước chân trụ chéo nhẹ sang một bên tạo góc đá an toàn.',
-      'Quất cẳng chân theo quỹ đạo thấp và ngang nhắm vào phần thịt bắp chân ngoài đối thủ.',
-      'Rút chân về thần tốc trước khi đối thủ kịp phản xạ đấm thẳng.'
-    ],
-    keyPoints: [
-      'Cự ly thi triển xa hơn low kick đùi truyền thống nên độ an toàn cao hơn.',
-      'Ống đồng tiếp xúc dứt khoát như một nhát chém.',
-      'Tập trung tích lũy sát thương qua từng hiệp đấu.'
-    ],
-    counters: [
-      'Xoay mũi chân ra ngoài để dùng xương ống đồng đón đỡ (Check the kick).',
-      'Rút chân trước về né đòn rồi phản công bằng đấm thẳng.',
-      'Đổi thế đứng (Switch stance) để bảo vệ chân bị thương tích.'
-    ],
-    commonMistakes: [
-      'Đá vào phần xương ống đồng của đối phương gây gãy hoặc tổn thương chân mình.',
-      'Đứng quá gần khiến đòn đá thiếu lực và dễ bị đấm trúng mặt.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f2',
-        fighterName: 'Nguyễn Trần Duy Nhất',
-        highlight: 'Kỹ thuật triệt hạ chân trụ đối thủ ngay từ hiệp 1 bằng ống đồng tôi luyện cứng như thép.'
-      },
-      {
-        fighterId: 'f5',
-        fighterName: 'Lê Văn Tuấn',
-        highlight: 'Tích cực dùng calf kick để bào mòn thể lực và hạn chế khả năng áp sát của các võ sĩ địa chiến.'
-      }
-    ]
-  },
-
-  // --- Wrestling & Takedowns ---
-  {
-    id: 'tech-sanshou-takedown',
-    name: 'Tán Thủ Takedown (Bắt Chân Quật Ngã)',
-    nameVi: 'Đòn bắt chân quật ngã đặc trưng Tán Thủ (Sanshou Catch & Sweep)',
-    category: 'wrestling',
-    difficulty: 'Nâng cao',
-    description: 'Đòn đón bắt cú đá của đối thủ (đá sườn hoặc đá quét), dùng cùi chỏ và cánh tay kẹp chặt chân đối phương rồi lập tức phối hợp gài chân trụ hoặc đẩy thân trên để quật ngã đối thủ ra sàn.',
-    executionSteps: [
-      'Khi đối phương tung đòn đá, chủ động đón nhận bằng cách hóp bụng giảm chấn động và luồn cánh tay dưới cẳng chân đối thủ.',
-      'Kẹp chặt cổ chân hoặc gối đối thủ sát vào sườn hông.',
-      'Nhanh chóng bước chân vào sâu áp sát chân trụ còn lại của đối phương.',
-      'Một tay đẩy vai hoặc ngực đối thủ ra sau, đồng thời chân quét hoặc cài gót chân trụ đối thủ.',
-      'Đè người kiểm soát đối phương khi họ vừa ngã chạm sàn.'
-    ],
-    keyPoints: [
-      'Phản xạ bắt chân phải tính bằng phần mười giây; không chần chừ do dự.',
-      'Phải triển khai đòn quét ngã ngay lập tức, không ôm chân đứng yên để tránh bị đấm phản hồi.',
-      'Giữ thế thăng bằng vững vàng của bản thân khi bắt chân đối phương.'
-    ],
-    counters: [
-      'Lao tới ôm chặt cổ đối thủ (Collar Tie) kéo ghì xuống triệt tiêu đà quét.',
-      'Tung cú đấm thẳng bằng tay còn lại khi chân bị bắt.',
-      'Nhảy lò cò chân trụ xoay người thoát đòn.'
-    ],
-    commonMistakes: [
-      'Dùng bàn tay chộp bắt thay vì dùng cả cẳng tay và sườn kẹp giữ.',
-      'Đứng im sau khi bắt chân tạo điều kiện cho đối thủ tung đòn đấm vào mặt.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f1',
-        fighterName: 'Trần Quang Lộc',
-        highlight: 'Bậc thầy Tán thủ Việt Nam với phản xạ bắt đòn đá đối phương chỉ trong tích tắc và quật ngã không tốn sức.'
-      }
-    ]
-  },
-  {
-    id: 'tech-double-leg-takedown',
-    name: 'Double Leg Takedown (Vật Hai Chân)',
-    nameVi: 'Quật ngã túm hai chân (Double Leg Takedown)',
-    category: 'wrestling',
-    difficulty: 'Cơ bản',
-    description: 'Kỹ thuật quật ngã nền tảng và phổ biến nhất trong Wrestling và MMA: võ sĩ hạ thấp trọng tâm, lao xuyên qua hông đối thủ, hai tay ôm sau hai khoeo gối rồi dùng vai húc đẩy đối phương ngã ngửa ra sàn.',
-    executionSteps: [
-      'Gài đòn bằng cú đấm nhá (Setup punch) để đối thủ giơ tay thủ lên cao.',
-      'Hạ thấp trọng tâm (Level change) bằng cách khuỵu gối, giữ lưng thẳng.',
-      'Bước bước xuyên phá (Penetration step) đưa đầu gối chân trước chạm sàn giữa hai chân đối thủ.',
-      'Hai tay ôm chặt sau hai khoeo gối, đầu ép chặt vào mạn sườn ngoài của đối phương.',
-      'Đạp mạnh chân sau, đánh hông về phía trước và bẻ lái theo góc chéo để đưa đối thủ xuống thảm đấu.'
-    ],
-    keyPoints: [
-      'Đầu luôn giữ cao tì vào mạn sườn đối thủ, tuyệt đối không cúi gằm đầu để tránh bị bắt Guillotine Choke.',
-      'Lực bộc phát xuất phát từ cú đạp của chân sau và cú húc của cơ vai.',
-      'Chuyển tiếp tức thì vào vị trí Side Control hoặc Mount khi đối thủ chạm sàn.'
-    ],
-    counters: [
-      'Tư thế chống vật (Sprawl): bật hai chân về phía sau, đè toàn bộ trọng lượng hông và ngực lên lưng đối thủ.',
-      'Đòn gối đón đầu (Intercepting knee) khi đối phương vừa cúi người lao vào.',
-      'Bắt đòn khóa cổ máy chém (Guillotine Choke).'
-    ],
-    commonMistakes: [
-      'Cúi gập lưng thay vì hạ thấp hông khiến đòn vật mất hoàn toàn lực đẩy.',
-      'Lao vào từ cự ly quá xa khiến đối thủ dễ dàng nhận biết và sprawl đè bẹp.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f3',
-        fighterName: 'Phạm Văn Nam',
-        highlight: 'Khả năng đổi tầng trọng tâm chớp nhoáng biến cú double leg thành thương hiệu thống trị hạng ruồi của "Nam Tốc Độ".'
-      },
-      {
-        fighterId: 'f11',
-        fighterName: 'Đỗ Văn Thành',
-        highlight: 'Sức tì đè và quật ngã mãnh liệt xuất phát từ nền tảng Đấu vật tự do đỉnh cao.'
-      }
-    ]
-  },
-  {
-    id: 'tech-single-leg-takedown',
-    name: 'Single Leg Takedown (Vật Một Chân)',
-    nameVi: 'Quật ngã túm một chân (Single Leg Takedown)',
-    category: 'wrestling',
-    difficulty: 'Cơ bản',
-    description: 'Võ sĩ cô lập một bên chân đối thủ, kẹp chặt chân đó giữa hai đùi hoặc nhấc bổng lên cao rồi dùng các kỹ thuật xoay người, gạt chân hoặc ép lồng để đưa trận đấu xuống sàn.',
-    executionSteps: [
-      'Chớp thời cơ khi đối thủ bước chân trước tới hoặc sau khi né cú đấm.',
-      'Hạ thấp hông, luồn hai tay ôm lấy phần đùi hoặc gối của một bên chân đối thủ.',
-      'Kẹp chặt chân đối thủ vào giữa hai đùi của mình (High Crotch hoặc Low Single).',
-      'Dùng trán tì vào ngực hoặc mạn sườn đối thủ tạo áp lực đòn bẩy.',
-      'Xoay người theo vòng cung (Run the pipe) hoặc nhấc bổng chân đối thủ lên để quét chân còn lại.'
-    ],
-    keyPoints: [
-      'Duy trì cột sống thẳng và giữ chặt chân đối thủ không để họ rút chân ra.',
-      'Đầu luôn ở vị trí an toàn (trong ngực hoặc nách đối thủ) tránh bị ăn cùi chỏ.',
-      'Liên tục di chuyển chân để triệt tiêu nỗ lực giữ thăng bằng của đối phương.'
-    ],
-    counters: [
-      'Khoét nách đối phương (Whizzer) và đẩy đầu đối thủ ra ngoài.',
-      'Dùng tay ấn đầu đối thủ xuống thảm rồi xoay người thoát chân.',
-      'Nhảy chân trụ lùi lại và bám lồng bát giác.'
-    ],
-    commonMistakes: [
-      'Để đầu ra phía ngoài tạo góc cho đối thủ tung đòn bắt khóa Guillotine.',
-      'Đứng yên một chỗ sau khi ôm được chân đối phương.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f3',
-        fighterName: 'Phạm Văn Nam',
-        highlight: 'Chuyển đổi mượt mà giữa các đòn đơn và đôi chân khi đối phương cố gắng bám lồng phòng thủ.'
-      },
-      {
-        fighterId: 'f20',
-        fighterName: 'Hoàng Tú',
-        highlight: 'Kéo chân đối thủ vào thế địa chiến để lập tức triển khai chuỗi khóa siết BJJ điêu luyện.'
-      }
-    ]
-  },
-  {
-    id: 'tech-hip-throw',
-    name: 'Hip Toss / Harai Goshi (Quật Qua Hông)',
-    nameVi: 'Quật ngã qua hông (Hip Throw / Harai Goshi)',
-    category: 'wrestling',
-    difficulty: 'Nâng cao',
-    description: 'Kỹ thuật xoay hông chèn sát hông đối thủ trong thế áp sát ghì nhau (Clinch), dùng cánh tay khóa cổ hoặc nách để nhấc bổng và quật đối thủ bay qua lưng rơi xuống thảm đấu.',
-    executionSteps: [
-      'Trong thế ôm sát, chiếm được tay cài nách (Underhook) hoặc quàng tay qua gáy đối phương (Headlock).',
-      'Bước chân chéo xoay người 180 độ, đặt hông mình thấp hơn hông của đối thủ.',
-      'Kéo cánh tay đối thủ ép sát ngực, đồng thời ưỡn hông nhấc bổng đối thủ rời khỏi sàn.',
-      'Xoay vai gập người về phía trước quăng đối thủ qua lưng.',
-      'Tiếp đất ngay trong tư thế Kesa Gatame (Khống chế khăn quàng) hoặc Side Control.'
-    ],
-    keyPoints: [
-      'Trọng tâm hông của bạn phải thấp hơn hông đối thủ thì đòn bẩy mới phát huy tác dụng.',
-      'Động tác kéo tay và xoay hông phải diễn ra đồng thời.',
-      'Đặc biệt nguy hiểm khi đối phương đang dồn lực đẩy bạn về phía sau.'
-    ],
-    counters: [
-      'Hạ thấp hông lùi lại khi thấy đối thủ bắt đầu xoay người.',
-      'Luồn tay ôm hông đối thủ từ phía sau (Take the back) khi họ xoay lưng.',
-      'Đứng thẳng người và dùng đầu gối chặn sau mông đối phương.'
-    ],
-    commonMistakes: [
-      'Không nhấc được hông đối thủ khiến bản thân bị đối thủ đè ngược từ phía sau.',
-      'Hở lưng quá nhiều mà chưa kiểm soát được tay trên của đối phương.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f4',
-        fighterName: 'Nguyễn Thị Hằng',
-        highlight: 'Cú quật hông dứt khoát trong cự ly ôm sát giúp cô nhanh chóng chiếm vị trí khống chế trên lưng đối thủ.'
-      }
-    ]
-  },
-
-  // --- Submissions ---
   {
     id: 'tech-rear-naked-choke',
-    name: 'Rear-Naked Choke (RNC - Siết Cổ Sau)',
-    nameVi: 'Khoá siết cổ từ phía sau (Rear-Naked Choke / Mata Leão)',
+    name: 'Rear-Naked Choke (Siết Cổ Sau)',
+    nameVi: 'Đòn khóa siết cổ từ phía sau (RNC)',
     category: 'submission',
     difficulty: 'Cơ bản',
-    description: 'Thế khóa siết vĩ đại và có tỷ lệ kết liễu cao nhất trong lịch sử MMA: võ sĩ chiếm vị trí sau lưng (Back Mount), vòng cánh tay ôm trọn cổ đối thủ tạo thành hình số 4 ép chặt hai động mạch cảnh dẫn máu lên não.',
-    executionSteps: [
-      'Kiểm soát lưng đối thủ bằng hai móc chân (hooks) gài vào mặt trong đùi hoặc khóa thân (Body Triangle).',
-      'Luồn cánh tay siết qua dưới cằm đối thủ, sao cho cùi chỏ thẳng hàng với tâm cằm.',
-      'Bàn tay siết nắm lấy bắp tay (Bicep) của cánh tay còn lại.',
-      'Bàn tay phụ giấu ra sau đầu đối thủ để tránh bị đối phương nắm kéo gỡ.',
-      'Hít sâu ưỡn ngực, khép chặt hai cùi chỏ và siết đều lực cho đến khi đối thủ xin hàng (Tap out).'
-    ],
-    keyPoints: [
-      'Cánh tay phải luồn thật sâu dưới cằm, không siết lên mặt hay quai hàm.',
-      'Dùng cằm của mình tì chặt vào vai đối thủ để cố định góc đầu.',
-      'Giữ bình tĩnh không bung lực giật cục, siết đều đặn tạo áp lực nghẹt thở.'
-    ],
-    counters: [
-      'Dùng hai tay nắm chặt cổ tay tấn công của đối thủ (Fight the hands) trước khi nó khóa kín.',
-      'Hạ cằm ép sát ngực không cho cánh tay luồn qua.',
-      'Trượt hông ra khỏi hai móc chân để xoay người vào lại thế Guard.'
-    ],
-    commonMistakes: [
-      'Không khóa được móc chân khiến đối phương dễ dàng xoay người thoát ra.',
-      'Để lộ bàn tay phụ phía trước cho đối thủ túm bẻ ngón tay hoặc gỡ đòn.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f3',
-        fighterName: 'Phạm Văn Nam',
-        highlight: 'Kỹ năng leo lưng và khóa RNC thần tốc từng mang lại đai vô địch hạng ruồi LION Championship.'
-      },
-      {
-        fighterId: 'f20',
-        fighterName: 'Hoàng Tú',
-        highlight: 'Thợ săn submission với 10 chiến thắng bằng các thế khóa nghẹt thở trên sàn đấu chuyên nghiệp.'
-      }
-    ]
+    description: 'Đòn khóa siết phổ biến và hiệu quả nhất trong MMA, chặn hai động mạch cảnh ở cổ đối phương từ phía sau.',
+    keyPoints: ['Luồn khuỷu tay chính xác dưới cằm đối phương', 'Bắt chặt bắp tay của tay đối diện', 'Đặt bàn tay sau đầu đối thủ và ép chặt', 'Dùng lưng và hông siết căng cơ thể'],
+    executionSteps: ['Kiểm soát lưng đối thủ với 2 móc chân (hooks)', 'Luồn cánh tay siết sâu dưới cằm đối phương', 'Nắm chặt bắp tay của tay còn lại', 'Đưa bàn tay phụ ra sau gáy đối thủ', 'Hít sâu, ép lồng ngực và siết căng bắp tay'],
+    commonMistakes: ['Không luồn cùi chỏ đủ sâu qua cằm', 'Bắt chéo chân trước hông đối thủ dễ bị bẻ mắt cá chân', 'Dùng lực cánh tay đơn thuần thay vì toàn bộ lưng và ngực'],
+    notableFighters: [{ fighterId: 'f8', fighterName: 'Phạm Văn Nam', highlight: 'Đòn siết cổ sau mang về chiến thắng bảo vệ đai 56kg' }]
+  },
+  {
+    id: 'tech-double-leg',
+    name: 'Double Leg Takedown (Bốc Đôi Quật Ngã)',
+    nameVi: 'Kỹ thuật luồn người ôm hai chân quật ngã',
+    category: 'wrestling',
+    difficulty: 'Nâng cao',
+    description: 'Kỹ thuật quật ngã nền tảng của môn Vật tự do, luồn sâu xuống trọng tâm và ôm chặt hai đùi đối thủ để nhấc bổng hoặc quét ngã xuống sàn.',
+    keyPoints: ['Hạ thấp trọng tâm bằng cách gập gối, không gập lưng', 'Bước chân xuyên thấu sâu vào giữa hai chân đối phương', 'Áp đầu vào sườn đối thủ để tạo đòn bẩy', 'Đẩy hông tới trước và kéo gối đối phương'],
+    executionSteps: ['Nhử đòn tay để đối phương nhấc cao tay thủ', 'Khuỵu gối bước chân xuyên thấu chạm sàn', 'Hai tay ôm chặt phía sau đầu gối đối phương', 'Đẩy đầu vào hông và chuyển hướng chạy góc để quật ngã'],
+    commonMistakes: ['Cúi đầu nhìn xuống sàn dễ bị dính đòn gối hoặc khóa Guillotine', 'Bước chân quá nông không đủ đà nhấc bổng', 'Dừng chuyển động khi đã ôm được chân'],
+    notableFighters: [{ fighterId: 'f3', fighterName: 'Bạch Văn Nghĩa', highlight: 'Pha bốc đôi quật ngã áp đảo tại LION Championship 33' }]
   },
   {
     id: 'tech-armbar',
-    name: 'Armbar (Bẻ Khớp Khuỷu Tay)',
-    nameVi: 'Khoá bẻ khớp tay (Armbar / Juji Gatame)',
+    name: 'Armbar (Bẻ Khớp Tay)',
+    nameVi: 'Đòn khóa bẻ khớp khuỷu tay từ vị trí Mount hoặc Guard',
     category: 'submission',
-    difficulty: 'Cơ bản',
-    description: 'Kỹ thuật cô lập một cánh tay của đối thủ giữa hai đùi, dùng khớp háng và xương mu làm điểm tựa đòn bẩy để bẻ ngược khớp khuỷu tay theo chiều ngược giải phẫu, buộc đối phương lập tức xin hàng.',
-    executionSteps: [
-      'Từ tư thế Closed Guard hoặc Mount, khống chế cổ tay và cùi chỏ của đối phương kéo chéo qua ngực.',
-      'Xoay hông vuông góc 90 độ so với thân người đối thủ.',
-      'Vung một chân qua đầu đối phương để đè cổ và mặt đối thủ xuống sàn đấu.',
-      'Kẹp chặt hai đầu gối lại với nhau để cố định khớp vai đối thủ.',
-      'Hai tay giữ chặt cổ tay đối phương sao cho ngón cái chỉ thẳng lên trần nhà, từ từ nâng hông lên cao để tạo áp lực bẻ khớp.'
-    ],
-    keyPoints: [
-      'Ngón cái đối thủ hướng lên trần nhà là yếu tố bắt buộc để bẻ gãy khớp đúng chiều.',
-      'Hai đầu gối phải khép chặt, không để hở khoảng trống cho đối thủ rút cùi chỏ về.',
-      'Nâng hông chậm rãi và kiểm soát lực để tránh gây gãy tay đối phương trước khi trọng tài can thiệp.'
-    ],
-    counters: [
-      'Khóa chặt hai tay vào nhau (Grip defense: Gable grip hoặc bắt bắp tay) chống bị duỗi tay.',
-      'Xoay người lao tới đè nặng lên ngực đối thủ (Stack defense).',
-      'Rút cùi chỏ ra ngoài trước khi đối thủ kịp vắt chân qua đầu.'
-    ],
-    commonMistakes: [
-      'Đầu gối mở rộng khiến đối phương dễ dàng giật mạnh tay thoát ra.',
-      'Không khống chế được tư thế ngón cái khiến góc bẻ bị trượt khỏi khớp.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f4',
-        fighterName: 'Nguyễn Thị Hằng',
-        highlight: 'Nhà vô địch BJJ thể hiện kỹ thuật bẻ tay hoàn hảo ngay từ thế nằm dưới (Closed Guard).'
-      },
-      {
-        fighterId: 'f7',
-        fighterName: 'Đặng Yến Nhi',
-        highlight: 'Phản xạ bắt tay đối phương khi họ sơ hở trong lúc giã đòn Ground and Pound.'
-      }
-    ]
-  },
-  {
-    id: 'tech-guillotine-choke',
-    name: 'Guillotine Choke (Khoá Máy Chém)',
-    nameVi: 'Khoá siết máy chém (Guillotine Choke)',
-    category: 'submission',
-    difficulty: 'Nâng cao',
-    description: 'Đòn phản công siết cổ kinh điển khi đối thủ cúi thấp người hoặc lao vào quật ngã; võ sĩ quàng cánh tay qua trước cổ và ép nách kẹp đầu đối phương, kết hợp dùng hai chân khóa kín bụng để bóp nghẹt khí quản và mạch máu.',
-    executionSteps: [
-      'Khi đối phương cúi người lao vào vật, quàng cánh tay vòng qua trước cổ đối thủ.',
-      'Kéo cạnh xương cẳng tay áp sát vào khí quản hoặc động mạch cổ đối phương.',
-      'Tay còn lại chắp vào cổ tay hoặc bàn tay siết (Gable grip hoặc High-elbow Marcelotine).',
-      'Ngả người ra sau kéo đối thủ vào thế Closed Guard, dùng hai chân khóa chặt quanh eo đối phương.',
-      'Ưỡn hông về phía trước và gập người theo hướng cẳng tay siết để tạo lực bóp nghẹt cực đại.'
-    ],
-    keyPoints: [
-      'Nâng cao cùi chỏ của cánh tay siết (High Elbow) giúp tăng áp lực siết lên gấp đôi.',
-      'Hai chân phải khóa kín quanh eo (Closed Guard) để ngăn đối thủ nhảy qua Side Control thoát đòn.',
-      'Đòn đánh có thể thi triển cả ở tư thế đứng (Standing Guillotine) hoặc khi nằm sàn.'
-    ],
-    counters: [
-      'Lập tức nhảy người sang phía đối diện với cánh tay siết (Vào Side Control) để hóa giải góc siết.',
-      'Dùng tay tì vào cùi chỏ đối phương đẩy lên (Von Flue counter choke).',
-      'Dùng cằm ghìm chặt vào ngực đối thủ và ưỡn hông giải phóng khí quản.'
-    ],
-    commonMistakes: [
-      'Để đối thủ nhảy sang Side Control khiến bản thân rơi vào thế nguy hiểm bị siết ngược.',
-      'Dùng lực cơ tay giật kéo thay vì dùng lực toàn bộ cơ thể và hông để nén ép.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f20',
-        fighterName: 'Hoàng Tú',
-        highlight: 'Cái bẫy chết người dành cho bất kỳ đối thủ nào liều lĩnh lao vào quật ngã mà cúi đầu quá thấp.'
-      },
-      {
-        fighterId: 'f16',
-        fighterName: 'Vũ Minh Hiếu',
-        highlight: 'Sở trường khóa Guillotine đứng (standing guillotine) khi ép đối thủ vào góc lồng.'
-      }
-    ]
-  },
-  {
-    id: 'tech-triangle-choke',
-    name: 'Triangle Choke (Khoá Siết Tam Giác)',
-    nameVi: 'Khoá siết tam giác bằng chân (Triangle Choke / Sankaku-Jime)',
-    category: 'submission',
-    difficulty: 'Nâng cao',
-    description: 'Kỹ thuật khóa siết thực hiện từ thế nằm dưới (Guard), dùng hai chân bắt chéo tạo thành hình tam giác kẹp một tay và cổ của đối thủ, lấy chính vai của đối phương ép vào một bên động mạch cổ trong khi đùi của mình ép vào bên còn lại.',
-    executionSteps: [
-      'Từ thế Guard, đẩy một tay đối thủ ra ngoài trong khi tay còn lại bị kẹp lại bên trong (1 Arm In, 1 Arm Out).',
-      'Bật hông cao, phóng chân qua vai đối thủ gài khoeo gối vào gáy đối phương.',
-      'Đẩy cánh tay bị kẹp của đối thủ vắt ngang qua cổ họ.',
-      'Gập cẳng chân đối diện khóa chặt lên trên cổ chân thứ nhất tạo thành hình tam giác cân.',
-      'Kéo đầu đối thủ xuống, đồng thời nhấc hông lên cao để hoàn tất việc siết nghẹt động mạch.'
-    ],
-    keyPoints: [
-      'Tạo góc nghiêng 45-90 độ so với đối thủ thay vì nằm thẳng hàng giúp khóa siết chặt hơn nhiều lần.',
-      'Cánh tay đối thủ bắt buộc phải vắt ngang qua cổ, nếu cánh tay nằm dọc thì góc siết sẽ bị hở.',
-      'Có thể kết hợp bẻ tay Armbar ngay trong khi đang siết Triangle Choke.'
-    ],
-    counters: [
-      'Đứng thẳng người dựng cột sống (Posture up) không cho đối thủ kéo đầu xuống.',
-      'Nhấc bổng đối thủ lên khỏi thảm rồi dập mạnh xuống sàn (Slam).',
-      'Luồn tay còn lại vào trong để giấu cổ (Hide the neck).'
-    ],
-    commonMistakes: [
-      'Khóa tam giác quanh bàn chân thay vì quanh khoeo gối làm giảm áp lực và đau cổ chân mình.',
-      'Nằm thẳng hàng với đối thủ khiến việc khóa chân bị căng cơ và khó khép kín.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f7',
-        fighterName: 'Đặng Yến Nhi',
-        highlight: 'Khả năng linh hoạt của đôi chân giúp cô khóa chặt đối thủ và dứt điểm bất ngờ.'
-      },
-      {
-        fighterId: 'f4',
-        fighterName: 'Nguyễn Thị Hằng',
-        highlight: 'Kỹ năng chuyển tiếp mượt mà giữa Triangle Choke và Armbar.'
-      }
-    ]
-  },
-  {
-    id: 'tech-kimura-lock',
-    name: 'Kimura Lock (Khoá Khớp Vai)',
-    nameVi: 'Khoá bẻ khớp vai Kimura (Kimura Lock / Double Wristlock)',
-    category: 'submission',
-    difficulty: 'Cơ bản',
-    description: 'Đòn đòn bẩy hai tay ôm khóa cẳng tay đối thủ theo góc vuông 90 độ, xoay ngược cánh tay về phía sau lưng gây áp lực cực đại lên khớp vai và khớp khuỷu tay buộc đối phương phải chịu thua.',
-    executionSteps: [
-      'Từ Closed Guard, Half Guard hoặc Side Control, bắt lấy cổ tay cùng phía của đối thủ.',
-      'Vòng cánh tay còn lại qua nách đối thủ và chộp lấy cổ tay của chính mình (Hình số 4).',
-      'Giữ cánh tay đối thủ gập đúng góc 90 độ.',
-      'Dùng toàn bộ trọng lượng thân trên đè giữ người đối thủ không cho lộn vòng thoát hiểm.',
-      'Từ từ đẩy cổ tay đối thủ về phía gáy và sau lưng họ cho tới khi họ đập tay xin hàng.'
-    ],
-    keyPoints: [
-      'Cánh tay đối thủ phải duy trì góc 90 độ; nếu tay duỗi thẳng đòn bẩy sẽ mất tác dụng.',
-      'Xoay cả thân trên của mình chứ không chỉ dùng lực của hai cánh tay.',
-      'Kimura còn là công cụ tuyệt vời để lật người (Kimura sweep) hoặc chuyển sang Back Mount.'
-    ],
-    counters: [
-      'Duỗi thẳng cánh tay thoát góc vuông trước khi đòn khóa được chốt.',
-      'Túm lấy đùi trong hoặc quần của mình để chống lại lực xoay.',
-      'Lộn nhào qua người đối thủ (Re-roll) để giải phóng khớp vai.'
-    ],
-    commonMistakes: [
-      'Để cánh tay đối thủ duỗi thẳng ra ngoài làm mất thế đòn bẩy.',
-      'Không kiểm soát hông đối thủ để họ lộn vòng thoát ra ngoài.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f20',
-        fighterName: 'Hoàng Tú',
-        highlight: 'Đòn bẩy kinh điển dùng để đảo thế hoặc bẻ cong cánh tay đối thủ từ Half Guard.'
-      },
-      {
-        fighterId: 'f11',
-        fighterName: 'Đỗ Văn Thành',
-        highlight: 'Sử dụng sức mạnh vai và tay để kiểm soát đối thủ khi địa chiến.'
-      }
-    ]
-  },
-
-  // --- Clinch ---
-  {
-    id: 'tech-thai-clinch',
-    name: 'Thai Clinch & Knee Strikes (Ôm Ghì & Lên Gối)',
-    nameVi: 'Ôm ghì Muay Thai (Plum) & Liên hoàn đòn gối',
-    category: 'clinch',
-    difficulty: 'Cơ bản',
-    description: 'Kỹ thuật ôm ghì áp sát tối thượng của Muay Thai trong MMA: võ sĩ áp chặt hai bàn tay lên đỉnh đầu và gáy đối thủ, khép kín cùi chỏ khống chế hướng quay đầu, đồng thời bẻ lái đối phương để tung các đòn gối liên hoàn vào bụng và mặt.',
-    executionSteps: [
-      'Luồn hai cánh tay vào bên trong tay đối thủ (Inside collar control).',
-      'Úp hai lòng bàn tay chồng lên nhau ở đỉnh gáy đối phương (không đan các ngón tay để tránh chấn thương ngón).',
-      'Khép chặt hai cùi chỏ tì vào xương quai xanh đối thủ, dùng sức nặng kéo gập đầu đối thủ xuống.',
-      'Xoay chuyển hướng thân người đối thủ liên tục để phá chân trụ của họ.',
-      'Nhón chân trụ, đẩy hông về phía trước và phóng đầu gối thẳng vào ngực, bụng hoặc cằm đối thủ.'
-    ],
-    keyPoints: [
-      'Khép cùi chỏ là chìa khóa để khống chế đòn đấm của đối thủ và bẻ lái cơ thể họ.',
-      'Không đan ngón tay vào nhau vì găng MMA sẽ làm cộm và dễ bị bẻ gãy ngón.',
-      'Đẩy hông về phía trước khi lên gối để tạo lực xuyên tâm.'
-    ],
-    counters: [
-      'Luồn tay vào nách đối thủ (Double Underhooks) rồi nhấc bổng quật ngã.',
-      'Dùng cùi chỏ đánh xéo vào giữa hai tay đối thủ (Cut through elbow).',
-      'Đưa một tay chặn ngang cằm đẩy mạnh đầu đối thủ ra xa.'
-    ],
-    commonMistakes: [
-      'Kéo đầu đối thủ thẳng xuống mà không khép cùi chỏ, tạo điều kiện cho đối thủ đấm móc vào sườn.',
-      'Đứng bằng cả bàn chân phẳng lì làm giảm tầm vươn và lực của đòn gối.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f2',
-        fighterName: 'Nguyễn Trần Duy Nhất',
-        highlight: 'Nghệ thuật khống chế gáy và bẻ lái đối thủ để tung đòn gối bay trúng đích đầy biến hóa.'
-      },
-      {
-        fighterId: 'f13',
-        fighterName: 'Mai Khắc Tuấn',
-        highlight: 'Uy lực từ các đòn gối thúc thẳng vào bụng trong cự ly ôm sát làm suy kiệt buồng phổi đối phương.'
-      }
-    ]
-  },
-  {
-    id: 'tech-collar-tie-dirty-boxing',
-    name: 'Collar Tie & Dirty Boxing (Kẹp Cổ & Đấm Cận Chiến)',
-    nameVi: 'Kẹp cổ khống chế & Đấm đối kháng cự ly hẹp (Dirty Boxing)',
-    category: 'clinch',
-    difficulty: 'Cơ bản',
-    description: 'Một tay dùng lòng bàn tay giữ chặt gáy đối thủ (Collar Tie) để kéo ghì và phá thăng bằng, tay còn lại liên tục tung các cú đấm uppercut, hook ngắn và cùi chỏ uy lực trong cự ly ôm sát không có không gian né tránh.',
-    executionSteps: [
-      'Dùng tay thuận hoặc tay trước chộp chặt sau gáy đối thủ, cẳng tay tì vào xương đòn của họ.',
-      'Dùng trán hoặc thái dương của mình tựa vào đầu đối thủ để hạn chế tầm nhìn và không gian ra đòn của họ.',
-      'Tay còn lại mở góc vung những cú móc ngắn (Short hooks) vào sườn hoặc xúc (Uppercuts) vào cằm.',
-      'Liên tục giật kéo đầu đối thủ sang trái phải để làm mất thăng bằng.',
-      'Chủ động ngắt cự ly bằng cú đẩy hoặc đòn chỏ khi đối thủ phản kháng.'
-    ],
-    keyPoints: [
-      'Đầu tựa vào đầu đối thủ giúp bạn tránh bị ăn cùi chỏ phản đòn.',
-      'Chân luôn ở tư thế vững chãi sẵn sàng chống lại nỗ lực vật của đối thủ.',
-      'Đòn đấm ngắn nhưng xoay hông tối đa để tạo lực chấn động.'
-    ],
-    counters: [
-      'Dùng tay đối diện gạt mạnh cùi chỏ tay Collar Tie của đối phương.',
-      'Hạ thấp trọng tâm chui dưới cánh tay lao vào bắt hai chân.',
-      'Bắt tay áo/cổ tay đối phương kéo gập vào trong.'
-    ],
-    commonMistakes: [
-      'Đứng thẳng người để lộ phần bụng dưới trước đòn gối của đối thủ.',
-      'Chỉ lo đấm mà không kiểm soát đầu đối thủ khiến họ dễ dàng đấm trả.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f10',
-        fighterName: 'Bùi Đức Anh',
-        highlight: 'Một tay ghì chặt đầu đối phương, tay kia liên tiếp xả đòn uppercut và hook ngắn tàn phá.'
-      },
-      {
-        fighterId: 'f18',
-        fighterName: 'Phan Minh Tiến',
-        highlight: 'Tận dụng thể hình vượt trội để đè gáy và nã đấm cự ly gần làm đối phương choáng váng.'
-      }
-    ]
-  },
-  {
-    id: 'tech-underhooks-cage-control',
-    name: 'Underhooks & Cage Control (Cài Tay Nách & Ép Lồng)',
-    nameVi: 'Cài tay nách (Underhook) & Kiểm soát áp đài / ép lồng',
-    category: 'clinch',
-    difficulty: 'Nâng cao',
-    description: 'Võ sĩ luồn tay xuống dưới nách đối thủ (Underhook), ép lưng đối thủ dính chặt vào thành lồng bát giác. Kỹ thuật này triệt tiêu hoàn toàn góc đánh của đối phương, bào mòn thể lực và mở ra cơ hội quật ngã hoặc giã đòn cự ly gần.',
-    executionSteps: [
-      'Lao vào áp sát, luồn một hoặc hai cánh tay sâu xuống dưới nách đối thủ, bàn tay giữ lấy cơ lưng sau của họ.',
-      'Dùng ngực và vai đẩy dồn đối thủ tựa lưng hoàn toàn vào lưới lồng.',
-      'Tì trán hoặc cằm vào hõm vai/cổ đối thủ để kiểm soát tư thế đầu của họ.',
-      'Đặt hai chân rộng bằng vai, một chân gài giữa hai chân đối thủ chặn đường xoay thoát.',
-      'Đè toàn bộ trọng lượng cơ thể lên người đối thủ kết hợp dặm chân (Foot stomps) và lên gối vào đùi.'
-    ],
-    keyPoints: [
-      'Cánh tay Underhook phải nâng cao cùi chỏ đối phương lên để làm tê liệt sức mạnh tay đó của họ.',
-      'Không để đối thủ xoay được lưng khỏi lưới lồng.',
-      'Đổi góc liên tục để chuẩn bị cho cú quật ngã bằng chân (Trip takedown).'
-    ],
-    counters: [
-      'Khoét nách đối phương (Whizzer) để bẻ góc tay underhook của họ.',
-      'Quay mặt đối diện lồng và xoay hông luồn qua bên ngoài (Circle out).',
-      'Dùng cùi chỏ chém vào mang tai đối thủ khi họ cúi đầu đè ép.'
-    ],
-    commonMistakes: [
-      'Cài underhook quá lỏng để đối thủ luồn qua lưng mình.',
-      'Chỉ ôm ép thụ động không ra đòn khiến trọng tài tách hai võ sĩ ra ngoài.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f3',
-        fighterName: 'Phạm Văn Nam',
-        highlight: 'Bậc thầy ép lồng triệt tiêu thể lực đối phương trước khi chuyển tiếp sang đòn quật ngã uy lực.'
-      },
-      {
-        fighterId: 'f11',
-        fighterName: 'Đỗ Văn Thành',
-        highlight: 'Khóa chặt 2 underhooks để khống chế hoàn toàn không gian và nhấc bổng đối thủ quật xuống sàn.'
-      }
-    ]
-  },
-  {
-    id: 'tech-clinch-elbows',
-    name: 'Elbows in Clinch (Đòn Chỏ Cận Chiến)',
-    nameVi: 'Đòn cùi chỏ cắt trong thế ôm ghì (Clinch Elbows)',
-    category: 'clinch',
-    difficulty: 'Nâng cao',
-    description: 'Tung các đòn cùi chỏ sắc bén với cự ly cực ngắn từ thế ôm sát (chỏ chém ngang, chỏ lật từ dưới lên, chỏ xoay). Do cùi chỏ là phần xương cứng và sắc nhọn, đòn đánh rất dễ gây rách da (cut) quanh vùng mắt, làm chảy máu cản trở thị giác hoặc knockout tức khắc.',
-    executionSteps: [
-      'Từ cự ly ôm sát hoặc khi vừa tách ra khỏi Clinch, tạo khoảng trống nhỏ bằng cách hơi đẩy vai đối thủ.',
-      'Gập cùi chỏ tối đa tạo thành một góc nhọn xương sắc bén.',
-      'Xoay hông và thân trên chém cùi chỏ theo đường chéo từ trên xuống hoặc từ dưới lên qua lông mày, gò má hoặc cằm đối thủ.',
-      'Tay còn lại luôn che kín cằm đề phòng cú chỏ phản hồi.',
-      'Lập tức thu tay về hoặc tiếp tục ôm ghì kiểm soát đối thủ.'
-    ],
-    keyPoints: [
-      'Điểm tiếp xúc phải là đỉnh nhọn của xương cùi chỏ (Olecranon process).',
-      'Đường chém phải dứt khoát như một nhát dao, tận dụng đà xoay của toàn bộ thân người.',
-      'Hiệu quả cao nhất khi đối thủ đang cố gắng ôm vật hoặc sơ hở khi thoát Clinch.'
-    ],
-    counters: [
-      'Khép chặt hai cánh tay che kín vùng đầu và thái dương (Ear muffs guard).',
-      'Hạ thấp trọng tâm lao thẳng vào ôm hông đối thủ.',
-      'Thụt lùi nhẹ đầu né góc chém rồi phản công bằng cú đấm thẳng.'
-    ],
-    commonMistakes: [
-      'Vung tay quá rộng làm mất tốc độ và lực cắt của đòn chỏ.',
-      'Quên phòng thủ tay còn lại khiến bản thân bị ăn đòn chỏ chéo phản hồi.'
-    ],
-    notableFighters: [
-      {
-        fighterId: 'f2',
-        fighterName: 'Nguyễn Trần Duy Nhất',
-        highlight: 'Các đòn chỏ chém và chỏ lật có độ chính xác tuyệt đối, dễ dàng gây vết cắt chảy máu đối thủ.'
-      },
-      {
-        fighterId: 'f13',
-        fighterName: 'Mai Khắc Tuấn',
-        highlight: 'Vũ khí gây sát thương cực lớn khiến bác sĩ và trọng tài nhiều lần phải can thiệp dừng trận đấu sớm.'
-      }
-    ]
+    difficulty: 'Chuyên nghiệp',
+    description: 'Kỹ thuật khóa bẻ ngược khớp khuỷu tay của Nhu thuật Brazil (BJJ) và Judo, cô lập cánh tay đối phương bằng hông và hai đùi.',
+    keyPoints: ['Kẹp chặt hai đùi vào bắp tay đối thủ', 'Ngón tay cái của đối phương hướng thẳng lên trần nhà', 'Nâng hông chậm rãi và có kiểm soát để tạo lực bẻ'],
+    executionSteps: ['Cô lập cánh tay từ vị trí Mount hoặc Guard', 'Vắt chân qua đầu đối phương để ghim chặt thân trên', 'Ngã người ra sau giữ chặt cổ tay đối thủ', 'Nâng hông lên cao để tạo áp lực kéo căng khớp khuỷu tay'],
+    commonMistakes: ['Không kẹp chặt hai đầu gối khiến đối thủ xoay tay thoát ra', 'Không kiểm soát hướng của ngón tay cái', 'Ngửa người quá vội vàng làm mất kiểm soát'],
+    notableFighters: [{ fighterId: 'f16', fighterName: 'Lê Văn Tuần', highlight: 'Đòn Armbar bảo vệ đai vô địch LION Championship 56kg' }]
   }
 ];
-
-// 11. TECHNIQUE HELPERS
-export function getTechniqueById(id: string): Technique | undefined {
-  return techniques.find(t => t.id === id);
-}
-
-export function getTechniquesByCategory(category: Technique['category']): Technique[] {
-  return techniques.filter(t => t.category === category);
-}
-
-export function searchTechniques(query: string): Technique[] {
-  const q = query.toLowerCase().trim();
-  if (!q) return techniques;
-  return techniques.filter(t => 
-    t.name.toLowerCase().includes(q) ||
-    t.nameVi.toLowerCase().includes(q) ||
-    t.description.toLowerCase().includes(q) ||
-    t.notableFighters.some(f => f.fighterName.toLowerCase().includes(q) || f.highlight.toLowerCase().includes(q))
-  );
-}
-

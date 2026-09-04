@@ -1,14 +1,20 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Link from 'next/link'
 import { FighterCard } from '@/components/fighter/FighterCard'
 import { SearchInput } from '@/components/ui/SearchInput'
 import { EmptyState } from '@/components/ui/EmptyState'
+import { useLiveFighters } from '@/lib/services/data-store'
+import { Edit3 } from 'lucide-react'
 
 type FighterForList = {
   id: string
   name: string
   nickname?: string
+  avatar?: string
+  image?: string
+  fullBodyImage?: string
   record: { wins: number; losses: number; draws: number; winsByKo: number; winsBySub: number; winsByDec: number }
   eloRating: number
   isChampion: boolean
@@ -38,13 +44,43 @@ interface FighterListClientProps {
   gyms: Gym[]
 }
 
-export function FighterListClient({ fighters, divisions, gyms }: FighterListClientProps) {
+export function FighterListClient({ fighters: initialFighters, divisions, gyms }: FighterListClientProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedDivision, setSelectedDivision] = useState('')
   const [selectedGym, setSelectedGym] = useState('')
 
+  // Live fighters from DataStore
+  const liveStoredFighters = useLiveFighters()
+
+  // Merge live stored fighters with initial list details (divisionName, gymName)
+  const displayFighters: FighterForList[] = useMemo(() => {
+    return liveStoredFighters.map(stored => {
+      const initial = initialFighters.find(f => f.id === stored.id)
+      const div = divisions.find(d => d.id === stored.divisionId)
+      const g = gyms.find(gymItem => gymItem.id === stored.gymId)
+      return {
+        id: stored.id,
+        name: stored.name,
+        nickname: stored.nickname,
+        avatar: stored.avatar || initial?.avatar,
+        image: stored.image || initial?.image,
+        fullBodyImage: stored.fullBodyImage || initial?.fullBodyImage,
+        record: stored.record || initial?.record || { wins: 0, losses: 0, draws: 0, winsByKo: 0, winsBySub: 0, winsByDec: 0 },
+        eloRating: stored.eloRating || initial?.eloRating || 1500,
+        isChampion: stored.isChampion ?? initial?.isChampion ?? false,
+        styles: stored.styles || initial?.styles || ['MMA'],
+        height: stored.height || initial?.height || 170,
+        reach: stored.reach || initial?.reach || 170,
+        divisionName: div?.nameVi || div?.name || initial?.divisionName,
+        gymName: g?.name || initial?.gymName,
+        divisionId: stored.divisionId || initial?.divisionId,
+        gymId: stored.gymId || initial?.gymId,
+      }
+    })
+  }, [liveStoredFighters, initialFighters, divisions, gyms])
+
   const filteredFighters = useMemo(() => {
-    return fighters.filter((fighter) => {
+    return displayFighters.filter((fighter) => {
       const matchesSearch = 
         !searchQuery || 
         fighter.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -55,7 +91,7 @@ export function FighterListClient({ fighters, divisions, gyms }: FighterListClie
 
       return matchesSearch && matchesDivision && matchesGym
     })
-  }, [fighters, searchQuery, selectedDivision, selectedGym])
+  }, [displayFighters, searchQuery, selectedDivision, selectedGym])
 
   return (
     <div className="space-y-6">
@@ -89,9 +125,20 @@ export function FighterListClient({ fighters, divisions, gyms }: FighterListClie
             <option key={gym.id} value={gym.id}>{gym.name}</option>
           ))}
         </select>
-        
-        <div className="w-full md:w-auto md:ml-auto text-sm text-muted-foreground whitespace-nowrap">
-          Tìm thấy {filteredFighters.length} võ sĩ
+
+        <div className="w-full md:w-auto md:ml-auto flex items-center justify-between md:justify-end gap-3">
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
+            Tìm thấy {filteredFighters.length} võ sĩ
+          </span>
+
+          <Link
+            href="/admin/fighters"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-bold transition-all"
+            title="Quản lý và cập nhật danh sách võ sĩ trong CMS"
+          >
+            <Edit3 className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Quản trị CMS</span>
+          </Link>
         </div>
       </div>
 

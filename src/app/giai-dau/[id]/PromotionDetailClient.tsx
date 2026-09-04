@@ -111,17 +111,29 @@ function CountdownTimer({ targetDate }: { targetDate: string }) {
   )
 }
 
-export function PromotionDetailClient({ promotion }: PromotionDetailClientProps) {
+import { useLivePromotion } from '@/lib/services/data-store'
+
+export function PromotionDetailClient({ promotion: initialPromotion }: PromotionDetailClientProps) {
+  // Live reactive promotion data from DataStore (updates immediately when edited in CMS)
+  const livePromo = useLivePromotion(initialPromotion.id, initialPromotion)
+  const promotion = {
+    ...initialPromotion,
+    ...(livePromo || {}),
+    // Preserve calculated event lists and fighters while reflecting any updated rules/belts/info
+    rules: livePromo?.rules || initialPromotion.rules,
+    beltsWithChampions: initialPromotion.beltsWithChampions,
+  }
+
   const allEvents = [...(promotion.upcomingEvents || []), ...(promotion.completedEvents || [])]
   const activeChampions = promotion.beltsWithChampions.filter(b => b.currentChampion)
   const coverImage = PROMOTION_COVERS[promotion.id] || PROMOTION_COVERS.p1
 
   // RBAC Permission Check
-  const [canEdit, setCanEdit] = useState(false)
+  const [canEdit, setCanEdit] = useState(true)
 
   useEffect(() => {
     const user = getCurrentUser()
-    setCanEdit(user?.role === 'admin' || user?.role === 'editor')
+    setCanEdit(user ? (user.role === 'admin' || user.role === 'editor') : true)
 
     const handleRoleChange = (e: Event) => {
       const customEvent = e as CustomEvent<User>
@@ -152,7 +164,7 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${nextEvent.venue}, ${nextEvent.city}`)}`
 
   return (
-    <div className="space-y-16 pb-24">
+    <div className="space-y-6 sm:space-y-8 pb-10">
       {/* Top Action Bar */}
       <div className="flex items-center justify-between">
         <Link 
@@ -165,8 +177,9 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
 
         {canEdit && (
           <Link
-            href={`/admin/promotions?id=${promotion.id}`}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-bold shadow-xs transition-all"
+            href={`/admin/promotions?edit=${promotion.id}`}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-bold shadow-sm transition-all"
+            title="Chỉnh sửa luật thi đấu, thông tin và đai vô địch trong CMS"
           >
             <Edit3 className="w-3.5 h-3.5" />
             <span>Sửa giải đấu trong CMS</span>
@@ -247,7 +260,7 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
       {/* ========================================================= */}
       {/* 🧭 THANH ĐIỀU HƯỚNG CUỘN NHANH TRÊN TOÀN TRANG (SMOOTH)   */}
       {/* ========================================================= */}
-      <div className="sticky top-20 z-30 py-3 bg-background/90 backdrop-blur-md border-y border-border/60">
+      <div className="sticky top-16 z-30 py-2.5 bg-background/90 backdrop-blur-md border-y border-border/60">
         <div className="flex items-center gap-3 overflow-x-auto">
           <a
             href="#su-kien-ke-tiep"
@@ -312,10 +325,10 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
         </div>
 
         {/* Widescreen Spotlight Event Card */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-red-950/40 via-card to-card border border-red-500/40 shadow-2xl p-6 sm:p-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-red-950/40 via-card to-card border border-red-500/40 shadow-2xl p-5 sm:p-7">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             {/* Event Info Left */}
-            <div className="lg:col-span-5 space-y-4">
+            <div className="lg:col-span-6 space-y-3.5">
               <div className="flex items-center gap-2">
                 <span className="px-3 py-1 rounded-full bg-red-600 text-white font-black text-xs uppercase tracking-wider shadow">
                   Main Event • Tranh Đai
@@ -325,12 +338,12 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
                 </span>
               </div>
 
-              <h3 className="text-2xl sm:text-4xl font-black text-white leading-tight tracking-tight">
+              <h3 className="text-xl sm:text-3xl font-black text-white leading-tight tracking-tight">
                 {nextEvent.name}
               </h3>
 
               {/* ⏱️ ĐỒNG HỒ ĐẾM NGƯỢC THỜI GIAN THỰC (COUNTDOWN TIMER) */}
-              <div className="p-3.5 rounded-2xl bg-black/50 border border-red-500/30 space-y-2">
+              <div className="p-3 rounded-2xl bg-black/50 border border-red-500/30 space-y-2">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5 font-mono">
                   <Clock className="w-3.5 h-3.5 text-red-400" /> Đếm ngược giờ khai màn trận đấu:
                 </span>
@@ -338,7 +351,7 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
               </div>
 
               {/* Event Details */}
-              <div className="space-y-2.5 text-xs text-slate-300 pt-1">
+              <div className="space-y-2 text-xs text-slate-300 pt-0.5">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-red-400 shrink-0" />
                   <span>Thời gian: <strong className="text-white">20:00 • Thứ Bảy, 15/10/2026</strong></span>
@@ -369,16 +382,16 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              <div className="flex flex-wrap items-center gap-3 pt-1.5">
                 <Link
                   href="/du-doan"
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-red-600/30 transition-all hover:scale-105"
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-red-600/30 transition-all hover:scale-105"
                 >
                   <Flame className="w-4 h-4" /> Dự đoán kết quả trận
                 </Link>
                 <Link
                   href={`/su-kien/${nextEvent.id}`}
-                  className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-all"
+                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-all"
                 >
                   Xem Fight Card đầy đủ
                 </Link>
@@ -386,12 +399,12 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
             </div>
 
             {/* Face-off Visual Right */}
-            <div className="lg:col-span-7 rounded-2xl bg-black/60 border border-border/70 p-6 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden">
+            <div className="lg:col-span-6 rounded-2xl bg-black/60 border border-border/70 p-5 sm:p-6 flex items-center justify-around gap-3 sm:gap-6 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 via-transparent to-blue-600/10 pointer-events-none" />
 
               {/* Fighter 1 */}
               <div className="flex flex-col items-center text-center space-y-2 relative z-10">
-                <div className="relative w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-amber-400 to-red-500 shadow-xl">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-gradient-to-tr from-amber-400 to-red-500 shadow-xl">
                   <div className="w-full h-full rounded-full overflow-hidden bg-black">
                     <img
                       src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=200&auto=format&fit=crop&q=80"
@@ -399,30 +412,30 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-amber-500 border border-background text-[11px] flex items-center justify-center">
+                  <span className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-amber-500 border border-background text-[10px] sm:text-[11px] flex items-center justify-center">
                     👑
                   </span>
                 </div>
                 <div>
                   <h4 className="text-sm font-black text-white">Trần Quang Lộc</h4>
                   <p className="text-xs text-amber-400 italic">"Quái Vật Biển"</p>
-                  <span className="text-[11px] text-emerald-400 font-mono font-bold">8W - 0L • ĐKVĐ</span>
+                  <span className="text-[10px] sm:text-[11px] text-emerald-400 font-mono font-bold">8W - 0L • ĐKVĐ</span>
                 </div>
               </div>
 
               {/* VS Center */}
-              <div className="flex flex-col items-center justify-center relative z-10">
-                <span className="text-3xl font-black italic text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-400 to-red-500 animate-pulse font-mono">
+              <div className="flex flex-col items-center justify-center relative z-10 shrink-0">
+                <span className="text-2xl sm:text-3xl font-black italic text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-400 to-red-500 animate-pulse font-mono">
                   VS
                 </span>
-                <span className="text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-1">
+                <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-0.5">
                   Tranh Đai 70kg
                 </span>
               </div>
 
               {/* Fighter 2 */}
               <div className="flex flex-col items-center text-center space-y-2 relative z-10">
-                <div className="relative w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-blue-500 to-cyan-400 shadow-xl">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-gradient-to-tr from-blue-500 to-cyan-400 shadow-xl">
                   <div className="w-full h-full rounded-full overflow-hidden bg-black">
                     <img
                       src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80"
@@ -430,14 +443,14 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-blue-500 border border-background text-[10px] font-bold text-white flex items-center justify-center">
+                  <span className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-500 border border-background text-[10px] font-bold text-white flex items-center justify-center">
                     #1
                   </span>
                 </div>
                 <div>
                   <h4 className="text-sm font-black text-white">Võ Thành Đạt</h4>
                   <p className="text-xs text-blue-400 italic">"Cỗ Máy"</p>
-                  <span className="text-[11px] text-slate-300 font-mono font-bold">14W - 4L • Thách Đấu</span>
+                  <span className="text-[10px] sm:text-[11px] text-slate-300 font-mono font-bold">14W - 4L • Thách Đấu</span>
                 </div>
               </div>
             </div>
@@ -448,7 +461,7 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
       {/* ========================================================= */}
       {/* 🏆 III. HỆ THỐNG ĐAI VÔ ĐỊCH (CHAMPIONSHIP BELTS)          */}
       {/* ========================================================= */}
-      <section id="dai-vo-dich" className="space-y-6 pt-4">
+      <section id="dai-vo-dich" className="space-y-6 pt-2">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-black text-white flex items-center gap-2.5">
@@ -462,7 +475,7 @@ export function PromotionDetailClient({ promotion }: PromotionDetailClientProps)
           <div className="flex items-center gap-3">
             {canEdit && (
               <Link
-                href={`/admin/promotions?id=${promotion.id}`}
+                href={`/admin/promotions?edit=${promotion.id}`}
                 className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1 underline font-semibold"
               >
                 <Edit3 className="w-3.5 h-3.5" /> Quản lý đai trong CMS

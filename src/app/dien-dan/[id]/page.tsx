@@ -44,7 +44,7 @@ export default async function ForumDetailPage({ params }: ForumDetailPageProps) 
     .slice(0, 4)
 
   return (
-    <div className="container mx-auto py-8 px-4 max-w-7xl">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8">
       <ForumDetailClient
         post={post}
         initialComments={comments}

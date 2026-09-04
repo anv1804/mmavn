@@ -13,7 +13,7 @@ export default function TechniquePage() {
   const stats = getTechniqueStats()
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-8 max-w-7xl">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8 space-y-6 sm:space-y-8">
       {/* Hero Header */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-card via-card-hover to-card border border-border p-6 md:p-10">
         <div className="absolute top-0 right-0 -mt-10 -mr-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none" />

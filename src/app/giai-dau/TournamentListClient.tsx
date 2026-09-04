@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/Badge'
 import { Tabs, Tab } from '@/components/ui/Tabs'
 import { cn } from '@/lib/utils'
 import type { PromotionWithDetails, RuleComparisonRow } from '@/lib/services/promotion-service'
+import { useLivePromotions } from '@/lib/services/data-store'
 import { 
   Trophy, 
   Flame, 
@@ -21,7 +22,12 @@ import {
   Clock, 
   Zap,
   Sparkles,
-  Award
+  Award,
+  Edit3,
+  Settings,
+  Crown,
+  MapPin,
+  Building2
 } from 'lucide-react'
 
 interface TournamentListClientProps {
@@ -40,6 +46,23 @@ export function TournamentListClient({ promotions, rulesComparison }: Tournament
   const [activeTab, setActiveTab] = useState('all')
   const [viewMode, setViewMode] = useState<'cards' | 'comparison'>('cards')
 
+  // Live synchronised promotions list from Data Store
+  const livePromos = useLivePromotions(promotions)
+
+  // Merge live promo data (name, tagline, description, formatType, etc.) with pre-calculated details
+  const displayPromotions: PromotionWithDetails[] = livePromos.map(lp => {
+    const originalDetail = promotions.find(p => p.id === lp.id)
+    return {
+      ...(originalDetail || ({} as PromotionWithDetails)),
+      ...lp,
+      beltsWithChampions: originalDetail?.beltsWithChampions || [],
+      upcomingEvents: originalDetail?.upcomingEvents || [],
+      completedEvents: originalDetail?.completedEvents || [],
+      signatureFighters: originalDetail?.signatureFighters || [],
+      totalEvents: originalDetail?.totalEvents || 0,
+    }
+  })
+
   const filterTabs: Tab[] = [
     { id: 'all', label: 'Tất cả giải đấu' },
     { id: 'pro-cage', label: 'Pro Cage (LION)' },
@@ -57,7 +80,7 @@ export function TournamentListClient({ promotions, rulesComparison }: Tournament
     }
   }
 
-  const filteredPromotions = promotions.filter(p => {
+  const filteredPromotions = displayPromotions.filter(p => {
     if (activeTab === 'all' || activeTab === 'comparison') return true
     if (activeTab === 'pro-cage') return p.formatType === 'Pro Cage'
     if (activeTab === 'semi-pro') return p.formatType === 'Semi-Pro Grassroots'
@@ -112,27 +135,38 @@ export function TournamentListClient({ promotions, rulesComparison }: Tournament
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-border/70 pb-5">
         <Tabs tabs={filterTabs} activeTab={activeTab} onChange={handleTabChange} />
 
-        <div className="flex items-center gap-1.5 bg-card/60 p-1 rounded-xl border border-border/70">
-          <button
-            onClick={() => setViewMode('cards')}
-            className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5",
-              viewMode === 'cards' ? "bg-card text-white shadow-xs" : "text-slate-400 hover:text-white"
-            )}
+        <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex items-center gap-1.5 bg-card/60 p-1 rounded-xl border border-border/70">
+            <button
+              onClick={() => setViewMode('cards')}
+              className={cn(
+                "px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5",
+                viewMode === 'cards' ? "bg-card text-white shadow-xs" : "text-slate-400 hover:text-white"
+              )}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              Thẻ giải đấu
+            </button>
+            <button
+              onClick={() => setViewMode('comparison')}
+              className={cn(
+                "px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5",
+                viewMode === 'comparison' ? "bg-card text-white shadow-xs" : "text-slate-400 hover:text-white"
+              )}
+            >
+              <Scale className="w-3.5 h-3.5" />
+              Bảng đối chiếu
+            </button>
+          </div>
+
+          <Link
+            href="/admin/promotions"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-bold transition-all"
+            title="Mở bảng điều khiển quản trị CMS giải đấu"
           >
-            <Layers className="w-3.5 h-3.5" />
-            Thẻ giải đấu
-          </button>
-          <button
-            onClick={() => setViewMode('comparison')}
-            className={cn(
-              "px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5",
-              viewMode === 'comparison' ? "bg-card text-white shadow-xs" : "text-slate-400 hover:text-white"
-            )}
-          >
-            <Scale className="w-3.5 h-3.5" />
-            Bảng đối chiếu
-          </button>
+            <Edit3 className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Quản trị CMS</span>
+          </Link>
         </div>
       </div>
 
@@ -303,6 +337,79 @@ export function TournamentListClient({ promotions, rulesComparison }: Tournament
           </div>
         </div>
       )}
+
+      {/* 3. National Host Arenas Showcase */}
+      <section className="space-y-4 pt-6 border-t border-border/60">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+              <Building2 className="w-5 h-5 text-primary" />
+              Đấu Trường &amp; Nhà Thi Đấu Tiêu Biểu
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Các địa điểm quy mô lớn đăng cai tổ chức các sự kiện MMA chuyên nghiệp hàng đầu Việt Nam
+            </p>
+          </div>
+          <Link href="/su-kien" className="text-xs text-primary hover:underline font-bold flex items-center gap-1">
+            Xem lịch sự kiện các sân <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            {
+              name: 'Nhà thi đấu Tây Hồ',
+              city: 'Hà Nội',
+              capacity: '5.000 khán giả',
+              description: 'Đại bản doanh quen thuộc của LION Championship khu vực phía Bắc.',
+              tag: 'LION Northern Hub',
+              color: 'text-red-400 border-red-500/30'
+            },
+            {
+              name: 'Nhà thi đấu Rạch Miễu',
+              city: 'TP. Hồ Chí Minh',
+              capacity: '4.500 khán giả',
+              description: 'Sân nhà sôi động của các sự kiện LC miền Nam và giải đấu GMA.',
+              tag: 'Southern Arena',
+              color: 'text-emerald-400 border-emerald-500/30'
+            },
+            {
+              name: 'The Grand Ho Tram Strip',
+              city: 'Bà Rịa - Vũng Tàu',
+              capacity: '3.000 khán giả',
+              description: 'Khu phức hợp nghỉ dưỡng tổ chức các sự kiện quốc tế AFC và MMA du lịch.',
+              tag: 'International Resort',
+              color: 'text-amber-400 border-amber-500/30'
+            },
+            {
+              name: 'Cung TTHN Quần Ngựa',
+              city: 'Hà Nội',
+              capacity: '8.000 khán giả',
+              description: 'Nơi diễn ra các đêm chung kết tranh đai quy mô lớn nhất quốc gia.',
+              tag: 'Mega Championship Arena',
+              color: 'text-cyan-400 border-cyan-500/30'
+            }
+          ].map((venue, idx) => (
+            <div key={idx} className="p-4 rounded-2xl bg-card/75 border border-border/70 hover:border-primary/50 transition-all flex flex-col justify-between">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-full border bg-slate-900", venue.color)}>
+                    {venue.tag}
+                  </span>
+                  <span className="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-slate-500" /> {venue.city}
+                  </span>
+                </div>
+                <h4 className="font-bold text-base text-white">{venue.name}</h4>
+                <p className="text-xs text-slate-300 leading-relaxed line-clamp-2">{venue.description}</p>
+              </div>
+              <div className="pt-3 mt-3 border-t border-border/50 text-[11px] font-mono text-slate-400">
+                Sức chứa: <span className="font-bold text-slate-200">{venue.capacity}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }

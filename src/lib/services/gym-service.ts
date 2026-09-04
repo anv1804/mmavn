@@ -5,6 +5,7 @@ export interface GymFighterSummary {
   id: string
   name: string
   nickname?: string
+  avatar?: string
   isChampion: boolean
   styles: string[]
   divisionName: string
@@ -37,6 +38,7 @@ export function getGymWithDetails(id: string): GymWithDetails | null {
       id: f.id,
       name: f.name,
       nickname: f.nickname,
+      avatar: f.avatar,
       isChampion: f.isChampion,
       styles: f.styles,
       divisionName,

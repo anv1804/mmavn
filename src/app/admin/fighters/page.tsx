@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect, Suspense } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { 
   Users, 
   Search, 
@@ -22,15 +23,36 @@ import {
   Zap, 
   ArrowUpDown,
   Flame,
-  Award
+  Award,
+  Image as ImageIcon,
+  Share2,
+  FileText,
+  Crown
 } from 'lucide-react'
-import { fighters as initialFighters, divisions, gyms } from '@/data/mock-data'
+import { divisions, gyms } from '@/data/mock-data'
+import { 
+  getStoredFighters, 
+  saveStoredFighter, 
+  deleteStoredFighter, 
+  resetStoredFighters 
+} from '@/lib/services/data-store'
 import { RadarChart } from '@/components/charts/RadarChart'
 import { formatRecord } from '@/lib/services/fighter-service'
 import type { Fighter } from '@/types'
 
 export default function AdminFightersPage() {
-  const [fighterList, setFighterList] = useState<Fighter[]>(initialFighters)
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-mono text-sm">Đang tải trung tâm quản trị võ sĩ...</div>}>
+      <AdminFightersContent />
+    </Suspense>
+  )
+}
+
+function AdminFightersContent() {
+  const searchParams = useSearchParams()
+  const editQueryId = searchParams.get('edit')
+
+  const [fighterList, setFighterList] = useState<Fighter[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedDivision, setSelectedDivision] = useState<string>('all')
   const [selectedGym, setSelectedGym] = useState<string>('all')
@@ -48,6 +70,11 @@ export default function AdminFightersPage() {
   const [formData, setFormData] = useState<Partial<Fighter>>({
     name: '',
     nickname: '',
+    avatar: '',
+    fullBodyImage: '',
+    coverImage: '',
+    bio: '',
+    quote: '',
     dateOfBirth: '1995-01-01',
     nationality: 'VN',
     height: 170,
@@ -58,6 +85,12 @@ export default function AdminFightersPage() {
     eloRating: 1500,
     isChampion: false,
     championshipTitle: '',
+    socialLinks: {
+      facebook: '',
+      instagram: '',
+      youtube: '',
+      tiktok: '',
+    },
     record: {
       wins: 0,
       losses: 0,
@@ -82,6 +115,21 @@ export default function AdminFightersPage() {
     }
   })
 
+  // Load from Data Store on Mount
+  useEffect(() => {
+    const list = getStoredFighters()
+    setFighterList(list)
+
+    if (editQueryId) {
+      const match = list.find(f => f.id.toLowerCase() === editQueryId.toLowerCase())
+      if (match) {
+        setEditingFighterId(match.id)
+        setFormData(JSON.parse(JSON.stringify(match)))
+        setIsModalOpen(true)
+      }
+    }
+  }, [editQueryId])
+
   // Show temporary toast
   const showToast = (text: string, type: 'success' | 'info' | 'error' = 'success') => {
     setToastMessage({ text, type })
@@ -94,6 +142,11 @@ export default function AdminFightersPage() {
     setFormData({
       name: '',
       nickname: '',
+      avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400&auto=format&fit=crop&q=80',
+      fullBodyImage: '',
+      coverImage: '',
+      bio: '',
+      quote: '',
       dateOfBirth: '1996-05-10',
       nationality: 'VN',
       height: 172,
@@ -104,6 +157,12 @@ export default function AdminFightersPage() {
       eloRating: 1450,
       isChampion: false,
       championshipTitle: '',
+      socialLinks: {
+        facebook: '',
+        instagram: '',
+        youtube: '',
+        tiktok: '',
+      },
       record: {
         wins: 5,
         losses: 1,
@@ -140,6 +199,7 @@ export default function AdminFightersPage() {
   // Handle delete fighter
   const handleDeleteFighter = (id: string) => {
     const fighter = fighterList.find(f => f.id === id)
+    deleteStoredFighter(id)
     setFighterList(prev => prev.filter(f => f.id !== id))
     setDeleteConfirmId(null)
     showToast(`Đã xóa võ sĩ ${fighter?.name || id} khỏi cơ sở dữ liệu.`, 'info')
@@ -155,16 +215,14 @@ export default function AdminFightersPage() {
 
     if (editingFighterId) {
       // Update
-      setFighterList(prev => prev.map(f => {
-        if (f.id === editingFighterId) {
-          return {
-            ...f,
-            ...formData,
-          } as Fighter
-        }
-        return f
-      }))
-      showToast(`Đã cập nhật thông tin võ sĩ ${formData.name} thành công!`)
+      const updatedFighter = {
+        ...formData,
+        id: editingFighterId,
+      } as Fighter
+
+      saveStoredFighter(updatedFighter)
+      setFighterList(prev => prev.map(f => f.id === editingFighterId ? updatedFighter : f))
+      showToast(`Đã cập nhật và đồng bộ thông tin võ sĩ ${formData.name} thành công!`)
     } else {
       // Add new
       const newId = `f-new-${Date.now()}`
@@ -188,6 +246,7 @@ export default function AdminFightersPage() {
         }
       } as Fighter
 
+      saveStoredFighter(newFighter)
       setFighterList(prev => [newFighter, ...prev])
       showToast(`Đã thêm mới võ sĩ ${newFighter.name} vào hệ thống!`)
     }
@@ -724,17 +783,156 @@ export default function AdminFightersPage() {
                   </div>
 
                   {/* Championship Status */}
-                  <div className="flex items-center gap-3 p-3 bg-[#0d101e] border border-[#1e2438] rounded-xl">
-                    <input
-                      type="checkbox"
-                      id="isChamp"
-                      checked={formData.isChampion || false}
-                      onChange={(e) => setFormData({ ...formData, isChampion: e.target.checked })}
-                      className="w-4 h-4 accent-red-600 rounded cursor-pointer"
-                    />
-                    <label htmlFor="isChamp" className="text-xs font-semibold text-slate-200 cursor-pointer">
-                      Đang giữ đai vô địch (Champion Status)
-                    </label>
+                  <div className="p-3 bg-[#0d101e] border border-[#1e2438] rounded-xl space-y-2">
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        id="isChamp"
+                        checked={formData.isChampion || false}
+                        onChange={(e) => setFormData({ ...formData, isChampion: e.target.checked })}
+                        className="w-4 h-4 accent-red-600 rounded cursor-pointer"
+                      />
+                      <label htmlFor="isChamp" className="text-xs font-semibold text-slate-200 cursor-pointer flex items-center gap-1.5">
+                        <Crown className="w-4 h-4 text-amber-400" />
+                        Đang giữ đai vô địch (Champion Status)
+                      </label>
+                    </div>
+
+                    {formData.isChampion && (
+                      <div>
+                        <label className="block text-[11px] text-amber-400 mb-1">Tên đai vô địch nắm giữ</label>
+                        <input
+                          type="text"
+                          value={formData.championshipTitle || ''}
+                          onChange={(e) => setFormData({ ...formData, championshipTitle: e.target.value })}
+                          className="w-full bg-[#121627] border border-amber-500/30 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                          placeholder="Ví dụ: Đương kim Vô địch LION Championship 60kg"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Media & Photos */}
+                  <div className="p-3.5 bg-[#0d101e] border border-[#1e2438] rounded-xl space-y-3">
+                    <span className="text-xs font-bold text-slate-300 uppercase tracking-wider block flex items-center gap-1.5">
+                      <ImageIcon className="w-3.5 h-3.5 text-blue-400" />
+                      Hình Ảnh & Media Võ Sĩ
+                    </span>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[11px] text-slate-400 mb-0.5">Ảnh đại diện (Avatar URL)</label>
+                        <input
+                          type="text"
+                          value={formData.avatar || ''}
+                          onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
+                          className="w-full bg-[#121627] border border-[#1e2438] rounded-lg px-2.5 py-1.5 text-xs text-white"
+                          placeholder="https://..."
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[11px] text-slate-400 mb-0.5">Ảnh toàn thân cutout (Full Body)</label>
+                        <input
+                          type="text"
+                          value={formData.fullBodyImage || ''}
+                          onChange={(e) => setFormData({ ...formData, fullBodyImage: e.target.value })}
+                          className="w-full bg-[#121627] border border-[#1e2438] rounded-lg px-2.5 py-1.5 text-xs text-white"
+                          placeholder="https://... (dùng cho Hero Banner)"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] text-slate-400 mb-0.5">Ảnh bìa Profile (Cover Image URL)</label>
+                      <input
+                        type="text"
+                        value={formData.coverImage || ''}
+                        onChange={(e) => setFormData({ ...formData, coverImage: e.target.value })}
+                        className="w-full bg-[#121627] border border-[#1e2438] rounded-lg px-2.5 py-1.5 text-xs text-white"
+                        placeholder="https://..."
+                      />
+                    </div>
+                  </div>
+
+                  {/* Bio & Quote */}
+                  <div className="p-3.5 bg-[#0d101e] border border-[#1e2438] rounded-xl space-y-3">
+                    <span className="text-xs font-bold text-slate-300 uppercase tracking-wider block flex items-center gap-1.5">
+                      <FileText className="w-3.5 h-3.5 text-purple-400" />
+                      Tiểu Sử & Châm Ngôn
+                    </span>
+
+                    <div>
+                      <label className="block text-[11px] text-slate-400 mb-0.5">Câu châm ngôn / Trích dẫn (Quote)</label>
+                      <input
+                        type="text"
+                        value={formData.quote || ''}
+                        onChange={(e) => setFormData({ ...formData, quote: e.target.value })}
+                        className="w-full bg-[#121627] border border-[#1e2438] rounded-lg px-2.5 py-1.5 text-xs text-white"
+                        placeholder="Ví dụ: Bước vào lồng đấu, chỉ có chiến thắng hoặc gục ngã."
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] text-slate-400 mb-0.5">Tiểu sử sự nghiệp thi đấu (Bio)</label>
+                      <textarea
+                        rows={2}
+                        value={formData.bio || ''}
+                        onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                        className="w-full bg-[#121627] border border-[#1e2438] rounded-lg px-2.5 py-1.5 text-xs text-white"
+                        placeholder="Tóm tắt quá trình rèn luyện, các mốc son sự nghiệp..."
+                      />
+                    </div>
+                  </div>
+
+                  {/* Social Links */}
+                  <div className="p-3.5 bg-[#0d101e] border border-[#1e2438] rounded-xl space-y-3">
+                    <span className="text-xs font-bold text-slate-300 uppercase tracking-wider block flex items-center gap-1.5">
+                      <Share2 className="w-3.5 h-3.5 text-emerald-400" />
+                      Mạng Xã Hội
+                    </span>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <input
+                        type="text"
+                        value={formData.socialLinks?.facebook || ''}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          socialLinks: { ...formData.socialLinks, facebook: e.target.value }
+                        })}
+                        className="w-full bg-[#121627] border border-[#1e2438] rounded-lg px-2.5 py-1.5 text-[11px] text-white"
+                        placeholder="Facebook URL"
+                      />
+                      <input
+                        type="text"
+                        value={formData.socialLinks?.instagram || ''}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          socialLinks: { ...formData.socialLinks, instagram: e.target.value }
+                        })}
+                        className="w-full bg-[#121627] border border-[#1e2438] rounded-lg px-2.5 py-1.5 text-[11px] text-white"
+                        placeholder="Instagram URL"
+                      />
+                      <input
+                        type="text"
+                        value={formData.socialLinks?.youtube || ''}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          socialLinks: { ...formData.socialLinks, youtube: e.target.value }
+                        })}
+                        className="w-full bg-[#121627] border border-[#1e2438] rounded-lg px-2.5 py-1.5 text-[11px] text-white"
+                        placeholder="YouTube URL"
+                      />
+                      <input
+                        type="text"
+                        value={formData.socialLinks?.tiktok || ''}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          socialLinks: { ...formData.socialLinks, tiktok: e.target.value }
+                        })}
+                        className="w-full bg-[#121627] border border-[#1e2438] rounded-lg px-2.5 py-1.5 text-[11px] text-white"
+                        placeholder="TikTok URL"
+                      />
+                    </div>
                   </div>
                 </div>
 

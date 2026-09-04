@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ForumPage() {
   return (
-    <div className="container mx-auto py-6 px-4 max-w-7xl space-y-8">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8 space-y-6 sm:space-y-8">
       {/* Social Newsfeed Page Header Banner */}
       <div className="relative rounded-3xl bg-gradient-to-r from-[#0d1222] via-[#11172a] to-[#0a0d18] border border-border/70 p-6 sm:p-8 overflow-hidden shadow-xl">
         <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />

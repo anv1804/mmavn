@@ -50,7 +50,7 @@ export default async function PromotionDetailPage({
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 sm:py-8">
       <PromotionDetailClient promotion={promotion} />
     </div>
   )
