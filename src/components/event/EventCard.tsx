@@ -41,41 +41,43 @@ export function EventCard({ event, compact = false }: EventCardProps) {
 
   return (
     <Link href={`/su-kien/${event.id}`}>
-      <Card hover className={cn("flex flex-col h-full", compact ? "p-4" : "p-6")}>
+      <Card hover className={cn("flex flex-col h-full bg-white border-slate-200 hover:border-sky-300", compact ? "p-4" : "p-6")}>
         <div className="flex justify-between items-start mb-3">
           <Badge variant={statusMap[event.status].variant}>
             {statusMap[event.status].label}
           </Badge>
           {event.promotionName && (
-            <Badge variant="outline" size="sm">{event.promotionName}</Badge>
+            <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200">
+              {event.promotionName}
+            </span>
           )}
         </div>
 
-        <h3 className={cn("font-bold text-foreground mb-2 line-clamp-2", compact ? "text-lg" : "text-xl")}>
+        <h3 className={cn("font-bold text-slate-900 mb-2 line-clamp-2 hover:text-primary transition-colors", compact ? "text-base" : "text-lg")}>
           {event.name}
         </h3>
 
         <div className="space-y-2 mt-auto">
-          <div className="text-sm text-muted flex items-center gap-2">
+          <div className="text-xs text-slate-500 flex items-center gap-2">
             <span>📅</span> {formattedDate}
           </div>
-          <div className="text-sm text-muted flex items-center gap-2 truncate">
+          <div className="text-xs text-slate-500 flex items-center gap-2 truncate">
             <span>📍</span> {event.venue}, {event.city}
           </div>
           
           {!compact && event.mainEventFighters && (
-            <div className="mt-4 pt-4 border-t border-border">
-              <div className="text-xs text-muted mb-1 uppercase font-semibold">Main Event</div>
-              <div className="text-sm font-medium text-foreground truncate">{event.mainEventFighters}</div>
+            <div className="mt-4 pt-3 border-t border-slate-100">
+              <div className="text-[10px] text-slate-400 mb-1 uppercase font-bold tracking-wider">Main Event</div>
+              <div className="text-xs font-semibold text-slate-800 truncate">{event.mainEventFighters}</div>
             </div>
           )}
 
-          <div className="flex justify-between items-center mt-4 pt-4 border-t border-border">
+          <div className="flex justify-between items-center mt-3 pt-3 border-t border-slate-100">
             {event.totalFights !== undefined && (
-              <span className="text-xs text-muted font-medium">{event.totalFights} trận đấu</span>
+              <span className="text-xs text-slate-400 font-medium">{event.totalFights} trận đấu</span>
             )}
             {showCountdown && (
-              <span className="text-xs font-semibold text-primary">Còn {daysUntil} ngày</span>
+              <span className="text-xs font-bold text-sky-600 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">Còn {daysUntil} ngày</span>
             )}
           </div>
         </div>

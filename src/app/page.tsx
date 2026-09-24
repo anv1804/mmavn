@@ -42,14 +42,14 @@ const PROMOTION_THEMES: Record<string, {
   specs: { label: string; value: string }[]
 }> = {
   p1: {
-    accentColor: 'text-red-400',
-    accentBg: 'bg-red-500/15',
-    borderColor: 'border-red-500/30',
-    hoverBorder: 'hover:border-red-500/80',
-    bgGradient: 'bg-gradient-to-b from-red-950/25 via-card to-card',
+    accentColor: 'text-sky-700',
+    accentBg: 'bg-sky-50',
+    borderColor: 'border-slate-200',
+    hoverBorder: 'hover:border-sky-300',
+    bgGradient: 'bg-white',
     tagText: 'Pro Cage 9m',
-    tagBadge: 'bg-red-500/15 text-red-300 border-red-500/30',
-    iconBg: 'bg-red-500/20 text-red-400 border border-red-500/30',
+    tagBadge: 'bg-sky-50 text-sky-800 border-sky-200',
+    iconBg: 'bg-sky-100 text-sky-700 border border-sky-200',
     specs: [
       { label: 'Sàn đấu', value: 'Lồng bát giác Octagon 9m' },
       { label: 'Thời lượng', value: '3x5p (Tranh đai: 5x5p)' },
@@ -57,14 +57,14 @@ const PROMOTION_THEMES: Record<string, {
     ],
   },
   p2: {
-    accentColor: 'text-emerald-400',
-    accentBg: 'bg-emerald-500/15',
-    borderColor: 'border-emerald-500/30',
-    hoverBorder: 'hover:border-emerald-500/80',
-    bgGradient: 'bg-gradient-to-b from-emerald-950/25 via-card to-card',
+    accentColor: 'text-blue-700',
+    accentBg: 'bg-blue-50',
+    borderColor: 'border-slate-200',
+    hoverBorder: 'hover:border-blue-300',
+    bgGradient: 'bg-white',
     tagText: 'Semi-Pro Grassroots',
-    tagBadge: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
-    iconBg: 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30',
+    tagBadge: 'bg-blue-50 text-blue-800 border-blue-200',
+    iconBg: 'bg-blue-100 text-blue-700 border border-blue-200',
     specs: [
       { label: 'Sàn đấu', value: 'Lục giác & Thảm chống sốc' },
       { label: 'Thời lượng', value: '3x3p (Cân cùng ngày)' },
@@ -72,14 +72,14 @@ const PROMOTION_THEMES: Record<string, {
     ],
   },
   p3: {
-    accentColor: 'text-amber-400',
-    accentBg: 'bg-amber-500/15',
-    borderColor: 'border-amber-500/30',
-    hoverBorder: 'hover:border-amber-500/80',
-    bgGradient: 'bg-gradient-to-b from-amber-950/25 via-card to-card',
+    accentColor: 'text-indigo-700',
+    accentBg: 'bg-indigo-50',
+    borderColor: 'border-slate-200',
+    hoverBorder: 'hover:border-indigo-300',
+    bgGradient: 'bg-white',
     tagText: 'Grand Prix Knockout',
-    tagBadge: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
-    iconBg: 'bg-amber-500/20 text-amber-400 border border-amber-500/30',
+    tagBadge: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+    iconBg: 'bg-indigo-100 text-indigo-700 border border-indigo-200',
     specs: [
       { label: 'Sàn đấu', value: 'Ring dây vuông kết hợp rào' },
       { label: 'Thời lượng', value: 'Nhánh đấu loại trực tiếp' },
@@ -100,54 +100,52 @@ export default function HomePage() {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-6 md:py-10 space-y-16 md:space-y-24">
-      {/* Modern, Borderless Sports-Tech Hero Section */}
+      {/* Modern, Borderless Clean Webapp Hero Section */}
       <section className="relative overflow-hidden pt-4 pb-8 md:py-12">
         {/* Subtle Background Radial Glowing Gradients */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[960px] h-[380px] md:h-[480px] bg-gradient-to-tr from-primary/20 via-primary/8 to-amber-500/15 blur-[120px] rounded-full pointer-events-none -z-10" />
-        <div className="absolute top-0 right-1/4 w-72 h-72 bg-amber-500/10 blur-[100px] rounded-full pointer-events-none -z-10" />
-        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary/10 blur-[90px] rounded-full pointer-events-none -z-10" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[960px] h-[380px] md:h-[480px] bg-sky-200/20 blur-[120px] rounded-full pointer-events-none -z-10" />
 
         {/* Hero Content Container */}
-        <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
+        <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
           {/* Top Pill Tag */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/80 border border-border/80 shadow-sm backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs">
             <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            <span className="text-xs font-semibold text-slate-300">
+            <span className="text-xs font-semibold text-slate-700">
               Cổng thông tin &amp; Đấu trường số MMA Việt Nam
             </span>
-            <span className="text-[11px] font-bold px-1.5 py-0.2 rounded bg-primary/20 text-primary uppercase">
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-sky-50 text-sky-700 uppercase border border-sky-100">
               Live Hub
             </span>
           </div>
 
           {/* Punchy Hero Typography */}
-          <div className="space-y-4">
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight leading-[1.08] text-white">
-              MMA<span className="text-primary">VN</span> <span className="text-amber-400">Hub</span>
+          <div className="space-y-3">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] text-slate-900">
+              MMA<span className="text-primary font-bold">VN</span> <span className="text-sky-600 font-bold">Hub</span>
             </h1>
-            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-100 tracking-tight">
+            <p className="text-lg sm:text-xl md:text-2xl font-bold text-slate-700 tracking-tight">
               Sàn đấu tri thức &amp; Đấu trường số MMA Việt Nam
             </p>
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal pt-1">
+            <p className="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto leading-relaxed font-normal pt-1">
               Cập nhật bảng xếp hạng Elo chuẩn xác, dữ liệu đối đầu chi tiết, theo dõi LION Championship, GMA, V1 Champion và cộng đồng võ thuật Việt Nam.
             </p>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <Link href="/vo-si" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-base text-white bg-gradient-to-r from-primary to-red-600 hover:from-red-600 hover:to-primary shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] active:scale-95 transition-all duration-200">
-                <Users className="w-5 h-5" />
+              <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl font-bold text-sm text-white bg-primary hover:bg-sky-600 shadow-xs hover:shadow-md hover:shadow-sky-100 transition-all duration-200 cursor-pointer">
+                <Users className="w-4 h-4" />
                 <span>Khám phá Võ sĩ</span>
               </button>
             </Link>
 
             <Link href="/giai-dau" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-base text-slate-200 hover:text-white bg-card/75 hover:bg-card border border-border/80 hover:border-primary/50 backdrop-blur-md shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-200">
-                <Swords className="w-5 h-5 text-amber-400" />
+              <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl font-bold text-sm text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 shadow-xs transition-all duration-200 cursor-pointer">
+                <Swords className="w-4 h-4 text-sky-600" />
                 <span>Đấu trường &amp; Giải đấu</span>
               </button>
             </Link>
@@ -157,55 +155,55 @@ export default function HomePage() {
           <div className="pt-1">
             <Link 
               href="/bang-xep-hang" 
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-300 hover:text-primary transition-colors py-1 group"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-500 hover:text-primary transition-colors py-1 group"
             >
-              <Trophy className="w-4 h-4 text-amber-400" />
+              <Trophy className="w-4 h-4 text-amber-500" />
               <span>Xem Bảng xếp hạng Elo Pound-for-Pound toàn quốc</span>
               <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          {/* 3 Modern Translucent Glass Cards for KPI Stat Counters */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 max-w-3xl mx-auto">
-            <div className="bg-card/65 backdrop-blur-md border border-border/80 hover:border-primary/50 rounded-2xl p-5 shadow-lg shadow-black/25 flex items-center gap-4 text-left transition-all duration-200 group hover:-translate-y-0.5">
-              <div className="w-12 h-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary shrink-0 group-hover:scale-105 transition-transform">
-                <Users className="w-6 h-6" />
+          {/* 3 Modern Clean KPI Stat Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 max-w-3xl mx-auto">
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex items-center gap-3.5 text-left transition-all duration-200 hover:border-sky-300 hover:shadow-sm">
+              <div className="w-11 h-11 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-primary shrink-0">
+                <Users className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-3xl font-black text-white tracking-tight leading-none">
+                <div className="text-2xl font-black text-slate-900 tracking-tight leading-none">
                   {fighters.length}+
                 </div>
-                <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mt-1">
+                <div className="text-[11px] font-bold text-slate-700 uppercase tracking-wider mt-1">
                   Võ sĩ hồ sơ số
                 </div>
                 <div className="text-[11px] text-slate-400">Chuyên nghiệp &amp; Phong trào</div>
               </div>
             </div>
 
-            <div className="bg-card/65 backdrop-blur-md border border-border/80 hover:border-amber-500/50 rounded-2xl p-5 shadow-lg shadow-black/25 flex items-center gap-4 text-left transition-all duration-200 group hover:-translate-y-0.5">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 group-hover:scale-105 transition-transform">
-                <Calendar className="w-6 h-6" />
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex items-center gap-3.5 text-left transition-all duration-200 hover:border-blue-300 hover:shadow-sm">
+              <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+                <Calendar className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-3xl font-black text-white tracking-tight leading-none">
+                <div className="text-2xl font-black text-slate-900 tracking-tight leading-none">
                   {events.length}+
                 </div>
-                <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mt-1">
+                <div className="text-[11px] font-bold text-slate-700 uppercase tracking-wider mt-1">
                   Sự kiện thi đấu
                 </div>
                 <div className="text-[11px] text-slate-400">LION, GMA, V1 Champion</div>
               </div>
             </div>
 
-            <div className="bg-card/65 backdrop-blur-md border border-border/80 hover:border-cyan-500/50 rounded-2xl p-5 shadow-lg shadow-black/25 flex items-center gap-4 text-left transition-all duration-200 group hover:-translate-y-0.5">
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-105 transition-transform">
-                <Swords className="w-6 h-6" />
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex items-center gap-3.5 text-left transition-all duration-200 hover:border-sky-300 hover:shadow-sm">
+              <div className="w-11 h-11 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 shrink-0">
+                <Swords className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-3xl font-black text-white tracking-tight leading-none">
+                <div className="text-2xl font-black text-slate-900 tracking-tight leading-none">
                   {fights.length}+
                 </div>
-                <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mt-1">
+                <div className="text-[11px] font-bold text-slate-700 uppercase tracking-wider mt-1">
                   Trận đấu số hóa
                 </div>
                 <div className="text-[11px] text-slate-400">Dữ liệu đòn &amp; Chỉ số KO/Sub</div>
@@ -220,48 +218,45 @@ export default function HomePage() {
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400">
+              <span className="p-1.5 rounded-lg bg-sky-100 text-sky-700">
                 <Flame className="w-4 h-4" />
               </span>
               <div>
-                <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
                   Tâm Điểm Đại Chiến: Chung Kết Tranh Đai 52kg
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-400">
+                <p className="text-xs sm:text-sm text-slate-500">
                   Trận tranh đai vô địch hạng Rơm được mong đợi nhất tại LION Championship 35
                 </p>
               </div>
             </div>
             <Link href="/su-kien/e-lc35">
-              <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white gap-1 text-xs">
+              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-slate-900 gap-1 text-xs">
                 <span>Chi tiết LC35</span>
                 <ChevronRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-red-950/40 via-card to-slate-900 border border-amber-500/30 p-6 sm:p-8 shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
+          <div className="relative overflow-hidden rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xs">
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
               {/* Fighter 1: Lê Hoàng Đức */}
               <Link href={`/vo-si/${f19.id}`} className="flex-1 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left group">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden p-1 bg-gradient-to-tr from-amber-500 to-red-600 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden p-0.5 bg-slate-200 shrink-0 shadow-xs group-hover:scale-105 transition-transform">
                   <img src={f19.avatar} alt={f19.name} className="w-full h-full object-cover rounded-xl" />
                 </div>
                 <div>
-                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-1">
+                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-50 text-sky-700 border border-sky-200 mb-1">
                     #1 Contender
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-primary transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">
                     {f19.name}
                   </h3>
-                  <p className="text-xs text-amber-400/90 italic font-medium">"{f19.nickname}"</p>
-                  <div className="text-xs text-slate-300 mt-1">
-                    <span className="font-mono font-bold text-emerald-400">{f19.record.wins}W</span>
-                    <span className="text-slate-500"> - </span>
-                    <span className="font-mono font-bold text-rose-400">{f19.record.losses}L</span>
+                  <p className="text-xs text-sky-700 italic font-medium">"{f19.nickname}"</p>
+                  <div className="text-xs text-slate-600 mt-1">
+                    <span className="font-mono font-bold text-emerald-600">{f19.record.wins}W</span>
+                    <span className="text-slate-400"> - </span>
+                    <span className="font-mono font-bold text-rose-600">{f19.record.losses}L</span>
                     <span className="text-slate-400 ml-1">• No.1 Muay Club</span>
                   </div>
                 </div>
@@ -269,10 +264,10 @@ export default function HomePage() {
 
               {/* VS Centerpiece */}
               <div className="flex flex-col items-center justify-center shrink-0 px-4 py-2">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-amber-500 flex items-center justify-center text-white font-black text-base shadow-lg shadow-primary/30 animate-pulse">
+                <div className="w-11 h-11 rounded-full bg-sky-50 border border-sky-200 flex items-center justify-center text-primary font-bold text-sm shadow-xs">
                   VS
                 </div>
-                <div className="text-[11px] font-black uppercase tracking-wider text-amber-400 mt-2">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-sky-700 mt-1.5">
                   5 HIỆP TRANH ĐAI
                 </div>
                 <div className="text-[10px] text-slate-400 font-mono">
@@ -282,21 +277,21 @@ export default function HomePage() {
 
               {/* Fighter 2: Bùi Đình Khải */}
               <Link href={`/vo-si/${f20.id}`} className="flex-1 flex flex-col sm:flex-row-reverse items-center gap-4 text-center sm:text-right group">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden p-1 bg-gradient-to-tr from-cyan-500 to-blue-600 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden p-0.5 bg-slate-200 shrink-0 shadow-xs group-hover:scale-105 transition-transform">
                   <img src={f20.avatar} alt={f20.name} className="w-full h-full object-cover rounded-xl" />
                 </div>
                 <div>
-                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 mb-1">
+                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200 mb-1">
                     #2 Contender
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-primary transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">
                     {f20.name}
                   </h3>
-                  <p className="text-xs text-cyan-400/90 italic font-medium">"{f20.nickname}"</p>
-                  <div className="text-xs text-slate-300 mt-1">
-                    <span className="font-mono font-bold text-emerald-400">{f20.record.wins}W</span>
-                    <span className="text-slate-500"> - </span>
-                    <span className="font-mono font-bold text-rose-400">{f20.record.losses}L</span>
+                  <p className="text-xs text-blue-700 italic font-medium">"{f20.nickname}"</p>
+                  <div className="text-xs text-slate-600 mt-1">
+                    <span className="font-mono font-bold text-emerald-600">{f20.record.wins}W</span>
+                    <span className="text-slate-400"> - </span>
+                    <span className="font-mono font-bold text-rose-600">{f20.record.losses}L</span>
                     <span className="text-slate-400 ml-1">• Xuân Bắc / The Champ</span>
                   </div>
                 </div>
@@ -304,20 +299,20 @@ export default function HomePage() {
             </div>
 
             {/* Matchup Quick Actions */}
-            <div className="mt-6 pt-4 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-              <div className="text-slate-300 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+              <div className="text-slate-600 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-sky-600" />
                 <span>Người chiến thắng sẽ chính thức sở hữu đai vô địch 52kg LION đầu tiên trong lịch sử</span>
               </div>
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <Link href="/du-doan" className="flex-1 sm:flex-initial">
-                  <Button size="sm" className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-xs gap-1">
+                  <Button size="sm" className="w-full text-xs gap-1.5 shadow-xs">
                     <Flame className="w-3.5 h-3.5" />
                     Bình chọn kết quả
                   </Button>
                 </Link>
                 <Link href="/su-kien/e-lc35" className="flex-1 sm:flex-initial">
-                  <Button variant="outline" size="sm" className="w-full text-xs text-slate-200 hover:text-white border-border">
+                  <Button variant="outline" size="sm" className="w-full text-xs text-slate-700 hover:text-slate-900 border-slate-200">
                     Xem toàn bộ Fight Card
                   </Button>
                 </Link>
@@ -348,9 +343,9 @@ export default function HomePage() {
 
             return (
               <Link key={promo.id} href={`/giai-dau/${promo.id}`} className="group block">
-                <div className={`h-full rounded-2xl border ${theme.borderColor} ${theme.hoverBorder} ${theme.bgGradient} p-6 shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 hover:shadow-2xl`}>
+                <div className="h-full rounded-2xl border border-slate-200 hover:border-sky-300 bg-white p-6 shadow-xs transition-all duration-200 flex flex-col justify-between hover:-translate-y-0.5 hover:shadow-md hover:shadow-sky-50">
                   {/* Card Header */}
-                  <div className="space-y-4">
+                  <div className="space-y-3.5">
                     <div className="flex items-center justify-between gap-2">
                       <div className={`px-2.5 py-1 rounded-lg text-xs font-bold border ${theme.tagBadge}`}>
                         {theme.tagText}
@@ -362,7 +357,7 @@ export default function HomePage() {
 
                     <div>
                       <div className="flex items-center justify-between">
-                        <h3 className="text-2xl font-black text-white group-hover:text-primary transition-colors">
+                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">
                           {promo.name}
                         </h3>
                         <span className={`text-xs font-bold px-2 py-0.5 rounded ${theme.iconBg}`}>
@@ -377,23 +372,23 @@ export default function HomePage() {
                     </div>
 
                     {/* League Specs List */}
-                    <div className="space-y-2 py-3 border-y border-border/60 bg-background/30 rounded-xl px-3 my-2">
+                    <div className="space-y-1.5 py-3 border-y border-slate-100 bg-slate-50/70 rounded-xl px-3 my-2">
                       {theme.specs.map((s, idx) => (
                         <div key={idx} className="flex items-center justify-between text-xs">
-                          <span className="text-slate-400 font-medium">{s.label}:</span>
-                          <span className="text-slate-200 font-semibold">{s.value}</span>
+                          <span className="text-slate-500 font-medium">{s.label}:</span>
+                          <span className="text-slate-800 font-semibold">{s.value}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* League Description */}
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-3">
+                    <p className="text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-3">
                       {promo.formatDescription || promo.description}
                     </p>
                   </div>
 
                   {/* Card Footer */}
-                  <div className={`pt-4 mt-4 border-t border-border/60 flex items-center justify-between text-xs font-bold ${theme.accentColor}`}>
+                  <div className={`pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold ${theme.accentColor}`}>
                     <span>Khám phá luật đấu &amp; đai vô địch</span>
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
@@ -465,14 +460,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Top 5 Elo Ranked Fighters - Sleek Leaderboard Table */}
+      {/* Top 5 Elo Ranked Fighters - Sleek Clean Leaderboard Table */}
       <section className="space-y-6">
         <SectionHeader 
           title="Top 5 võ sĩ theo Elo Rating" 
           subtitle="Bảng xếp hạng hiệu suất thi đấu cập nhật dựa trên thuật toán Elo quốc tế"
           action={
             <Link href="/bang-xep-hang">
-              <Button variant="ghost" className="text-slate-300 hover:text-white gap-1.5">
+              <Button variant="ghost" className="text-slate-600 hover:text-slate-900 gap-1.5 text-xs font-semibold">
                 <span>Toàn bộ BXH Elo</span>
                 <ChevronRight className="w-4 h-4" />
               </Button>
@@ -480,9 +475,9 @@ export default function HomePage() {
           } 
         />
         
-        <div className="bg-card/75 border border-border/80 rounded-2xl overflow-hidden shadow-xl backdrop-blur-md">
+        <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
           {/* Table Header */}
-          <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3.5 bg-background/50 border-b border-border/80 text-xs font-bold uppercase tracking-wider text-slate-400">
+          <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3.5 bg-slate-50/80 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-500">
             <div className="col-span-1 text-center">Hạng</div>
             <div className="col-span-4">Võ sĩ</div>
             <div className="col-span-3">Hạng cân &amp; CLB</div>
@@ -491,7 +486,7 @@ export default function HomePage() {
           </div>
 
           {/* Leaderboard Rows */}
-          <div className="divide-y divide-border/60">
+          <div className="divide-y divide-slate-100">
             {topFighters.map((fighter, idx) => {
               const rank = idx + 1
               const divisionName = fighter.division?.nameVi || fighter.division?.name || 'Hạng tự do'
@@ -501,34 +496,33 @@ export default function HomePage() {
               // Normalize Elo progress bar: 1000 = 0%, 1800 = 100%
               const eloPercentage = Math.min(Math.max(((fighter.eloRating - 1000) / 800) * 100, 10), 100)
 
-              // Clean SVG medal rank badges (NO ugly emoji line-wrapping)
               const renderRankBadge = () => {
                 if (rank === 1) {
                   return (
-                    <div className="flex flex-col items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-b from-amber-500/25 to-yellow-600/10 border border-amber-500/50 shadow-md shadow-amber-500/10 text-amber-300">
-                      <Crown className="w-4 h-4 text-amber-400 fill-amber-400/30" />
-                      <span className="text-[11px] font-black leading-none mt-0.5">#1</span>
+                    <div className="flex flex-col items-center justify-center w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 shadow-xs text-amber-700">
+                      <Crown className="w-4 h-4 text-amber-600 fill-amber-300" />
+                      <span className="text-[10px] font-black leading-none mt-0.5">#1</span>
                     </div>
                   )
                 }
                 if (rank === 2) {
                   return (
-                    <div className="flex flex-col items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-b from-slate-300/20 to-slate-400/5 border border-slate-400/40 shadow-sm text-slate-200">
-                      <Medal className="w-4 h-4 text-slate-300" />
-                      <span className="text-[11px] font-black leading-none mt-0.5">#2</span>
+                    <div className="flex flex-col items-center justify-center w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 text-slate-700">
+                      <Medal className="w-4 h-4 text-slate-500" />
+                      <span className="text-[10px] font-black leading-none mt-0.5">#2</span>
                     </div>
                   )
                 }
                 if (rank === 3) {
                   return (
-                    <div className="flex flex-col items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-b from-amber-700/20 to-amber-800/5 border border-amber-700/40 shadow-sm text-amber-500">
-                      <Medal className="w-4 h-4 text-amber-500" />
-                      <span className="text-[11px] font-black leading-none mt-0.5">#3</span>
+                    <div className="flex flex-col items-center justify-center w-9 h-9 rounded-xl bg-sky-50 border border-sky-200 text-sky-700">
+                      <Medal className="w-4 h-4 text-sky-600" />
+                      <span className="text-[10px] font-black leading-none mt-0.5">#3</span>
                     </div>
                   )
                 }
                 return (
-                  <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800/80 border border-border/80 font-mono font-bold text-sm text-slate-400">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-50 border border-slate-200 font-mono font-bold text-xs text-slate-600">
                     #{rank}
                   </div>
                 )
@@ -538,21 +532,21 @@ export default function HomePage() {
                 <Link
                   key={fighter.id}
                   href={`/vo-si/${fighter.id}`}
-                  className="block hover:bg-card-hover/80 transition-colors group"
+                  className="block hover:bg-slate-50 transition-colors group"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-4 sm:px-6 py-4 items-center">
                     {/* Rank Number */}
                     <div className="flex md:justify-center items-center gap-3 md:col-span-1">
                       {renderRankBadge()}
-                      <span className="md:hidden text-xs font-bold text-slate-400">
+                      <span className="md:hidden text-xs font-bold text-slate-500">
                         Hạng #{rank} Toàn quốc
                       </span>
                     </div>
 
                     {/* Fighter Avatar & Names */}
                     <div className="flex items-center gap-3.5 md:col-span-4 min-w-0">
-                      <div className="w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-primary via-red-500 to-amber-500 shrink-0 shadow-md">
-                        <div className="w-full h-full rounded-full bg-neutral-950 overflow-hidden flex items-center justify-center">
+                      <div className="w-11 h-11 rounded-full p-0.5 bg-slate-200 shrink-0">
+                        <div className="w-full h-full rounded-full bg-slate-100 overflow-hidden flex items-center justify-center">
                           {fighter.avatar ? (
                             <img
                               src={fighter.avatar}
@@ -561,7 +555,7 @@ export default function HomePage() {
                               loading="lazy"
                             />
                           ) : (
-                            <span className="font-black text-sm text-slate-200">
+                            <span className="font-bold text-xs text-slate-700">
                               {initials}
                             </span>
                           )}
@@ -569,22 +563,22 @@ export default function HomePage() {
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <h4 className="font-bold text-base text-foreground group-hover:text-primary transition-colors leading-tight">
+                          <h4 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-primary transition-colors leading-tight">
                             {fighter.name}
                           </h4>
                           {fighter.isChampion && (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-black px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200">
                               👑 Vô địch
                             </span>
                           )}
                           {!fighter.isChampion && fighter.championshipTitle?.includes('Cựu') && (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700/60">
+                            <span className="inline-flex items-center gap-1 text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
                               Cựu VĐ
                             </span>
                           )}
                         </div>
                         {fighter.nickname && (
-                          <div className="text-xs font-medium text-amber-400/90 italic truncate">
+                          <div className="text-xs font-medium text-sky-700 italic truncate">
                             "{fighter.nickname}"
                           </div>
                         )}
@@ -593,12 +587,12 @@ export default function HomePage() {
 
                     {/* Division & Gym */}
                     <div className="md:col-span-3 text-xs space-y-1">
-                      <div className="font-semibold text-slate-200 flex items-center gap-1.5">
+                      <div className="font-semibold text-slate-700 flex items-center gap-1.5">
                         <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" />
                         <span>{divisionName}</span>
                       </div>
                       <div className="text-slate-400 truncate flex items-center gap-1">
-                        <MapPin className="w-3 h-3 text-slate-500 shrink-0" />
+                        <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
                         <span className="truncate">{gymName}</span>
                       </div>
                     </div>
@@ -607,17 +601,17 @@ export default function HomePage() {
                     <div className="md:col-span-2 md:text-center text-xs">
                       <span className="md:hidden text-slate-400 mr-2">Thành tích:</span>
                       <span className="font-bold font-mono text-sm">
-                        <span className="text-emerald-400">{fighter.record.wins}W</span>
-                        <span className="text-slate-500 mx-1">-</span>
-                        <span className="text-rose-400">{fighter.record.losses}L</span>
+                        <span className="text-emerald-600">{fighter.record.wins}W</span>
+                        <span className="text-slate-300 mx-1">-</span>
+                        <span className="text-rose-600">{fighter.record.losses}L</span>
                         {fighter.record.draws > 0 && (
                           <>
-                            <span className="text-slate-500 mx-1">-</span>
+                            <span className="text-slate-300 mx-1">-</span>
                             <span className="text-slate-400">{fighter.record.draws}D</span>
                           </>
                         )}
                       </span>
-                      <div className="text-[10px] text-slate-500 hidden md:block mt-0.5">
+                      <div className="text-[10px] text-slate-400 hidden md:block mt-0.5">
                         {fighter.record.winsByKo} KO • {fighter.record.winsBySub} Sub
                       </div>
                     </div>
@@ -627,18 +621,18 @@ export default function HomePage() {
                       <div className="flex items-center justify-between md:justify-end gap-2">
                         <span className="md:hidden text-xs text-slate-400">Điểm Elo:</span>
                         <div className="inline-flex items-center gap-1.5">
-                          <span className="font-mono font-black text-base text-white">
+                          <span className="font-mono font-bold text-sm sm:text-base text-slate-900">
                             {Math.round(fighter.eloRating)}
                           </span>
-                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-primary/20 text-primary uppercase">
+                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-sky-50 text-sky-700 uppercase border border-sky-100">
                             ELO
                           </span>
                         </div>
                       </div>
                       {/* Elo Power Bar */}
-                      <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden border border-slate-700/50">
+                      <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
                         <div 
-                          className="h-full bg-gradient-to-r from-primary via-red-500 to-amber-400 rounded-full shadow-sm shadow-primary/50 transition-all duration-500"
+                          className="h-full bg-primary rounded-full transition-all duration-500"
                           style={{ width: `${eloPercentage}%` }}
                         />
                       </div>
@@ -658,7 +652,7 @@ export default function HomePage() {
           subtitle="Các trung tâm huấn luyện MMA chuyên nghiệp sản sinh ra những nhà vô địch quốc gia"
           action={
             <Link href="/phong-tap">
-              <Button variant="ghost" className="text-slate-300 hover:text-white gap-1.5">
+              <Button variant="ghost" className="text-slate-600 hover:text-slate-900 gap-1.5 text-xs font-semibold">
                 <span>Xem tất cả 25 CLB</span>
                 <ChevronRight className="w-4 h-4" />
               </Button>
@@ -668,40 +662,39 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {featuredGyms.map((gym) => (
             <Link key={gym.id} href="/phong-tap" className="group block">
-              <div className="h-full rounded-2xl bg-card border border-border hover:border-primary/50 overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col">
-                <div className="relative h-32 w-full overflow-hidden bg-slate-900 shrink-0">
+              <div className="h-full rounded-2xl bg-white border border-slate-200 hover:border-sky-300 overflow-hidden shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:shadow-sky-50 flex flex-col">
+                <div className="relative h-32 w-full overflow-hidden bg-slate-100 shrink-0">
                   <img
                     src={gym.coverImage || gym.image}
                     alt={gym.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
                   <div className="absolute top-2 left-2">
                     <Badge variant="primary" size="sm">
                       {gym.city}
                     </Badge>
                   </div>
                   {gym.rating && (
-                    <div className="absolute top-2 right-2 flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-black/60 text-amber-400 text-[11px] font-bold">
-                      <Star className="w-3 h-3 fill-amber-400" />
+                    <div className="absolute top-2 right-2 flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-white/90 shadow-xs text-amber-600 text-[11px] font-bold">
+                      <Star className="w-3 h-3 fill-amber-500" />
                       <span>{gym.rating.toFixed(1)}</span>
                     </div>
                   )}
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
-                    <h4 className="font-bold text-base text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                    <h4 className="font-bold text-base text-slate-900 group-hover:text-primary transition-colors line-clamp-1">
                       {gym.name}
                     </h4>
-                    <p className="text-xs text-muted line-clamp-1 mt-0.5">
+                    <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">
                       HLV: {gym.headCoach || 'Ban huấn luyện'}
                     </p>
                   </div>
-                  <div className="pt-3 mt-3 border-t border-border/60 flex items-center justify-between text-xs text-muted">
+                  <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                     <span className="text-primary font-semibold">
                       {gym.fighterCount} võ sĩ biên chế
                     </span>
-                    <span className="text-slate-400 group-hover:text-white flex items-center gap-0.5">
+                    <span className="text-slate-400 group-hover:text-primary flex items-center gap-0.5">
                       Chi tiết <ArrowUpRight className="w-3 h-3" />
                     </span>
                   </div>
@@ -719,7 +712,7 @@ export default function HomePage() {
           subtitle="Phân tích chuyên môn, phỏng vấn võ sĩ và thông báo chính thức từ ban tổ chức"
           action={
             <Link href="/tin-tuc">
-              <Button variant="ghost" className="text-slate-300 hover:text-white gap-1.5">
+              <Button variant="ghost" className="text-slate-600 hover:text-slate-900 gap-1.5 text-xs font-semibold">
                 <span>Xem tất cả tin tức</span>
                 <ChevronRight className="w-4 h-4" />
               </Button>

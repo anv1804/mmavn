@@ -17,7 +17,7 @@ interface TabsProps {
 
 export function Tabs({ tabs, activeTab, onChange, className }: TabsProps) {
   return (
-    <div className={cn("inline-flex bg-card/50 p-1 rounded-xl overflow-x-auto w-full sm:w-auto hide-scrollbar", className)}>
+    <div className={cn("inline-flex bg-slate-100/90 p-1.5 rounded-2xl border border-slate-200/80 overflow-x-auto w-full sm:w-auto hide-scrollbar gap-1", className)}>
       {tabs.map((tab) => {
         const isActive = activeTab === tab.id
         return (
@@ -25,8 +25,10 @@ export function Tabs({ tabs, activeTab, onChange, className }: TabsProps) {
             key={tab.id}
             onClick={() => onChange(tab.id)}
             className={cn(
-              "relative flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 whitespace-nowrap",
-              isActive ? "bg-card text-foreground shadow-sm" : "text-muted hover:text-foreground"
+              "relative flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all duration-200 whitespace-nowrap",
+              isActive 
+                ? "bg-white text-primary shadow-sm border border-slate-200/60 font-bold" 
+                : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
             )}
           >
             {tab.icon && <span>{tab.icon}</span>}

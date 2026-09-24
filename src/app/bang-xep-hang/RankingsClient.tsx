@@ -55,7 +55,7 @@ export function RankingsClient({ divisions, rankingsByDivision }: RankingsPageDa
         <div className="flex flex-col gap-2">
           {champion ? (
             <div className="mb-4">
-              <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-1.5 px-1">
+              <div className="text-xs font-bold text-amber-700 uppercase tracking-wider mb-2 flex items-center gap-1.5 px-1">
                 <span>👑</span>
                 <span>Đương Kim Vô Địch (Champion)</span>
               </div>
@@ -67,18 +67,18 @@ export function RankingsClient({ divisions, rankingsByDivision }: RankingsPageDa
               />
             </div>
           ) : (
-            <div className="mb-4 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-              <div className="flex items-center gap-2 text-xs font-semibold text-amber-300">
+            <div className="mb-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-xs">
+              <div className="flex items-center gap-2 text-xs font-bold text-amber-800">
                 <span className="text-base">👑</span>
                 <span>Đai vô địch đang bỏ trống (Vacant Belt) — Các ứng viên hàng đầu đang tranh suất</span>
               </div>
-              <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-amber-500/20 text-amber-200 border border-amber-500/30 shrink-0">
+              <span className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 border border-amber-300/60 shrink-0">
                 Tranh đai mùa giải 2026
               </span>
             </div>
           )}
 
-          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5 px-1 pt-1">
+          <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1 flex items-center gap-1.5 px-1 pt-2">
             <span>⚔️</span>
             <span>Bảng Xếp Hạng Ứng Viên Thách Đấu (Top Contenders)</span>
           </div>

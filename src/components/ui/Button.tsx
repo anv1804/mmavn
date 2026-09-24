@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'accent'
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'accent' | 'outline'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
 interface ButtonProps {
@@ -30,10 +30,11 @@ export function Button({
   const baseClasses = cn(
     'inline-flex items-center justify-center rounded-xl font-medium transition-all duration-200',
     {
-      'bg-primary hover:bg-red-700 text-white': variant === 'primary',
-      'bg-card hover:bg-card-hover text-foreground border border-border': variant === 'secondary',
-      'bg-transparent hover:bg-card text-muted hover:text-foreground': variant === 'ghost',
-      'bg-accent hover:bg-amber-600 text-black': variant === 'accent',
+      'bg-primary hover:bg-sky-600 text-white shadow-xs': variant === 'primary',
+      'bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-xs': variant === 'secondary',
+      'bg-transparent hover:bg-slate-100 text-slate-600 hover:text-slate-900': variant === 'ghost',
+      'bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200': variant === 'accent',
+      'bg-white border border-slate-200 hover:bg-slate-50 text-slate-700': variant === 'outline',
     },
     {
       'px-3 py-1.5 text-sm': size === 'sm',

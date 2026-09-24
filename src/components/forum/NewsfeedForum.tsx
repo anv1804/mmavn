@@ -320,7 +320,7 @@ export function NewsfeedForum() {
       {/* ========================================================= */}
       <aside className="lg:col-span-3 space-y-5 lg:sticky lg:top-24">
         {/* Navigation Categories */}
-        <div className="rounded-2xl bg-card/50 border border-border/60 p-4 space-y-1 shadow-md">
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-4 space-y-1 shadow-xs">
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-2 block mb-2">
             Bảng Tin & Chủ Đề
           </span>
@@ -330,14 +330,14 @@ export function NewsfeedForum() {
             className={cn(
               "w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer",
               filterCategory === 'all' && !selectedTag
-                ? "bg-primary text-white shadow-md shadow-primary/20"
-                : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                ? "bg-primary text-white shadow-xs"
+                : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
             )}
           >
             <span className="flex items-center gap-2">
               <Layers className="w-4 h-4" /> Tất cả bài viết
             </span>
-            <span className="text-[10px] opacity-80">{posts.length}</span>
+            <span className="text-[10px] opacity-80 font-mono">{posts.length}</span>
           </button>
 
           <button
@@ -345,14 +345,14 @@ export function NewsfeedForum() {
             className={cn(
               "w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer",
               filterCategory === 'chinh-thuc'
-                ? "bg-amber-500 text-black shadow-md shadow-amber-500/20"
-                : "text-amber-400 hover:bg-amber-500/10"
+                ? "bg-amber-100 text-amber-900 border border-amber-200"
+                : "text-amber-800 hover:bg-amber-50"
             )}
           >
             <span className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4" /> Tin chính thức giải đấu
+              <ShieldCheck className="w-4 h-4 text-amber-600" /> Tin chính thức giải đấu
             </span>
-            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/40">VIP</span>
+            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-200/60 font-bold">VIP</span>
           </button>
 
           <button
@@ -360,12 +360,12 @@ export function NewsfeedForum() {
             className={cn(
               "w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer",
               filterCategory === 'du-doan'
-                ? "bg-primary text-white"
-                : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                ? "bg-primary text-white shadow-xs"
+                : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
             )}
           >
             <span className="flex items-center gap-2">
-              <Flame className="w-4 h-4 text-orange-400" /> Bàn luận & Dự đoán
+              <Flame className="w-4 h-4 text-orange-500" /> Bàn luận & Dự đoán
             </span>
           </button>
 
@@ -374,18 +374,18 @@ export function NewsfeedForum() {
             className={cn(
               "w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer",
               filterCategory === 'ky-thuat'
-                ? "bg-primary text-white"
-                : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                ? "bg-primary text-white shadow-xs"
+                : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
             )}
           >
             <span className="flex items-center gap-2">
-              <Swords className="w-4 h-4 text-blue-400" /> Kỹ thuật & BJJ
+              <Swords className="w-4 h-4 text-sky-600" /> Kỹ thuật & BJJ
             </span>
           </button>
         </div>
 
         {/* Trending Hashtags */}
-        <div className="rounded-2xl bg-card/50 border border-border/60 p-4 space-y-3 shadow-md">
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-4 space-y-3 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-primary" /> Hashtag Thịnh Hành
@@ -393,7 +393,7 @@ export function NewsfeedForum() {
             {selectedTag && (
               <button
                 onClick={() => setSelectedTag(null)}
-                className="text-[10px] text-red-400 hover:underline cursor-pointer"
+                className="text-[10px] text-primary hover:underline cursor-pointer font-semibold"
               >
                 Bỏ lọc
               </button>
@@ -409,7 +409,7 @@ export function NewsfeedForum() {
                   "px-2.5 py-1 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer",
                   selectedTag === tag
                     ? "bg-primary text-white shadow-xs"
-                    : "bg-slate-800/80 hover:bg-slate-700 text-slate-300"
+                    : "bg-slate-100 hover:bg-slate-200 text-slate-700"
                 )}
               >
                 {tag}
@@ -424,9 +424,9 @@ export function NewsfeedForum() {
       {/* ========================================================= */}
       <main className="lg:col-span-6 space-y-6">
         {/* 1. HỘP ĐĂNG BÀI VIẾT (SOCIAL FEED CREATOR) */}
-        <div className="rounded-3xl bg-card/60 border border-border/70 p-5 shadow-xl space-y-4">
+        <div className="rounded-3xl bg-white border border-slate-200/90 p-5 shadow-xs space-y-4">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl overflow-hidden bg-slate-800 shrink-0 border border-border">
+            <div className="w-10 h-10 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
               <img
                 src={currentUser?.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100'}
                 alt="Avatar"
@@ -439,30 +439,30 @@ export function NewsfeedForum() {
                 value={newPostTitle}
                 onChange={(e) => setNewPostTitle(e.target.value)}
                 placeholder="Tiêu đề bài viết (tùy chọn)..."
-                className="w-full bg-slate-900/60 border border-border/50 rounded-xl px-3.5 py-2 text-xs font-bold text-white placeholder-slate-500 focus:outline-none focus:border-primary"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-bold text-slate-900 placeholder-slate-400 focus:outline-none focus:border-primary focus:bg-white"
               />
               <textarea
                 value={newPostContent}
                 onChange={(e) => setNewPostContent(e.target.value)}
                 placeholder="Bạn đang quan tâm đến võ sĩ, giải đấu hay kỹ thuật nào hôm nay?..."
                 rows={3}
-                className="w-full bg-slate-900/60 border border-border/50 rounded-xl p-3.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary resize-none"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-primary focus:bg-white resize-none"
               />
             </div>
           </div>
 
           {/* Optional Image Input */}
           {showImageInput && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-border/60">
-              <ImageIcon className="w-4 h-4 text-cyan-400" />
+            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200">
+              <ImageIcon className="w-4 h-4 text-primary" />
               <input
                 type="text"
                 value={newPostImageUrl}
                 onChange={(e) => setNewPostImageUrl(e.target.value)}
                 placeholder="Dán URL hình ảnh minh họa..."
-                className="w-full bg-transparent text-xs text-white placeholder-slate-500 focus:outline-none"
+                className="w-full bg-transparent text-xs text-slate-900 placeholder-slate-400 focus:outline-none"
               />
-              <button onClick={() => setShowImageInput(false)} className="text-slate-400 hover:text-white">
+              <button onClick={() => setShowImageInput(false)} className="text-slate-400 hover:text-slate-600">
                 <X className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -470,42 +470,42 @@ export function NewsfeedForum() {
 
           {/* Optional Tag Input */}
           {showTagInput && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-border/60">
-              <Hash className="w-4 h-4 text-amber-400" />
+            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200">
+              <Hash className="w-4 h-4 text-amber-500" />
               <input
                 type="text"
                 value={newPostTagInput}
                 onChange={(e) => setNewPostTagInput(e.target.value)}
                 placeholder="Nhập hashtag phân cách bằng dấu phẩy (vd: LION29, TranQuangLoc)..."
-                className="w-full bg-transparent text-xs text-white placeholder-slate-500 focus:outline-none"
+                className="w-full bg-transparent text-xs text-slate-900 placeholder-slate-400 focus:outline-none"
               />
-              <button onClick={() => setShowTagInput(false)} className="text-slate-400 hover:text-white">
+              <button onClick={() => setShowTagInput(false)} className="text-slate-400 hover:text-slate-600">
                 <X className="w-3.5 h-3.5" />
               </button>
             </div>
           )}
 
           {/* Action Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-border/50">
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-100">
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => setShowImageInput(!showImageInput)}
-                className="px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
+                className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
               >
-                <ImageIcon className="w-3.5 h-3.5 text-cyan-400" /> Chèn ảnh
+                <ImageIcon className="w-3.5 h-3.5 text-primary" /> Chèn ảnh
               </button>
               <button
                 type="button"
                 onClick={() => setShowTagInput(!showTagInput)}
-                className="px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
+                className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
               >
-                <Hash className="w-3.5 h-3.5 text-amber-400" /> Gắn thẻ
+                <Hash className="w-3.5 h-3.5 text-amber-600" /> Gắn thẻ
               </button>
               <select
                 value={newPostCategory}
                 onChange={(e: any) => setNewPostCategory(e.target.value)}
-                className="bg-slate-800/80 border border-slate-700 text-slate-200 text-xs rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer"
+                className="bg-slate-100 border border-slate-200 text-slate-700 text-xs rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer"
               >
                 <option value="du-doan">Bàn luận & Dự đoán</option>
                 <option value="ky-thuat">Kỹ thuật & Võ thuật</option>
@@ -519,7 +519,7 @@ export function NewsfeedForum() {
             <button
               type="button"
               onClick={handleCreatePost}
-              className="px-5 py-2 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-primary/25 cursor-pointer active:scale-95 transition-all"
+              className="px-5 py-2 rounded-xl bg-primary hover:bg-sky-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs cursor-pointer active:scale-95 transition-all"
             >
               <Send className="w-3.5 h-3.5" /> Đăng bài
             </button>
@@ -528,9 +528,9 @@ export function NewsfeedForum() {
 
         {/* Active Tag Notice */}
         {selectedTag && (
-          <div className="flex items-center justify-between p-3 rounded-2xl bg-primary/10 border border-primary/20 text-xs">
+          <div className="flex items-center justify-between p-3 rounded-2xl bg-sky-50 border border-sky-200 text-xs text-slate-700">
             <span>Đang hiển thị bài viết gắn thẻ: <strong className="text-primary font-mono">{selectedTag}</strong></span>
-            <button onClick={() => setSelectedTag(null)} className="text-red-400 hover:underline">Xóa lọc</button>
+            <button onClick={() => setSelectedTag(null)} className="text-primary hover:underline font-semibold">Xóa lọc</button>
           </div>
         )}
 
@@ -540,23 +540,23 @@ export function NewsfeedForum() {
             <article
               key={post.id}
               className={cn(
-                "rounded-3xl bg-card/50 border overflow-hidden shadow-lg transition-all",
-                post.isOfficial ? "border-amber-500/40 bg-gradient-to-b from-amber-500/5 via-card/50 to-card/50" : "border-border/70"
+                "rounded-3xl bg-white border overflow-hidden shadow-xs transition-all",
+                post.isOfficial ? "border-amber-300 bg-amber-50/20" : "border-slate-200/90"
               )}
             >
               {/* Post Header */}
               <div className="p-5 pb-3">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="relative w-11 h-11 rounded-2xl overflow-hidden bg-slate-800 shrink-0 border border-border">
+                    <div className="relative w-11 h-11 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
                       <img src={post.authorAvatar} alt={post.authorName} className="w-full h-full object-cover" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold text-white">{post.authorName}</span>
+                        <span className="text-sm font-bold text-slate-900">{post.authorName}</span>
                         {post.isOfficial && (
-                          <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 text-black text-[10px] font-black uppercase tracking-wider flex items-center gap-1 shadow">
-                            <ShieldCheck className="w-3 h-3" /> {post.officialOrgBadge || 'Chính thức'}
+                          <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 border border-amber-200">
+                            <ShieldCheck className="w-3 h-3 text-amber-600" /> {post.officialOrgBadge || 'Chính thức'}
                           </span>
                         )}
                       </div>
@@ -571,7 +571,7 @@ export function NewsfeedForum() {
                   {/* Report Button */}
                   <button
                     onClick={() => setReportModalPostId(post.id)}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors"
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-slate-100 transition-colors"
                     title="Báo cáo bài viết"
                   >
                     <Flag className="w-3.5 h-3.5" />
@@ -581,11 +581,11 @@ export function NewsfeedForum() {
                 {/* Post Title & Text */}
                 <div className="mt-3.5 space-y-2">
                   {post.title && (
-                    <h3 className="text-base font-bold text-white leading-snug">
+                    <h3 className="text-base font-bold text-slate-900 leading-snug">
                       {post.title}
                     </h3>
                   )}
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed whitespace-pre-line">
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
                     {post.content}
                   </p>
                 </div>
@@ -608,30 +608,30 @@ export function NewsfeedForum() {
 
               {/* Attached Images */}
               {post.images && post.images.length > 0 && (
-                <div className="mt-1 aspect-video w-full overflow-hidden bg-black">
+                <div className="mt-1 aspect-video w-full overflow-hidden bg-slate-100">
                   <img src={post.images[0]} alt="Attached visual" className="w-full h-full object-cover" />
                 </div>
               )}
 
               {/* Interactions Bar */}
-              <div className="px-5 py-3 border-t border-border/40 flex items-center justify-between text-xs text-slate-400">
+              <div className="px-5 py-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                 <div className="flex items-center gap-4">
                   {/* Like Button */}
                   <button
                     onClick={() => handleToggleLike(post.id)}
                     className={cn(
                       "flex items-center gap-1.5 font-semibold transition-colors cursor-pointer",
-                      post.isLiked ? "text-rose-500" : "hover:text-white"
+                      post.isLiked ? "text-rose-600" : "hover:text-slate-900"
                     )}
                   >
-                    <Heart className={cn("w-4 h-4", post.isLiked && "fill-current")} />
+                    <Heart className={cn("w-4 h-4", post.isLiked && "fill-current text-rose-500")} />
                     <span>{post.likes}</span>
                   </button>
 
                   {/* Comment Toggle */}
                   <button
                     onClick={() => setOpenComments({ ...openComments, [post.id]: !openComments[post.id] })}
-                    className="flex items-center gap-1.5 hover:text-white font-semibold transition-colors cursor-pointer"
+                    className="flex items-center gap-1.5 hover:text-slate-900 font-semibold transition-colors cursor-pointer"
                   >
                     <MessageCircle className="w-4 h-4" />
                     <span>{post.comments.length} bình luận</span>
@@ -641,7 +641,7 @@ export function NewsfeedForum() {
                 {/* Share Button */}
                 <button
                   onClick={() => handleShare(post)}
-                  className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 hover:text-slate-900 transition-colors cursor-pointer"
                 >
                   <Share2 className="w-4 h-4" />
                   <span>Chia sẻ</span>
@@ -650,21 +650,21 @@ export function NewsfeedForum() {
 
               {/* Comments Section */}
               {openComments[post.id] && (
-                <div className="px-5 py-4 bg-slate-900/50 border-t border-border/40 space-y-3">
+                <div className="px-5 py-4 bg-slate-50 border-t border-slate-100 space-y-3">
                   {/* List comments */}
                   {post.comments.length > 0 && (
                     <div className="space-y-3 mb-3">
                       {post.comments.map(c => (
                         <div key={c.id} className="flex items-start gap-2.5">
-                          <div className="w-8 h-8 rounded-xl overflow-hidden bg-slate-800 shrink-0 border border-border mt-0.5">
+                          <div className="w-8 h-8 rounded-xl overflow-hidden bg-slate-200 shrink-0 mt-0.5">
                             <img src={c.authorAvatar} alt={c.authorName} className="w-full h-full object-cover" />
                           </div>
-                          <div className="flex-1 rounded-2xl bg-card/60 p-3 text-xs space-y-1">
+                          <div className="flex-1 rounded-2xl bg-white border border-slate-200/80 p-3 text-xs space-y-1 shadow-xs">
                             <div className="flex items-center justify-between">
-                              <span className="font-bold text-white">{c.authorName}</span>
+                              <span className="font-bold text-slate-900">{c.authorName}</span>
                               <span className="text-[10px] text-slate-400">{c.createdAt}</span>
                             </div>
-                            <p className="text-slate-300 leading-relaxed">{c.content}</p>
+                            <p className="text-slate-700 leading-relaxed">{c.content}</p>
                           </div>
                         </div>
                       ))}
@@ -679,11 +679,11 @@ export function NewsfeedForum() {
                       onChange={(e) => setCommentInputs({ ...commentInputs, [post.id]: e.target.value })}
                       onKeyDown={(e) => e.key === 'Enter' && handleAddComment(post.id)}
                       placeholder="Viết bình luận của bạn..."
-                      className="flex-1 bg-slate-900 border border-border/60 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary"
+                      className="flex-1 bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-primary shadow-xs"
                     />
                     <button
                       onClick={() => handleAddComment(post.id)}
-                      className="p-2 rounded-xl bg-primary hover:bg-primary/90 text-white cursor-pointer transition-colors"
+                      className="p-2 rounded-xl bg-primary hover:bg-sky-600 text-white cursor-pointer transition-colors shadow-xs"
                       title="Gửi bình luận"
                     >
                       <Send className="w-3.5 h-3.5" />
@@ -701,26 +701,26 @@ export function NewsfeedForum() {
       {/* ========================================================= */}
       <aside className="lg:col-span-3 space-y-5 lg:sticky lg:top-24">
         {/* Spotlight Event Card */}
-        <div className="rounded-2xl bg-gradient-to-br from-red-600/15 via-card to-card border border-red-500/30 p-5 shadow-md space-y-3">
-          <div className="flex items-center gap-2 text-red-400 text-xs font-bold uppercase tracking-wider">
-            <Flame className="w-4 h-4" /> Sự kiện tâm điểm
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-5 shadow-xs space-y-3">
+          <div className="flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider">
+            <Flame className="w-4 h-4 text-primary" /> Sự kiện tâm điểm
           </div>
-          <h4 className="text-sm font-bold text-white leading-snug">
+          <h4 className="text-sm font-bold text-slate-900 leading-snug">
             LION Championship 29: Đêm Quyết Đấu Vô Địch
           </h4>
-          <p className="text-xs text-slate-300">
+          <p className="text-xs text-slate-500">
             Trần Quang Lộc vs Võ Thành Đạt • Hà Nội
           </p>
           <Link
             href="/du-doan"
-            className="w-full py-2 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-red-600/20 transition-all"
+            className="w-full py-2 px-3 rounded-xl bg-primary hover:bg-sky-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs transition-all"
           >
             <Flame className="w-3.5 h-3.5" /> Dự đoán kết quả trận
           </Link>
         </div>
 
         {/* Top Contributors */}
-        <div className="rounded-2xl bg-card/50 border border-border/60 p-4 space-y-3 shadow-md">
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-4 space-y-3 shadow-xs">
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
             Thành Viên Nổi Bật
           </span>
@@ -732,23 +732,23 @@ export function NewsfeedForum() {
             ].map(user => (
               <div key={user.name} className="flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl overflow-hidden bg-slate-800 shrink-0">
+                  <div className="w-8 h-8 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
                     <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
                   </div>
                   <div>
-                    <strong className="text-white block font-bold">{user.name}</strong>
-                    <span className="text-[10px] text-amber-400">{user.role}</span>
+                    <strong className="text-slate-900 block font-bold">{user.name}</strong>
+                    <span className="text-[10px] text-amber-700 font-semibold">{user.role}</span>
                   </div>
                 </div>
-                <span className="text-[11px] text-slate-400 font-mono">{user.posts}</span>
+                <span className="text-[11px] text-slate-500 font-mono">{user.posts}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Community Rules */}
-        <div className="rounded-2xl bg-card/40 border border-border/40 p-4 text-[11px] text-slate-400 space-y-1.5">
-          <strong className="text-white block mb-1">Nội quy cộng đồng MMAVN:</strong>
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-4 text-[11px] text-slate-500 space-y-1.5 shadow-xs">
+          <strong className="text-slate-900 block mb-1">Nội quy cộng đồng MMAVN:</strong>
           <p>• Tôn trọng võ đạo và tinh thần thể thao thượng võ.</p>
           <p>• Không spam link cá độ bất hợp pháp hoặc xúc phạm võ sĩ.</p>
           <p>• Cùng nhau chia sẻ kiến thức và xây dựng MMA Việt Nam phát triển.</p>
@@ -759,22 +759,22 @@ export function NewsfeedForum() {
       {reportModalPostId && (
         <div
           onClick={() => setReportModalPostId(null)}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer"
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-sm w-full bg-[#0e1322] border border-[#1e2740] rounded-3xl p-6 shadow-2xl cursor-default space-y-4"
+            className="relative max-w-sm w-full bg-white border border-slate-200 rounded-3xl p-6 shadow-xl cursor-default space-y-4"
           >
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <Flag className="w-4 h-4 text-rose-500" /> Báo Cáo Vi Phạm
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <Flag className="w-4 h-4 text-rose-600" /> Báo Cáo Vi Phạm
               </h3>
-              <button onClick={() => setReportModalPostId(null)} className="text-slate-400 hover:text-white">
+              <button onClick={() => setReportModalPostId(null)} className="text-slate-400 hover:text-slate-600">
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               Vui lòng chọn lý do báo cáo bài viết này để Ban Quản Trị xem xét xử lý:
             </p>
 
@@ -787,7 +787,7 @@ export function NewsfeedForum() {
               ].map(reason => (
                 <label
                   key={reason}
-                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 hover:text-white cursor-pointer"
+                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 cursor-pointer"
                 >
                   <input
                     type="radio"
@@ -805,7 +805,7 @@ export function NewsfeedForum() {
             <div className="flex items-center justify-end gap-2 pt-2">
               <button
                 onClick={() => setReportModalPostId(null)}
-                className="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold"
+                className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold"
               >
                 Hủy
               </button>

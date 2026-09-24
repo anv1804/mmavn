@@ -205,7 +205,7 @@ export function FighterDetailClient({
       <div className="flex items-center justify-between">
         <Link 
           href="/vo-si" 
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-primary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Quay lại danh sách võ sĩ
@@ -214,7 +214,7 @@ export function FighterDetailClient({
         {canEdit && (
           <Link
             href={`/admin/fighters?edit=${fighter.id}`}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-bold shadow-sm transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-primary border border-sky-200 text-xs font-bold shadow-xs transition-all"
             title="Chỉnh sửa chỉ số, thành tích và ảnh võ sĩ trong CMS"
           >
             <Edit3 className="w-3.5 h-3.5" />
@@ -227,28 +227,23 @@ export function FighterDetailClient({
       {/* 🥊 I. HERO SECTION: BỐ CỤC MỞ, TRẢI DÀI THOÁNG ĐÃNG        */}
       {/* ========================================================= */}
       <section className="relative">
-        {/* Subtle radial ambient lighting */}
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[400px] bg-red-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-1/3 right-1/4 w-[500px] h-[400px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* CỘT TRÁI: ẢNH VÕ SĨ ĐỨNG DỌC + AVATAR Ở DƯỚI VÀO GIỮA */}
           <div className="lg:col-span-5 flex flex-col items-center">
             {/* 1. ẢNH DỌC VÕ SĨ ĐỨNG */}
-            <div className="relative w-full max-w-[330px] h-[480px] sm:h-[520px] rounded-3xl overflow-hidden shadow-2xl group">
+            <div className="relative w-full max-w-[330px] h-[480px] sm:h-[520px] rounded-3xl overflow-hidden shadow-md group border border-slate-200/90 bg-slate-100">
               <img
                 src={standingImage}
                 alt={fighter.name}
-                className="w-full h-full object-cover object-top filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
-              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
               <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                <span className="px-3.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[11px] font-bold text-white uppercase tracking-wider shadow-lg">
+                <span className="px-3.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 text-[11px] font-bold text-slate-800 uppercase tracking-wider shadow-xs">
                   {division?.nameVi || 'MMA'} • {division?.weightLimit}kg
                 </span>
-                <span className="px-3.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-amber-400/40 text-[11px] font-mono font-bold text-amber-400 shadow-lg">
+                <span className="px-3.5 py-1 rounded-full bg-primary/90 backdrop-blur-md text-[11px] font-mono font-bold text-white shadow-xs">
                   ★ {fighter.eloRating} ELO
                 </span>
               </div>
@@ -256,8 +251,8 @@ export function FighterDetailClient({
 
             {/* 2. AVATAR TRÒN NẰM Ở DƯỚI ĐÁY VÀ VÀO CHÍNH GIỮA */}
             <div className="-mt-14 relative z-20 flex flex-col items-center">
-              <div className="relative w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-red-500 to-amber-200 shadow-2xl">
-                <div className="w-full h-full rounded-full overflow-hidden border-3 border-background bg-background">
+              <div className="relative w-24 h-24 rounded-full p-1 bg-white shadow-md border border-slate-200">
+                <div className="w-full h-full rounded-full overflow-hidden bg-slate-100">
                   <img
                     src={avatarImage}
                     alt={fighter.name}
@@ -266,25 +261,25 @@ export function FighterDetailClient({
                 </div>
                 {fighter.isChampion && (
                   <span
-                    className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-amber-500 border-2 border-background flex items-center justify-center text-xs shadow-lg"
+                    className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-amber-400 border-2 border-white flex items-center justify-center text-xs shadow-xs"
                     title="Đương kim Vô địch"
                   >
-                    🏆
+                    👑
                   </span>
                 )}
               </div>
 
               {/* 3. TÊN Ở DƯỚI VÀ CĂN GIỮA */}
               <div className="text-center mt-3">
-                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                   {fighter.name}
                 </h2>
                 {fighter.nickname && (
-                  <p className="text-sm sm:text-base font-bold italic text-amber-400 mt-0.5">
+                  <p className="text-sm sm:text-base font-bold italic text-primary mt-0.5">
                     "{fighter.nickname}"
                   </p>
                 )}
-                <p className="text-xs text-slate-400 font-medium mt-1">
+                <p className="text-xs text-slate-500 font-medium mt-1">
                   CLB {gym?.name || 'Tự do'} • 🇻🇳 Việt Nam
                 </p>
               </div>
@@ -296,7 +291,7 @@ export function FighterDetailClient({
                     href={fighter.socialLinks.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-xl bg-slate-800/80 border border-slate-700/80 text-blue-400 hover:bg-[#1877F2] hover:text-white transition-all flex items-center justify-center shadow"
+                    className="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 text-blue-600 hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center shadow-xs"
                     title="Facebook"
                   >
                     <FacebookIcon className="w-4 h-4" />
@@ -307,7 +302,7 @@ export function FighterDetailClient({
                     href={fighter.socialLinks.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-xl bg-slate-800/80 border border-slate-700/80 text-pink-400 hover:bg-[#E4405F] hover:text-white transition-all flex items-center justify-center shadow"
+                    className="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 text-pink-600 hover:bg-pink-600 hover:text-white transition-all flex items-center justify-center shadow-xs"
                     title="Instagram"
                   >
                     <InstagramIcon className="w-4 h-4" />
@@ -318,7 +313,7 @@ export function FighterDetailClient({
                     href={fighter.socialLinks.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-xl bg-slate-800/80 border border-slate-700/80 text-red-400 hover:bg-[#FF0000] hover:text-white transition-all flex items-center justify-center shadow"
+                    className="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 text-red-600 hover:bg-red-600 hover:text-white transition-all flex items-center justify-center shadow-xs"
                     title="YouTube"
                   >
                     <YouTubeIcon className="w-4 h-4" />
@@ -329,16 +324,16 @@ export function FighterDetailClient({
                     href={fighter.socialLinks.tiktok}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 text-white hover:bg-slate-700 transition-all flex items-center justify-center shadow"
+                    className="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center shadow-xs"
                     title="TikTok"
                   >
                     <TikTokIcon className="w-4 h-4" />
                   </a>
                 )}
                 {!fighter.socialLinks?.facebook && !fighter.socialLinks?.instagram && (
-                  <div className="flex items-center gap-1.5 text-xs text-slate-400 bg-card/60 px-3 py-1 rounded-xl border border-border">
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500 bg-white px-3 py-1 rounded-xl border border-slate-200 shadow-xs">
                     <span>Võ sĩ xác thực</span>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                   </div>
                 )}
               </div>
@@ -346,51 +341,51 @@ export function FighterDetailClient({
           </div>
 
           {/* CỘT PHẢI: CHI TIẾT HỒ SƠ */}
-          <div className="lg:col-span-7 space-y-7 pt-2">
+          <div className="lg:col-span-7 space-y-6 pt-2">
             <div className="flex flex-wrap items-center gap-2.5">
               {fighter.isChampion && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20">
-                  <Trophy className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 font-bold text-xs uppercase tracking-wider border border-amber-200 shadow-xs">
+                  <Trophy className="w-3.5 h-3.5 text-amber-600" />
                   {fighter.championshipTitle || 'Đương Kim Vô Địch'}
                 </span>
               )}
-              <span className="px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs font-mono font-bold">
+              <span className="px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono font-bold">
                 {division?.nameVi || 'MMA'} ({division?.weightLimit} kg)
               </span>
-              <span className="px-3 py-1 rounded-full bg-red-600/10 border border-red-500/30 text-red-400 text-xs font-semibold flex items-center gap-1">
+              <span className="px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-primary text-xs font-semibold flex items-center gap-1">
                 <Building2 className="w-3.5 h-3.5" /> CLB {gym?.name || 'Tự do'}
               </span>
             </div>
 
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-none">
                 {fighter.name}
               </h1>
               {fighter.nickname && (
-                <p className="text-2xl sm:text-3xl font-bold italic text-amber-400 mt-2">
+                <p className="text-2xl sm:text-3xl font-bold italic text-primary mt-2">
                   "{fighter.nickname}"
                 </p>
               )}
             </div>
 
             {/* 💬 CÂU NÓI TRÍCH DẪN */}
-            <div className="rounded-2xl bg-gradient-to-r from-amber-500/10 via-[#101524]/60 to-transparent border-l-3 border-amber-400 p-5 shadow-sm">
+            <div className="rounded-2xl bg-sky-50/60 border-l-4 border-primary p-5 shadow-xs">
               <div className="flex items-start gap-3">
-                <span className="text-3xl text-amber-400 font-serif select-none leading-none -mt-1">“</span>
-                <p className="text-sm sm:text-base text-slate-200 italic font-serif leading-relaxed flex-1">
+                <span className="text-3xl text-primary font-serif select-none leading-none -mt-1">“</span>
+                <p className="text-sm sm:text-base text-slate-700 italic font-serif leading-relaxed flex-1">
                   {quoteText}
                 </p>
               </div>
 
-              <div className="flex items-center justify-between mt-3 pl-6 pt-2 border-t border-amber-500/20">
-                <span className="text-xs font-bold text-amber-400 font-mono">
+              <div className="flex items-center justify-between mt-3 pl-6 pt-2 border-t border-sky-100">
+                <span className="text-xs font-bold text-primary font-mono">
                   — {quoteAuthor}
                 </span>
 
                 {canEdit && (
                   <Link
                     href={`/admin/fighters?edit=${fighter.id}`}
-                    className="text-[11px] text-amber-400/90 hover:text-amber-300 flex items-center gap-1 font-medium underline"
+                    className="text-[11px] text-primary hover:text-sky-700 flex items-center gap-1 font-medium underline"
                   >
                     <Edit3 className="w-3 h-3" /> Sửa trong CMS
                   </Link>
@@ -400,46 +395,46 @@ export function FighterDetailClient({
 
             {/* 📜 TIỂU SỬ SỰ NGHIỆP (NẾU CÓ) */}
             {fighter.bio && (
-              <div className="rounded-2xl bg-card/40 border border-border/50 p-4 space-y-1.5">
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-purple-400" />
+              <div className="rounded-2xl bg-white border border-slate-200/90 p-4 space-y-1.5 shadow-xs">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                  <FileText className="w-3.5 h-3.5 text-indigo-500" />
                   Tiểu Sử Võ Sĩ
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
                   {fighter.bio}
                 </p>
               </div>
             )}
 
             {/* BẢNG THÔNG SỐ NHANH */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-card/40 border border-border/50 backdrop-blur-sm">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
               <div>
                 <span className="text-[10px] text-slate-400 uppercase tracking-widest block font-medium">Thành tích Pro</span>
                 <div className="text-2xl font-black font-mono mt-1">
-                  <span className="text-emerald-400">{wins}W</span>
-                  <span className="text-slate-600 mx-1.5">-</span>
-                  <span className="text-rose-500">{losses}L</span>
+                  <span className="text-emerald-600">{wins}W</span>
+                  <span className="text-slate-300 mx-1.5">-</span>
+                  <span className="text-rose-600">{losses}L</span>
                   {draws > 0 && <span className="text-slate-400 text-base font-normal ml-1">({draws}D)</span>}
                 </div>
               </div>
 
               <div>
                 <span className="text-[10px] text-slate-400 uppercase tracking-widest block font-medium">Tỷ lệ KO/TKO</span>
-                <span className="text-2xl font-black text-white font-mono mt-1 block">
+                <span className="text-2xl font-black text-slate-900 font-mono mt-1 block">
                   {koPct}%
                 </span>
               </div>
 
               <div>
                 <span className="text-[10px] text-slate-400 uppercase tracking-widest block font-medium">Tỷ lệ Khóa Siết</span>
-                <span className="text-2xl font-black text-amber-400 font-mono mt-1 block">
+                <span className="text-2xl font-black text-amber-600 font-mono mt-1 block">
                   {subPct}%
                 </span>
               </div>
 
               <div>
                 <span className="text-[10px] text-slate-400 uppercase tracking-widest block font-medium">CLB Chủ Quản</span>
-                <span className="text-sm font-bold text-slate-200 mt-1.5 block truncate" title={gym?.name}>
+                <span className="text-sm font-bold text-slate-800 mt-1.5 block truncate" title={gym?.name}>
                   {gym?.name || 'Tự do'}
                 </span>
               </div>
@@ -447,32 +442,32 @@ export function FighterDetailClient({
 
             {/* THÔNG SỐ THỂ CHẤT */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-              <div className="p-3 rounded-xl bg-card/30 border border-border/40 flex items-center gap-2.5">
-                <Ruler className="w-4 h-4 text-red-400 shrink-0" />
+              <div className="p-3 rounded-xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-2.5">
+                <Ruler className="w-4 h-4 text-primary shrink-0" />
                 <div>
                   <span className="text-slate-400 text-[10px] block">Chiều cao</span>
-                  <strong className="text-white font-mono">{fighter.height} cm</strong>
+                  <strong className="text-slate-900 font-mono">{fighter.height} cm</strong>
                 </div>
               </div>
-              <div className="p-3 rounded-xl bg-card/30 border border-border/40 flex items-center gap-2.5">
-                <Zap className="w-4 h-4 text-amber-400 shrink-0" />
+              <div className="p-3 rounded-xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-2.5">
+                <Zap className="w-4 h-4 text-amber-500 shrink-0" />
                 <div>
                   <span className="text-slate-400 text-[10px] block">Sải tay</span>
-                  <strong className="text-white font-mono">{fighter.reach} cm</strong>
+                  <strong className="text-slate-900 font-mono">{fighter.reach} cm</strong>
                 </div>
               </div>
-              <div className="p-3 rounded-xl bg-card/30 border border-border/40 flex items-center gap-2.5">
-                <Scale className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="p-3 rounded-xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-2.5">
+                <Scale className="w-4 h-4 text-emerald-600 shrink-0" />
                 <div>
                   <span className="text-slate-400 text-[10px] block">Hạng cân</span>
-                  <strong className="text-white font-mono">{division?.weightLimit || 70} kg</strong>
+                  <strong className="text-slate-900 font-mono">{division?.weightLimit || 70} kg</strong>
                 </div>
               </div>
-              <div className="p-3 rounded-xl bg-card/30 border border-border/40 flex items-center gap-2.5">
-                <Building2 className="w-4 h-4 text-purple-400 shrink-0" />
+              <div className="p-3 rounded-xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-2.5">
+                <Building2 className="w-4 h-4 text-indigo-600 shrink-0" />
                 <div>
                   <span className="text-slate-400 text-[10px] block">Khu vực CLB</span>
-                  <strong className="text-white truncate block max-w-[90px]">{gym?.city || 'TP.HCM'}</strong>
+                  <strong className="text-slate-900 truncate block max-w-[90px]">{gym?.city || 'TP.HCM'}</strong>
                 </div>
               </div>
             </div>
@@ -483,7 +478,7 @@ export function FighterDetailClient({
                 {fighter.styles.map((style) => (
                   <span
                     key={style}
-                    className="text-xs font-semibold px-3 py-1 rounded-lg bg-red-500/10 text-red-300 border border-red-500/20"
+                    className="text-xs font-semibold px-3 py-1 rounded-lg bg-sky-50 text-sky-700 border border-sky-200/80"
                   >
                     {style}
                   </span>
@@ -493,7 +488,7 @@ export function FighterDetailClient({
               <div className="flex items-center gap-3">
                 <Link
                   href={`/so-sanh?fighter1=${fighter.id}`}
-                  className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-red-600/30 transition-all hover:scale-105"
+                  className="px-5 py-2.5 rounded-xl bg-primary hover:bg-sky-600 text-white font-bold text-xs flex items-center gap-2 shadow-xs transition-all"
                 >
                   <Swords className="w-4 h-4" /> So sánh đối đầu
                 </Link>
@@ -504,7 +499,7 @@ export function FighterDetailClient({
                       alert('Đã copy liên kết hồ sơ võ sĩ!')
                     }
                   }}
-                  className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all cursor-pointer"
+                  className="p-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-600 border border-slate-200/90 transition-all cursor-pointer shadow-xs"
                   title="Chia sẻ hồ sơ"
                 >
                   <Share2 className="w-4 h-4" />
@@ -518,43 +513,43 @@ export function FighterDetailClient({
       {/* ========================================================= */}
       {/* 🧭 THANH ĐIỀU HƯỚNG CUỘN NHANH TRÊN TOÀN TRANG (SMOOTH)   */}
       {/* ========================================================= */}
-      <div className="sticky top-20 z-30 py-3 bg-background/90 backdrop-blur-md border-y border-border/60">
-        <div className="flex items-center gap-3 overflow-x-auto">
+      <div className="sticky top-16 z-30 py-2.5 bg-white/95 backdrop-blur-md border-y border-slate-200/80 shadow-xs">
+        <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar">
           <a
             href="#bxh"
-            className="px-4 py-2 rounded-xl bg-card/60 hover:bg-amber-500 hover:text-black border border-border/50 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-300"
+            className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-amber-50 hover:text-amber-800 border border-slate-200/60 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-700"
           >
-            <Trophy className="w-3.5 h-3.5 text-amber-400" /> Bảng xếp hạng ({rankingsList.length})
+            <Trophy className="w-3.5 h-3.5 text-amber-500" /> Bảng xếp hạng ({rankingsList.length})
           </a>
           <a
             href="#chi-so"
-            className="px-4 py-2 rounded-xl bg-card/60 hover:bg-red-600 hover:text-white border border-border/50 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-300"
+            className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-sky-50 hover:text-primary border border-slate-200/60 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-700"
           >
-            <Zap className="w-3.5 h-3.5 text-red-400" /> Chỉ số & Kỹ năng
+            <Zap className="w-3.5 h-3.5 text-primary" /> Chỉ số & Kỹ năng
           </a>
           <a
             href="#lich-su"
-            className="px-4 py-2 rounded-xl bg-card/60 hover:bg-red-600 hover:text-white border border-border/50 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-300"
+            className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-sky-50 hover:text-primary border border-slate-200/60 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-700"
           >
-            <Swords className="w-3.5 h-3.5 text-amber-400" /> Lịch sử thi đấu ({fights.length})
+            <Swords className="w-3.5 h-3.5 text-amber-600" /> Lịch sử thi đấu ({fights.length})
           </a>
           <a
             href="#album-anh"
-            className="px-4 py-2 rounded-xl bg-card/60 hover:bg-red-600 hover:text-white border border-border/50 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-300"
+            className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-sky-50 hover:text-primary border border-slate-200/60 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-700"
           >
-            <ImageIcon className="w-3.5 h-3.5 text-cyan-400" /> Album ảnh ({fighter.gallery?.length || 6})
+            <ImageIcon className="w-3.5 h-3.5 text-sky-500" /> Album ảnh ({fighter.gallery?.length || 6})
           </a>
           <a
             href="#video"
-            className="px-4 py-2 rounded-xl bg-card/60 hover:bg-red-600 hover:text-white border border-border/50 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-300"
+            className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-rose-50 hover:text-rose-700 border border-slate-200/60 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-700"
           >
-            <Play className="w-3.5 h-3.5 text-rose-400" /> Video Highlights ({fighter.highlightVideos?.length || 4})
+            <Play className="w-3.5 h-3.5 text-rose-500" /> Video ({fighter.highlightVideos?.length || 4})
           </a>
           <a
             href="#bai-viet"
-            className="px-4 py-2 rounded-xl bg-card/60 hover:bg-red-600 hover:text-white border border-border/50 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-300"
+            className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200/60 text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap text-slate-700"
           >
-            <FileText className="w-3.5 h-3.5 text-purple-400" /> Bài viết liên quan ({relatedArticles.length})
+            <FileText className="w-3.5 h-3.5 text-indigo-500" /> Bài viết ({relatedArticles.length})
           </a>
         </div>
       </div>
@@ -565,16 +560,16 @@ export function FighterDetailClient({
       <section id="bxh" className="space-y-6 pt-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 className="text-2xl font-black text-white flex items-center gap-2.5">
-              <Trophy className="w-6 h-6 text-amber-400" /> Bảng Xếp Hạng & Danh Hiệu Hiện Tại
+            <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+              <Trophy className="w-6 h-6 text-amber-500" /> Bảng Xếp Hạng & Danh Hiệu Hiện Tại
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Thứ hạng chính thức của võ sĩ trên các đấu trường chuyên nghiệp và các hạng cân thi đấu
             </p>
           </div>
           <Link
             href="/bang-xep-hang"
-            className="inline-flex items-center gap-1 text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors"
+            className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:text-sky-700 transition-colors"
           >
             Xem toàn bộ BXH <ChevronRight className="w-4 h-4" />
           </Link>
@@ -585,47 +580,46 @@ export function FighterDetailClient({
             <div
               key={idx}
               className={cn(
-                "relative rounded-2xl p-5 border transition-all shadow-lg flex flex-col justify-between group",
+                "relative rounded-2xl p-5 border transition-all shadow-xs flex flex-col justify-between group",
                 rank.isChampion
-                  ? "bg-gradient-to-b from-amber-500/15 via-card/50 to-card/30 border-amber-500/40 hover:border-amber-400"
-                  : "bg-card/40 border-border/60 hover:border-slate-500"
+                  ? "bg-amber-50/40 border-amber-200/90 hover:border-amber-300"
+                  : "bg-white border-slate-200/90 hover:border-slate-300"
               )}
             >
               {/* Badge Promotion Header */}
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className={cn(
-                    "px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider bg-gradient-to-r text-white shadow-sm",
-                    rank.promotionBadgeColor
+                    "px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-slate-100 border border-slate-200 text-slate-700 shadow-xs"
                   )}>
                     {rank.promotionName}
                   </span>
                   <span className={cn(
-                    "font-mono font-black text-sm px-2.5 py-0.5 rounded-md",
+                    "font-mono font-bold text-sm px-2.5 py-0.5 rounded-md",
                     rank.isChampion
-                      ? "bg-amber-400 text-black shadow-lg shadow-amber-500/30"
-                      : "bg-slate-800 text-slate-200 border border-slate-700"
+                      ? "bg-amber-100 text-amber-800 border border-amber-200"
+                      : "bg-slate-100 text-slate-700 border border-slate-200"
                   )}>
                     {rank.rankBadge}
                   </span>
                 </div>
 
-                <h3 className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors">
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors">
                   {rank.divisionName}
                 </h3>
-                <p className="text-xs font-semibold text-slate-300 mt-1">
+                <p className="text-xs font-semibold text-slate-600 mt-1">
                   {rank.rankTitle}
                 </p>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-border/40 text-xs space-y-1">
-                <div className="flex items-center justify-between text-slate-400 text-[11px]">
+              <div className="pt-4 mt-4 border-t border-slate-100 text-xs space-y-1">
+                <div className="flex items-center justify-between text-slate-500 text-[11px]">
                   <span>Thành tích:</span>
-                  <strong className="text-white font-mono">{rank.recordAtPromotion}</strong>
+                  <strong className="text-slate-800 font-mono">{rank.recordAtPromotion}</strong>
                 </div>
-                <div className="flex items-center justify-between text-slate-400 text-[11px]">
+                <div className="flex items-center justify-between text-slate-500 text-[11px]">
                   <span>Trạng thái:</span>
-                  <strong className={rank.isChampion ? "text-amber-400" : "text-slate-300"}>
+                  <strong className={rank.isChampion ? "text-amber-700" : "text-slate-700"}>
                     {rank.statusText}
                   </strong>
                 </div>
@@ -641,60 +635,60 @@ export function FighterDetailClient({
       <section id="chi-so" className="space-y-6 pt-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-black text-white flex items-center gap-2.5">
-              <Zap className="w-6 h-6 text-red-500" /> Chỉ Số & Phân Tích Kỹ Năng
+            <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+              <Zap className="w-6 h-6 text-primary" /> Chỉ Số & Phân Tích Kỹ Năng
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Đánh giá toàn diện 6 chiều võ thuật và hiệu suất thực chiến lồng bát giác
             </p>
           </div>
-          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-card border border-border text-slate-300">
+          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700">
             ★ {fighter.eloRating} Elo Rating
           </span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Card 1: BIỂU ĐỒ RADAR 6 CHIỀU */}
-          <div className="rounded-2xl p-6 bg-card/40 border border-border/60 shadow-lg flex flex-col justify-between">
+          <div className="rounded-2xl p-6 bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between">
             <div>
-              <div className="flex items-center gap-2 text-white font-bold text-base">
-                <Zap className="w-4 h-4 text-red-500" />
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-base">
+                <Zap className="w-4 h-4 text-primary" />
                 <span>Kỹ Năng Toàn Diện (6 Chiều)</span>
               </div>
-              <p className="text-xs text-slate-400 mt-1">Đánh Đứng • Vật • Khóa Siết • Địa Chiến • Phòng Thủ • Thể Lực</p>
+              <p className="text-xs text-slate-500 mt-1">Đánh Đứng • Vật • Khóa Siết • Địa Chiến • Phòng Thủ • Thể Lực</p>
             </div>
 
             <div className="w-full max-w-[340px] mx-auto py-1">
               <RadarChart stats={fighter.stats} size={270} />
             </div>
 
-            <div className="pt-3 border-t border-border/50 flex items-center justify-between text-[11px] text-slate-400">
-              <span>Thang điểm: <strong className="text-slate-200">1 - 5 Sao</strong></span>
-              <span className="text-emerald-400 font-mono font-bold">Chỉ số Pro MMA</span>
+            <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+              <span>Thang điểm: <strong className="text-slate-800">1 - 5 Sao</strong></span>
+              <span className="text-emerald-600 font-mono font-bold">Chỉ số Pro MMA</span>
             </div>
           </div>
 
           {/* Card 2: HIỆU SUẤT TẤN CÔNG & PHÒNG THỦ */}
-          <div className="rounded-2xl p-6 bg-card/40 border border-border/60 shadow-lg space-y-5">
+          <div className="rounded-2xl p-6 bg-white border border-slate-200/90 shadow-xs space-y-5">
             <div>
-              <div className="flex items-center gap-2 text-white font-bold text-base">
-                <Shield className="w-4 h-4 text-cyan-400" />
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-base">
+                <Shield className="w-4 h-4 text-sky-600" />
                 <span>Hiệu Suất Thực Chiến</span>
               </div>
-              <p className="text-xs text-slate-400 mt-1">Tỷ lệ chính xác ra đòn và khả năng chống quật ngã</p>
+              <p className="text-xs text-slate-500 mt-1">Tỷ lệ chính xác ra đòn và khả năng chống quật ngã</p>
             </div>
 
             <div className="space-y-4 pt-1">
               <div>
                 <div className="flex justify-between text-xs font-semibold mb-1.5">
-                  <span className="text-slate-300 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-cyan-400" /> Chính xác đánh đứng
+                  <span className="text-slate-700 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-sky-500" /> Chính xác đánh đứng
                   </span>
-                  <span className="font-mono text-cyan-400 font-bold">{fighter.stats.strikingAccuracy}%</span>
+                  <span className="font-mono text-sky-600 font-bold">{fighter.stats.strikingAccuracy}%</span>
                 </div>
-                <div className="h-2 bg-slate-800/80 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full transition-all duration-700 shadow-sm"
+                    className="h-full bg-sky-500 rounded-full transition-all duration-700 shadow-xs"
                     style={{ width: `${fighter.stats.strikingAccuracy}%` }}
                   />
                 </div>
@@ -702,14 +696,14 @@ export function FighterDetailClient({
 
               <div>
                 <div className="flex justify-between text-xs font-semibold mb-1.5">
-                  <span className="text-slate-300 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-blue-400" /> Phòng thủ đánh đứng
+                  <span className="text-slate-700 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-blue-600" /> Phòng thủ đánh đứng
                   </span>
-                  <span className="font-mono text-blue-400 font-bold">{fighter.stats.strikingDefense}%</span>
+                  <span className="font-mono text-blue-600 font-bold">{fighter.stats.strikingDefense}%</span>
                 </div>
-                <div className="h-2 bg-slate-800/80 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-blue-700 to-blue-400 rounded-full transition-all duration-700 shadow-sm"
+                    className="h-full bg-blue-600 rounded-full transition-all duration-700 shadow-xs"
                     style={{ width: `${fighter.stats.strikingDefense}%` }}
                   />
                 </div>
@@ -717,14 +711,14 @@ export function FighterDetailClient({
 
               <div>
                 <div className="flex justify-between text-xs font-semibold mb-1.5">
-                  <span className="text-slate-300 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400" /> Quật ngã (Vật) thành công
+                  <span className="text-slate-700 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" /> Quật ngã (Vật) thành công
                   </span>
-                  <span className="font-mono text-emerald-400 font-bold">{fighter.stats.takedownAccuracy}%</span>
+                  <span className="font-mono text-emerald-600 font-bold">{fighter.stats.takedownAccuracy}%</span>
                 </div>
-                <div className="h-2 bg-slate-800/80 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-emerald-600 to-teal-400 rounded-full transition-all duration-700 shadow-sm"
+                    className="h-full bg-emerald-500 rounded-full transition-all duration-700 shadow-xs"
                     style={{ width: `${fighter.stats.takedownAccuracy}%` }}
                   />
                 </div>
@@ -732,14 +726,14 @@ export function FighterDetailClient({
 
               <div>
                 <div className="flex justify-between text-xs font-semibold mb-1.5">
-                  <span className="text-slate-300 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-teal-400" /> Chống quật ngã (Chống vật)
+                  <span className="text-slate-700 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-teal-500" /> Chống quật ngã (Chống vật)
                   </span>
-                  <span className="font-mono text-teal-400 font-bold">{fighter.stats.takedownDefense}%</span>
+                  <span className="font-mono text-teal-600 font-bold">{fighter.stats.takedownDefense}%</span>
                 </div>
-                <div className="h-2 bg-slate-800/80 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-teal-600 to-emerald-300 rounded-full transition-all duration-700 shadow-sm"
+                    className="h-full bg-teal-500 rounded-full transition-all duration-700 shadow-xs"
                     style={{ width: `${fighter.stats.takedownDefense}%` }}
                   />
                 </div>
@@ -747,14 +741,14 @@ export function FighterDetailClient({
 
               <div>
                 <div className="flex justify-between text-xs font-semibold mb-1.5">
-                  <span className="text-slate-300 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-red-400" /> Tỉ lệ kết liễu trận
+                  <span className="text-slate-700 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-rose-500" /> Tỉ lệ kết liễu trận
                   </span>
-                  <span className="font-mono text-rose-400 font-bold">{fighter.stats.finishRate}%</span>
+                  <span className="font-mono text-rose-600 font-bold">{fighter.stats.finishRate}%</span>
                 </div>
-                <div className="h-2 bg-slate-800/80 rounded-full overflow-hidden">
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-red-600 to-rose-400 rounded-full transition-all duration-700 shadow-sm"
+                    className="h-full bg-rose-500 rounded-full transition-all duration-700 shadow-xs"
                     style={{ width: `${fighter.stats.finishRate}%` }}
                   />
                 </div>
@@ -763,50 +757,50 @@ export function FighterDetailClient({
           </div>
 
           {/* Card 3: CƠ CẤU CHIẾN THẮNG & ĐIỂM NỔI BẬT */}
-          <div className="rounded-2xl p-6 bg-card/40 border border-border/60 shadow-lg space-y-5">
+          <div className="rounded-2xl p-6 bg-white border border-slate-200/90 shadow-xs space-y-5">
             <div>
-              <div className="flex items-center gap-2 text-white font-bold text-base">
-                <Flame className="w-4 h-4 text-amber-400" />
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-base">
+                <Flame className="w-4 h-4 text-amber-500" />
                 <span>Cơ Cấu Phương Thức Thắng</span>
               </div>
-              <p className="text-xs text-slate-400 mt-1">Phân bổ {wins} trận thắng chuyên nghiệp</p>
+              <p className="text-xs text-slate-500 mt-1">Phân bổ {wins} trận thắng chuyên nghiệp</p>
             </div>
 
             <div className="space-y-4 pt-1">
               <div>
                 <div className="flex justify-between text-xs font-semibold mb-1.5">
-                  <span className="text-red-400 font-medium">Knockout / TKO</span>
-                  <span className="font-mono text-white font-bold">{winsByKo} trận ({koPct}%)</span>
+                  <span className="text-rose-600 font-medium">Knockout / TKO</span>
+                  <span className="font-mono text-slate-900 font-bold">{winsByKo} trận ({koPct}%)</span>
                 </div>
-                <div className="h-2.5 bg-slate-800/80 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-red-600 to-rose-500 rounded-full" style={{ width: `${koPct}%` }} />
-                </div>
-              </div>
-
-              <div>
-                <div className="flex justify-between text-xs font-semibold mb-1.5">
-                  <span className="text-amber-400 font-medium">Khóa siết (Submission)</span>
-                  <span className="font-mono text-white font-bold">{winsBySub} trận ({subPct}%)</span>
-                </div>
-                <div className="h-2.5 bg-slate-800/80 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-amber-600 to-yellow-400 rounded-full" style={{ width: `${subPct}%` }} />
+                <div className="h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-rose-500 rounded-full" style={{ width: `${koPct}%` }} />
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-xs font-semibold mb-1.5">
-                  <span className="text-blue-400 font-medium">Tính điểm (Decision)</span>
-                  <span className="font-mono text-white font-bold">{winsByDec} trận ({decPct}%)</span>
+                  <span className="text-amber-600 font-medium">Khóa siết (Submission)</span>
+                  <span className="font-mono text-slate-900 font-bold">{winsBySub} trận ({subPct}%)</span>
                 </div>
-                <div className="h-2.5 bg-slate-800/80 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full" style={{ width: `${decPct}%` }} />
+                <div className="h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-amber-500 rounded-full" style={{ width: `${subPct}%` }} />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-xs font-semibold mb-1.5">
+                  <span className="text-sky-600 font-medium">Tính điểm (Decision)</span>
+                  <span className="font-mono text-slate-900 font-bold">{winsByDec} trận ({decPct}%)</span>
+                </div>
+                <div className="h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-sky-500 rounded-full" style={{ width: `${decPct}%` }} />
                 </div>
               </div>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-card/60 border border-border/50 text-xs space-y-1">
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs space-y-1">
               <span className="text-slate-400 block text-[11px] font-mono">Đánh giá chuyên môn:</span>
-              <p className="text-slate-200 leading-relaxed font-medium">
+              <p className="text-slate-700 leading-relaxed font-medium">
                 Võ sĩ có phong cách {fighter.styles.join(', ')} với tỷ lệ thắng sớm {fighter.stats.finishRate}%, sở trường đòn đánh dồn dập.
               </p>
             </div>
@@ -820,20 +814,20 @@ export function FighterDetailClient({
       <section id="lich-su" className="space-y-6 pt-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-black text-white flex items-center gap-2.5">
+            <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
               <Swords className="w-6 h-6 text-amber-500" /> Nhật Ký Các Trận Đấu Bát Giác
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Chi tiết đối thủ, hiệp đấu, thời gian và phương thức định đoạt trận
             </p>
           </div>
-          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-card border border-border text-slate-300">
+          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700">
             Tổng: {fights.length} trận
           </span>
         </div>
 
         {fights.length === 0 ? (
-          <div className="text-center py-12 bg-card/40 rounded-2xl border border-border text-slate-400">
+          <div className="text-center py-12 bg-white rounded-2xl border border-slate-200 text-slate-500">
             Chưa có dữ liệu trận đấu cho võ sĩ này.
           </div>
         ) : (
@@ -847,25 +841,25 @@ export function FighterDetailClient({
               return (
                 <div
                   key={fight.id}
-                  className="relative rounded-2xl bg-card/40 border border-border/70 overflow-hidden hover:border-red-500/50 transition-all shadow-md group"
+                  className="relative rounded-2xl bg-white border border-slate-200/90 overflow-hidden hover:border-sky-300 hover:shadow-md transition-all shadow-xs group"
                 >
                   {/* Event Header Banner */}
-                  <div className="px-5 py-2.5 bg-slate-900/80 border-b border-border/50 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="px-5 py-2.5 bg-slate-50 border-b border-slate-200/80 flex flex-wrap items-center justify-between gap-2 text-xs">
                     <div className="flex items-center gap-2 font-mono">
-                      <span className="text-red-400 font-bold uppercase">LION Championship</span>
-                      <span className="text-slate-600">•</span>
-                      <span className="text-slate-300">{fight.division?.nameVi || 'Hạng Nhẹ'} ({fight.division?.weightLimit}kg)</span>
+                      <span className="text-primary font-bold uppercase">LION Championship</span>
+                      <span className="text-slate-300">•</span>
+                      <span className="text-slate-600">{fight.division?.nameVi || 'Hạng Nhẹ'} ({fight.division?.weightLimit}kg)</span>
                       {fight.isTitleFight && (
                         <>
-                          <span className="text-slate-600">•</span>
-                          <span className="text-amber-400 font-bold flex items-center gap-1">
-                            <Trophy className="w-3 h-3" /> Tranh Đai Vô Địch
+                          <span className="text-slate-300">•</span>
+                          <span className="text-amber-700 font-bold flex items-center gap-1">
+                            <Trophy className="w-3 h-3 text-amber-500" /> Tranh Đai Vô Địch
                           </span>
                         </>
                       )}
                     </div>
 
-                    <div className="text-[11px] text-slate-400">
+                    <div className="text-[11px] text-slate-500">
                       {isFinished ? 'Trận đấu chính thức' : 'Trận đấu sắp diễn ra'}
                     </div>
                   </div>
@@ -874,46 +868,46 @@ export function FighterDetailClient({
                   <div className="p-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                     {/* Góc Trái: Võ Sĩ Của Chúng Ta */}
                     <div className="md:col-span-4 flex items-center gap-3.5">
-                      <div className="relative w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-amber-400 to-red-500 shrink-0 shadow-md">
-                        <div className="w-full h-full rounded-full overflow-hidden bg-black">
+                      <div className="relative w-14 h-14 rounded-full p-0.5 bg-amber-400 shrink-0 shadow-xs">
+                        <div className="w-full h-full rounded-full overflow-hidden bg-slate-100">
                           <img src={avatarImage} alt={fighter.name} className="w-full h-full object-cover" />
                         </div>
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <span className="text-sm font-black text-white">{fighter.name}</span>
+                          <span className="text-sm font-bold text-slate-900">{fighter.name}</span>
                           {fighter.isChampion && <span title="Đương kim vô địch">👑</span>}
                         </div>
-                        <p className="text-xs text-amber-400 italic">"{fighter.nickname || 'Chiến binh'}"</p>
-                        <span className="text-[11px] font-mono text-emerald-400 font-semibold">{wins}W - {losses}L</span>
+                        <p className="text-xs text-primary italic">"{fighter.nickname || 'Chiến binh'}"</p>
+                        <span className="text-[11px] font-mono text-emerald-600 font-semibold">{wins}W - {losses}L</span>
                       </div>
                     </div>
 
                     {/* Ở Giữa: Trọng Tâm Kết Quả / Tỉ Số Hoặc VS */}
-                    <div className="md:col-span-4 flex flex-col items-center justify-center py-2 md:py-0 border-y md:border-y-0 md:border-x border-border/40">
+                    <div className="md:col-span-4 flex flex-col items-center justify-center py-2 md:py-0 border-y md:border-y-0 md:border-x border-slate-100">
                       {isFinished && fight.result ? (
                         <div className="text-center space-y-1">
                           <div className={cn(
-                            "inline-block px-4 py-1 rounded-full text-xs font-black font-mono shadow",
-                            isWinner ? "bg-emerald-600 text-white" : "bg-rose-600 text-white"
+                            "inline-block px-3.5 py-0.5 rounded-full text-xs font-bold font-mono shadow-xs",
+                            isWinner ? "bg-emerald-100 text-emerald-800 border border-emerald-200" : "bg-rose-100 text-rose-800 border border-rose-200"
                           )}>
                             {isWinner ? 'CHIẾN THẮNG' : 'THẤT BẠI'}
                           </div>
-                          <div className="text-base font-black text-white font-mono tracking-wider">
+                          <div className="text-base font-black text-slate-900 font-mono tracking-wider">
                             {fight.result.method}
                           </div>
-                          <div className="text-[11px] text-slate-400 font-mono">
+                          <div className="text-[11px] text-slate-500 font-mono">
                             Hiệp {fight.result.round} • {fight.result.time}
                           </div>
                         </div>
                       ) : (
                         <div className="text-center space-y-2">
-                          <span className="text-xl font-black italic text-amber-400 font-mono tracking-widest block animate-pulse">
+                          <span className="text-xl font-black italic text-primary font-mono tracking-widest block">
                             VS
                           </span>
                           <Link
                             href={`/su-kien/${fight.eventId}`}
-                            className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white text-xs font-bold shadow-lg shadow-red-600/20"
+                            className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-lg bg-primary hover:bg-sky-600 text-white text-xs font-bold shadow-xs transition-all"
                           >
                             <Flame className="w-3.5 h-3.5" /> Dự đoán ngay
                           </Link>
@@ -926,19 +920,19 @@ export function FighterDetailClient({
                       <div className="text-left md:text-right">
                         <Link
                           href={`/vo-si/${opponent.id}`}
-                          className="text-sm font-black text-white hover:text-red-400 transition-colors block"
+                          className="text-sm font-bold text-slate-900 hover:text-primary transition-colors block"
                         >
                           {opponent.name}
                         </Link>
                         {opponent.nickname && (
-                          <p className="text-xs text-slate-400 italic">"{opponent.nickname}"</p>
+                          <p className="text-xs text-slate-500 italic">"{opponent.nickname}"</p>
                         )}
-                        <span className="text-[11px] font-mono text-slate-400">
+                        <span className="text-[11px] font-mono text-slate-500">
                           {opponent.record.wins}W - {opponent.record.losses}L
                         </span>
                       </div>
-                      <div className="relative w-14 h-14 rounded-full p-0.5 bg-slate-700 shrink-0 shadow-md">
-                        <div className="w-full h-full rounded-full overflow-hidden bg-black flex items-center justify-center text-slate-300 font-bold text-sm">
+                      <div className="relative w-14 h-14 rounded-full p-0.5 bg-slate-200 shrink-0 shadow-xs">
+                        <div className="w-full h-full rounded-full overflow-hidden bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-sm">
                           {opponent.avatar ? (
                             <img src={opponent.avatar} alt={opponent.name} className="w-full h-full object-cover" />
                           ) : (
@@ -961,10 +955,10 @@ export function FighterDetailClient({
       <section id="album-anh" className="space-y-6 pt-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-black text-white flex items-center gap-2.5">
-              <ImageIcon className="w-6 h-6 text-cyan-400" /> Album Ảnh Thi Đấu & Tập Luyện
+            <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+              <ImageIcon className="w-6 h-6 text-primary" /> Album Ảnh Thi Đấu & Tập Luyện
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Cuộn ngang slide để xem những khoảnh khắc võ đài chân thực
             </p>
           </div>
@@ -973,14 +967,14 @@ export function FighterDetailClient({
           <div className="flex items-center gap-2">
             <button
               onClick={() => scrollGallery('left')}
-              className="p-2.5 rounded-xl bg-card hover:bg-slate-700 text-white border border-border transition-all cursor-pointer shadow"
+              className="p-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-all cursor-pointer shadow-xs"
               title="Trượt sang trái"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => scrollGallery('right')}
-              className="p-2.5 rounded-xl bg-card hover:bg-slate-700 text-white border border-border transition-all cursor-pointer shadow"
+              className="p-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-all cursor-pointer shadow-xs"
               title="Trượt sang phải"
             >
               <ChevronRight className="w-5 h-5" />
@@ -1004,18 +998,18 @@ export function FighterDetailClient({
             <div
               key={item.id}
               onClick={() => setLightboxImage({ url: item.url, caption: item.caption, title: item.title })}
-              className="w-[280px] sm:w-[320px] aspect-[3/4] shrink-0 snap-start group relative rounded-2xl overflow-hidden bg-card/40 border border-border/60 cursor-pointer shadow-lg hover:border-cyan-400/60 transition-all"
+              className="w-[280px] sm:w-[320px] aspect-[3/4] shrink-0 snap-start group relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/90 cursor-pointer shadow-xs hover:border-sky-300 hover:shadow-md transition-all"
             >
               <img
                 src={item.url}
                 alt={item.title || 'Ảnh thi đấu'}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex flex-col justify-end">
-                <span className="text-xs font-bold text-amber-400">{item.title || 'Khoảnh khắc MMA'}</span>
-                <p className="text-[11px] text-slate-200 line-clamp-2 mt-1">{item.caption}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent p-4 flex flex-col justify-end">
+                <span className="text-xs font-bold text-amber-300">{item.title || 'Khoảnh khắc MMA'}</span>
+                <p className="text-[11px] text-white line-clamp-2 mt-1">{item.caption}</p>
               </div>
-              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity shadow-xs">
                 <Maximize2 className="w-4 h-4" />
               </div>
             </div>
@@ -1029,14 +1023,14 @@ export function FighterDetailClient({
       <section id="video" className="space-y-6 pt-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-black text-white flex items-center gap-2.5">
-              <Play className="w-6 h-6 text-rose-500 fill-current" /> Video Highlights & Khoảnh Khắc Đỉnh Cao
+            <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+              <Play className="w-6 h-6 text-primary fill-primary/20" /> Video Highlights & Khoảnh Khắc Đỉnh Cao
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Tuyển tập những màn knock-out kinh điển và phóng sự độc quyền
             </p>
           </div>
-          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-card border border-border text-slate-300">
+          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700">
             {fighter.highlightVideos?.length || 4} video
           </span>
         </div>
@@ -1052,33 +1046,33 @@ export function FighterDetailClient({
             <div
               key={video.id}
               onClick={() => setActiveVideo(video)}
-              className="group flex gap-4 p-3 rounded-2xl bg-card/40 border border-border/60 hover:border-rose-500/50 cursor-pointer shadow-md transition-all items-center"
+              className="group flex gap-4 p-3 rounded-2xl bg-white border border-slate-200/90 hover:border-sky-300 hover:shadow-md cursor-pointer shadow-xs transition-all items-center"
             >
               {/* Compact 16:9 Thumbnail */}
-              <div className="relative w-36 sm:w-44 aspect-video shrink-0 rounded-xl overflow-hidden bg-black">
+              <div className="relative w-36 sm:w-44 aspect-video shrink-0 rounded-xl overflow-hidden bg-slate-900">
                 <img
                   src={video.thumbnail}
                   alt={video.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-9 h-9 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-red-500 transition-all">
+                  <div className="w-9 h-9 rounded-full bg-primary/90 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:bg-primary transition-all">
                     <Play className="w-4 h-4 fill-current translate-x-0.5" />
                   </div>
                 </div>
-                <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded bg-black/80 text-[10px] font-mono text-white">
+                <span className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-white">
                   {video.duration}
                 </span>
               </div>
 
               {/* Video Info */}
               <div className="flex-1 min-w-0 pr-2">
-                <h4 className="text-xs sm:text-sm font-bold text-white group-hover:text-red-400 transition-colors line-clamp-2 leading-snug">
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2 leading-snug">
                   {video.title}
                 </h4>
-                <div className="flex items-center gap-2 mt-2 text-[11px] text-slate-400">
+                <div className="flex items-center gap-2 mt-2 text-[11px] text-slate-500">
                   <span className="flex items-center gap-1">
-                    <Eye className="w-3 h-3" /> {video.views}
+                    <Eye className="w-3 h-3 text-slate-400" /> {video.views}
                   </span>
                   <span>• MMAVN Hub</span>
                 </div>
@@ -1094,20 +1088,20 @@ export function FighterDetailClient({
       <section id="bai-viet" className="space-y-6 pt-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-black text-white flex items-center gap-2.5">
-              <FileText className="w-6 h-6 text-purple-400" /> Tin Tức & Phân Tích Chuyên Sâu
+            <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
+              <FileText className="w-6 h-6 text-indigo-600" /> Tin Tức & Phân Tích Chuyên Sâu
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Các bài báo, phỏng vấn và tiêu điểm liên quan tới {fighter.name}
             </p>
           </div>
-          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-card border border-border text-slate-300">
+          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700">
             {relatedArticles.length} bài viết
           </span>
         </div>
 
         {relatedArticles.length === 0 ? (
-          <div className="text-center py-12 bg-card/40 rounded-2xl border border-border text-slate-400">
+          <div className="text-center py-12 bg-white rounded-2xl border border-slate-200 text-slate-500">
             Chưa có bài viết trực tiếp nào về võ sĩ này.
           </div>
         ) : (
@@ -1116,30 +1110,30 @@ export function FighterDetailClient({
               <Link
                 key={art.id}
                 href={`/tin-tuc/${art.slug}`}
-                className="group rounded-2xl bg-card/40 border border-border/60 overflow-hidden hover:border-red-500/50 transition-all flex flex-col shadow-md"
+                className="group rounded-2xl bg-white border border-slate-200/90 overflow-hidden hover:border-sky-300 hover:shadow-md transition-all flex flex-col shadow-xs"
               >
-                <div className="aspect-[16/10] relative overflow-hidden bg-slate-900">
+                <div className="aspect-[16/10] relative overflow-hidden bg-slate-100">
                   <img
                     src={art.coverImage.startsWith('http') ? art.coverImage : standingImage}
                     alt={art.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-red-600 text-[10px] font-bold text-white uppercase">
+                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-primary text-[10px] font-bold text-white uppercase shadow-xs">
                     {art.category}
                   </span>
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
-                    <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors line-clamp-2">
+                    <h4 className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2">
                       {art.title}
                     </h4>
-                    <p className="text-xs text-slate-400 line-clamp-2 mt-2">
+                    <p className="text-xs text-slate-500 line-clamp-2 mt-2">
                       {art.excerpt}
                     </p>
                   </div>
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 pt-3 mt-3 border-t border-border/40">
+                  <div className="flex items-center justify-between text-[11px] text-slate-500 pt-3 mt-3 border-t border-slate-100">
                     <span>{art.author}</span>
-                    <span className="flex items-center gap-1 text-red-400 font-semibold">
+                    <span className="flex items-center gap-1 text-primary font-semibold">
                       Đọc bài <ChevronRight className="w-3 h-3" />
                     </span>
                   </div>

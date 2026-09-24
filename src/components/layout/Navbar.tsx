@@ -142,20 +142,20 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/90 backdrop-blur-xl border-b border-border/70 shadow-sm transition-all">
+    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-border shadow-xs transition-all">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl h-16 flex items-center justify-between gap-2 md:gap-4">
         {/* Brand / Logo */}
         <Link 
           href="/" 
           className="flex-shrink-0 flex items-center gap-2 group mr-1"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary via-red-600 to-rose-700 flex items-center justify-center shadow-md shadow-primary/25 border border-white/10 group-hover:scale-105 transition-transform duration-200">
-            <span className="text-base leading-none">🥊</span>
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-sm shadow-primary/20 border border-primary/20 group-hover:scale-105 transition-transform duration-200">
+            <span className="text-base leading-none text-white">🥊</span>
           </div>
           <div className="flex items-center gap-1 font-black tracking-tight text-lg">
-            <span className="text-white">MMA</span>
-            <span className="text-primary">VN</span>
-            <span className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded-md bg-card border border-border text-slate-300 ml-0.5">
+            <span className="text-slate-900">MMA</span>
+            <span className="text-primary font-bold">VN</span>
+            <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-md bg-sky-50 border border-sky-200 text-sky-700 ml-0.5">
               HUB
             </span>
           </div>
@@ -173,18 +173,18 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-sm font-medium transition-all duration-200 flex items-center gap-1 whitespace-nowrap",
+                  "px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap",
                   isActive
-                    ? "text-primary bg-primary/10 font-bold border border-primary/20 shadow-xs"
+                    ? "text-primary bg-sky-50 font-bold border border-sky-100 shadow-xs"
                     : link.isShop
-                      ? "text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 font-semibold"
-                      : "text-slate-300 hover:text-white hover:bg-card-hover/80"
+                      ? "text-sky-700 hover:text-sky-900 hover:bg-sky-50/70 font-semibold"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
                 )}
               >
-                {link.isShop && <ShoppingBag className="w-3.5 h-3.5 text-amber-400" />}
+                {link.isShop && <ShoppingBag className="w-3.5 h-3.5 text-sky-600" />}
                 <span>{link.label}</span>
                 {link.isShop && (
-                  <span className="text-[9px] font-bold px-1 py-0.2 rounded bg-amber-400/20 text-amber-300 uppercase">
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-100 text-sky-700 uppercase">
                     Shop
                   </span>
                 )}
@@ -208,23 +208,23 @@ export function Navbar() {
             <button
               onClick={() => setIsExploreOpen(!isExploreOpen)}
               className={cn(
-                "px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-sm font-medium transition-all duration-200 flex items-center gap-1 whitespace-nowrap cursor-pointer",
+                "px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium transition-all duration-200 flex items-center gap-1 whitespace-nowrap cursor-pointer",
                 isExploreActive
-                  ? "text-primary bg-primary/10 border border-primary/20 font-bold"
-                  : "text-slate-300 hover:text-white hover:bg-card-hover/80"
+                  ? "text-primary bg-sky-50 border border-sky-100 font-bold"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
               )}
             >
               <span>Khám phá</span>
               <ChevronDown className={cn(
-                "w-3.5 h-3.5 transition-transform duration-200",
+                "w-3.5 h-3.5 transition-transform duration-200 text-slate-500",
                 isExploreOpen && "rotate-180"
               )} />
             </button>
 
             {isExploreOpen && (
               <div className="absolute top-full left-0 pt-2 w-64 z-50 animate-in fade-in-50 slide-in-from-top-1 duration-150">
-                <div className="p-2 bg-card/95 backdrop-blur-xl border border-border/80 rounded-2xl shadow-2xl shadow-black/60 space-y-1">
-                  <div className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-border/50 flex items-center justify-between">
+                <div className="p-2 bg-white/95 backdrop-blur-xl border border-border rounded-2xl shadow-xl shadow-slate-200/50 space-y-1">
+                  <div className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-border flex items-center justify-between">
                     <span>Hệ sinh thái MMAVN</span>
                     <Sparkles className="w-3 h-3 text-primary" />
                   </div>
@@ -240,13 +240,12 @@ export function Navbar() {
                         className={cn(
                           "group flex items-start gap-3 p-2 rounded-xl transition-all duration-150",
                           isItemActive 
-                            ? "bg-primary/10 text-primary" 
-                            : "hover:bg-card-hover text-slate-200 hover:text-white"
+                            ? "bg-sky-50 text-primary font-semibold" 
+                            : "hover:bg-slate-50 text-slate-700 hover:text-slate-900"
                         )}
                       >
                         <div className={cn(
-                          "w-7 h-7 rounded-lg flex items-center justify-center border flex-shrink-0 transition-transform group-hover:scale-105",
-                          item.accentColor
+                          "w-7 h-7 rounded-lg flex items-center justify-center border flex-shrink-0 transition-transform group-hover:scale-105 bg-sky-50 text-primary border-sky-100",
                         )}>
                           <ItemIcon className="w-3.5 h-3.5" />
                         </div>
@@ -269,14 +268,14 @@ export function Navbar() {
 
         {/* Right Section: Expandable Search & User Profile Widget */}
         <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-          {/* 🔍 EXPANDABLE SEARCH BAR (Kéo giãn ra khi click vào) */}
+          {/* 🔍 EXPANDABLE SEARCH BAR */}
           <form onSubmit={handleSearchSubmit} className="relative flex items-center">
             <div
               className={cn(
-                "flex items-center rounded-xl bg-card/70 border border-border/70 transition-all duration-300 overflow-hidden",
+                "flex items-center rounded-xl bg-slate-100 border border-slate-200 transition-all duration-300 overflow-hidden",
                 isSearchExpanded 
-                  ? "w-48 sm:w-64 border-primary/50 ring-2 ring-primary/20 bg-card" 
-                  : "w-9 sm:w-36 hover:border-border"
+                  ? "w-48 sm:w-64 border-primary ring-2 ring-sky-100 bg-white" 
+                  : "w-9 sm:w-36 hover:border-slate-300"
               )}
             >
               <button
@@ -285,7 +284,7 @@ export function Navbar() {
                   setIsSearchExpanded(true)
                   searchInputRef.current?.focus()
                 }}
-                className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-white shrink-0 cursor-pointer"
+                className="w-9 h-9 flex items-center justify-center text-slate-500 hover:text-primary shrink-0 cursor-pointer"
                 title="Tìm kiếm"
               >
                 <Search className="w-4 h-4" />
@@ -299,7 +298,7 @@ export function Navbar() {
                 onFocus={() => setIsSearchExpanded(true)}
                 placeholder="Tìm võ sĩ, sự kiện..."
                 className={cn(
-                  "bg-transparent text-xs text-white placeholder-slate-400 focus:outline-none w-full pr-3 transition-opacity duration-200",
+                  "bg-transparent text-xs text-slate-800 placeholder-slate-400 focus:outline-none w-full pr-3 transition-opacity duration-200",
                   !isSearchExpanded && "hidden sm:block opacity-70"
                 )}
               />
@@ -308,7 +307,7 @@ export function Navbar() {
                 <button
                   type="button"
                   onClick={() => setSearchValue('')}
-                  className="p-1 mr-1 text-slate-400 hover:text-white"
+                  className="p-1 mr-1 text-slate-400 hover:text-slate-600"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -316,12 +315,12 @@ export function Navbar() {
             </div>
           </form>
 
-          {/* 👤 USER PROFILE & AUTH WIDGET (Thay thế nút Admin CMS) */}
+          {/* 👤 USER PROFILE & AUTH WIDGET */}
           <UserNavWidget />
 
           {/* Mobile Menu Button */}
           <button
-            className="p-2 rounded-xl bg-card border border-border text-slate-300 hover:text-white hover:border-border-hover transition-colors lg:hidden"
+            className="p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 transition-colors lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle navigation menu"
           >
@@ -332,7 +331,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-xl animate-fade-in max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="lg:hidden border-t border-border bg-white shadow-xl animate-fade-in max-h-[calc(100vh-4rem)] overflow-y-auto">
           <div className="p-4 space-y-4">
             <form onSubmit={handleSearchSubmit} className="relative">
               <input
@@ -340,7 +339,7 @@ export function Navbar() {
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Tìm kiếm võ sĩ, giải đấu..."
-                className="w-full pl-9 pr-4 py-2 rounded-xl bg-card border border-border text-sm text-white placeholder-slate-400 focus:outline-none focus:border-primary"
+                className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-border text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-primary"
               />
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
             </form>
@@ -357,7 +356,7 @@ export function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
                       "flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-semibold",
-                      isActive ? "bg-primary/10 text-primary" : "text-slate-300 hover:bg-card"
+                      isActive ? "bg-sky-50 text-primary" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                     )}
                   >
                     {Icon && <Icon className="w-4 h-4" />}
@@ -374,7 +373,7 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-slate-300 hover:bg-card"
+                  className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                 >
                   <item.icon className="w-4 h-4 text-slate-400" />
                   <span>{item.label}</span>
